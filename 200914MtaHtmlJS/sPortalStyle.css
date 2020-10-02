@@ -1,0 +1,18 @@
+﻿/* standard styles ay folder: Styles */
+p {
+    margin: 0px 0px 0px 0px;
+}
+
+article {
+    background-color: olive;
+}
+
+header, footer {
+    background-color: black;
+    color: red;
+}
+
+    header p {
+        font-size: 40px;
+    }
+
