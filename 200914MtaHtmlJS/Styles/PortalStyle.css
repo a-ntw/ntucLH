@@ -1,0 +1,80 @@
+﻿/* standard styles ay folder: Styles */
+p {
+    margin: 0px 0px 0px 0px;
+}
+
+article {
+    background-color: red;
+}
+
+header, footer {
+    background-color: black;
+    color: red;
+}
+
+    header p {
+        font-size: 40px;
+    }
+
+nav {
+    background-color: yellow;
+    font-size: 20px;
+    height: 100px;
+}
+
+/* @ index.html, article, section */
+#productandservices {
+    background-color: aquamarine;
+}
+
+#multimedia {
+    background-color: aqua;
+}
+
+#productandservices img {
+    width: 400px;
+    height: 200px;
+}
+
+#productandservices ul li {
+    display: inline;
+    padding-right: 20px;
+}
+
+/* animated FREE IPAD image */
+#promotion {
+    float: right;
+    background: linear-gradient(red, yellow);
+    border-radius: 100px;
+    width: 150px;
+    height: 150px;
+    transform: rotate(30deg);
+    display: table;
+    transition: transform 2s; /* for p and hover */
+}
+
+    #promotion p {
+        font-family: Ranchers;
+        font-size: 40px;
+        color: white;
+        text-align: center;
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    #promotion:hover {
+        transform: scale(1.5) rotate(60deg);
+    }
+
+a {
+    text-decoration: none;
+    padding: 30px 30px 30px 30px;
+    background-color: blue;
+    color: white;
+    transition: font-size 1s, font-weight 1s; /* a:hover */
+}
+
+    a:hover {
+        font-size: 30px;
+        font-weight: bold;
+    }
