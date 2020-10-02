@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<!-- Right-Click at NTUCCorr at Explorer to ADD new HTML page -->
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="Styles/PortalStyle.css" rel="stylesheet" />
+    <script src="Scripts/PortalLogic.js"></script>
+    <script src="Scripts/jquery-3.5.1.min.js"></script>
+    <script src="Scripts/NTUCEmployee.js"></script>
+    <script src="Scripts/UploadProfilePhoto.js"></script>
+    <script src="Scripts/ProgressBar.js"></script>
+</head>
+<body id="dropOff" onload="NTUCLhubEmployee.detectCountry()">
+    <!-- add in HTML5 stylesU(); -->
+    <article>
+        <!-- animation progress bar on top -->
+        <section>
+            <canvas id="inputProgressBar" width="1000">
+            </canvas>
+        </section>
+
+        <!-- KICK-OFF with create form<p> -->
+        <form method="post" action="www.google.com" onsubmit="return validateForm()">
+            <p>Profile Photo:</p>
+            <img id="ProfilePhoto" src="" alt="" />
+            <input id="SelectPhoto" type="file" multiple />
+            <input id="UploadPhoto" type="button" value="Upload Photo" onclick="uploadProfilePhoto();" />
+
+            <!-- add FORM inputs -->
+            <!-- auto generate EmpNo via PortalLogic.js, NTUCEmployee.js -->
+            <p>Employee No:</p>
+            <input id="EmpNoInput" type="text" />
+            <p>Employee Name:</p>
+            <input id="EmpNameInput" type="text" required onchange="displayProgress(100)" />
+            <p>Employee Type:</p>
+            <select id="EmpTypeInput" onchange="NTUCLhubEmployee.generateEmpNo(); displayProgress(300)">
+                <option value="Regular">Regular</option>
+                <option value="Temporary">Temporary</option>
+                <option value="Contract">Contract</option>
+            </select>
+            <p>Employee Email:</p>
+            <input id="EmpEmailInput" type="email" onchange="displayProgress(400)" />
+
+            <!-- Country detect  -->
+            <p>Country:</p>
+            <input id="EmpCountryInput" type="text" />
+            <p>Employee NRIC:</p>
+            <input id="EmpNRICInput" type="text" pattern="^[SFTG]\d{7}[A-Z]$" title="Wrong input, use an IC format" onchange="displayProgress(500)" />
+
+            <!-- PASSWORD input, PortalLogic.js -->
+            <p>Employee PIN:</p>
+            <input id="EmpPinInput" type="password" />
+            <p>Confirm PIN:</p>
+            <input id="ConfirmPinInput" type="password" />
+            <input id="Button1" type="submit" value="Submit" />
+            <input id="Button2" type="button" value="button" onclick="alert('The page complies with the PDPA policy..')" />
+
+            <!-- SAVE and restore data -->
+            <input id="SaveToLocal" type="button" value="Save To Local" onclick="NTUCLhubEmployee.saveToLocalStorage();" />
+            <input id="GetFromLocal" type="button" value="Get From Local" onclick="NTUCLhubEmployee.getFromLocalStorage();" />
+        </form>
+    </article>
+    <!-- this drag script need to place at end -->
+    <script src="Scripts/DragAndDrop.js"></script>
+</body>
+</html>
