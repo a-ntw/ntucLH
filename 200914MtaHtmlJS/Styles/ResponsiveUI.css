@@ -1,0 +1,11 @@
+﻿@media screen and (max-width: 600px) {
+    video, #productandservices img {
+        width: 200px;
+        height: 200px;
+    }
+
+    a, #productandservices ul li {
+        display: block;
+    }
+}
+/* link ref to index.html */
