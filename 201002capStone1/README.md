@@ -3,11 +3,13 @@ Coded done by Ng, date: Sep29,2020.
 - Display shown standard keyboard with display, and two memory, and history log.
 - **Design aspect**. from addEventListner, **wireframe** ideas of calculator button.
 - using **ascii** as reference variable for each button.
-- start design from keypress, and javascript, use **console.log** as display
-- use switch case                            
-- Layout of html use **.grid-container**
-- Boxes position of **absolute**, or **relative**.
+- start design in javascript, use **addeventlistener** for input, and **console.log** as display
+- use switch case  
 - **indexOf** to check double decimal.
+- Layout of html use **form**, buttons, and div.
+- responsive font size **vw** via viewport. 
+- Previous version was .grid-container. Boxes position of **absolute**, or **relative**.
+
 
 ### What I get from **SnakeGameV2.html**
 Coded done by Ng, date: Oct01,2020.
