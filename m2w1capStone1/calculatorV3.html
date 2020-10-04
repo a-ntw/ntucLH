@@ -1,0 +1,312 @@
+<!-- CALCULATOR
+    Coded done by Ng, date: Sep29,2020.
+    0. Display shown stanard keyboard with display, and two memory, and history log.
+    1. start design from keypress, and javascript
+    2. use switch case of ASCII code from keypress, addEventListener
+    3. layout of html use column grid.
+
+     linenumber:
+     29 - <meta name="viewport"
+     48 - addEventListener("keypress", function (event) {
+     56 - function myOpe(UniC) {
+     61 -   if ((UniC >= 48 && UniC <= 57) || UniC == 46 || UniC == 37) {
+     83 -     else if ((UniC >= 42 && UniC <= 47) || UniC == 61) {
+     102 -     else if (UniC == 19) {
+     106 -     else if (UniC == 18 || UniC == 13 || UniC == 16 || UniC == 3
+     112 -     else if (UniC == 97) {
+     128 - function MemColor(memColor) {
+     136 - function buttonColor(UniC) {
+     146 - function myFuncE(calSign) {
+     172 - function myFuncMem(calSign) {
+     218 - <style> * { box-sizing: border-box;
+     268 - <form class="main">
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <!-- viewport for responsive text -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>calculator</title>
+
+        <script>
+            let UniC = "";          // Unicode from keypress
+            let logMem = "";
+            let logMemNext = "";
+            let preSym = "sym42";   // for memory button color, temporary symbol for *
+            let logHist = "History: " + "<Br />";
+            let valBef, valPre, valDis, lastCalSign;
+            function defaultVal() {
+                valBef = 0;         // result   
+                valPre = "";        // chars Numbers keyin
+                valDis = "0";        // cumulative digits display on screen;
+                lastCalSign = "";   //  sign like 42,43 ... / * + - 
+            }
+            defaultVal();
+
+            /* KEYPRESS, coding design start from here */
+            addEventListener("keypress", function (event) {
+                var UniC = event.which || event.keyCode;
+                //console.log("ASCII code: " + UniC);
+                myOpe(UniC);
+            }
+            );
+
+            /*  functions received from keypress code, UniC */
+            function myOpe(UniC) {
+
+                buttonColor(UniC);
+
+                /* UniC: 0-9 digits, . dot(46), and %(37) */
+                if ((UniC >= 48 && UniC <= 57) || UniC === 46 || UniC === 37) {
+                    var valKeyDn = String.fromCharCode(UniC); // convert to string.
+
+                    // prior to add in dot ".", return if have previous dot"."
+                    if (UniC === 46) {
+                        let n = valPre.indexOf(".");
+                        if (n !== -1) {
+                            return;
+                        }
+                    }
+
+                    valPre += valKeyDn;
+
+                    // percent "%"
+                    if (UniC == 37) {
+                        myFuncE(37);
+                    }
+                    // Put on display
+                    valDis = valPre;
+                }
+
+                /* UniC: operation  /, *, -, +, =(61) */
+                else if ((UniC >= 42 && UniC <= 47) || UniC === 61) {
+                    valDis += String.fromCharCode(UniC);
+                    if (lastCalSign !== "") {
+                        logHist += valBef + String.fromCharCode(lastCalSign);
+                        myFuncE(lastCalSign);
+                        valDis = valBef;
+                        logHist += valPre + " = " + valDis + "<br/>";
+                    } else {
+                        valBef = parseFloat(valPre);
+                    }
+
+                    valPre = ''; /* reset */
+                    lastCalSign = UniC;
+                    /* Equal sign '=' */
+                    if (UniC === 61) {
+                        lastCalSign = "";
+                    }
+                }
+                /* saved to memory MS, strl-S  */
+                else if (UniC === 19) {
+                    myFuncMem(UniC);
+                }
+                /* Memory button, or keypress*/
+                else if (UniC === 18 || UniC === 13 || UniC === 16 || UniC === 3
+                        || UniC === 80 || UniC === 77) {
+                    if (logMem !== "")
+                        myFuncMem(UniC); /* only activate if memory available */
+                }
+                /* AC: All clear */
+                else if (UniC === 97) {
+
+                    defaultVal();
+                }
+                /*if (!isFinite(valDis)) {
+                 alert('Cannot divide by zero');
+                 } */
+                else {
+                    console.log("alert!");
+                }
+                console.log("valDis:" + valDis); // display
+                document.getElementById("displayArea").innerHTML = valDis;
+                document.getElementById("logHist").innerHTML = logHist;
+            }
+
+            /* memory button change colors if 'MS' is not activated. */
+            function MemColor(memColor) {
+                document.getElementById("memC").style.backgroundColor = memColor;
+                document.getElementById("memR").style.backgroundColor = memColor;
+                document.getElementById("memM").style.backgroundColor = memColor;
+                document.getElementById("memP").style.backgroundColor = memColor;
+            }
+
+            /* color on the operation (*+-/=) button if call */
+            function buttonColor(UniC) {
+                document.getElementById(preSym).style.backgroundColor = ""; // was ghostwhite
+                if ((UniC >= 42 && UniC <= 45) || UniC === 47 || UniC === 61) {
+                    symId = "sym" + UniC;
+                    document.getElementById(symId).style.backgroundColor = "orange";
+                    preSym = symId;
+                }
+            }
+
+            /* operation of calculation. lastCalSign: previous symbol */
+            function myFuncE(calSign) {
+                /* Convert valstrIn char to value */
+                var nuMStrIn = parseFloat(valPre);
+                switch (calSign) {
+                    case 42: // multiplication
+                        valBef = valBef * nuMStrIn;
+                        break;
+                    case 43: // addition
+                        valBef = valBef + nuMStrIn;
+                        break;
+                    case 45: // minus -1+2
+                        valBef = valBef - nuMStrIn;
+                        break;
+                    case 46: // dot .  Skipped
+                        break;
+                    case 47: // division  ;
+                        valBef = valBef / nuMStrIn;
+                        break;
+                    case 37: // Percentage
+                        nuMStrIn = nuMStrIn / 100;
+                        valPre = nuMStrIn;
+                        break;
+                }
+            }
+
+            /* memory methods, and update history  */
+            function myFuncMem(calSign) {
+                switch (calSign) {
+                    case 19:            /*ctrl-s : MS : memory store */
+                        if (logMem !== 0) {
+                            logMemNext = logMem;
+                        }
+                        logMem = parseFloat(valDis);
+                        MemColor("ghostwhite");
+                        break;
+                    case 18:            /*ctrl-r : MR : memory recall */
+                        valPre = logMem;
+                        valDis = valPre;
+                        break;
+                    case 13:            /*ctrl-m : M- : memory minus */
+                        lastCalSign = 45; // minus
+                        valBef = logMem;
+                        myFuncE(lastCalSign);
+                        logMem = valBef;
+                        break;
+                    case 16:            /*ctrl-p : M+ : memory plus */
+                        lastCalSign = 43; // plus
+                        valBef = logMem;
+                        myFuncE(lastCalSign);
+                        logMem = valBef;
+                        break;
+                    case 3:             /*ctrl-c : MC : memory clear */
+                        logMem = "";
+                        logMemNext = "";
+                        MemColor("grey");
+                        break;
+                    case 77: /* shift-m : M- : memory minus  for Second Mem */
+                        lastCalSign = 45; // minus
+                        valBef = logMemNext;
+                        myFuncE(lastCalSign);
+                        logMemNext = valBef;
+                        break;
+                    case 80: /* shift-p : M+ : memory plus for Second Mem */
+                        lastCalSign = 43; // plus
+                        valBef = logMemNext;
+                        myFuncE(lastCalSign);
+                        logMemNext = valBef;
+                }
+                document.getElementById("logMem").innerHTML = logMem;
+                document.getElementById("logMemNext").innerHTML = logMemNext;
+            }
+        </script>
+        <style>
+            * {
+                box-sizing: border-box;
+                font-size: 3vw;
+            }
+            .main {
+                width: 50%;
+                height: 80%;
+                float: left;
+                border: 2px solid maroon;
+                padding: 15px;
+                
+            }
+            #displayArea {
+                border: 1px solid coral;
+                margin-bottom: 3%; /*height: 25px; */
+                text-align: right;
+                padding: 3vw;
+                font-size: 4vw;
+                width: 96%;
+            }
+            button {
+                border-color: coral;
+                width: 23%;
+            }
+            .number0 {
+                width: 47.5%;
+            }
+            /* style for Memory and History */
+            .memColor {
+                background-color: grey;
+            }      
+            .MemDisp {
+                border: 1px solid coral;
+                height: 8vw;
+                padding: 1vw;
+            }
+            .smallDisp {
+                font-size: 2vw;
+            }
+            #logHist {
+                position: relative;
+                height: 16vw;
+                overflow-y: auto;
+                text-align: right;
+            }
+            /* <button onclick="myFunction()">Click me</button>  
+             https://www.w3schools.com/html/html_forms.asp  https://www.w3schools.com/css/css_boxmodel.asp 
+             https://www.w3schools.com/css/css_font_size.asp */
+        </style>
+    <form class="main">
+        <div id="displayArea">0</div>
+        <div>
+            <button type="button" onclick="myOpe(97)">AC</button>
+            <button type="button" id="memC" class="memColor" onclick="myOpe(3)">MC</button>
+            <button type="button" id="memR" class="memColor" onclick="myOpe(18)">MR</button>
+            <button type="button" onclick="myOpe(37)">%</button> 
+        </div><div>
+            <button type="button" onclick="myOpe(19)">MS</button>
+            <button type="button" id="memM" class="memColor" onclick="myOpe(13)">M-</button>
+            <button type="button" id="memP" class="memColor" onclick="myOpe(16)">M+</button>
+            <button type="button" id="sym47" onclick="myOpe(47)">/</button> 
+        </div><div>
+            <button type="button" onclick="myOpe(55)">7</button>
+            <button type="button" onclick="myOpe(56)">8</button>
+            <button type="button" onclick="myOpe(57)">9</button>
+            <button type="button" id="sym42" onclick="myOpe(42)">*</button> 
+        </div><div>
+            <button type="button" onclick="myOpe(52)">4</button>
+            <button type="button" onclick="myOpe(53)">5</button>
+            <button type="button" onclick="myOpe(54)">6</button>    
+            <button type="button" id="sym45" onclick="myOpe(45)">-</button> 
+        </div><div>    
+            <button type="button" onclick="myOpe(49)">1</button>
+            <button type="button" onclick="myOpe(50)">2</button>
+            <button type="button" onclick="myOpe(51)">3</button>
+            <button type="button" id="sym43" onclick="myOpe(43)">+</button> 
+        </div><div>
+            <button type="button" class="number0" onclick="myOpe(48)">0</button>
+            <button type="button" onclick="myOpe(46)">.</button>
+            <button type="button"  id="sym61"  onclick="myOpe(61)">=</button> 
+        </div>
+    </form>
+    <form class="main">
+        <div id="logMem" class="MemDisp">AC:a, MC:^c, MR:^r, MS:^s, M-:^m, M+:^p</div>
+        <div id="logMemNext" class="MemDisp"> M-:shift-m, M+:shift-p</div>
+        <div>
+            <button type="button" id="numberMP" class="smallDisp" onclick="myOpe(80)">m+</button>         
+            <button type="button" id="numberMM" class="smallDisp" onclick="myOpe(77)">m-</button>
+        </div>
+        <div id="logHist">History:</div>
+    </form>
+
+</body>
+</html>
