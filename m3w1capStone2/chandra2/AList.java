@@ -1,3 +1,4 @@
+package com.book; // i added this
 
 import java.util.*;
 
@@ -63,3 +64,15 @@ public class AList {
         
     }
 }
+
+/*
+run:
+ Size of the Array 5
+ Size of the Array 10
+ Array List String values are [One, Nine, Four, Two, Three, Five, Six, Seven, Eight, Ten]
+ Get Fifth Element of the ArrayList Five
+ :: One :: Nine :: Four :: Two :: Three :: Five :: Six :: Seven :: Eight :: Ten Sorted Array List
+ :: Eight :: Five :: Four :: Nine :: One :: Seven :: Six :: Ten :: Three :: Two Sub List
+ :: Four :: Nine :: One :: SevenBUILD SUCCESSFUL (total time: 0 seconds)
+*/
+
