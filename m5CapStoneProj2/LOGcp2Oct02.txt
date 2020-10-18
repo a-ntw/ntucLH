@@ -491,374 +491,3 @@ Enum - user defined data types to hold const values
 From Chandra to Everyone: (2:08 PM)  Projects for today afternoon session ==================================== Date and Time [java.time.*] =========================== Get Current Date and Time Difference between two given dates. Get the days Between Two Dates Check if a given year is leap year or not? convert date to EST/EDT timezone calculate the age of a person based on Date of Birth calculate the day of week based on a given date Display a every date with 30 Days Interval for the next two years ================================================================================== Write a java Application to build Telephone Directory * ability to add new entries * modify entries * delete entries * zipCode to areaCode mapping [enums - zipCode, areaCode ] * record Bill Amounts [enums - dail number, duration, charge amount]
 
 ---
-Oct 13, ’20
-From Sik On LEE to Everyone: (9:02 AM)  static BufferedReader obj = new BufferedReader(new InputStreamReader(System.in)); str = obj.readLine();
-
-
-Responsibility / Stakeholders / ownership
-	Bank -> Accounts -> Tax => CC -> X -> Y
- Close to Origin
-	Upstream
-
-s/w’s birthdate is to CRASH == KARMA // DESTINY
-
-Error’s - Java or JVM Failures
-	== corrections // corrective measures out of scope for developes
-
-	OutOfMemoryException - Heap
-	OutOfMemoryError
-
-Google: Java outOfMemoryErrorException
-
-#### Checked Exception - compile Time
-	especially 
-	java.io …,
-	java.net ….
-	java.util ...
-
-#### Unchecked Exception - Runtime
-	no - pre-validations - programmer
-	SHOULD be careful
-	OF NOT DOING RUNTIME Exception SCENARIOS's
-
-Handle —propagated
-
-Java TestProgram
-
-Call Stack:
-JVm - main - m1 - m2 - m3
-
-File f = new File(“");
-
-Mkdir
-
-—
-Class is Blueprint/template for your “object"
-
-	Automobile  - Object - [state & behaviour]
-
-class Automobile { // Car, lorri, truck, van,
-				// miniVan
-	noOfWheels
-	color
-	noOfSeats
-	noOfDoors
-	fuelType
-	transType
-	engineCap
-	fuelCapacity
-	storageCap
-}
-
-class Car extends Automobile {
-	
-}
-
-class Van extends Automobile {
-	
-}
-
-
-—
-
-Software - Monolithic - Standalone
-xPrograms
-xApplications
-
-Hierarchy
-Modular
-Reusability - inheritance
-Enforement
-Security [ private data + public methods  ] = Encapsulation
-		Abstraction
-
-
-Bank Account Mng Systems - Core Banking
-	Applicatoi. - 800k lines
-
-Class / Modules / Service
-
-OOP's
-
-Account Class  // Generalized 
-{
-
-}
-
-Different Types of Accounts
-
-Saving Account      // Specific
-Current Account
-Salary Account 
-Senior Citizen Account
-Child Account
-
-— objects classification
-
-	Account [ Parent ]
-		state + behaviour
-
-	Differents of Accounts [ children]
-		????? for bank
-		state & behaviour
-
-
-—
-Account [Parent] state + behaviour (Main object)
-State:
-cash handling
-foreign currency handling
-behaviour:
-fund deposit
-fund withdraw
-fund transfer
-Check balance
-
- Accounts [children] state & behaviour (sub Objects)
-Saving Account
-minimum balance
-ATM facility
-Accumulate interest
-Current Account
-Minimum balance
-Cheque facility
-No compount interest 
-
-Customer
-Name
-AccCount No
-
-
-—
-Parent - Root - Super
-
-Child - Sub - Inherited
- 
-Class Structure
-OOAD - object Oriented Analysis & Design
-
-
-Java - Object Oriented Programming
-
-BankAccount 				Customer
-
-BankAc, CC, HL, CL, Savings, FD, ….
-
-—
-Account
-
-AccHolder [1-*]
-
-if OOA is the what, then OOD is the how.
-
-From Chandra Sekhar to Everyone: (11:59 AM)
- Find and define the objects.
-Organize the objects.
-Describe how the objects interact with one another.
-Define the external behavior of the objects.
-Define the internal behavior of the objects.
-
-Advantages of Obj
-
-—get set
-—constructor
-toString
-
-—
-From Keng Wong to Everyone: (11:51 AM)  class BankAcct {  //state  acctID  acctHolderName  acctJointHolderName  acctType  acctCreationDate  acctHolderNRIC  acctHolderNRICType  acctJointHolderNRIC  acctJointHolderNRICType  acctHolderDOB  acctJointHolderDOB  acctHolderSampleSignature  acctJointHolderSampleSignature  acctHolderSampleThumbPrint  acctJointHolderSampleThumbPrint  acctMinBal  acctInterestRate  acctPIN  acctStatementType  creditCardLink   //behaviour  openAcct()  checkBal()  depositFund()  withdrawFund()  transferFund()  printStatement()  closeAcct()  computeInterest()  }
-
-—
-Oct 14, 2020
-
-Class
-	instance variables
-	Constructor
-	getter/setter
-	toString
-	...
-	Business Logic **
-
-
-final String country; - only can get method, only assign in constructor, and cannot be change.
-
-final class - cannot extend it 
-
-final method - cannot override in other method
-
-@Override
-
----
-Every class extends java.lang.Object
-
-********** RUN IN TERMINAL ****
-..\src>javac -d ..\build\classes core\banking\*.java
-..\src? cd ..\build\classes
-..\build\classes >  java core.banking TestAccount
-
-—
-Account class
-
-Account acc1 = new Account();
-
-	has an account  
-
-Several Types of Accounts - which one
-Student
-Uni
-Savings
-….
-
-### abstract. 
-
-public abstract class Animal ( // Abstract
-
-From Chandra Sekhar to Everyone: (3:24 PM)
- Why Abstract 			== Security Feature [copyright]
-============			== Ensure a particular funcationality is implement by all Children
-
-	1) if you don't want a particular class to be instantiated
-	2) When it doesn't make sense to implement a method 
-	
-	Animal an = new Animal(); // cow, cat, dog......
-	Car c = new Car(); // Nissan, .... 
-
-
-
-Rules about abstract class 
-==========================
-
-A class with Abstract Methods should always be Abstract
-
-A abstract class can never be instantiated 
-
-A abstract class can have 0/more Abstract methods or 0/more non-abstract methods
-
-A child class which extends abstract class should implement
-all abstract methods inherited or should be declared abstract itself 
-
-—
-From Chandra Sekhar to Everyone: (4:08 PM)  https://www.codebyamir.com/blog/when-to-use-an-abstract-class-in-java 
-
-## Interface
-From Chandra Sekhar to Everyone: (4:28 PM)
- Interface can be implemented by a Class
-
-
-all methods in an Interface are abstract i.e. no body / no implementation 
-all variables are public and final
-
-any class that implements the interface should implement the methods or become ABSTRACT 
-
-From Ren Jie Wong to Everyone: (4:28 PM)
- is this right?
-
-in interfaces, there isn't a need to use abstract keyword on the abstract methods (bcos all of interface mthods are abstract), but in abstract classes, we have to cause there a mix of implemented and abstracted methods. 
-
-—
-Oct 15, 2020
-
-FileExplorere
-
-Persist - make it permananent
-
-	DB [Java DataBase Connectivity]
-	
-	DDL, DML & DQL
-
-	CRUL - cread read update delete
-
-File I/O
-
-Google java file io
-
-Java.jdbc.
-Javax
-
-google java io api
-
-Platform Agnostic : Window 		c:\
-				/Linux/ Mac -	root dir “/“ /root/…
-
-“\\”  “\”root directory
-\ - escape seq
-\n,\t, \r ...
-
-BufferedInputStream
-BufferedOutputStream
-
-Synchronous  - Reliability - Direct I/O 
-	.. reading writing to file nothing in between
-
-Asynchronous - Performance - Buffered
-	.. 
-
-simple use FileInputSteam or FileOutStream
-
-Class File - file and directory 
-
-From Chandra Sekhar to Everyone: (10:03 AM)  https://docs.oracle.com/javase/7/docs/api/java/io/File.html 
-
-—
-
-Mac terminal
-> more
-> iTerm2
-From Chandra Sekhar to Me: (Privately) (11:39 AM)
-> .   ./comp.sh      [need space between dot]
-
-antw@Mac-mini FileExplorer % ls
-TestFolder	build.xml	execFE.bat	nbproject	test
-build		comp.sh		manifest.mf	src
-antw@Mac-mini FileExplorer % . ./comp.sh
-
-
-From Keng Wong to Me: (Privately) (11:44 AM)
- Runtime.getRuntime().exec("clear"); 
-
-From ONG Sin Siang to Everyone: (3:05 PM)
- set CLASSPATH=.;%CLASSPATH% 
-
-—
-From Chandra Sekhar to Everyone: (10:03 AM)
- https://docs.oracle.com/javase/7/docs/api/java/io/File.html 
-
- https://www.codegrepper.com/code-examples/delphi/java+clear+screen 
-From Wing Toh to Everyone: (10:52 AM)
-
-From Chandra Sekhar to Everyone: (4:53 PM)
- https://github.com/CohortOne/CapstoneProject2/blob/main/FileExplorer.zip
-
----
-antw@Mac-mini src % cd ..
-antw@Mac-mini FileExplore2 % javac src/file/exp/FileRW.java
-antw@Mac-mini FileExplore2 % ls                            
-TestFolder	build.xml	manifest.mf	src
-build		comp.sh		nbproject	test
-antw@Mac-mini FileExplore2 % java src/file/exp/FileRW    
-Error: Could not find or load main class src.file.exp.FileRW
-
-antw@Mac-mini FileExplore2 % pwd
-/Users/antw/ntuc/cp2/FileExplore2
-antw@Mac-mini FileExplore2 % 
-
----
-Oct16, 20
-Synchronous - wait for response. Two parties have to be active.
-Asynchronous - not waiting, 
-
-JDBC = java <— Interact  —> DB [sync & async]
-RMI - Remote Method Invocation [sync]
-JMS - java messaging services [ASync
-
-With Buffers - async
-Without buffer - sync
-
-From Sik On LEE to Everyone: (2:44 PM)
- static BufferedReader keybInput = new BufferedReader(new InputStreamReader(System.in));  // This is for use keyboard input
-        str = keybInput.readLine(); 
-From Chandra Sekhar to Everyone: (2:46 PM)
- //Globally   public static Scanner myObj = new Scanner(System.in);
-
-                fileName = myObj.nextLine(); 
-
----
