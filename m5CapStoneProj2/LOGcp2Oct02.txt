@@ -1,0 +1,493 @@
+.LOG cp2 Oct 02,’20
+
+*********
+https://github.com/alvintwng
+*********
+
+—
+Oct 05, 2020
+
+JAVA
+
+Platform Dependent
+
+WORA - write once run anywhere
+Security inbuilt
+Modular
+Object Oriented Language
+Strongly Type
+Polymorphism
+Unicode Support == all written languages
+Multi-Threaded
+
+Garbage Collection [by default this is a low priority thread
+but whem the JVM is running low on memory GC Thread’s 
+pro…
+	0 min
+	10 max
+	5 medium/normal
+
+Signed/unsigned
+
+overflow of data values
+
+From Chandra Sekhar to Everyone: (10:10 AM)
+ public class HelloWorld {
+
+       public static void main(String [] args){
+           System.out.println(" Hello World !!!");
+       }
+} 
+
+From Chandra Sekhar to Everyone: (10:11 AM)
+ HelloWorld.java 
+
+1) Public Class = =File Name
+2) File should have atleast One Class, but can have more than one non-public classes inside it.
+3) Every class with the following main method is executed
+public static void main(String[] args)
+
+
+From Chandra Sekhar to Everyone: (11:50 AM)
+ Compiler Syntax 
+===============
+javac <sourceFile>.java 
+
+Java Runtime / JVM 
+==================
+java   <classFileName_without.class>
+
+
+From Chandra Sekhar to Everyone: (12:32 PM)
+ // Static Initializer - all static variables 
+   // preprocessing done is here.........
+   // is auto loaded on JVM Startup
+
+
+From Chandra Sekhar to Everyone: (12:34 PM)
+ Static Init - is init all static members / variables  or preprocessing of static members before Main
+
+From Chandra Sekhar to Everyone: (2:24 PM)
+ public static void main(String [] args) throws Exception{
+       
+       int num1 = Integer.parseInt(System.console().readLine());
+       int num2 = Integer.parseInt(System.console().readLine());
+       System.out.println(" Bye Bye !!!" + add(num1,num2));
+        } 
+
+
+From Chandra Sekhar to Everyone: (2:31 PM)
+ System.out.println(" CLA : " + args.length);
+       /* for(int i = 0; i < args.length; i++){  
+            System.out.println(" args[" + i + "] = " + args[i]);
+        }*/
+        
+        for(String arg : args){
+            System.out.println( " CLA's " + arg);
+        } 
+
+
+— 
+From Chandra Sekhar to Everyone: (2:57 PM)
+	 Fibonacci Series Program
+	Factorial Program 
+	Calculator Program in Java // Basic Operations for int, double, String [+]
+	Mathematical Tables 
+
+System.out.println( "\t tab \n new line ");
+	15 * 1
+	15 * 20 
+
+—
+From Chandra Sekhar to Everyone: (4:46 PM)
+ https://code.visualstudio.com/docs/editor/portable 
+
+From Chandra Sekhar to Everyone: (5:28 PM)
+ String_Variable.equals("String_Value”) 
+
+—
+
+Oct 06, 2020
+google scripting language
+
+Two versions: 
+Android AOSP(Android Open sources services)
+Oracle JSK - provide support 
+OpenJDK - open source
+
+From Ren Jie Wong to Everyone: (10:23 AM)
+ can I say String being immutable means: 
+when u try to update the value of a String object, the old String object becomes unreferenced and a new String object is created and referenced to instead?
+
+——
+Signed/unsigned - overflow of data values
+
+Automatic Garbage Collection - not developers ….
+---
+From Observer to Everyone: (12:18 PM)
+ https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html 
+
+From Observer to Everyone: (12:20 PM)
+	Count characters/words in a String - wordCount
+	Count a specific word/character in a String - search 
+	Compare to Strings - comparision case Sensitive
+	Compare to Strings [ignore Case] - 
+	Search for an occurance word & character in a String - first position 
+	Remove a single character/word from a string - search and remove
+	Replace a single character/word from a string - replace first 
+	Replace all occurance character/word from a string - replace all 
+
+	Reverse a string 
+	Find if a string is palindrome [madam]
+		redivider, deified, civic, radar, level, rotor, kayak, reviver, racecar, madam, and refer.
+		 Dogma I am God 
+
+	Fetch a specific number of characters or words from the beginning/middle and end of a string
+	String, st/middle/end pos , String to Search ==== Positional Search 
+
+	swap strings between variables - variables 
+		without a third variable 
+		with a third variable
+	  var1 
+	  var2 
+
+	alter case upper to lower or mix n match 
+	  FlipCase - 
+	  allLower
+	  allUpper 
+
+From Observer to Everyone: (12:22 PM)
+ https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html 
+
+—
+Oct 07, 2020
+
+### Uncaught Exceptions
+Divide by Zero
+ ArrayIndexOOBEx
+NullPointer Ex
+
+### Rules of thumb
+Nesting don’t go deepper than 7 levels
+Variable names should be intuitive
+
+### 2 dim array
+
+From Chandra Sekhar to Everyone: (9:35 AM)  
+	int [] array = {1,2,3,4,5}; for( int arrEle : array){ System.out.print(arrEle + ","); } 
+
+From Chandra Sekhar to Everyone: (9:50 AM) 
+	 two dimensional matrix add sub multiplication division 
+
+From Chandra Sekhar to Everyone: (9:58 AM) 
+	 C:\Program Files\Java\jdk-11.0.8\bin
+
+## Monitoring Heap and non-heap
+### > jps
+
+### Visual Vim
+
+From Chandra Sekhar to Everyone: (10:12 AM) 
+ https://visualvm.github.io/download.html  
+
+From Chandra Sekhar to Everyone: (11:08 AM)  
+java -Dcom.sun.management.jmxremote.port=9005 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false HelloWorld
+
+### jconsole
+
+## memory
+	Garbage Collection
+	Young vs Old
+	YGX = every few secs
+	OLG / FGC - every few mins.
+
+	Compute Sum and Average of Array Elements [ 1 & 2 Dimensions]
+	Write a Java program to find the common elements between two arrays (string values). 
+	Write a Java program to find the second largest element in an array
+	Write a Java program to test the equality of two arrays
+	Sort an array [ for arrays of different dimensions], in a dimension
+
+From Chandra Sekhar to Everyone: (12:31 PM)
+	 Pseudocode
+
+ In computer science, pseudocode is a plain language description of the steps in an algorithm or another system. Pseudocode often uses structural conventions of a normal programming language, but is intended for human reading rather than machine reading
+
+From Chandra Sekhar to Everyone: (5:06 PM)
+ https://www.theverge.com/2020/10/6/21504715/google-v-oracle-supreme-court-hearings-android-java
+
+——
+use string length int len1 = str.length(); int len2 = strNext.length(); then you can do substring based on string lengths  
+From Sri Ram Panday to Me: (Privately) (5:53 PM)
+ System.out.println("Enter string for x: "); //Swap strings without 3rd var String x = input.nextLine(); System.out.println("Enter string for y: "); String y = input.nextLine(); System.out.println("Strings before swap: x = " + x + " and y = "+y); x = x + y; y = x.substring(0,x.length()-y.length()); x = x.substring(y.length()); System.out.println("Strings after swap: x = " + x + " and y = " + y);  
+
+From Chong Yin Fei Andrea to Everyone: (5:55 PM) 
+ str1 = str1 + str2; //concatenate strings & store in str1 str2 = str1.substring(0, (str1.length() - str2.length())); //extract str2 from str1 str1 = str1.substring(str2.length()); //extract str1 from str2
+
+From Wang junhao to Everyone: (5:56 PM)
+ a = a + b;  
+        b = a.substring(0, a.length() - b.length());  
+        a = a.substring(b.length());  
+        System.out.println("After : " + a + " " + b);
+—
+Oct 08, 2020
+
+Google: String pool
+
+Stack:
+	static/class variables - will init
+	instant/field variables - will init
+
+	local variable - developers responsibility
+
+Heap:
+	new instances();
+
+
+String str = “Welcome”; // Stack // variable favour
+String str1 = “Welcome”; // Stack
+
+String str2= new String(“Welcome”); // Heap // object favour
+
+// Java 7
+
+
+```
+static int i;
+int j;
+
+public static void main(String args()) {
+
+// Strings are STILL immutable
+
+int k = 10;
+
+//String Variables
+String str1 = ”Welcome”;
+String str2 = ”Welcome”;
+String str3 = ”welcome”;
+
+
+String str3 =  new String(”Welcome”); //  String object
+
+
+System.out.println(“ i :  ” + i);
+System.out.println(“ j :  ” + new Test1().j);
+System.out.println(“ k :  ” + k);
+
+// Java 7  - string common pool
+
+
+Google java String Buffer vs String Builder 
+
+new StringBuilder().
+
+Multi-Threaded
+ 
+// StringBuilder - Faster, optimise CPU mangement, multi-Threaded
+
+// StringBuffer - Thread-Safe, Synchronised eg single thread
+
+Thread1 Thread2
+OS - Context Switching 
+
+Datatypes -  Boolean, byte, short
+				1 bit
+	allocation memory
+Scope
+	static  / class level
+	instance / object / field
+	local vairiables
+
+
+```
+	Compute Sum and Average of Array Elements [ 1 & 2 Dimensions] 
+	Write a Java program to find the common elements between two arrays (string values). 
+	Write a Java program to find the second largest element in an array 
+	Write a Java program to test the equality of two arrays Sort an array [ for arrays of different dimensions] in a dimension
+
+—
+## object, state, behaviour
+
+Programming - Developing Applications
+
+Modular - functions
+Structured 
+
+Logic, Functionality, UI
+
+Data
+	Captured
+	Processed
+	Secure
+	Data Integrity
+	Data Consistent
+	Protected
+
+Object - bottle
+	State - quantity, shape, materialm color, cap style /// variables/fields
+	Behaviour - drink from it , store     /// 
+
+no more ‘’static”
+
+
+```
+public class BankAccont {
+
+}
+```
+Object: Cup
+State: Color, handleType, materialType, size, shape,
+Behaviour: drink, store liquid, pour liquid, contain ice.
+
+Car
+2 string method
+	Accelerate
+	Decelerate
+---
+
+set.get
+
+## Principle
+Encapsulation // combine with methods get.set
+Abstraction 	// hide data
+Polymorphism // one thing in many forms over-loading. 
+
+A trainer is someone who inherits the  ...
+
+public class Car
+
+if you have no constructors in the class then,
+ * Provides you with a default [OOTB] zero-argument Constructor - literally does nothing 
+
+But if you have a constructor : then no zero-argument Constructor is provided
+
+setNoOfWheels( )
+
+
+From Chandra Sekhar to Everyone: (3:27 PM)
+ if you have no constructors in the class then, * 
+Provides you with a default [OOTB] zero-argument Constructor - literally does nothing 
+ But if you have a constructor : then no zero-argument Constructor is provided
+
+
+Stringbuilder ??
+
+—
+Oct 09, 2020
+## NetBean Maven, Gradle, Ant
+
+java Application / Projects
+
+class’s
+Exception
+Enum
+….
+Google ant, for Java in XML
+	is a buiding tool
+ Ant - Source, JAR (Java Archive), Junit (Unit Testing), Compiler, 
+
+
+Java with Ant
+> Java Application
+> Project NAme: CBApp
+	> Create Main Class: com.dbs.coreBankingApp
+ 
+com.dbs = Package
+package name is flipped of domain name
+
+$ ../build/classes/  com /dbs/coreBanking.java
+$ ../build/classes/  com /dbs/*.java
+
+From Chandra to Everyone: (9:49 AM)
+ Always give a package name to your classes to avoid conflict and bring clarity 
+
+use build tools provided by IDE 
+
+CBApp/src$ javac  -d ../build/classes/   com.dbs.CoreBankingApp.java
+
+CBApp/build/classes$ java com.dbs.CoreBankingApp 
+
+From Chandra to Everyone: (10:15 AM)
+ PackageApp Folder 
+Location C:\temp
+ Project Folder C:\temp\PackageApp
+ Create Main Class gov.sgus.PackageApp
+ Create Main Class gov.sgus.PackageClass
+
+From Chandra to Everyone: (10:32 AM)
+ javac -d ..\build\classes  
+gov\sgus\PackageClass.java
+ cd C:\temp\PackageApp\build\classes
+ java gov/sgus/PackageClass
+
+—
+google: java purist
+
+antw@Mac-mini src % javac -d ..\build\classes gov/sgus/PackageClass.java
+
+
+> cd .. /build/classes
+
+antw@Mac-mini src % cd ../build/classes
+antw@Mac-mini classes % java gov/sgus/PackageClass
+ From Main
+ From Main
+ From Main
+ From Main
+ From Main
+ From Main
+antw@Mac-mini classes % 
+
+ALso can use dot. than forward slash
+on Mac:
+antw@Mac-mini classes % java gov.sgus.PackageClass
+
+> pwd
+antw@Mac-mini classes % pwd                       
+
+/Users/antw/ntuc/cp2/PackageApp/build/classes
+antw@Mac-mini classes % 
+
+—
+### Date and Time
+
+Bank
+	DOB
+	DoAOpening
+	Date of Tx
+	….
+
+Car
+	DoP
+
+Java SE ll JDK 11
+
+	not Remove but deprecated, marked for removal
+
+Not popular	
+Java.base > java.util >  Date  > Class Date
+ 	date constructor
+
+> java.time > java.time.LocalDate/LoateDatetime/LocalTime/MothDay….
+			
+Google > localtime 
+
+API - java time
+
+From Chandra to Everyone: (11:29 AM)  https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/package-summary.html 
+
+DayOfWeek
+MonthOfYear
+
+public enum CountryCodes {
+
+New file  > enum
+enum means mapping between name and aliase
+
+
+Enum - user defined data types to hold const values
+ 	+++ methods
+
+From Chandra to Everyone: (2:08 PM)  Projects for today afternoon session ==================================== Date and Time [java.time.*] =========================== Get Current Date and Time Difference between two given dates. Get the days Between Two Dates Check if a given year is leap year or not? convert date to EST/EDT timezone calculate the age of a person based on Date of Birth calculate the day of week based on a given date Display a every date with 30 Days Interval for the next two years ================================================================================== Write a java Application to build Telephone Directory * ability to add new entries * modify entries * delete entries * zipCode to areaCode mapping [enums - zipCode, areaCode ] * record Bill Amounts [enums - dail number, duration, charge amount]
+
+---
