@@ -387,7 +387,7 @@ Responsibility
 
 ### Commucation management plan
 | Who | What | When | Why | How | Where |  
-: --- : --- : --- : --- : --- : --- :  
+| --- | --- | --- | --- | --- | --- |  
 | Sponsor | Status report | Every 2nd wed of the month | To assess the project proceeding | Email | Project repository |   
 | Risk manager | Risk register | Weekly | To assess the project risks | Meeting | Project repository |
 
@@ -396,8 +396,7 @@ Responsibility
 
 https://blog.workep.com/agile-vs.-traditional-project-management-methodologies-differences-you-need-to-know#:~:text=Unlike%20traditional%20project%20management%2C%20Agile,time%2Dboxed%20into%20short%20sprints.
 
-----
-====
+---
 
 Oct 22, 2020
 
@@ -413,23 +412,76 @@ Project Planning and Execution
 * By when will the project finish?
 * How much is the investment decision
 
-#### User’stories
-* 3Cs’: Card, Conversation, Confirmation
+### Why User Stories?
+* To get shared understnding
+* Shared documents are NOT shared understanding
+* To avoid the traps of "Requirements documents" (details to follow...)
 
-INVEST: Independent, Negotiable, Valuable, Estimate, Small, Testable
+|| USER'S STORY  |
+| --- |---|
+| > As a | |
+| > I want | |
+| > So that | |
 
-* As a 
-* I want 
-* So that 
+#### The 3 Cs
+* > Card >
+	- You may write lots of cards, or build a strong map ...
+* > Conversation > 
+	- Support the conversation with words & pictures
+* > Confirmation 
+	- When it's time to build, use acceptance criteria to record your arguments
+
+* Who, What, Why
+* Personas, Process, Outcomes
+
+#### What makes a Good Story?
+* INVEST: Independent, Negotiable, Valuable, Estimate, Small, Testable
+
+#### Estimate Stories with relative Story points
+* A Story point is a singular number that represents:
+	- Volume: How much is there?
+	- Complexity: How hard is it?
+	- Knowledge: What do we know?
+	- Uncertainty: What's not know?
+* Story points are relative. They are not connected to any specific unit of measure.
+* Guidance: Compared with other Stories, an 8-point Story
+should take relatively four times longer than a 2-point Story.
+
+### Apply Estimating Poker for fast, relative estimating
+* Estimating Poker combines expert opinion, analogy and disaggregation for quick but reliable estimates
+* All team members participate
+* Steps
+	- Each estimator gets a deck of cards
+	- A job is read
+	- Estimators privately select cards
+	- Cards are turned over
+	- Estimators discuss differences
+	- Estimators re-estimate
 
 Estimateing Poker - Planning Poker card
+
+#### Estimation is a whole-team exercise
+* Increases accuracy by including all perspectives
+* Builds understanding
+* Creates shared commitment
+* Warning: Estimation performed by a manager, Archtect, or select group negates these benefits.
+
+#### The Scrum Master's role in facilitating estimations
+* Best approaches
+	- Encourage everyone to participate
+	- Ensure relative estimates are used	
+	- Focus the discussion around the contested items
+	- Identify subject matter experts who need to be present
+	- Keep time spent estimating Stories to a minimum
+* Common anti-patterns
+	- Pressure by stakeholders to lower estimations
+	- Only a few people participate
+	- Not using the adjusted Fibonnacci scale
 
 ### Scope
 * Product Scope: Features and functionalities
 * Project Scope: work related to features
 
-* Project is a sequencer developement
-* Prodcut is evolve,
 
 ### Option 1
 Choosing traditional project management:
@@ -453,7 +505,9 @@ Kanban board - tasks
 Product Intent
 * All potential ideas
 * All feedbacks
-* New …
+* New initiatives
+* Can be added anytime
+* Can be added by anyone
 
 ### Product Backlog
 Product owner controls
@@ -462,14 +516,13 @@ Product owner controls
 * Sorted base on priority
 
 ### Task board
-* Backlog
-* WIP
-* QA/QC
-* Implementation
+| Backlog | WIP | QA/QC | Implementation |
 
 ### Iteration planning
 * First day of the iteration
-* 4 to 8 hours …
+* 4 to 8 hours maximum duration
+* The entire project team should attend
+* Plan work for the entire iteration
 
 ### Schedule
 Why scheduling is important?
@@ -485,23 +538,22 @@ Why scheduling is important?
   * Identify…
 
 ### Schedule
-
-Story Points: Relative number which represents
-*
+* Story Points: Relative number which represents
+	* Complexity
+	* Effort
+	* Risks and uncertainties
+	* Level of quality needs
+* These are not days or time element.
 
 ### Westrum Organizational Model
-* Pathological
-  * Low cooperation 
-  * Messengers shot
-  * Responsibilities shirked
-* Bureaucratic
-  * Modest cooperation
-  * Messengers neglected
-  * Narrow responsibility
-* Generative
-  * High cooperation
-  * Messengers trained
-  * Risks are shared
+| Pathological | Bureaucratic | Generative |
+| --- | --- | --- |
+| Low cooperation | Modest cooperation | High cooperation |
+| Messengers shot | Messengers neglected | Messengers trained |
+| Responsibilities shirked | Narrow responsibility | Risks are shared  |
+| Bridging discouraged | Bridging tolerated | Bridging encouraged |
+| Failure leads to scape goating | Failure leads to justice | Failure leads to enquiry |
+| Novelty crushed | Novelty leads to problem | Novelty implemented |
 
 ### Resources
 5M’s
@@ -571,7 +623,7 @@ From Sri Ram Panday to Everyone: (2:55 PM)
  https://www.forbes.com/sites/stevedenning/2018/11/04/the-twelve-stages-of-the-agile-transformation-journey/#181694fc3dd4 
 From Hong Jie to Everyone: (3:33 PM)
 
-https://tests.mettl.com/authenticateKey/2ctmq7g5q8 
+
 
 
 
