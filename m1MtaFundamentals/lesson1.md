@@ -1174,169 +1174,132 @@ Can you identify the appropriate methods for handling repetition?
 
 1.3
 
-Understanding Exception Handling
-THE BOTTOM LINE
+## Understanding Exception Handling
+> #### THE BOTTOM LINE   
+> The .NET Framework supports standard exception handling to raise and handle runtime errors. In this section, you’ll learn how to use the try, catch, and finally keywords to handle exceptions.
 
-The .NET Framework supports standard exception handling to raise and handle runtime errors. In this section, you’ll learn how to use the try, catch, and finally keywords to handle exceptions.
-
-An exception is an error condition that occurs during the execution of a C# program. When this happens, the runtime creates an object to represent the error and “throws” it. Unless you “catch” the exception by writing proper exception-handling code, program execution will terminate.
+An *exception* is an error condition that occurs during the execution of a C# program. When this happens, the runtime creates an object to represent the error and “throws” it. Unless you “catch” the exception by writing proper exception-handling code, program execution will terminate.
 
 For example, if you attempt to divide an integer by zero, a DivideByZeroException exception will be thrown. In the .NET Framework, an exception is represented by using an object of the System.Exception class or one of its derived classes. There are predefined exception classes that represent many commonly occurring error situations, such as the DivideByZeroException mentioned earlier. If you are designing an application that needs to throw any application-specific exceptions, you should create a custom exception class that derives from the System.Exception class.
 
-Handling Exceptions
-To handle exceptions, place the code that throws the exceptions inside a try block and place the code that handles the exceptions inside a catch block.
+### Handling Exceptions
+> To handle exceptions, place the code that throws the exceptions inside a try block and place the code that handles the exceptions inside a catch block.
 
 The following exercise shows how to use a try-catch block to handle an exception. The exercise uses the File.OpenText method to open a disk file. This statement will execute just fine in the normal case, but if the file (or permission to read the file) is missing, then an exception will be thrown.
 
-HANDLE EXCEPTIONS
-GET READY. To handle exceptions, perform the following steps:
+### HANDLE EXCEPTIONS
+> GET READY. To handle exceptions, perform the following steps:
 
-1.
+1. Add a new Console Application project named HandlingExceptions to the Lesson01 solution.
 
-Add a new Console Application project named HandlingExceptions to the Lesson01 solution.
+2. Add the following code to the Main method of the Program.cs class:
 
-2.
+    ExceptionTest();
 
-Add the following code to the Main method of the Program.cs class:
-
-ExceptionTest();
-
-3.
-
-Add the following method to the Program.cs class:
-
+3. Add the following method to the Program.cs class:
+``` c#
 private static void ExceptionTest()
-{ 
-   StreamReader sr = null;
-    try
-    {
-      sr = File.OpenText(@”c:\data.txt”);
-       Console.WriteLine(sr.ReadToEnd());
-    }
-   catch (FileNotFoundException fnfe)
-    {
-       Console.WriteLine(fnfe.Message);
-    }
-    catch(Exception ex)
-    {
-       Console.WriteLine(ex.Message);
-    }
- }
-4.
+    { 
+       StreamReader sr = null;
+        try
+        {
+          sr = File.OpenText(@”c:\data.txt”);
+           Console.WriteLine(sr.ReadToEnd());
+        }
+       catch (FileNotFoundException fnfe)
+        {
+           Console.WriteLine(fnfe.Message);
+        }
+        catch(Exception ex)
+        {
+           Console.WriteLine(ex.Message);
+        }
+     }
+```
+4. Create a text file (“data.txt”) using Notepad or Visual Studio on the C: drive. It is acceptable to create the file at a different location, but if you do so, remember to modify the file location in the program. Enter some text in the file.
 
-Create a text file (“data.txt”) using Notepad or Visual Studio on the C: drive. It is acceptable to create the file at a different location, but if you do so, remember to modify the file location in the program. Enter some text in the file.
+5. Select **Debug > Start Without Debugging**, or press **Ctrl+F5**.
 
-5.
+6. You will see the contents of the text file displayed in a command window.
 
-Select Debug > Start Without Debugging, or press Ctrl+F5.
+7. Press a key to close the command window.
 
-6.
+8. Delete the data.txt file and run the program again. This time, you’ll get a FileNotFoundException exception, and an appropriate message will be displayed in the output window.
 
-You will see the contents of the text file displayed in a command window.
+> **TAKE NOTE***   
+> The StreamReader class is part of the System.IO namespace. When running this code, you’ll need to add a using directive for the System.
+`IO namespace`.
 
-7.
+> PAUSE. Leave the project open to use in the next exercise.
 
-Press a key to close the command window.
-
-8.
-
-Delete the data.txt file and run the program again. This time, you’ll get a FileNotFoundException exception, and an appropriate message will be displayed in the output window.
-
-TAKE NOTE*
-
-The StreamReader class is part of the System.IO namespace. When running this code, you’ll need to add a using directive for the System.
-
-IO namespace.
-
-PAUSE. Leave the project open to use in the next exercise.
-
-TAKE NOTE*
-
-In the ExceptionTest method, it is incorrect to change the order of the two catch blocks. The more specific exceptions need to be listed before the generic exceptions, or else you’ll get compilation errors.
+> **TAKE NOTE***   
+> In the ExceptionTest method, it is incorrect to change the order of the two catch blocks. The more specific exceptions need to be listed before the generic exceptions, or else you’ll get compilation errors.
 
 To handle an exception, you enclose the statements that could cause the exception in a try block, then you add catch blocks to handle one or more exceptions. In this example, in addition to handling the more specific FileNotFoundException exception, we are also using a catch block with more generic exceptions to catch all other exceptions. The exception name for a catch block must be enclosed within parentheses. The statements that are executed when an exception is caught must be enclosed within curly braces.
 
 Code execution stops when an exception occurs. The runtime searches for a catch statement that matches the type of exception. If the first catch block doesn’t catch the raised exception, control moves to the next catch block, and so on. If the exception is not handled in the method, the runtime checks for the catch statement in the calling code and continues for the rest of the call stack.
 
-TAKE NOTE*
+> **TAKE NOTE***   
+> A try block must have at least a catch block or a finally block associated with it.
 
-A try block must have at least a catch block or a finally block associated with it.
-
-Using Try-Catch-Finally
-The finally block is used in association with the try block. The finally block is always executed regardless of whether an exception is thrown. The finally block is often used to write clean-up code.
+### Using Try-Catch-Finally
+> The finally block is used in association with the try block. The finally block is always executed regardless of whether an exception is thrown. The finally block is often used to write clean-up code.
 
 When an exception occurs, it often means that some lines of code after the exception were not executed. This may leave your program in a dirty or unstable state. To prevent such situations, you can use the finally statement to guarantee that certain cleanup code is always executed. This may involve closing connections, releasing resources, or setting variables to their expected values. Let’s look at a finally block in the following exercise.
 
-USE TRY-CATCH-FINALLY
-GET READY. To use the try-catch-finally statement, perform the following steps:
+#### USE TRY-CATCH-FINALLY
+> GET READY. To use the try-catch-finally statement, perform the following steps:
 
-1.
+1. Add a new Console Application project named trycatchfinally to the Lesson01 solution.
 
-Add a new Console Application project named trycatchfinally to the Lesson01 solution.
+2. Add the following code to the Main method of the Program.cs class:
 
-2.
+  `TryCatchFinallyTest();`
 
-Add the following code to the Main method of the Program.cs class:
+3. Add the following method to the Program.cs class:
+``` c#
+     private static void TryCatchFinallyTest()
+    {  
+        StreamReader sr = null;
+        try
+        {
+           sr = File.OpenText(“data.txt”);
+           Console.WriteLine(sr.ReadToEnd());
+        }
+        catch (FileNotFoundException fnfe)
+        {
+           Console.WriteLine(fnfe.Message);
+        }
+        catch (Exception ex)
+        {
+           Console.WriteLine(ex.Message);
+        }
+        finally
+        {
+           if (sr != null)
+           {
+              sr.Close();
+           }
+        }
+    }  
+```
+4. Create a text file (“data.txt”) using Notepad or Visual Studio on the C: drive. It is acceptable to create the file at a different location, but if you do so, remember to modify the file location in the program. Enter some text in the file.
 
-TryCatchFinallyTest();
+5. Select **Debug > Start Without Debugging**, or press **Ctrl+F5**.
 
-3.
+6. You will see the contents of the text file displayed in a command window.
 
-Add the following method to the Program.cs class:
+7. Press a key to close the command window.
 
- private static void TryCatchFinallyTest()
-{  
-    StreamReader sr = null;
-    try
-    {
-       sr = File.OpenText(“data.txt”);
-       Console.WriteLine(sr.ReadToEnd());
-    }
-    catch (FileNotFoundException fnfe)
-    {
-       Console.WriteLine(fnfe.Message);
-    }
-    catch (Exception ex)
-    {
-       Console.WriteLine(ex.Message);
-    }
-    finally
-    {
-       if (sr != null)
-       {
-          sr.Close();
-       }
-    }
-}  
-4.
-
-Create a text file (“data.txt”) using Notepad or Visual Studio on the C: drive. It is acceptable to create the file at a different location, but if you do so, remember to modify the file location in the program. Enter some text in the file.
-
-5.
-
-Select Debug > Start Without Debugging, or press Ctrl+F5.
-
-6.
-
-You will see the contents of the text file displayed in a command window.
-
-7.
-
-Press a key to close the command window.
-
-8.
-
-Delete the data.txt file and run the program again. This time, you’ll get a FileNotFoundException exception, and an appropriate message will be displayed in the output window.
+8. Delete the data.txt file and run the program again. This time, you’ll get a FileNotFoundException exception, and an appropriate message will be displayed in the output window.
 
 In this exercise, the program makes sure that the StreamReader object is closed and any resources are released when the operation completes. The code in the finally block is executed regardless of whether an exception is thrown.
 
-CERTIFICATION READY
+> **CERTIFICATION READY**   
+> Do you understand how to handle errors in your programs?   
+> 1.4
 
-Do you understand how to handle errors in your programs?
-
-1.4
-
-SKILL SUMMARY
+## SKILL SUMMARY
 IN THIS LESSON, YOU LEARNED THE FOLLOWING:
 
 •
