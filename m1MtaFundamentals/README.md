@@ -11,6 +11,8 @@ SGUS - MTA: Software Development Fundamentals
 * [LESSON 5 : Understanding Desktop Applications](#lesson-5)
 * [LESSON 6 : Understanding Databases](#lesson-6)
 
+detail at www.skillpipe.com pw:co+easy
+
 ### Practice
 * [AddNumbers.sln](#addnumberssln)
 * [CompareNumbers.sln](#comparenumberssln)
