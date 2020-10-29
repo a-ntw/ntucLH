@@ -1,16 +1,21 @@
 ##  Introduction to Software Development Lifecycle (SDLC) and Software Testing
 
-* Module 1 (Introduction to SDLC)
-* Module 2 (Quality Processes and Objectives)
-* Module 3 (Assessment methods)
-* Module 4 (Testing steps and Approaches)
-* Module 5 (Re-aligning and Auditing)
-* Course Assessment (MCQ) – Set 1
+* [Module 1](#module-1) (Introduction to SDLC)
+* [Module 2](#module-2) (Quality Processes and Objectives)
+* [Module 3](#module-3) (Assessment methods)
+* [Module 4](#module-4) (Testing steps and Approaches)
+* [Module 5](#module-5) (Re-aligning and Auditing)
+* [Course Assessment](#course-assessment) (MCQ) – Set 1
  
 ### Module 1
 ### (Introduction to SDLC)
-  Software Development Life Cycle
-  
+Software Development Life Cycle
+* Requirements Gathering
+* Analysis
+* Design
+* Development
+* Testing
+
 #### Waterfall approach
 - Credit goes to Production system
 - Well defined processes
@@ -103,20 +108,20 @@ or equal to 5
 - TC02: User is able to choose the value from drop down
 - TC03: User is not able to enter a negative value for
 quantity
-- TC03: User is not able to enter a value more than 5 for
+- TC04: User is not able to enter a value more than 5 for
 quantity
 - etc
 
 myNote: both are mandatory
 
 ####  RTM Sample
-Requirements Traceability Matrix
-Project Name: Online e-commerce
-Business Requirements Functional requirements Test cases
-| BRD ID | | FRD ID | | Priority |Test Case ID |
-| --- |--- | --- | --- | --- |--- |
-|BR96 |  Product booking |  FR57 |  Choosing the product |  High |  #TC01 |
-| |  | FR58 |  Entering the quantity | High | #TC02 #TC03 #TC04 |
+##### Requirements Traceability Matrix
+**Project Name: Online e-commerce**
+| Business Requirements | Functional requirements |  |Test cases |
+| ------ | ----- | --- | --- |
+| BRD ID  | FRD ID  | Priority |Test Case ID |
+|BR96 :  Product booking |  FR57 :  Choosing the product |  High |  #TC01 |
+|   | FR58 :  Entering the quantity | High | #TC02 #TC03 #TC04 |
  
 ####   Group Activity
 - Think of the scenario from the previous page and
@@ -143,10 +148,11 @@ Business Requirements Functional requirements Test cases
 ### (Quality Processes and Objectives)
 
 #### V - model
-   < Acceptance Test Design >    
-< System Test Design > 
-< Integration Test Design > 
-< Unit Test Design >
+1. Requirement analysis  < Acceptance Test Design >     Acceptance testing
+2. System Design < System Test Design > System testing
+3. Architecture Design < Integration Test Design >  Integration Testing
+4. Module Design < Unit Test Design > Unit Testing
+5. Coding
 
 ####  Advantages of the V-model
 • Heavily compliant restricted business.
