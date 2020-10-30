@@ -155,136 +155,154 @@ myNote: both are mandatory
 5. Coding
 
 ####  Advantages of the V-model
-• Heavily compliant restricted business.
-• Projects with strict time lines
+- Heavily compliant restricted business.
+- Projects with strict time lines
+
 #### Disadvantages of the V-model
-Adaptability lacks
-“Design by committee” Development approach 
-Restrictions on timeline
-High risk and uncertainty
- 
+- Adaptability lacks
+- “Design by committee” Development approach 
+- Restrictions on timeline
+- High risk and uncertainty
+
+myNote: is ok for small prpject
+
 ####  SDLC and V-model
+
 ####  Quality Objectives
-• Create a sense of urgency
-• Get management buy-in
-• Be consistent with the overall mission
-• But be flexible with the objectives
-• Start small and simple
-• Expand slowly
+- Create a sense of urgency
+- Get management buy-in
+- Be consistent with the overall mission
+- But be flexible with the objectives
+- Start small and simple
+- Expand slowly
  
 ####  Beginning the Testing Process
-• Review the plan
-• Plan is the intent
-• Check for accuracy
-• Anticipate changes
-• Never make assumptions
-• Evaluate the tools
+- Review the plan
+- Plan is the intent
+- Check for accuracy
+- Anticipate changes
+- Never make assumptions
+- Evaluate the tools
  
 ####  Process definition
-• Plan the tests
-• Version controls
-• Asthisisareferencepointalways • Helpsinmeetingthetestinggoals
-• Audit controls
+- Plan the tests
+  - Version controls
+    - As this is a reference point always 
+    - Helps in meeting the testing goals
+- Audit controls
  
 ####  Process definition
-• Tasks and tools to execute the tests
-• Repeated tasks to ensure quality
-• Errorcontrolmechanismshouldbeinplace
-• EnablesBughunting
-• BecognitiveaboutWhatis“broken”?AndWhatis“fixed”? • Documenttheobservations.
-• Automationwillhelpextensively
+- Tasks and tools to execute the tests
+  - Repeated tasks to ensure quality
+  - Error control mechanism should be in place
+  - Enables Bug hunting
+  - Be cognitive about What is “broken”? And What is “fixed”? 
+  - Document the observations.
+  - Automation will help extensively
+
+myNote: testing tools:  wiki: Selenium (software); WebLOAD; JMeter
  
 ####  Process definition
-• Define the test cycles • Ad-hocevaluation
-• Plannedcycles
-• Brokendownbasedon
-• Individual member
-• Feature
-• Functionality
-• Definewhenthetestingmustbeperformed.
-• Fixing a bug
-• Adding a new feature
-• After refactoring
+- Define the test cycles • Ad-hocevaluation
+- Planned cycles
+- Broken down based on
+  - Individual member
+  - Feature
+  - Functionality
+- Define when the testing must be performed.
+  - Fixing a bug
+  - Adding a new feature
+  - After refactoring
  
 ####  Process definition
-• Define the test cycles (Cont...)
-• Developersandtesters–decideonthecycle • Singlesprint
-• Wholetestcycle
+- Define the test cycles (Cont...)
+  - Developers and testers – decide on the cycle
+  - Single sprint
+  - Whole test cycle
+
 But treat it as a milestone
  
 ####  Software Quality Assurance
-• Creating an SQA management plan
-• Set regular check points
-• Applying software engineering techniques
-• Executing formal technical reviews
-• Having a multi testing strategy
-• Enforce process adherence
-• Change impact measurement
-• Perform audits
+- Creating an SQA management plan
+- Set regular check points
+- Applying software engineering techniques
+- Executing formal technical reviews
+- Having a multi testing strategy
+- Enforce process adherence
+- Change impact measurement
+- Perform audits
  
 ####  SQA - Elements
-• Define the standards for Software engineering
-• Perform the technical reviews and audits
-• Control quality via software testing
-• Error collection and analysis
-• Change management
-• Vendor management
-• Security management
-• Safety
-• Risk management
+- Define the standards for Software engineering
+- Perform the technical reviews and audits
+- Control quality via software testing
+- Error collection and analysis
+- Change management
+- Vendor management
+- Security management
+- Safety
+- Risk management
+
+myNote: CMMI. Change management: Impact Analysis
  
 ####  Test Maturity Model integration (TMMi)
+Level 1 - initial > Level 2 - Managed > Level 3 - Defined > Level 4 - Measured > Level 5 – Optimization
+
+myNote: https://www.tmmi.org/tmmi-model/
+
 ####  TMMi – Level 2
-• May vary from project to project.
-• Test policy and strategy
-• Test planning
-• Test monitoring and controlling
-• Test design and execution
-• Test environment are in place
+- May vary from project to project.
+- Test policy and strategy
+- Test planning
+- Test monitoring and controlling
+- Test design and execution
+- Test environment are in place
  
 ####  TMMi – Level 3
-• All projects must follow the same standard
-• Test organization
-• Test training program
-• Test lifecycle and integration
-• Non functional testing
-• Peer review
+- All projects must follow the same standard
+- Test organization
+- Test training program
+- Test lifecycle and integration
+- Non functional testing
+- Peer review
  
 ####  TMMi – Level 4
-• Measurement of activities are thoroughly applied early in all projects
-• Advanced reviews are in use
-• Test measurement
-• Product quality evaluation
-• Advanced reviews
+- Measurement of activities are thoroughly applied early in all projects
+- Advanced reviews are in use
+- Test measurement
+- Product quality evaluation
+- Advanced reviews
  
 ####  TMMi – Level 5
-• Optimization activities are in place
-• Continuous improvement is implemented
-• Defect prevention
-• Test quality optimization
-• Quality control
+- Optimization activities are in place
+- Continuous improvement is implemented
+- Defect prevention
+- Test quality optimization
+- Quality control
  
 ####  Choosing the right technique
-• Internal factors
-• Development models
-• Lifecycle model
-• Testers knowledge
-• Testers experience
-• Level of documentation needed
-• Test objectives
- 
+- Internal factors
+  - Development models
+  - Lifecycle model
+  - Testers knowledge
+  - Testers experience
+  - Level of documentation needed
+  - Test objectives
+
+myNote: documentation: Technical Writers
+
 ####  Choosing the right technique
-• External factors
-• Risk assessment
-• Type of system used
-• Regulatory requirements
-• Customer requirements
-• Contractual requirements
-• Schedule of the project
-• Budget of the project
- 
+- External factors
+  - Risk assessment
+  - Type of system used
+  - Regulatory requirements
+  - Customer requirements
+  - Contractual requirements
+  - Schedule of the project
+  - Budget of the project
+
 ####  Group Activity
-• Evaluate and create a quality process that is workable in a banking environment
+- Evaluate and create a quality process that is workable in a banking environment
 
 ----
 ### Module 3
@@ -414,6 +432,7 @@ Kaner
 - It should not have any more work.
 
 myNote: Ready to launch. Version is done.
+Assure me the Quality of the Product.
 
 ####  Group Activity
 - Create a list of advantages and disadvantages in each testing method.
@@ -426,11 +445,14 @@ myNote: Ready to launch. Version is done.
 - Two outputs
   - Bugs
   - Successful code
+
 ####  Bug handling
 - Document the results
 - Let the data do the speaking
 - Don’t judge the bug
 - Help the developer to replicate the bug in their system
+
+myNote: Func - Deviation in a requirement
  
 ####  Document the results
 - Logs
@@ -442,6 +464,8 @@ myNote: Ready to launch. Version is done.
 - Identify patterns
 - Provide the support to replicate the bug
 - Clearly define the steps to replicate the bug
+
+myNote: when/ where/ how
  
 ####  Don’t judge the bug
 - Avoid words like
@@ -474,10 +498,10 @@ myNote: Ready to launch. Version is done.
 ####  Test Summary Report
 Section 1: Introduction
 - Project Description:
-  - Takenfromtheprojectdocuments.
+  - Taken from the project documents.
 - Objectives
-  - Takenfromtheprojectdocuments 
-  - ModulebasedKPI’scanbeincluded
+  - Taken from the project documents 
+  - Module based KPI’s can be included
  
 ####  Test Summary Report
 Section 2: Test Scope
@@ -491,7 +515,9 @@ Section 2: Test Scope
 - Additional functions, features that were tested
   - Any linked features that were tested
   - Eg. Able to type in first 2 or 3 characters and get the product displayed.
- 
+
+myNote: eg In scope: MOuse Input, Out of scope: Keyboard input
+
 ####  Test Summary Report
 Section 3: Test Results
 - Test Execution Details
@@ -502,107 +528,95 @@ Section 3: Test Results
   - Gaps in the expectation
  
 ####  Test Summary Report
-Section 4: Quality of software • Test coverage and results
-• Random or 100% coverage
-• Defect metrics – Defect types and status
-• High or medium or low
-• Closed or deferred or pending
-• Outstanding issues
-• If pending, then give reasons (Technical limitation etc)
-• Exit criteria
-• When can we close the bug
+Section 4: Quality of software 
+- Test coverage and results
+  - Random or 100% coverage
+- Defect metrics – Defect types and status
+  - High or medium or low
+  - Closed or deferred or pending
+- Outstanding issues
+  - If pending, then give reasons (Technical limitation etc)
+- Exit criteria
+  - When can we close the bug
  
 ####  Test Summary Report
 Section 5: Knowledge Management
-• Causal analysis and resolution
-• Fish bone analysis
-• Fault tree analysis
-• Lessons learned
-• What went wrong?
-• What went right?
-• What can be done better next time?
-• What can be reused?
-• Best practice adopted and new improvements implemented
+- Causal analysis and resolution
+  - Fish bone analysis
+  - Fault tree analysis
+- Lessons learned
+  - What went wrong?
+  - What went right?
+  - What can be done better next time?
+  - What can be reused?
+- Best practice adopted and new improvements implemented
  
 ####  Test Summary Report
-Section 5: Document control • Revision History
-• Updatesonthehistory
+Section 5: Document control 
+- Revision History
+  - Updatesonthehistory
  
 ####  Group Activity
-• Create a sample Test Summary Report.
+- Create a sample Test Summary Report.
 
 ---
 ### Module 5
 ### (Re-aligning and Auditing)
- 
+
+myNote: tools: Jira Software, Bugzilla
+
 ####  Bug tracking
-• Important task of documenting the bugs
-• Tracking will be easy after documenting
-• Can be paper based or tool based
- 
+- Important task of documenting the bugs
+- Tracking will be easy after documenting
+- Can be paper based or tool based
+
 ####  Bug tracking tool
-• Familiarization of the tracking tool
-• Configure in such a way that the reports are easy to read
-• Alerts when the bugs are fixed or closed
-• Helps to keep an eye on the progress of the submission
-• Transparent
+- Familiarization of the tracking tool
+- Configure in such a way that the reports are easy to read
+- Alerts when the bugs are fixed or closed
+- Helps to keep an eye on the progress of the submission
+- Transparent
  
 ####  Bug tracking
-• Documenting the bugs
-• Maintaining the logs
-• Monitor the progress of the bug after submission
- 
+- Documenting the bugs
+- Maintaining the logs
+- Monitor the progress of the bug after submission
+
+myNote: QA Team, Testing responsible, report, tracking, 
+
 ####  Quality Assurance Activities
-• What steps will you take to ensure that Quality is built into the product?
-• How will you ensure that adequate testing is done? How do you define “adequate”?
-• Will the test team work from a Test Plan? Do they understand their responsibilities?
-• How will you ensure that Requirements are correct, complete and accurately reflect the needs of the Customer?
-• How will you verify that Specifications are an accurate representation of the Requirements?
-• Describe how Requirement – Specification – Test Plan traceability is managed (or provide Link_To_ Requirements_Traceability_Matrix ):
-• What steps will you take to ensure that the project plan (e.g. Risk Management Plan, Change Management Plan, Procurement Plan) is followed?
-• What steps will you take to ensure that the Vendor is supplying deliverables of adequate quality?
- 
+- What steps will you take to ensure that Quality is built into the product?
+- How will you ensure that adequate testing is done? How do you define “adequate”?
+- Will the test team work from a Test Plan? Do they understand their responsibilities?
+- How will you ensure that Requirements are correct, complete and accurately reflect the needs of the Customer?
+- How will you verify that Specifications are an accurate representation of the Requirements?
+- Describe how Requirement – Specification – Test Plan traceability is managed (or provide Link_To_ Requirements_Traceability_Matrix ):
+- What steps will you take to ensure that the project plan (e.g. Risk Management Plan, Change Management Plan, Procurement Plan) is followed?
+- What steps will you take to ensure that the Vendor is supplying deliverables of adequate quality?
+
+myNote: adequate: Business SH, SME;
+
 ####  Project Monitoring and Control
-• What audits and reviews are required and when they will be held?
-• How will you report and resolve variances from acceptance criteria?
-• What will you measure to determine if the project is out of Scope?
-• What will you measure to determine if the project is within budget?
-• What will you measure to determine if the project is within schedule?
+- What audits and reviews are required and when they will be held?
+- How will you report and resolve variances from acceptance criteria?
+- What will you measure to determine if the project is out of Scope?
+- What will you measure to determine if the project is within budget?
+- What will you measure to determine if the project is within schedule?
  
 ####  Defect Matrix
-Defect in phase
-Hot
-High
-Mediu m
-Low
-Lowest
-Total
-Cycle 1
-2
-2
-3
-1
-8
-Cycle 2
-1
-2
-1
-0
-0
-4
-Totals
-1
-4
-3
-3
-1
-12
- 
+| Defect in phase | Hot | High | Medium | Low | Lowest | Total |
+| --- | --- | --- | --- | --- | --- | --- |
+| Cycle 1 |   | 2 | 2 | 3 | 1 | 8 |
+| Cycle 2 | 1 | 2 | 1 | 0 | 0 | 4 |
+| Totals | 1 | 4 | 3 | 3 | 1 | 12 | 
+
+myNote: see the progress
+
 ####  Closed issues
-• Developer unable to reproduce
-• Fixed the bug by the developer
-• No longer relevant to the feature
-• Future release will address this issue
+- Developer unable to reproduce
+- Fixed the bug by the developer
+- No longer relevant to the feature
+- Future release will address this issue
  
 ####  Audit Template
 
@@ -610,84 +624,89 @@ Totals
 ### Course Assessment
 (MCQ) – Set 1
 
-1. What is true about test management
-a) It will complete on time
-b) It will start on schedule
-c) You will get great results
+1. What is true about test management    
+a) It will complete on time   
+b) It will start on schedule   
+c) You will get great results   
 d) Its unpredictable
 
-2. Who can benefit from learning about test management?
-a) Only test engineers
-b) Only test managers
-c) Anyone wanting to understand the test results
+2. Who can benefit from learning about test management?   
+a) Only test engineers   
+b) Only test managers   
+c) Anyone wanting to understand the test results   
 d) Only developers
 
-3. Why do we review the test plan prior to starting test?
-a) Input updates to the budget and schedule
-b) Verify that the current features match the plan
-c) All of the answers
+3. Why do we review the test plan prior to starting test?   
+a) Input updates to the budget and schedule   
+b) Verify that the current features match the plan   
+c) All of the answers   
 d) Verify that the plan has the right resources documented
 
-4. Which best describes why team alignment is important?
-a) Communication helps reduce anxiety and create trust among
-your partners and team
-b) People need to know what you do and why you do it
+4. Which best describes why team alignment is important?   
+a) Communication helps reduce anxiety and create trust among   
+your partners and team   
+b) People need to know what you do and why you do it   
 c) Alignment makes certain they wont interrupt you when you begin
-testing
+testing   
 d) You don’t want to have to keep explaining what you are doing
 during testing.
 
 5. What are the three management aspects you need to address to begin
-testing?
+testing?   
 a) Schedule management, resource management and budget
-management
-b) Version management, bug management and lab management
+management   
+b) Version management, bug management and lab management   
 c) Hardware management, software management and infrastructure
-management
+management   
 d) Plan management, prep management and launch management
 
 6. At the core of a good regression testing, you are making certain that
-________
-a) No bugs exist
-b) All bugs are fixed
-c) Nothing new has been broken
+________   
+a) No bugs exist   
+b) All bugs are fixed   
+c) Nothing new has been broken   
 d) New bugs are identified.
-7. How can test teams learn the most from seeing your test results?
+
+7. How can test teams learn the most from seeing your test results?   
 a) Identify key bugs and hold them accountable until the issues are
-addressed
-b) Provide pass-fail criteria and tell them whether or not the software
+addressed   
+b) Provide pass-fail criteria and tell them whether or not the software   
 c) Show them every single bug you have discovered in a
-spreadsheet
+spreadsheet   
 d) Deliver objective overviews of the test cases and assist in
 identifying trends
 
 8. What are some of the most important characteristics of a good bug
-report?
-a) Severe, important, brief
-b) Lengthy, unique, factual
-c) Clear, objective, detailed
+report?   
+a) Severe, important, brief   
+b) Lengthy, unique, factual   
+c) Clear, objective, detailed   
 d) Understated, clean qualified
-9. What is the blueprint that you will reference throughout your project?
-a) Your test plan, cases and cycles
-b) Your test cycles
-c) Your test plans
+
+9. What is the blueprint that you will reference throughout your project?   
+a) Your test plan, cases and cycles   
+b) Your test cycles   
+c) Your test plans   
 d) Your test cases
-10. When should you archive a project?
-a) Never archive a project
-b) Archive when management approves
-c) Archive as you each phase of testing is complete
+
+10. When should you archive a project?   
+a) Never archive a project   
+b) Archive when management approves   
+c) Archive as you each phase of testing is complete   
 d) Archive a project when all work is complete
+
 11. Which project methodology is the most recent and has all the
-buzz right now?
-a) Jira
-b) SDLC
-c) Agile
+buzz right now?   
+a) Jira   
+b) SDLC   
+c) Agile   
 d) Waterfall
+
 12. If a bug is reported by quality, who owns it after it has been
-submitted?
-a) The owns the bug
-b) Nobody owns the bug
-c) Development owns the bug
+submitted?   
+a) The owns the bug   
+b) Nobody owns the bug   
+c) Development owns the bug   
 d) Quality owns every bug they submit
 
 ---
