@@ -148,13 +148,13 @@ myNote: both are mandatory
 ### (Quality Processes and Objectives)
 
 #### V - model
-| | V - model | |
-| --- | --- | --- |
-| Requirement analysis | < Acceptance Test Design >  |   **Acceptance testing** |
-| System Design | < System Test Design > | **System testing** |
-| Architecture Design | < Integration Test Design > | **Integration Testing** |
-| Module Design | < Unit Test Design > | **Unit Testing** |
-| Coding | |
+| | | V - model | |
+| ---| --- | --- | --- |
+| High | Requirement analysis | < Acceptance Test Design >  |   **Acceptance testing** |
+| | System Design | < System Test Design > | **System testing** |
+| | Architecture Design | < Integration Test Design > | **Integration Testing** |
+| Low | Module Design | < Unit Test Design > | **Unit Testing** |
+| | Coding | |
 
 ####  Advantages of the V-model
 - Heavily compliant restricted business.
@@ -248,11 +248,11 @@ But treat it as a milestone
 myNote: CMMI. Change management: Impact Analysis
  
 ####  Test Maturity Model integration (TMMi)
-* Level 1 - initial >
-  * Level 2 - Managed >  
-    * Level 3 - Defined > 
-      * Level 4 - Measured >
-        * Level 5 – Optimization
+* Level 1 - **initial** >>
+  * Level 2 - **Managed** >>  
+    * Level 3 - **Defined** >> 
+      * Level 4 - **Measured** >>
+        * Level 5 – **Optimization**
 
 myNote: https://www.tmmi.org/tmmi-model/
 
@@ -365,7 +365,7 @@ myNote: Application - FLOW
 
 ####  Test Driven Development
 - One of the software development process
-- **Requirements are translated into test cases**
+- Requirements are translated into test cases
 - Software improved until the test scripts are passed.
 - Incorporates the feedback loop
 
