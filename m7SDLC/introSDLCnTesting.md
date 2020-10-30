@@ -148,11 +148,13 @@ myNote: both are mandatory
 ### (Quality Processes and Objectives)
 
 #### V - model
-1. Requirement analysis  < Acceptance Test Design >     Acceptance testing
-2. System Design < System Test Design > System testing
-3. Architecture Design < Integration Test Design >  Integration Testing
-4. Module Design < Unit Test Design > Unit Testing
-5. Coding
+| | V - model | |
+| --- | --- | --- |
+| Requirement analysis | < Acceptance Test Design >  |   **Acceptance testing** |
+| System Design | < System Test Design > | **System testing** |
+| Architecture Design | < Integration Test Design > | **Integration Testing** |
+| Module Design | < Unit Test Design > | **Unit Testing** |
+| Coding | |
 
 ####  Advantages of the V-model
 - Heavily compliant restricted business.
@@ -177,12 +179,12 @@ myNote: is ok for small prpject
 - Expand slowly
  
 ####  Beginning the Testing Process
-- Review the plan
-- Plan is the intent
-- Check for accuracy
-- Anticipate changes
-- Never make assumptions
-- Evaluate the tools
+- **Review the plan**
+  - **Plan is the intent**
+    - **Check for accuracy**
+      - **Anticipate changes**
+        - **Never make assumptions**
+          - **Evaluate the tools**
  
 ####  Process definition
 - Plan the tests
@@ -246,7 +248,11 @@ But treat it as a milestone
 myNote: CMMI. Change management: Impact Analysis
  
 ####  Test Maturity Model integration (TMMi)
-Level 1 - initial > Level 2 - Managed > Level 3 - Defined > Level 4 - Measured > Level 5 – Optimization
+* Level 1 - initial >
+  * Level 2 - Managed >  
+    * Level 3 - Defined > 
+      * Level 4 - Measured >
+        * Level 5 – Optimization
 
 myNote: https://www.tmmi.org/tmmi-model/
 
@@ -405,7 +411,7 @@ myNote: Software - Sign Off
   - People, working together, are the most important part of any project’s context.
   - Projects unfold overtime in ways that are often not predictable.
   - The product is a solution. If the problem isn’t solved, the product doesn’t work.
-  - Good software testing is a challenging, intellectual process.
+  - **Good software testing is a challenging, intellectual process.**
   - Only through judgment and skill, exercised cooperatively throughout the entire project, are we able to do the right things at the right times to effectively test our products.
  
 ####  Exploratory testing
