@@ -1,0 +1,17 @@
+void calcVolume(double r){
+System.out.println(4*Math.PI*r*r*r/3);
+}
+void calcArea(double r){
+	System.out.println(4*Math.PI*r*r);
+}
+calcVolume(1)
+calcArea(1)
+
+double calcVolume(double r){
+return 4*Math.PI*r*r*r/3;
+}
+double calcArea(double r){
+	return 4*Math.PI*r*r;
+}
+calcVolume(1)
+calcArea(1)

@@ -1,0 +1,11 @@
+jshell
+2+2  
+1   
+int x = 10000000;
+x *= 2
+Math.sqrt(8)
+"Hello World!"
+$2 = 3
+int x = 20000000;  
+/vars
+

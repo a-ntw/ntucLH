@@ -1,0 +1,10 @@
+double interestRate = 0.02;
+void earnInterest(double balance){
+balance += balance*interestRate;
+printBalance(balance);
+}
+void printBalance(double balance){
+System.out.println("Balance: $" +balance);
+}
+earnInterest(500);
+earnInterest(600);
