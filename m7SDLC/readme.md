@@ -147,6 +147,7 @@ myNote: both are mandatory
 ### Module 2 
 ### (Quality Processes and Objectives)
 
+![V-model](/m7SDLC/img/v-model.png)
 #### V - model
 | | | V - model | |
 | ---| --- | --- | --- |
@@ -169,7 +170,7 @@ myNote: both are mandatory
 myNote: is ok for small prpject
 
 ####  SDLC and V-model
-
+![SLDC and V-model](/m7SDLC/img/sldcVmodel.png)
 ####  Quality Objectives
 - Create a sense of urgency
 - Get management buy-in
@@ -253,6 +254,8 @@ myNote: CMMI. Change management: Impact Analysis
     * Level 3 - **Defined** >> 
       * Level 4 - **Measured** >>
         * Level 5 – **Optimization**
+
+![TMMi model](/m7SDLC/img/TMMi.png)
 
 myNote: https://www.tmmi.org/tmmi-model/
 
