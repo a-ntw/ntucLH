@@ -11,6 +11,29 @@ and check the boxes to create the getPlayerName method and the setPlayerName met
 (these are the defaults).
 
 ### Practice 9-2: Adding Constructors
+console
+``` console
+run:
+Goal scored after 30.0 mins by George Eliot of The Greens
+Goal scored after 60.0 mins by Robbie Burns of The Reds
+
+Goal scored after 14.0 mins by Robert Service of The Reds
+Goal scored after 33.0 mins by Graham Greene of The Greens
+Goal scored after 42.0 mins by Graham Greene of The Greens
+Goal scored after 50.0 mins by Geoffrey Chaucer of The Greens
+Goal scored after 73.0 mins by Rafael Sabatini of The Reds
+
+Goal scored after 6.0 mins by Robbie Burns of The Reds
+Goal scored after 21.0 mins by Robert Service of The Reds
+Goal scored after 48.0 mins by Rafael Sabatini of The Reds
+Goal scored after 71.0 mins by Geoffrey Chaucer of The Greens
+Goal scored after 85.0 mins by Geoffrey Chaucer of The Greens
+
+Goal scored after 22.0 mins by Rafael Sabatini of The Reds
+
+BUILD SUCCESSFUL (total time: 0 seconds)
+```
+
 League.java
 ``` java
 
