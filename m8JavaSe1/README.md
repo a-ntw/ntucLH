@@ -1,9 +1,20 @@
-### Assessment
+## Lesson: NICF - JAVA SE: PROGRAMMING I (SF)
+VLC-SGIT077-20-0650
 
+### syntax
+* [syntax.md](syntax.md)
+
+### Assessment
+* Unified Modelling Language
+* UML use case diagram
+* java project application
+* Console Application
+
+---
 ### Unified Modelling Language
 201102 
 #### ClassName, Field, Methods
-<img src="img/201102UML-drawio.PNG"> 
+<img src="img/201102UML-drawio.png"> 
 
 ---
 ### UML use case diagram
@@ -18,7 +29,7 @@ Two groups will use the applications:
 
 With the above scenario, create uml (Unified Modelling Language) use case diagram, that show relationship both groups and application. 
 
-<img src="img/201103CaseSenario.PNG">
+<img src="img/201103CaseSenario.png">
 
 ---
 ### java project application
@@ -39,9 +50,9 @@ With the above scenario, create uml (Unified Modelling Language) use case diagra
 7. Place breakpoint at where you instantiate the Customer object
 8. Show the variables of Customer objec
 
-<img src="img/201104Java-A.PNG"> 
-<img src="img/201104Java-B.PNG"> 
-<img src="img/201104Java-C.PNG"> 
+<img src="img/201104Java-A.png"> 
+<img src="img/201104Java-B.png"> 
+<img src="img/201104Java-C.png"> 
 
 console
 ``` console
@@ -103,7 +114,7 @@ public class CustomerTest {
 4. Display the inputs and length of each word and the total length of 2 words.
 5. Compile and run the application.
 
-<img src="img/201105JavaConsole.PNG"> 
+<img src="img/201105JavaConsole.png"> 
 
 console
 ``` console
