@@ -1,9 +1,10 @@
 
 package com.mycompany.bankingappicationmaven;
 
-public class Bank implements ITransaction {
-
-    @Override
+public class Finance implements ITransaction{
+    /**
+     * @return the accountNo
+     */
     public int getAccountNo() {
         return accountNo;
     }
@@ -11,7 +12,6 @@ public class Bank implements ITransaction {
     /**
      * @param accountNo the accountNo to set
      */
-    @Override
     public void setAccountNo(int accountNo) {
         this.accountNo = accountNo;
     }
@@ -19,7 +19,6 @@ public class Bank implements ITransaction {
     /**
      * @return the accountName
      */
-    @Override
     public String getAccountName() {
         return accountName;
     }
@@ -27,7 +26,6 @@ public class Bank implements ITransaction {
     /**
      * @param accountName the accountName to set
      */
-    @Override
     public void setAccountName(String accountName) {
         this.accountName = accountName;
     }
@@ -35,7 +33,6 @@ public class Bank implements ITransaction {
     /**
      * @return the accountType
      */
-    @Override
     public String getAccountType() {
         return accountType;
     }
@@ -43,20 +40,17 @@ public class Bank implements ITransaction {
     /**
      * @param accountType the accountType to set
      */
-    @Override
     public void setAccountType(String accountType) throws Exception {
-        if (accountType == "Savings" || accountType == "Current" || accountType == "Gold") {
+        if (accountType == "Savings" || accountType == "Current" || accountType == "Gold" )
             this.accountType = accountType;
-        } else {
+        else
             throw new Exception("Inalid Account Type");
-        }
 
     }
 
     /**
      * @return the accountBalance
      */
-    @Override
     public double getAccountBalance() {
         return accountBalance;
     }
@@ -64,7 +58,6 @@ public class Bank implements ITransaction {
     /**
      * @param accountBalance the accountBalance to set
      */
-    @Override
     public void setAccountBalance(double accountBalance) {
         this.accountBalance = accountBalance;
     }
@@ -72,19 +65,19 @@ public class Bank implements ITransaction {
     private String accountName = "Eva Longgoria";
     private String accountType = "";
     private double accountBalance = 0.0;
-
-    @Override
-    public void Deposit(double depositAmount) {
+   
+    public void Deposit(double depositAmount)
+    {
         setAccountBalance(getAccountBalance() + depositAmount);
     }
-
-    @Override
-    public void Withdrawal(double withdrawalAmount) {
+    
+    public void Withdrawal(double withdrawalAmount)
+    {
         setAccountBalance(getAccountBalance() - withdrawalAmount);
     }
-
-    @Override
-    public void DisplayTransaction() {
+    
+    public void DisplayTransaction()
+    {
         System.out.println("Account No:" + getAccountNo());
         System.out.println("Account Name:" + getAccountName());
         System.out.println("Account Type:" + getAccountType());
