@@ -1,3 +1,4 @@
+# Snippet
 ### Constructor
 ``` java
 package com.example;
@@ -189,6 +190,27 @@ Lambda Solution: bankingappicationmaven/BankingApp9Nov2020.java
 - Select/extract from an object - `(String s) -> s.length()`
 - Combine two values - `(int a, int b) -> a*b // Function`
 - Compare two objects - `(Person p1, Person p2) -> p1.getAge().compareTo(p2.getAge())`
+
+### Lesson 7
+Collection Iteration and Lambdas
+``` java
+    public static void main(String args[]) {
+        List<Person> p1 = Person.createShortList();
+        System.out.println("\n=== Print List ===");
+        p1.forEach(p -> System.out.println(p));
+    }
+```
+The Filter Method, Method Reference
+``` java
+        System.out.println("\n=== CA Transations Lambda ==");
+        tList.stream()
+                .filter(t -> t.getState().equals("CA"))
+                .forEach(SalesTxn::printSummary);
+```
+- Reference to a static method - `ContainingClass::staticMethodName`
+- Reference to an instance method
+- Reference to an instance method of an arbitrary object of a particular type (for example, `String::compareToIgnoreCase`)
+- Reference to a constructor - `ClassName::new`
 
 ### Lesson 12 - Services in a Modular Application
 Using the Service Type in `competition`
