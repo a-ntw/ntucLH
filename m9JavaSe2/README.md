@@ -212,8 +212,170 @@ The Filter Method, Method Reference
 - Reference to an instance method of an arbitrary object of a particular type (for example, `String::compareToIgnoreCase`)
 - Reference to a constructor - `ClassName::new`
 
+### Lesson 09 
+Predicate
+``` java
+package java.util.function;
+
+public interface Predicate<T> {
+    public boolean test(T t);
+}
+```
+A `Predicate` takes a generic class and returns a `boolean`. It has a single method, namely `test`.
+
+Predicate: Example
+``` java
+        Predicate<SalesTxn> massSales =
+                t -> t.getState().equals(State.MA);
+        
+        System.out.println("\n== Sales - Stream");
+        tList.stream()
+                .filter(massSales)
+                .forEach(t -> t.printSummary());
+        
+        System.out.println("\n== Sales - Method Call");
+        for(SalesTxn t:List) {
+            if (massSales.test(t)) {
+                t.printSummary();
+            }
+        }
+```
+
+Predicate:- bankingappicationmaven/BankingApp9Nov2020.java
+``` java
+            System.out.println("List of all transactions:");
+            Predicate<ITransaction> allRecords = (ITransaction trans) -> true;
+            displayAccounts(allRecords);
+```
+
+### Lesson 09
+Quick Streams with `Stream.of`
+``` java
+    public static void main(String[] args) {
+        Stream.of("Monday", "Tuesday", "Wednesday", "Thursday")
+                .filter(s -> s.startsWith("T"))
+                .forEach(s -> System.out.println("Matching Days: " + s));
+    }
+```
+
+### Lesson 10
+Example Hello World Modular Application Code
+
+Module hello, people, conversation
+``` java
+//hello/class/<>/module-info.java
+module hello {
+    requires people;
+}
+
+// hello/com.greeting/Main.java
+package com.greeting;
+
+import com.question.Questions;
+import com.name.Names;
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello " +Names.getName() + " "
+        + Questions.getQuestion());
+    }
+}
+
+//people/class/<>/module-info.java
+module people {
+    exports com.name;
+    requires transitive conversation;
+}
+
+//people/com.name/Names.java
+package com.name;
+
+public class Names {
+    public static String getName(){
+        return "Duke!";
+    }
+}
+
+//conversation/class/<>/module-info.java
+module conversation {
+    exports com.question;
+}
+
+//conversation/com.question/Questions.java
+package com.question;
+
+public class Questions {
+    public static String getQuestion() {
+        return "How are you?";
+    }
+    
+}
+```
+Creating a Modular JAR
+``` 
+```
+
+### lesson 10
+Finding the Right Platform Module
+```
+/home/oracle$ java --describe-module java.base
+```
+Using `jlink` to Create a Runtime Image
+
+* `jlink [option]` --module-path `modulepath` --add-modules `mods` --output `path`
+``` console
+/Hello$ jlink
+--module-path dist/Hello.jar:/usr/java/jdk-9-jmods
+--add-modules com.greeting
+--output myimage
+```
+Running the Application
+``` console
+$ myimage/bin/ java --module com.greeting
+
+$ myimage/bin/ java -m com.greeting
+
+```
+
+
+
 ### Lesson 12 - Services in a Modular Application
 Using the Service Type in `competition`
-``` java
 
+module-info.java for competition module
+``` java
+module competition {
+    requires transitive gameapi;
+
+    exports game;
+    exports utils;
+    
+    uses gameapi.GameProvider;
+    
+    uses gameapi.TournamentType;
+    provides gameapi.TournamentType with game.League, game.Knockout;
+}
+```
+module-info.java for soccer
+``` java
+module soccer {
+    requires gameapi;
+    requires java.logging;
+    exports soccer;
+    opens soccer to jackson.databind;
+    
+    provides gameapi.GameProvider with soccer.SoccerProvider;
+    
+}
+```
+module-info.java for basketball
+``` java
+module basketball {
+    requires gameapi;
+    requires java.logging;
+    exports basketball to competition, gameapi;
+    opens basketball to jackson.databind;
+    
+    provides gameapi.GameProvider with basketball.BasketballProvider;
+}
 ```
