@@ -24,8 +24,7 @@ public class CountRunnable implements Runnable{
     }
 }
 ```
-### Lesson 2
-A Simple Java Class
+### Lesson 2 A Simple Java Class
 ``` java
     package com.example.domain; // Package declaratopm
     public class Employee { // Class declaration
@@ -74,8 +73,8 @@ Methods Using Variable Arguments
     }
 ```
 
-### Lesson 3
-Exception Handling - BankingApp9Nov2020.java
+### Lesson 3 Exception Handling
+BankingApp9Nov2020.java
 ``` java
     public static void main(String[] args) {
         try {
@@ -109,8 +108,8 @@ Exception Hanndling Techniques: Declaring Exceptions
     }
 ```
 
-### Lesson 4
-Interfaces - bankingappicationmaven_201109/ITransaction.java
+### Lesson 4 Interfaces
+bankingappicationmaven_201109/ITransaction.java
 ``` java
 public interface ITransaction {
     void Deposit(double depositAmount);
@@ -127,8 +126,7 @@ public class Bank implements ITransaction {
     }
 }
 ```
-### Lesson 5
-Arraylist
+### Lesson 5 Arraylist
 ``` java
     public static void main(String args[]) {
         List<Integer> partList = new ArrayList<>(3);
@@ -173,8 +171,8 @@ public class SortByAccountNo  implements Comparator<ITransaction>{
     }
 }
 ```
-### Lesson 6
-Lambda Solution: bankingappicationmaven/BankingApp9Nov2020.java   
+### Lesson 6 Lambda Solution
+bankingappicationmaven/BankingApp9Nov2020.java   
 ``` java
     System.out.println("Lambda expression retriving collection items:");
     Utility.transactionStorage.forEach(bankAccount -> {
@@ -191,8 +189,7 @@ Lambda Solution: bankingappicationmaven/BankingApp9Nov2020.java
 - Combine two values - `(int a, int b) -> a*b // Function`
 - Compare two objects - `(Person p1, Person p2) -> p1.getAge().compareTo(p2.getAge())`
 
-### Lesson 7
-Collection Iteration and Lambdas
+### Lesson 7 Collection Iteration and Lambdas
 ``` java
     public static void main(String args[]) {
         List<Person> p1 = Person.createShortList();
@@ -212,7 +209,7 @@ The Filter Method, Method Reference
 - Reference to an instance method of an arbitrary object of a particular type (for example, `String::compareToIgnoreCase`)
 - Reference to a constructor - `ClassName::new`
 
-### Lesson 09 
+### Lesson 8 Lambda Built-in
 Predicate
 ``` java
 package java.util.function;
@@ -248,7 +245,7 @@ Predicate:- bankingappicationmaven/BankingApp9Nov2020.java
             displayAccounts(allRecords);
 ```
 
-### Lesson 09
+### Lesson 9 Lambda Operations
 Quick Streams with `Stream.of`
 ``` java
     public static void main(String[] args) {
@@ -258,7 +255,7 @@ Quick Streams with `Stream.of`
     }
 ```
 
-### Lesson 10
+### Lesson 10 The Module Syste,
 Example Hello World Modular Application Code
 
 Module hello, people, conversation
@@ -315,7 +312,6 @@ Creating a Modular JAR
 ``` 
 ```
 
-### lesson 10
 compiling, directory, running
 ``` console
 antw@Mac-mini Prac10_01_ModularSystem % javac -d classes src/com/greeting/Main.java
@@ -360,7 +356,7 @@ Using `jlink` to Create a Runtime Image . it don't work, jlink path is not link!
 --add-modules com.greeting
 --output myimage
 ```
-It can use NetBeans to create jlink image. click-click and properties> ..
+can use NetBeans to create jlink image. right-click and properties> ..
 
 Running the Application
 ``` console
@@ -372,9 +368,38 @@ antw@Mac-mini bin % ./java -m com.greeting
 Nov 15, 2020 2:12:41 PM com.greeting.Main main                       
 INFO: HelloWorld App says hello!  
 ```
+Creating a Modular JAR ??
+``` console
+jar --create -f <path and name of JAR file>
+    --main-class <package name> <main class name>
+    -C <path to compiled module code>
 
+jar --create -f jars/world.jar -C mods/world
+jar --create -f jars/hello.jar --main-class greeting.Hello -C mods/greeting/
+```
+Running a Modular Application
+``` console
+java --module-path <path to JARs> --module <module name>
+java -p jars -m greeting
+```
+describe-module
+``` console
+antw@Mac-mini src % java --describe-module java.base                      
+java.base@11.0.8                                                          
+exports java.io                                                           
+exports java.lang                                                         
+exports java.lang.annotation                                              
+exports java.lang.invoke     
+...
+```
+``` console
+antw@Mac-mini Hello % java --describe-module java.logging            
+java.logging@11.0.8                                                  
+exports java.util.logging                                            
+...                                 
+ ```
 
-
+### Migrating to a Modular App
 
 ### Lesson 12 - Services in a Modular Application
 Using the Service Type in `competition`
@@ -415,4 +440,50 @@ module basketball {
     
     provides gameapi.GameProvider with basketball.BasketballProvider;
 }
+```
+### Lesson 13 Concurrency
+
+### Lesson 14 Parallel Streams
+``` java
+        result = eList.Stream()
+                .filter(e -> e.getState().equls("CO"))
+                .filter(e -> e.getRole().equals(Role.EXECUTIVE))
+                .peek(e -> e.printSummary())
+                .mapToDouble(e -> e.getSalary())
+                .parallel() // default is sequential
+                .sum();
+
+        System.out.println("TotalCO Executive Pay: $%,9.2f %n", result);
+```
+To save the results after a pipeline completes, use the collect method and Collectors class
+``` java
+List<Employee> newList02 = new ArrayList<>();
+    newList02 = eList.parallelStream() // Good Parallel
+        .filter(e -> e.getDept().equals("Eng");
+        .collect(Collectors.toList());
+```
+
+Illustrating Parallel Execution
+``` java
+        int r2 = IntStream.rangeClosed(1,8).parallel()
+            .reduce(0, (sum, element) -> sum + element);
+```
+
+### Lesson 15 Collector
+The collect Method: Collect to an ArrayList Example
+
+``` java
+        List<Person> myPpl = people.stream()
+            // Supplier: creates an ArrayList as the new result type.
+            .collect(ArrayList::new.
+            
+            //Accumulator: adds Person elements to the result ArrayList.
+            ArrayList::add,
+            
+            // Combiner: if parallel stream, takes two ArrayList objecs and combines them.
+            ArrayList::addAll );
+            
+            System.out.println(myPpl);
+
+            [Joe, Amy, Bill, Eric, Eric]
 ```
