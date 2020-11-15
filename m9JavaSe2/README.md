@@ -320,7 +320,7 @@ Finding the Right Platform Module
 ```
 /home/oracle$ java --describe-module java.base
 ```
-Using `jlink` to Create a Runtime Image
+Using `jlink` to Create a Runtime Image . it don't work, jlink path is not link!
 
 * `jlink [option]` --module-path `modulepath` --add-modules `mods` --output `path`
 ``` console
@@ -329,13 +329,19 @@ Using `jlink` to Create a Runtime Image
 --add-modules com.greeting
 --output myimage
 ```
+It can use NetBeans to create jlink image. click-click and properties> ..
+
 Running the Application
 ``` console
-$ myimage/bin/ java --module com.greeting
-
-$ myimage/bin/ java -m com.greeting
-
+antw@Mac-mini bin % ./java --list-modules                            
+com.greeting                                                         
+java.base@11.0.8                                                     
+java.logging@11.0.8                                                  
+antw@Mac-mini bin % ./java -m com.greeting                           
+Nov 15, 2020 2:12:41 PM com.greeting.Main main                       
+INFO: HelloWorld App says hello!  
 ```
+
 
 
 
