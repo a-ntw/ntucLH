@@ -316,6 +316,37 @@ Creating a Modular JAR
 ```
 
 ### lesson 10
+compiling, directory, running
+``` console
+antw@Mac-mini Prac10_01_ModularSystem % javac -d classes src/com/greeting/Main.java
+antw@Mac-mini Prac10_01_ModularSystem % ls -R
+antw@Mac-mini Prac10_01_ModularSystem % java -cp classes com.greeting.Main
+```
+comoile the application module by module
+``` console
+javac -d mods/world src/world/module-info.java src/world/world/World.java
+javac -d mods/greeting --module-path mods src/greeting/module-info.java \
+src/greeting/greeting/Hello.java
+```
+command prompt break
+``` console
+antw@Mac-mini Prac_10_03_ModularSystem % java \                      
+> --version                                                          
+java 11.0.8 2020-07-14 LTS
+Java(TM) SE Runtime Environment 18.9 (build 11.0.8+10-LTS)
+Java HotSpot(TM) 64-Bit Server VM 18.9 (build 11.0.8+10-LTS, mixed mode)
+antw@Mac-mini Prac_10_03_ModularSystem % 
+```
+Passing all source filenames ??
+``` console
+javac -d mods --module-source-path src $(find src -name "*.java")
+```
+Checking module contents ??
+``` console
+java --module-path mods --describe-module greeting
+```
+
+
 Finding the Right Platform Module
 ```
 /home/oracle$ java --describe-module java.base
