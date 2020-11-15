@@ -20,6 +20,11 @@ antw@Mac-mini bin %
 
 To run the application from the custom runtime image created.
 ``` console
+antw@Mac-mini bin % ./java --list-modules                            
+com.greeting                                                         
+java.base@11.0.8                                                     
+java.logging@11.0.8                                                  
+antw@Mac-mini bin % ./java -m com.greeting                           
+Nov 15, 2020 2:12:41 PM com.greeting.Main main                       
+INFO: HelloWorld App says hello!  
 ```
-
-KIV
