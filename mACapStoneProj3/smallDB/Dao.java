@@ -14,41 +14,43 @@ import java.sql.PreparedStatement;
 public class Dao {
 
     public static Statement init() throws Exception {
-        Connection conn = initConn();
+        Connection conn = initConn(); 
 
         return conn.createStatement();
     }
     
     public static Connection initConn() throws Exception {
         Connection conn = null;
-        Class.forName("com.mysql.cj.jdbc.Driver");
+        Class.forName("com.mysql.cj.jdbc.Driver"); 
+        // package >Properties >Libraries > ClassPath= mysqlCJ
         conn = DriverManager
-                .getConnection("jdbc:mysql://localhost:3306/bank?useTimezone=true&serverTimezone=UTC&"
+                .getConnection("jdbc:mysql://localhost:3306/smallDB?"
+                        + "useTimezone=true&serverTimezone=UTC&"
                         + "user=root&password=mysql_80");
 
         return conn;
     }
     
-    public static int getNextID(){
-        int nxtID = 0;
-        try{
-            Statement stmt = Dao.init();
-            String nxID = "select max(custID) from smallDB.cust;";
-            ResultSet rs = stmt.executeQuery(nxID);
-            rs.next();
-            nxtID = rs.getInt(1) + 1 ;        
-        }catch(Exception e){
-            System.out.println(" Exception from smsCustDAO :: " + e.getMessage());
-            e.printStackTrace();
-        }
-        return nxtID;
-    }
+//    public static int getNextID(){
+//        int nxtID = 0;
+//        try{
+//            Statement stmt = Dao.init();
+//            String nxID = "select max(custID) from smallDB.cust;";
+//            ResultSet rs = stmt.executeQuery(nxID);
+//            rs.next();
+//            nxtID = rs.getInt(1) + 1 ;        
+//        }catch(Exception e){
+//            System.out.println(" Exception from smsCustDAO :: " + e.getMessage());
+//            e.printStackTrace();
+//        }
+//        return nxtID;
+//    }
     
     public static boolean insertCust(smCust c) throws Exception{
         Statement stmt = Dao.init();
 
-        String insStmt = "insert into smallDB.cust (nric, name, address, age) VALUES(" 
-                + c.getNric() + ",\"" + c.getName() + "\",  \"" 
+        String insStmt = "insert into smallDB.cust (nric, cname, address, age) "
+                + "VALUES("+ c.getNric() + ",\"" + c.getName() + "\",  \"" 
                 + c.getAddress() + "\", " + c.getAge() 
                 + ");";
         System.out.println(insStmt);
@@ -73,7 +75,8 @@ public class Dao {
         
         ResultSet rs = stmt.executeQuery(qStmt);
         while(rs.next()){
-            custList.add(new smCust(rs.getInt("nric"),rs.getString("name"),rs.getString("address"),rs.getInt("age")));
+            custList.add(new smCust(rs.getInt("nric"),rs.getString("cname"),
+                    rs.getString("address"),rs.getInt("age")));
             
         }
         return custList;

@@ -1,13 +1,12 @@
-
 package smallDB;
 
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class MainCrud {
 
     public static Scanner myObj = new Scanner(System.in);
+    //myObj.useDelimiter("\n");
     public static int iteration = 1;
 
     public static void toContinue() {
@@ -24,7 +23,7 @@ public class MainCrud {
 //    }
     public static int listCust() throws Exception {
         //printHeader();
-        System.out.println("\tID  \tName \t\t\tDOB   \t\t   Email  \t\tPhoneNo  \tStatus");
+        System.out.println("ID \tName \t\tAddress \t\tAge");
         //printFooter();
         Dao.listCust().stream().forEach(System.out::println);
         //printFooter();
@@ -35,23 +34,25 @@ public class MainCrud {
         //new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();//
         //int nxtID = Dao.getNextID();      
         System.out.println(" \tEnter the following details  :: ");
-
+        //printFooter();
+        //System.out.println(" \n\t\t        Cust ID    \t : " + nxtID);
         System.out.print(" \n\t NRIC \t : ");
         String nric_String = myObj.next();
         int nric = Integer.parseInt(nric_String);
         System.out.print(" \n\t First Name \t : ");
-        String name = myObj.next(); 
+        String cname = myObj.useDelimiter("\n").next();
         System.out.print(" \n\t Second Name \t : ");
-        name += " " + myObj.next();     //name = myObj.nextLine();
-        
+        cname += " " + myObj.useDelimiter("\n").next();   //cname = myObj.nextLine();
+
         System.out.print(" \n\t Address \t : ");
-        String address = myObj.next();//address = myObj.nextLine();
+        String address = myObj.useDelimiter("\n").next();//address = myObj.nextLine();
         System.out.print(" \n\t Age \t : ");
         String age_String = myObj.next();
         int age = Integer.parseInt(age_String);
 
-        if (Dao.insertCust(new smCust(nric, name, address, age))) {
-
+        //printHeader();
+        if (Dao.insertCust(new smCust(nric, cname, address, age))) {
+            // printFooter();
         }
         return 1;
     }
@@ -76,6 +77,14 @@ public class MainCrud {
         return optVal;
     }
 
+//    public static void printHeader() throws Exception {
+//        //new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+//        System.out.println(" ===============================================");
+//    }
+//
+//    public static void printFooter() {
+//        System.out.println(" ===============================================");
+//    }
     public static void main(String[] args) throws Exception {
         while (true) {
             int optionVal = DisplayOptions();

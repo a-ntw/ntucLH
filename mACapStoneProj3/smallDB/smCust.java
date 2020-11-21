@@ -1,29 +1,15 @@
-/*
-CREATE TABLE `smallDB`.`cust` (
-  `nric` INT NOT NULL,
-  `name` VARCHAR(45) NOT NULL,
-  `address` VARCHAR(45) NOT NULL,
-  `age` INT NOT NULL,
-  PRIMARY KEY (`nric`),
-  UNIQUE INDEX `nric_UNIQUE` (`nric` ASC) VISIBLE);
- */
-
-/*
-INSERT INTO `smallDB`.`cust` (`nric`, `name`, `address`, `age`) VALUES ('44332211', 'Tan Ah Cow', 'SomeWhere', '55');
-insert into smallDB.cust (nric, name, address, age) VALUES (4334231, "Lim Ah Hia", "NoWhere", 33);
-*/
 package smallDB;
 
 public class smCust {
 
     private int nric;
-    private String name;
+    private String cname;
     private String address;
     private int age;
 
-    public smCust(int nric, String name, String address, int age) {
+    public smCust(int nric, String cname, String address, int age) {
         this.nric = nric;
-        this.name = name;
+        this.cname = cname;
         this.address = address;
         this.age = age;
     }
@@ -33,7 +19,7 @@ public class smCust {
     }
 
     public String getName() {
-        return name;
+        return cname;
     }
 
     public String getAddress() {
@@ -46,7 +32,26 @@ public class smCust {
 
     @Override
     public String toString() {
-        return "smCust{" + "nric=" + nric + ", name=" + name + ", address=" + address + ", age=" + age + '}';
+        
+        return nric + "\t" + cname + "\t" + address + "\t" + age ;
     }
 
 }
+
+/* mySQl
+CREATE TABLE `cust` (
+  `nric` int NOT NULL,
+  `cname` varchar(20) NOT NULL,
+  `address` varchar(30) NOT NULL,
+  `age` int NOT NULL,
+  PRIMARY KEY (`nric`),
+  UNIQUE KEY `nric_UNIQUE` (`nric`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+ */
+
+ /*
+INSERT INTO `smallDB`.`cust` (`nric`, `cname`, `address`, `age`) 
+VALUES ('44332211', 'Tan Ah Cow', 'SomeWhere', '55');
+insert into smallDB.cust (nric, cname, address, age) VALUES (4334231
+, "Lim Ah Hia", "NoWhere", 33);
+ */
