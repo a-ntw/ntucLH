@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="calc.CalculatorController">
+    <children>
+        <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <top>
+                <TextField fx:id="result" alignment="CENTER_RIGHT" prefHeight="115.0" prefWidth="900.0" promptText="0" style="-fx-background-color: LIGHTYELLOW;">
+               <font>
+                  <Font size="45.0" />
+               </font></TextField>
+            </top>
+            <center>
+                <GridPane BorderPane.alignment="CENTER">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onNumberClick" text="7" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                     <textFill>
+                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                           <stops>
+                              <Stop color="#00ff0d" />
+                              <Stop color="#434343" offset="1.0" />
+                           </stops>
+                        </RadialGradient>
+                     </textFill></Button>
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onNumberClick" text="8" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                     <textFill>
+                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                           <stops>
+                              <Stop color="#00ff0d" />
+                              <Stop color="#434343" offset="1.0" />
+                           </stops>
+                        </RadialGradient>
+                     </textFill></Button>
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onNumberClick" text="9" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                     <textFill>
+                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                           <stops>
+                              <Stop color="#00ff0d" />
+                              <Stop color="#434343" offset="1.0" />
+                           </stops>
+                        </RadialGradient>
+                     </textFill></Button>
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onOperatorClick" text="\%" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="33.0" />
+                     </font>
+                     <textFill>
+                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                           <stops>
+                              <Stop color="#00ff0d" />
+                              <Stop color="#434343" offset="1.0" />
+                           </stops>
+                        </RadialGradient>
+                     </textFill></Button>
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onNumberClick" text="4" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                     <textFill>
+                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                           <stops>
+                              <Stop color="#00ff0d" />
+                              <Stop color="#434343" offset="1.0" />
+                           </stops>
+                        </RadialGradient>
+                     </textFill></Button>
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onNumberClick" text="5" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                     <textFill>
+                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                           <stops>
+                              <Stop color="#00ff0d" />
+                              <Stop color="#434343" offset="1.0" />
+                           </stops>
+                        </RadialGradient>
+                     </textFill></Button>
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onNumberClick" text="6" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                     <textFill>
+                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                           <stops>
+                              <Stop color="#00ff0d" />
+                              <Stop color="#434343" offset="1.0" />
+                           </stops>
+                        </RadialGradient>
+                     </textFill></Button>
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onOperatorClick" text="X" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                     <textFill>
+                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                           <stops>
+                              <Stop color="#00ff0d" />
+                              <Stop color="#434343" offset="1.0" />
+                           </stops>
+                        </RadialGradient>
+                     </textFill></Button>
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onNumberClick" text="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                     <textFill>
+                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                           <stops>
+                              <Stop color="#00ff0d" />
+                              <Stop color="#434343" offset="1.0" />
+                           </stops>
+                        </RadialGradient>
+                     </textFill></Button>
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onNumberClick" text="2" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                     <textFill>
+                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                           <stops>
+                              <Stop color="#00ff0d" />
+                              <Stop color="#434343" offset="1.0" />
+                           </stops>
+                        </RadialGradient>
+                     </textFill></Button>
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onNumberClick" text="3" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                     <textFill>
+                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                           <stops>
+                              <Stop color="#00ff0d" />
+                              <Stop color="#434343" offset="1.0" />
+                           </stops>
+                        </RadialGradient>
+                     </textFill></Button>
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onOperatorClick" text="-" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                     <textFill>
+                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                           <stops>
+                              <Stop color="#00ff0d" />
+                              <Stop color="#434343" offset="1.0" />
+                           </stops>
+                        </RadialGradient>
+                     </textFill></Button>
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onCEClick" text="CE" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="33.0" />
+                     </font>
+                     <textFill>
+                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                           <stops>
+                              <Stop color="#00ff0d" />
+                              <Stop color="#434343" offset="1.0" />
+                           </stops>
+                        </RadialGradient>
+                     </textFill></Button>
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onOperatorClick" text="/" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                     <textFill>
+                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                           <stops>
+                              <Stop color="#00ff0d" />
+                              <Stop color="#434343" offset="1.0" />
+                           </stops>
+                        </RadialGradient>
+                     </textFill></Button>
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onOperatorClick" text="=" GridPane.columnIndex="4" GridPane.rowIndex="3" GridPane.rowSpan="2">
+                     <font>
+                        <Font size="41.0" />
+                     </font>
+                     <textFill>
+                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                           <stops>
+                              <Stop color="#00ff0d" />
+                              <Stop color="#434343" offset="1.0" />
+                           </stops>
+                        </RadialGradient>
+                     </textFill></Button>
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onNumberClick" text="." GridPane.rowIndex="4">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                     <textFill>
+                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                           <stops>
+                              <Stop color="#00ff0d" />
+                              <Stop color="#434343" offset="1.0" />
+                           </stops>
+                        </RadialGradient>
+                     </textFill></Button>
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onNumberClick" text="0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                     <textFill>
+                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                           <stops>
+                              <Stop color="#00ff0d" />
+                              <Stop color="#434343" offset="1.0" />
+                           </stops>
+                        </RadialGradient>
+                     </textFill></Button>
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onDELClick" text="DEL" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                     <textFill>
+                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                           <stops>
+                              <Stop color="#00ff0d" />
+                              <Stop color="#434343" offset="1.0" />
+                           </stops>
+                        </RadialGradient>
+                     </textFill></Button>
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onOperatorClick" text="+" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                     <textFill>
+                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                           <stops>
+                              <Stop color="#00ff0d" />
+                              <Stop color="#434343" offset="1.0" />
+                           </stops>
+                        </RadialGradient>
+                     </textFill></Button>
+                  <Button fx:id="tc" disable="true" layoutX="10.0" layoutY="105.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#tClear" text="TC" GridPane.columnIndex="4">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                     <textFill>
+                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                           <stops>
+                              <Stop color="#00ff0d" />
+                              <Stop color="#434343" offset="1.0" />
+                           </stops>
+                        </RadialGradient>
+                     </textFill>
+                  </Button>
+                  <Button layoutX="10.0" layoutY="105.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#mStore" text="MS" GridPane.columnIndex="3">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                     <textFill>
+                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                           <stops>
+                              <Stop color="#00ff0d" />
+                              <Stop color="#434343" offset="1.0" />
+                           </stops>
+                        </RadialGradient>
+                     </textFill>
+                  </Button>
+                  <Button fx:id="mp" disable="true" layoutX="10.0" layoutY="105.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#mPlus" text="M+" GridPane.columnIndex="2">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                     <textFill>
+                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                           <stops>
+                              <Stop color="#00ff0d" />
+                              <Stop color="#434343" offset="1.0" />
+                           </stops>
+                        </RadialGradient>
+                     </textFill>
+                  </Button>
+                  <Button fx:id="mm" disable="true" layoutX="10.0" layoutY="105.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#mMinus" text="M-" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                     <textFill>
+                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                           <stops>
+                              <Stop color="#00ff0d" />
+                              <Stop color="#434343" offset="1.0" />
+                           </stops>
+                        </RadialGradient>
+                     </textFill>
+                  </Button>
+                  <Button fx:id="mc" disable="true" layoutX="10.0" layoutY="105.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#mClear" text="MC">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                     <textFill>
+                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                           <stops>
+                              <Stop color="#00ff0d" />
+                              <Stop color="#434343" offset="1.0" />
+                           </stops>
+                        </RadialGradient>
+                     </textFill>
+                  </Button>
+                    </children>
+                </GridPane>
+            </center>
+         <left>
+            <TextArea fx:id="mStore" editable="false" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: LIGHTGREY;" wrapText="true" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="16.0" />
+               </font></TextArea>
+         </left>
+         <right>
+            <TextArea fx:id="tStore" editable="false" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: LIGHTBLUE;" wrapText="true" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="16.0" />
+               </font></TextArea>
+         </right>
+        </BorderPane>
+    </children>
+</AnchorPane>

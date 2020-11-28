@@ -1,0 +1,293 @@
+
+.LOG Nov 16 2929
+
+JAVA DEVELOPER - CAPSTONE PROJECT 3
+16 Nov 20 to 27 Nov 20 (2 weeks)
+
+From Hong Jie Tan to Everyone: (9:55 AM)
+ https://docs.google.com/document/d/1N8aYXVnqYgxqQL01QdsGsBEE1wnB8G1nUs53fNZ_Sms/edit
+
+https://learn.oracle.com/ols/course/java-se-programming-ii-ed-1/40805/80957/116934#
+
+From Hong Jie Tan to Everyone: (12:02 PM)
+ https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-reference-type-conversions.html 
+
+—
+jar:nbinst://org.netbeans.modules.form/modules/ext/AbsoluteLayout.jar!/
+
+From Hong Jie Tan to Everyone: (11:50 AM)
+ sg1 : https://learn.oracle.com/ords/training/DL4_EKITDOCUMENT.getPDF?p_url=_-ENC6E9C0202092241DEDB6D7E64D784E13EA4E373CBA807308BDBE274030DEB10AFDC758251BF748F1791108AB5D67E7BC35EADE882247DE694C35D8FEF66E7931F417BAA0B9BA3752B908E2235360CBD6DFA27619D3ED6F722RY-_#p=103 
+
+From Hong Jie Tan to Everyone: (12:02 PM)
+ https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-reference-type-conversions.html 
+
+From Ren Jie Wong to Everyone: (2:11 PM)
+ https://www.service-architecture.com/articles/database/mapping_sql_and_java_data_types.html 
+
+
+—
+https://i.pinimg.com/originals/db/a7/a1/dba7a1aa11076649a2bbdced924f4681.png -> UML FLowchart common entitties
+
+
+https://stackoverflow.com/questions/14001980/validation-for-nric
+
+if( inputString.matches( "[A-Z][0-9]{7}[A-Z]") ) Regex is short hand for Regular Expression.
+
+nric.matches("\\p{Upper}\\d{7}\\p{Upper}")
+
+Regeexp Java for password validation
+https://stackoverflow.com/questions/3802192/regexp-java-for-password-validation
+^.*(?=.{8,})(?=..*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$
+—
+Nov 18, 2020
+
+From Chandra Sekhar to Everyone: (12:18 PM)
+ https://github.com/chandra-79/Cohort1-JavaSE_II/upload https://github.com/chandra-79/Cohort1-JavaSE_II/blob/main/CustomerApp.zip 
+
+https://github.com/chandra-79/Cohort1-JavaSE_II/blob/main/CustomerApp.zip
+
+From Chandra Sekhar to Everyone: (2:55 PM)
+ https://www.baeldung.com/java-pad-string 
+
+good sql examples for learning
+From Chandra Sekhar to Everyone: (4:37 PM)
+ https://livesql.oracle.com/apex/f?p=590:1000 
+
+From Chandra Sekhar to Everyone: (4:44 PM)
+ edelivery.oracle.com/ 
+
+From Keng Wong to Me: (Privately) (5:34 PM)
+ Check out this YouTube video; https://www.youtube.com/watch?v=ssef6bjPpZE You can install VirtualBox and run Oracle locally. I am actually doing this now 
+
+ORACLE not run on Mac machine
+
+From Chandra Sekhar to Everyone: (5:51 PM)
+ https://www.oracle.com/database/technologies/xe-downloads.html 
+From Hong Jie Tan to Everyone: (5:51 PM)
+
+mySQL pw: mysql_80
+
+—
+
+    public static Scanner myObj = new Scanner(System.in);
+
+        CustomerDAO.listCustomer().stream().forEach(System.out::println);
+//>>> need ..
+    public String toString() {
+        return "\t" + custID + "\t " + custName + "\t\t" + DOB + "\t" + email  + " \t " + phoneNo + " \t" + (active==1 ? true : false);
+    }
+    
+            String nxID = "select max(custID) from bank.customer;";
+
+        String insStmt = "insert into Customer (custID, custName, DOB, email, phoneNo, active) "
+                + " values(" + c.getCustID() + 
+                ",\"" + c.getCustName() + "\",DATE(\"" + c.getDOB().toString() +"\"),"
+                + "\"" + c.getEmail() + "\"," + c.getPhoneNo() + "," + c.getActive() +");";
+
+
+                    Thread.sleep(4000);
+                    System.exit(0);
+
+---
+Nov 19, 20
+
+From Chandra Sekhar to Everyone: (9:19 AM)
+ https://en.wikipedia.org/wiki/Plain_old_Java_object 
+
+
+---
+
+From Chandra Sekhar to Everyone: (9:26 AM)
+ https://www.databasestar.com/oracle-mac/
+
+From Chandra Sekhar to Everyone: (11:18 AM)
+ insert into customer(name) values('Namehere'); 
+From TAY KianLye to Everyone: (11:22 AM)
+ INSERT INTO `bank`.`customer`
+(`custID`,`custName`,`DOB`,`email`,`active`,`phoneNo`)
+VALUES
+(10,
+'Dumpty',
+'2020-02-02',
+'dumpty@abc.com',
+1,
+'123123123'); 
+
+From Chandra Sekhar to Everyone: (11:27 AM)
+ System.out.println(" insert into customer{custId, custName, DOB)  values (101, 'nameHere', '2020-10-10'");
+
+            System.out.println(" insert into customer{custId, custName, DOB)  values (101, \"nameHere\", \"2020-10-10\""); 
+From Chandra Sekhar to Everyone: (12:28 PM)
+ Scanner in = new Scanner(System.in);
+in.useDelimiter("\n");
+
+public static void main(String[] args) throws Exception {
+        myObj.useDelimiter("\n");
+
+
+—
+Nov 20, ’20
+
+From Kiat Leong Chua to Me: (Privately) (9:25 AM)
+ serverTimezone=Asia/Singapore 
+
+From Chandra Sekhar to Everyone: (9:41 AM)
+default_time_zone='+00:00’
+
+SELECT count(*) FROM coreBanking.customer where nric = 1112222;
+
+---
+
+
+—
+Nov 23, 2020
+From Chandra Sekhar to Everyone: (9:15 AM)
+ C:\ProgramData C:\ProgramData\MySQL\MySQL Server 8.0 
+
+From Chandra Sekhar to Everyone: (9:47 AM)
+ stream().filter(c -> c.getCustID == cid).findFirst().get() 
+
+From Chandra Sekhar to Everyone: (11:47 AM)
+ Log V1,2,3,4
+ https://github.com/chandra-79/Cohort1-JavaSE_II/tree/main/Logging 
+
+
+From Chandra Sekhar to Everyone: (3:48 PM)
+ https://github.com/chandra-79/Cohort1-JavaSE_II/blob/main/CustomerApp_V2.0.zip 
+
+
+—
+try{ 
+
+//Assume a substantial association object conn 
+
+conn.setAutoCommit(false); 
+
+Statement stmt = conn.createStatement(); 
+
+String SQL = "INSERT INTO Employees " + 
+
+"VALUES (106, 20, 'Rita', 'Tez')"; 
+
+stmt.executeUpdate(SQL); 
+
+//Submit a deformed SQL explanation that breaks 
+
+String SQL = "INSERTED IN Employees " + 
+
+"VALUES (107, 22, 'Sita', 'Singh')"; 
+
+stmt.executeUpdate(SQL); 
+
+//If there is no error. 
+
+conn.commit(); 
+
+}catch(SQLException se){ 
+
+//If there is any error. 
+
+conn.rollback(); 
+
+}
+—
+CREATE VIEW v AS SELECT * FROM coreBanking.accmap;
+SELECT * FROM v;
+
+
+********  Java FX ********
+
+From Chandra Sekhar to Everyone: (3:21 PM)
+ https://openjfx.io/ 
+
+From Chandra Sekhar to Everyone: (3:24 PM)
+ https://gluonhq.com/
+
+From Chandra Sekhar to Everyone: (3:26 PM)
+ https://gluonhq.com/products/javafx/
+
+From Chandra Sekhar to Everyone: (3:38 PM)
+ https://github.com/chandra-79/Cohort1-JavaSE_II/blob/main/CustomerApp_V3.0.zip 
+
+From Chandra Sekhar to Everyone: (4:27 PM)
+ https://github.com/chandra-79/Cohort1-JavaSE_II/blob/main/JavaFx_Samples.zip 
+
+From Chandra Sekhar to Everyone: (4:27 PM)
+ https://github.com/chandra-79/Cohort1-JavaSE_II/blob/main/JavaFx_Samples.zip 
+--module-path "C:\\javafx-sdk-11.0.2\\lib" --add-modules javafx.controls
+
+https://openjfx.io/openjfx-docs/#install-javafx
+
+https://github.com/chandra-79/Cohort1-JavaSE_II/blob/main/JavaFx_Samples.zip
+
+—
+Nov 26, 2020
+From Chandra to Everyone: (9:06 AM)
+ https://github.com/chandra-79/Cohort1-JavaSE_II/blob/main/JavaFx_Samples_V2.0.zip
+
+From Chandra to Me: (Privately) (9:14 AM)
+ //Mac
+export  PATH_TO_FX=c:\javafx-sdk-11.0.2\lib
+javac --module-path ${PATH_TO_FX} --add-modules javafx.controls HelloFX.java
+java --module-path ${PATH_TO_FX} --add-modules javafx.controls HelloFX
+
+// windows
+From Chandra to Everyone: (9:14 AM)
+ set PATH_TO_FX=c:\javafx-sdk-110.2\lib
+
+javac --module-path %PATH_TO_FX% --add-modules javafx.controls HelloFX.java
+
+java --module-path %PATH_TO_FX% --add-modules javafx.controls HelloFX 
+
+
+From Chandra to Everyone: (11:09 AM)
+ --add-modules javafx.controls,javafx.fxml,javafx.media
+
+
+Observable List
+From Chandra to Everyone: (4:31 PM)
+ https://www.odiestas.com/en/understanding-the-use-of-observablelist-on-javafx/ 
+
+—
+Nov 27, 2020
+
+Calculator
+
+From Chandra to Everyone: (9:07 AM)
+ https://github.com/chandra-79/Cohort1-JavaSE_II/blob/main/Calculator.zip 
+
+Scene builer 8.5
+https://gluonhq.com/products/scene-builder/
+1) Uninstall your existing version of Scene Builder [11] 2) Then download the Version 8.5 from the above URL and install 
+From Chandra to Everyone: (2:35 PM)
+ 3) Make a note of the installed path and select that NetBeans -> Tools -> Java -> JavaFx
+
+From TAY KianLye to Everyone: (2:37 PM)
+ https://www.oracle.com/java/technologies/javafxscenebuilder-1x-archive-downloads.html 
+From Chandra to Everyone: (3:03 PM)
+ https://github.com/chandra-79/Cohort1-JavaSE_II/blob/main/LogUtil.java 
+
+From Chandra to Everyone: (3:59 PM)
+ https://github.com/CohortOne/CapstoneProject3
+
+From Chandra to Everyone: (5:25 PM)
+ https://www.databasestar.com/oracle-mac/ express Edition
+
+https://www.oracle.com/database/technologies/appdev/xe.html 
+
+From Chandra to Everyone: (5:27 PM)
+ https://livesql.oracle.com/ 
+
+—
+My note: 
+
+For FX w SceneBuild:
+
+--module-path /Users/antw/javafx/javafx-sdk-11.0.2/lib --add-modules javafx.controls
+
+--module-path /Users/antw/javafx/javafx-sdk-11.0.2/lib --add-modules javafx.controls,javafx.fxml,javafx.media
+
+
+
+
+---
