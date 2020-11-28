@@ -33,9 +33,6 @@ public class Cust {
         this.active = active;
     }
 
-    /**
-     * ********** start with P O J O *************
-     */
     private int nric;
     private String name;
     private String address;
@@ -112,9 +109,18 @@ public class Cust {
 }
 
 /*
-CREATE DATABASE  IF NOT EXISTS `coreBanking`
-USE `coreBanking`;
-DROP TABLE IF EXISTS `customer`;
+NRIC (PK)
+name
+address
+MobileNo
+PIN (Bank card)
+Email ID
+Date of Birth
+Start DateTime
+Status
+ */
+
+ /*
 CREATE TABLE `customer` (
   `nric` int NOT NULL,
   `name` varchar(45) NOT NULL,
@@ -125,6 +131,13 @@ CREATE TABLE `customer` (
   `startDate` datetime DEFAULT NULL,
   `active` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`nric`)
-) 
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
  */
+/*
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetCust`()
+BEGIN
+            select nric, name, address, email, mobileNo, DOB, startDate, active
+            from coreBanking.customer
+            order by name;
+    END
+*/

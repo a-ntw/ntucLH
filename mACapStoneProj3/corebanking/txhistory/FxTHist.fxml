@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="490.0" prefWidth="594.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="txhistory.FxTHistController">
+   <children>
+      <TableView fx:id="txtable" layoutX="6.0" layoutY="67.0" prefHeight="367.0" prefWidth="601.0">
+        <columns>
+          <TableColumn fx:id="txdate" prefWidth="193.0" text="DATE" />
+          <TableColumn fx:id="txcode" minWidth="4.0" prefWidth="57.0" text="CODE" />
+            <TableColumn fx:id="txdesc" prefWidth="165.0" text="DESCRIPTION" />
+            <TableColumn fx:id="txamt" minWidth="0.0" prefWidth="112.0" text="AMOUNT" />
+        </columns>
+      </TableView>
+      <Label fx:id="label1" layoutX="62.0" layoutY="35.0" prefHeight="23.0" prefWidth="582.0" text="Label">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Button fx:id="button_exit" layoutX="40.0" layoutY="449.0" mnemonicParsing="false" onAction="#exit1" text="EXIT" />
+   </children>
+</AnchorPane>

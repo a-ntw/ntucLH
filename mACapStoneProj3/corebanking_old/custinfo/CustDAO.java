@@ -3,6 +3,7 @@ package custinfo;
 import com.mysql.cj.jdbc.CallableStatement;
 import corebanking.sqlConnect;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -27,18 +28,14 @@ public class CustDAO {
         return nxtID;
     }
 
-    /* insCust() >> crud 1 >> Insert Customer */
-    /**
-     * ******** check mySql if any field is available ************
-     */
-    public static boolean noCustNric(int nric) throws Exception {
+    public static boolean chkCustNric(int nric) throws Exception {
         Statement stmt = sqlConnect.init();
         String qStmt = "Select count(*) from coreBanking.customer where nric = "
                 + nric + ";";
 
         ResultSet rs = stmt.executeQuery(qStmt);
         if (rs.next() && rs.getInt(1) == 1) {       // **********
-            //System.out.println(" Nric is in database... ");
+            System.out.println(" Already in database... ");
             return false;
         } else {
             //System.out.println(" available ");
@@ -46,79 +43,6 @@ public class CustDAO {
         return true;
     }
 
-    /* + crud.insCust() >> crud 1 >> Insert Customer */
-    public static boolean insertCust(Cust c) throws Exception {
-        Statement stmt = sqlConnect.init();
-
-        String insStmt = "insert into coreBanking.customer (nric, name, address,"
-                + " email, mobileNo, DOB, startDate, active) VALUES("
-                + c.getNric() + ", '" + c.getName() + "',  '"
-                + c.getAddress() + "', '" + c.getEmail() + "', '" + c.getMobileNo() + "', '"
-                + c.getDOB().toString() + "', '" + c.getStartDate().toString() + "', '"
-                + c.getActive() + "');";
-
-        int result = stmt.executeUpdate(insStmt);
-
-        if (result > 0) {
-            System.out.println(" Insert Success ");
-        } else {
-            System.out.println(" Insert Fail ");
-        }
-
-        return true;
-    }
-
-    /* crud.updCust() >> crud 2 >> Update Customer */
-    public static boolean updateCust(Cust c) throws Exception {
-        Statement stmt = sqlConnect.init();
-        String updStmt = "Update coreBanking.customer set email = '"
-                + c.getEmail() + "', address = '"
-                + c.getAddress() + "' where nric = " + c.getNric() + ";";
-
-        if (stmt.executeUpdate(updStmt) > 0) {
-            System.out.println(" Update Success ");
-        } else {
-            System.out.println(" Update Failed ");
-        }
-        return true;
-    }
-
-    /* delCustomers() >> crud 3 >> Delete Customer */
-    public static boolean delCustomer(int cid) throws Exception {
-        Statement stmt = sqlConnect.init();
-        String delStmt = "delete from CoreBanking.customer where nric = " + cid + ";";
-
-        int result = stmt.executeUpdate(delStmt);
-        if (result > 0) {
-            System.out.println(" Delete Success ");
-        } else {
-            System.out.println(" Delete  Fail ");
-        }
-        return true;
-    }
-
-    /* crud.listCustomers() >> crud 4 >> List All Customer */
-    public static List<Cust> listCustomer() throws Exception {
-        Statement stmt = sqlConnect.init();
-        List<Cust> custList = new ArrayList<>();
-        String qStmt = "Select * from coreBanking.customer;";
-
-        ResultSet rs = stmt.executeQuery(qStmt);
-        while (rs.next()) {
-            custList.add(new Cust(rs.getInt("nric"),
-                    rs.getString("name"),
-                    rs.getString("address"),
-                    rs.getString("email"),
-                    rs.getString("mobileNo"),
-                    rs.getDate("DOB").toLocalDate(),
-                    rs.getObject("startDate", LocalDateTime.class),
-                    rs.getByte("active")
-            ));
-        }
-        return custList;
-    }
-
-    /* crud.listCustsByName() >> crud 5 >> List Customers Order By Namer */
     public static List<Cust> listOrderByName() throws Exception {
         Connection conn = sqlConnect.initConn();
         List<Cust> custList = new ArrayList<>();
@@ -141,6 +65,19 @@ public class CustDAO {
         return custList;
     }
 
+    /* Execute this before using Callable Statements
+    DELIMITER $$
+
+    CREATE procedure GetCust()
+    BEGIN
+            select nric, name, address, email, mobileNo
+            from coreBanking.customer
+            order by name;
+    END$$
+    DELIMITER ;
+
+    call GetCustomers();
+     */
     public static Cust getCust(int nric) throws Exception {
         Statement stmt = sqlConnect.init();
         Cust cust = null;
@@ -161,7 +98,6 @@ public class CustDAO {
         return cust;
     }
 
-    /* crud.findCustByPhoneNo() >> crud 6 >> Find Customers By PhoneNo  */
     public static List<Cust> getCustomer(String mobileNo) throws Exception {
         Connection conn = sqlConnect.initConn();
         List<Cust> custList = new ArrayList<>();
@@ -186,30 +122,76 @@ public class CustDAO {
 
     }
 
+    public static boolean updateCust(Cust c) throws Exception {
+        Statement stmt = sqlConnect.init();
+        String updStmt = "Update coreBanking.customer set email = '"
+                + c.getEmail() + "', address = '"
+                + c.getAddress() + "' where nric = " + c.getNric() + ";";
+
+        if (stmt.executeUpdate(updStmt) > 0) {
+            System.out.println(" Update Success ");
+        } else {
+            System.out.println(" Update Failed ");
+        }
+        return true;
+    }
+
+    public static boolean delCustomer(int cid) throws Exception {
+        Statement stmt = sqlConnect.init();
+        String delStmt = "delete from CoreBanking.customer where nric = " + cid + ";";
+
+        int result = stmt.executeUpdate(delStmt);
+        if (result > 0) {
+            System.out.println(" Delete Success ");
+        } else {
+            System.out.println(" Delete  Fail ");
+        }
+        return true;
+    }
+
+    public static boolean insertCust(Cust c) throws Exception {
+        Statement stmt = sqlConnect.init();
+
+        String insStmt = "insert into coreBanking.customer (nric, name, address,"
+                + " email, mobileNo, DOB, startDate, active) VALUES("
+                + c.getNric() + ", '" + c.getName() + "',  '"
+                + c.getAddress() + "', '" + c.getEmail() + "', '" + c.getMobileNo() + "', '"
+                + c.getDOB().toString() + "', '" + c.getStartDate().toString() + "', '"
+                + c.getActive() + "');";
+
+        int result = stmt.executeUpdate(insStmt);
+
+        if (result > 0) {
+            System.out.println(" Insert Success ");
+        } else {
+            System.out.println(" Insert Fail ");
+        }
+
+        return true;
+    }
+
+    public static List<Cust> listCustomer() throws Exception {
+        Statement stmt = sqlConnect.init();
+        List<Cust> custList = new ArrayList<>();
+        String qStmt = "Select * from coreBanking.customer;";
+
+        ResultSet rs = stmt.executeQuery(qStmt);
+        while (rs.next()) {
+            custList.add(new Cust(rs.getInt("nric"),
+                    rs.getString("name"),
+                    rs.getString("address"),
+                    rs.getString("email"),
+                    rs.getString("mobileNo"),
+                    rs.getDate("DOB").toLocalDate(),
+                    rs.getObject("startDate", LocalDateTime.class),
+                    rs.getByte("active")
+            ));
+        }
+        return custList;
+    }
+
     public static void main(String[] args) throws Exception {
         System.out.println("First Part: " + CustDAO.listCustomer().get(0));
         CustDAO.listCustomer().stream().forEach(System.out::println);
     }
 }
-/*
-CREATE DEFINER=`root`@`localhost` PROCEDURE `GetCust`()
-BEGIN
-            select nric, name, address, email, mobileNo, DOB, startDate, active
-            from coreBanking.customer
-            order by name;
-    END
- */
-
- /* Execute this before using Callable Statements
-DELIMITER $$
-
-CREATE procedure GetCust()
-BEGIN
-        select nric, name, address, email, mobileNo
-        from coreBanking.customer
-        order by name;
-END$$
-DELIMITER ;
-
-call GetCustomers();
- */
