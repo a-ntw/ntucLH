@@ -1,0 +1,58 @@
+CREATE TABLE `customer` (
+  `custID` int NOT NULL,
+  `custName` varchar(45) DEFAULT NULL,
+  `DOB` date DEFAULT NULL,
+  `Picture` blob,
+  `email` varchar(45) DEFAULT NULL,
+  `active` tinyint DEFAULT NULL,
+  `phoneNo` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`custID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+
+// Other useful commands
+
+
+SELECT * FROM bank.customer;
+
+SELECT * FROM bank.customer where custID = 7;
+
+
+INSERT INTO `bank`.`customer`
+(`custID`,`custName`,`DOB`,`email`,`active`,`phoneNo`)
+VALUES
+(10,
+'Dumpty',
+'2020-02-02',
+'dumpty@abc.com',
+1,
+'123123123');
+
+
+
+select custID, custName, DOB, phoneNo, email
+from bank.customer;
+
+select custID, custName, DOB, phoneNo, email
+from bank.customer
+order by DOB;
+
+DELETE FROM `bank`.`customer`
+WHERE custID = 4;
+
+
+// Execute this before using Callable Statements 
+
+DELIMITER $$
+
+CREATE procedure GetCustomers()
+BEGIN
+	select custID, custName, DOB, phoneNo, email
+	from bank.customer
+	order by DOB;
+END$$
+DELIMITER ;
+
+
+call GetCustomers();

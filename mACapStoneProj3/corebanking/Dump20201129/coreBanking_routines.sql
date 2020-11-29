@@ -16,6 +16,39 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Temporary view structure for view `v`
+--
+
+DROP TABLE IF EXISTS `v`;
+/*!50001 DROP VIEW IF EXISTS `v`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `v` AS SELECT 
+ 1 AS `id`,
+ 1 AS `nric`,
+ 1 AS `accid`,
+ 1 AS `active`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Final view structure for view `v`
+--
+
+/*!50001 DROP VIEW IF EXISTS `v`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `v` AS select `accmap`.`id` AS `id`,`accmap`.`nric` AS `nric`,`accmap`.`accid` AS `accid`,`accmap`.`active` AS `active` from `accmap` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
 -- Dumping routines for database 'coreBanking'
 --
 /*!50003 DROP PROCEDURE IF EXISTS `GetCust` */;
@@ -70,4 +103,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-29  0:14:36
+-- Dump completed on 2020-11-29 11:50:19
