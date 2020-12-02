@@ -36,7 +36,7 @@ commission_pct ||', '||
 DEPARTMENT_ID
 the_output
 FROM employees;
-``
+```
 labs 3
 ``` sql
 -- 3-1
@@ -608,3 +608,151 @@ SELECT TO_CHAR(NULL) last_name, department_id, department_name
 FROM departments;
 
 ```
+Lab 10
+``` sql
+
+desc    employees;
+
+-- 1.
+--From Maya Novelita to Everyone: (12:11 PM)
+create table    my_employee
+(id number(4) not null,
+last_name   varchar2(25),
+first_name  varchar2(25),
+userid      varchar2(8),
+salary  number(9,2));
+
+-- 1. Solution
+desc    my_employee;
+
+
+-- 2.
+INSERT INTO     my_employee
+VALUES (1, 'Patel', 'Ralph', 'rpatel', 895);
+
+
+-- 3. 
+INSERT INTO     my_employee (id, last_name, first_name, userid, salary)
+VALUES (2, 'Dance', 'Betty', 'bdance', 860);
+
+-- 4.
+SELECT  *
+FROM    my_employee;
+
+
+-- 5. Dynamic 
+INSERT INTO     my_employee 
+VALUES  (&id, '&last_name', '&first_name', '&userid', &salary);
+
+
+-- 6.
+INSERT INTO     my_employee 
+VALUES  (&id, '&last_name', '&first_name', '&userid', &salary);
+
+INSERT INTO     my_employee
+VALUES  (3, 'Biri', 'Ben', 'bbiri', 1100);
+INSERT INTO     my_employee
+VALUES  (4, 'Newman', 'Chad', 'cnewman', 750);
+INSERT INTO     my_employee
+VALUES  (5, 'Ropeburn', 'Audrey', 'aropebur', 1150);
+
+-- 7.
+SELECT  *
+FROM    my_employee;
+
+-- 8.  make the data additions permament. update and delete
+COMMIT;
+
+----  update my_employee and delete data ------
+
+desc    my_employee;
+SELECT  *
+FROM    my_employee;
+
+-- 9.
+UPDATE  my_employee
+SET     last_name = 'Drexler'
+WHERE   id = 3;
+
+-- 10. 
+UPDATE  my_employee
+SET     salary = 1000
+WHERE   salary < 900;
+
+-- 11.
+SELECT  *
+FROM    my_employee;
+
+-- 12
+DELETE  my_employee
+WHERE   last_name = 'Dance';
+
+-- 12 Solution
+DELETE  
+FROM    my_employee
+WHERE   last_name = 'Dance';
+
+-- 13.
+SELECT  *
+FROM    my_employee;
+
+-- 14
+COMMIT;
+
+-- 15. Dynamic 
+INSERT INTO     my_employee
+VALUES  (5, 'Ropeburn', 'Audrey', 'aropebur', 1150);
+
+-- 16.
+SELECT  *
+FROM    my_employee;
+
+-- 17. MARK an transaction
+SAVEPOINT   sp01;
+
+-- 18. delete all rows
+DELETE  my_employee;
+
+-- 18. from Solution
+DELETE  
+FROM    my_employee;
+
+-- 19.
+SELECT  *
+FROM    my_employee;
+
+-- 20  Discard the most recent DELETE operation
+ROLLBACK TO     sp01;
+
+-- 21 
+desc my_employee;
+
+SELECT  *
+FROM    my_employee;
+
+-- 22
+COMMIT;
+
+-- 23. modify from -- 6.
+-- userid is gemenrate automated by cancaternating
+-- the first letter of the first name and 
+-- the first seven char of the lastname.
+-- The useid must be lowercase.
+-- should not prompt for userid
+INSERT INTO     my_employee 
+VALUES  (&id, '&&last_name', '&&first_name', 
+    lower(substr(   '&first_name', 1, 1) || 
+    substr( '&last_name', 1, 7)), &salary);
+
+UNDEFINE first_name
+UNDEFINE last_name
+
+-- 24 
+-- id= 6, last_name= Anthony, fisrt_name= Mark, userid= manthony, sal=1230
+
+-- 25
+SELECT *
+FROM    my_employee
+WHERE   id = 6;
+```
+
