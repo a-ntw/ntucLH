@@ -756,3 +756,105 @@ FROM    my_employee
 WHERE   id = 6;
 ```
 
+Lab 11
+``` sql
+-- lab 11
+
+-- 1.0 diff from solution
+/*CTREATE TABLE DEPT (
+customerid number(4),
+custname varchar2(30),
+emaul varchar2(50,
+primary key(customerid)); */
+
+CREATE TABLE    dept( 
+    id number(7) PRIMARY KEY,
+    name varchar2(25));
+
+-- 1. from solution 
+/*
+CREATE TABLE    dept
+    (id NUMBER(7) CONSTRAINT department_id_pk PRIMARY KEY,
+    name varchar2(25));
+*/
+desc dept;
+
+-- 2. diff from solution
+CREATE TABLE    emp (
+    id number(7),
+    last_name varchar2(25),
+    first_name varchar2(25),
+    dept_id number(7),
+    foreign key (dept_id) REFERENCES dept(id));
+
+desc emp;
+    
+-- 3. 
+ALTER TABLE     emp 
+    ADD commision NUMBER(2, 2);
+
+DESCRIBE    emp;
+
+-- 4. 
+ALTER TABLE     emp
+    modify  last_name vanchar2(50);
+        
+DESC    emp;
+
+-- 5.
+ALTER TABLE     emp 
+    DROP COLUMN first_name;
+
+DESC    emp;
+
+-- 6.
+ALTER TABLE     emp
+    SET UNUSED  (dept_id);
+
+desc    emp;
+
+-- 7.
+ALTER TABLE     emp
+    drop unused column;
+
+desc    emp;
+
+--  8. Create employees2 based on the structure if the Employees table.
+-- include employee_id, first_name, last_name, salary, and department_id.
+-- Name the columns in your ne table ID, first_name, last_name,salary, dept_id.
+CREATE TABLE employees2
+    AS
+        SELECT
+            employee_id     id,
+            firsst_name,
+            last_name,
+            salary,
+            department_id   dept_id
+        FROM
+            employees;
+
+
+desc employees2;
+
+-- 9. table READ ONLY
+ALTER TABLE     employees2   READ ONLY;
+
+-- 10. delete all rows
+TRUNCATE TABLE  employees2; -- delete not allow, as readonly
+
+-- 11, revert to READ WRITE status
+ALTER TABLE     employees2   READ WRITE;
+
+TRUNCATE TABLE  employees2;
+SELECT  *   FROM    employees2;
+
+-- 12. Drop the emp, dept, amd employees2
+DROP TABLE emp;
+
+DROP TABLE dept;
+
+DROP TABLE employees2;
+
+
+```
+
