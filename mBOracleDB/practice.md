@@ -272,84 +272,74 @@ desc employees;
 
 -- 4.
 SELECT
-    MAX(salary) "Maximun",
-    MIN(salary) "Minimum",
-    SUM(salary) "Sum",
+    round(MAX(salary)) "Maximun",
+    round(MIN(salary)) "Minimum",
+    round(SUM(salary)) "Sum",
     round(AVG(salary), 0) "Average"
-FROM
-    employees;
+FROM    employees;
 
 -- 5.
 SELECT
     job_id,
-    MAX(salary) "Maximun",
-    MIN(salary) "Minimum",
-    SUM(salary) "Sum",
+    round(MAX(salary)) "Maximun",
+    round(MIN(salary)) "Minimum",
+    round(SUM(salary)) "Sum",
     round(AVG(salary), 0) "Average"
-FROM
-    employees
-GROUP BY
-    job_id;
+FROM    employees
+GROUP BY    job_id;
 
--- 6.
-
-SELECT DISTINCT
-    job_id,
+-- 6. Write a query to display the number of people with the same job.
+SELECT  job_id,
     COUNT(*)
-FROM
-    employees
-GROUP BY
-    job_id;
+FROM    employees
+GROUP BY  job_id;
 
 -- 6. B
-
-SELECT DISTINCT
-    job_id,
+SELECT  job_id,
     COUNT(*)
-FROM
-    employees
-WHERE
-    job_id = '&job_title'
-GROUP BY
-    job_id;
+FROM    employees
+WHERE   job_id = '&job_title'
+GROUP BY job_id;
 
--- 7.
-
+-- 7. The number of managers without listing them
 SELECT
-    COUNT(manager_id) "Number of Managers"
-FROM
-    employees;
+    COUNT(DISTINCT manager_id) "Number of Managers"
+FROM    employees;
 
--- 8.
-
+-- 8. the difference between the highest and lowest salaries
 SELECT
-    ( MAX(salary) - MIN(salary) ) difference
-FROM
-    employees;
+    MAX(salary) - MIN(salary)  difference
+FROM    employees;
 
--- 9.
-SELECT
-    manager_id,
-    MIN(salary)
-FROM
-    employees
-WHERE
-    manager_id IS NOT NULL
-GROUP BY
-    manager_id
-HAVING
-    MIN(salary) > 6000
-ORDER BY
-    MIN(salary) DESC;
+-- 9. Excude anyone whose manager is not known.
+--      excude anu groups where the minimum salary is $6,000.  Sort desc
+SELECT  manager_id, MIN(salary)
+FROM    employees
+WHERE   manager_id IS NOT NULL
+GROUP BY    manager_id
+HAVING  MIN(salary) > 6000
+ORDER BY    MIN(salary) DESC;
 
--- 10. KIV ...... ?? 
-SELECT count(hire_date)
-FROM employees
-WHere to_char(hire_date, 'YYYY') = '1989';
+-- 10. Create a query that display the total number of employees and,
+-- of that total, the number of employees hired in 2009,2010, 2011 & 2012.
+SELECT COUNT(*) total,
+    SUM(DECODE(TO_CHAR(hire_date, 'YYYY'), 1997,1,0))"1997",
+    SUM(DECODE(TO_CHAR(hire_date, 'YYYY'), 1998,1,0))"1998",
+    SUM(DECODE(TO_CHAR(hire_date, 'YYYY'), 1999,1,0))"1999",
+    SUM(DECODE(TO_CHAR(hire_date, 'YYYY'), 2000,1,0))"2000"
+FROM    employees;
 
-select hire_date
-From employees
-order by hire_date;
+-- 11. Create a matrix query to display the job,
+-- the salary for that job based on the department numbers 20,50,80,and 90,
+-- and the totalsalary for that job.
+SELECT job_id "Job",
+    SUM(DECODE(department_id , 20, salary)) "Dept 20",
+    SUM(DECODE(department_id , 50, salary)) "Dept 50",
+    SUM(DECODE(department_id , 80, salary)) "Dept 80",
+    SUM(DECODE(department_id , 90, salary)) "Dept 90",
+    SUM(salary) "Total"
+FROM    employees
+GROUP BY    job_id;
 
 desc employees;
 ```
