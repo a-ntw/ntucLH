@@ -1,4 +1,18 @@
-labs 2
+Oracle Database 12c R2: SQL Workshop 1
+* Lab 2 - SELECT
+* Lab 3 - WHERE, ORDER BY, LIKE '%a%'
+* Lab 4 - Single-Row functions - sysdate, ROUND, INITCAP, LENGTH, LPAD
+* Lab 5 - Conversion and Conditional - TO_CHAR, TO_DATE, CASE, DECODE - 'fmL', 'fmDdsp', NVL
+* Lab 6 - Group Function - COUNT(* ), GROUP BY, HAVING
+* Lab 7 - multiple table using JOIN, self-join - FROM NATURAL JOIN, ON, LEFT JOIN 
+* Lab 8 - using subqueries - WHERE <> = ( SELECT ...
+* Lab 9 - Set Operators - UNION, INTERSECY, MINUS
+* Lab 10 - DML - DESCRIBE, INSERT INTO ... VALUES, COMMIT, UPDATE SET, DELETE, SAVEPOINT
+* Lab 11 - Data Definition Language - CREATE TABLE AS, ALTER ADD/MODIFY/SET UNUSED, ADD, DROP
+
+---
+
+#### Lab 2 - SELECT
 ``` sql
 DESC departments
 
@@ -37,7 +51,8 @@ DEPARTMENT_ID
 the_output
 FROM employees;
 ```
-labs 3
+---
+#### Lab 3 - WHERE, ORDER BY, LIKE '%a%'
 ``` sql
 -- 3-1
 
@@ -104,18 +119,18 @@ FROM    employees
 WHERE   manager_id = &mgrID
 ORDER   BY &col;
 
--- 12.
+-- 12. Display where the third letter of the name is "a".
 SELECT  last_name
 FROM    employees
 WHERE   last_name LIKE '__a%' ;
 
--- 13.
+-- 13. Who have both an "a" and an "e" in their last name.
 SELECT  last_name
 FROM    employees
 WHERE   last_name LIKE '%a%'
 AND     last_name LIKE '%e%';
 
--- 14.
+-- 14. job IN () AND salary not equal to $
 SELECT  last_name, job_id, salary
 FROM    employees
 WHERE   job_id IN ('SA_REP', 'ST_CLERK')
@@ -129,7 +144,7 @@ WHERE   commission_pct = .20;
 
 desc employees;
 ```
-Lab 4
+#### Lab 4 - Single-Row functions - sysdate, ROUND, INITCAP, LENGTH, LPAD
 ``` sql
 --  Lab 4, potentail test
 Desc    employees;
@@ -186,14 +201,14 @@ SELECT  last_name,
         LPAD(salary,15,'$') salary
 FROM    employees;
 
--- 8. 
+-- 8.  indicates the amounts if thier salaries with asterisks
 SELECT  last_name, 
         RPAD(' ' ,(salary/1000)+1,'*') 
             salaries_in_asterisl
 FROM    employees
 ORDER BY salary DESC;
 
--- 9.
+-- 9. TRUNCATE to 0 decimal places
 SELECT  last_name, trunc((SYSDATE - hire_date)/7) AS tenure
 FROM    employees
 WHERE   department_id = 90
@@ -205,7 +220,8 @@ DESC employees;
 SELECT *
 FROM employees;
 ```
-Lab 5
+---
+#### Lab 5 - Conversion and Conditional - TO_CHAR, TO_DATE, CASE, DECODE - 'fmL', 'fmDdsp', NVL
 ``` sql
 desc employees;
 
@@ -229,7 +245,7 @@ SELECT  last_name, hire_date,
         'fmDay, "the" Ddspth "of" Month YYYY') review
 FROM    employees;
 
--- 5-1. 3.  NOT WORKING 
+-- 5-1. 3.  NOT WORKING -  use null
 SELECT last_name, 
     NVL (TO_CHAR(commission_pct), 'No Commission') comm
 FROM employees;
@@ -265,12 +281,13 @@ SELECT job_id,
    '0'  ) "Grade"           
 FROM employees;
 ```
-Lab 6
+--- 
+#### Lab 6 - Group Function - COUNT(* ), GROUP BY, HAVING
 ``` sql
 desc employees;
 
 
--- 4.
+-- 4. MAX, MIN, SUM, AVG
 SELECT
     round(MAX(salary)) "Maximun",
     round(MIN(salary)) "Minimum",
@@ -343,7 +360,8 @@ GROUP BY    job_id;
 
 desc employees;
 ```
-Lab 7
+--- 
+#### Lab 7 - multiple table using JOIN, self-join - FROM NATURAL JOIN, ON, LEFT JOIN 
 ``` sql
 --- Lab 07 - potentail assessmenrt!
 
@@ -449,7 +467,8 @@ SELECT e.last_name, d.department_name, e.department_id
 from employees e join departments d ON e.department_id = d.department_id
 Where department_name = 'Executive'; /* 3 results */
 ```
-Lab 8
+--- 
+#### Lab 8 - using subqueries - WHERE <> = ( SELECT ...
 ``` sql
 
 desc employees;
@@ -538,7 +557,8 @@ desc locations;
 desc countries;
 desc departments;
 ```
-Lab 9
+--- 
+#### Lab 9 - Set Operators - UNION, INTERSECY, MINUS
 ``` sql
 desc employees;
 
@@ -608,7 +628,8 @@ SELECT TO_CHAR(NULL) last_name, department_id, department_name
 FROM departments;
 
 ```
-Lab 10
+---
+#### Lab 10 - DML - DESCRIBE, INSERT INTO ... VALUES, COMMIT, UPDATE SET, DELETE, SAVEPOINT
 ``` sql
 
 desc    employees;
@@ -755,8 +776,8 @@ SELECT *
 FROM    my_employee
 WHERE   id = 6;
 ```
-
-Lab 11
+---
+#### Lab 11 - Data Definition Language - CREATE TABLE AS, ALTER ADD/MODIFY/SET UNUSED, ADD, DROP
 ``` sql
 -- lab 11
 
@@ -858,3 +879,4 @@ DROP TABLE employees2;
 
 ```
 
+---
