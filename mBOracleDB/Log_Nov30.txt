@@ -1,0 +1,165 @@
+.LOG Nov 30
+—
+ORACLE DATABASE 12C: SQL AND PL/SQL FUNDAMENTALS
+SkillsConnect Reference Code:
+Funding Grant Hours:
+
+We are pleased to confirm your application to attend the above-mentioned course. Attached here within is the Letter of Confirmation for your perusal.
+
+For courses conducted virtually online, you will find the step-by-step guide here.
+
+
+
+*This link is only accessible on the day of the course.
+
+—
+Navigate to https://www.oracle.com/webapps/redirect/signon?nexturl=https://learn.oracle.com/ords/training/dl4_activation.activateOrder%3Fkey=6BA0EAEFAE9C4EF0 and get started.
+
+Account Activation Information
+
+Description
+Oracle Java Event Learning Subscription - Developed
+Activation Key
+6BA0EAEFAE9C4EF0
+Effective Date
+Monday November 23, 2020
+Expiration Date
+Sunday February 21, 2021
+Order Number
+181047
+---
+
+Link to Student Guides
+From Maya Novelita to Everyone: (9:03 AM)
+From Ren Jie Wong to Everyone: (9:06 AM)
+ https://learn.oracle.com/ols/course/oracle-database-12c-r2-sql-and-plsql-fundamentals-ed-2/38560/81387/118999
+
+4. Enter the username:99534327.user04 and password:82gsMSn085 to log in.
+- type your password rather than cut & paste it to avoid extra characters being included
+
+HOST:edlvc3ar67p3  IP Address:10.150.66.175  Login ID:oracle  Password:OU99534327
+Password :   SQL20201130
+
+
+Lab file:
+Oracle DB12c:
+https://www.oracle.com/sg/database/technologies/oracle12c-windows-downloads.html 
+
+Oracle Database XE Downloads
+From Maya Novelita to Everyone: (11:20 AM)
+ https://www.oracle.com/database/technologies/xe-downloads.html --> database express
+
+myConnection
+From Maya Novelita to Everyone: (11:41 AM)
+ USER NAME/PASSWORD: ora1 / ora1 
+service name: PDBORCL 
+
+—
+
+
+From Sri Ram Panday to Everyone: (1:09 PM)
+ For those who want to install the Oracle Database 18c Express Edition at 6pm after class, you can download the zip file first via the link below during lunch to save some time later. 1.9GB
+ https://www.oracle.com/database/technologies/xe-downloads.html 
+
+From Maya Novelita to Everyone: (4:37 PM)
+ For those who want to install the Oracle Database 18c Express Edition at 6pm after class, you can download the zip file first via the link below during lunch to save some time later. 1.9GB
+https://www.oracle.com/database/technologies/xe-downloads.html 
+
+From Maya Novelita to Everyone: (4:37 PM)
+ sql developer https://www.oracle.com/tools/downloads/sqldev-downloads.html
+
+From Me to Maya Novelita: (Privately) (4:37 PM)
+ Just a quick asking, so not for Mac user? 
+From Wong Keng to Everyone: (4:40 PM)
+ https://www.databasestar.com/oracle-mac/
+
+From Maya Novelita to Everyone: (4:40 PM)
+ for mac os, sql developer https://www.oracle.com/database/technologies/appdev/sqldev/sqldev-install-mac-jdk8.html 
+
+From Maya Novelita to Everyone: (4:49 PM)
+ for Windows:
+1. run installer: Oracle Database 18c Express Edition.msi
+2. enter password. remember this password as this is password for sys, sysadmin and pdbadmin.
+3. extract sql developer
+4. run sqldeveloper.exe
+5. add new connection
+    connection name: Sys Connection
+    username: sys --> choose role as sysdba
+    password: key in the one that you set at step 2 during installation
+    hostname: choose either "localhost" or "192.168.1.129"
+    service name: xepdb1
+6. test connection. if successful, click "connect" button
+7. inside sys connection, open sql worksheet and type in following (without ")
+"alter user hr account unlock identified by hr;"
+8. create another new connection
+connection name: HR Connection
+    username: hr --> choose role as sysdba
+    password: hr
+    hostname: choose either "localhost" or "192.168.1.129"
+    service name: xepdb1
+9. test connection. if successful, click "connect" button. You should be able to see all HR's tables such as countries, employees etc 
+
+From Chong Yin Fei Andrea to Everyone: (5:14 PM)
+ https://www.youtube.com/watch?v=wiEsR_j36yw&ab_channel=MyOnlineEdu.com
+
+—
+
+From Wang junhao to Everyone: (4:53 PM)
+ https://learning.oracle.com/player/play?in_sessionid=4945J1J85492J8AJ&classroom_id=115265735
+
+—
+Dec 04, 20
+
+Oracle Handle Exception, error code
+From Maya Novelita to Everyone: (11:11 AM)
+ https://docs.oracle.com/cd/B28359_01/appdev.111/b28370/errors.htm#LNPLS00704
+
+ this is for oracle server error list: https://docs.oracle.com/cd/B28359_01/server.111/b28278/toc.htm
+ i have included these 2 links in the file demo that I will send to you later 
+
+From Maya Novelita to Everyone: (11:24 AM)
+ oracle database pl/sql reference: https://docs.oracle.com/cd/B28359_01/appdev.111/b28370/errors.htm#LNPLS00704 
+
+From Sri Ram Panday to Everyone: (11:25 AM)
+ https://docs.oracle.com/cd/B28359_01/appdev.111/b28370.pdf
+ this? 
+
+From Maya Novelita to Everyone: (11:25 AM)
+ click on download button under table of content
+
+From Maya Novelita to Everyone: (1:01 PM)
+ please login to canvas. go to courses and search for "VLC-SGIT097-20-0650[VLC-SGITJD-20-0650] Oracle Database 12c: SQL and PL/SQL Fundamentals. 
+after that click on quizes ntuclhub course evaluation: https://trainer.ntuclearninghub.com/evaluation/199503 
+From Me to Maya Novelita: (Privately) (1:03 PM)
+
+-  -
+https://github.com/alvintwng/ntucLH
+
+---
+Oracle Database 12c R2: SQL and PL/SQL Fundaments
+https://learn.oracle.com/ols/course/oracle-database-12c-r2-sql-and-plsql-fundamentals-ed-2/38560/81387/118999#
+
+
+Student Guides
+---------------
+Ed2(Student Guide 1)
+https://learning.oracle.com/player/play?in_sessionid=3A3099890J354235&classroom_id=115265694
+
+Ed2(Student Guide 1)
+https://learning.oracle.com/player/play?in_sessionid=J0039J82911991J0&classroom_id=115265693
+
+Ed 2(Acitivity Guide) 
+https://learning.oracle.com/player/play?in_sessionid=4AJ5081A19251944&classroom_id=115265691
+
+2(Student Guide) PL/SQL
+https://learning.oracle.com/player/play?in_sessionid=491101A21280JJ80&classroom_id=115265603
+
+2(Activity Guide 1)
+https://learning.oracle.com/player/play?in_sessionid=19A1A0244502A110&classroom_id=115265735
+
+2(Activity Guide 2)
+https://learning.oracle.com/player/play?in_sessionid=210480421839012&classroom_id=115265602
+---
+
+---
+----
