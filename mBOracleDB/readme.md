@@ -1,8 +1,62 @@
+### Oracle Database 12c R2: SQL and PL/SQL Fundamentals Ed 2
+antw@Mac-mini mBOracleDB % ls -R1
+* Log_Nov30.txt
+* SQL_DDL.sql                   
+        - CREATE, DROPm ALTER TABLE
+* SQL_SetOperator.sql           
+        - UNION, INTERSECT, MINUS
+* SQL_Subquery.sql              
+        - WHERE (SELECT.., GROUP BY, HAVING
+* SQL_groupFunction.sql         
+        - GROUP BY, DESC
+* SQL_joinDemo.sql              
+        - NATURAL/INNER/LEFT/RIGHT JOIN, JOIN ON IN
+* SQL_singleRowCaseDecode.sql   
+        - WHERE LIKE, CASE, DECODE
+* Sql_DML.sql                   
+        - INSERT INTO VALUES
+* homework.sql                  
+        - 6 practices
+* img
+* plSqlMaya
+* practices_dbSql.md            
+        - oracle SQL workshop of lab 2 to lab 10 
+* practices_plSql.md            
+        - oracle PL/Sql workshop of lab 2 to lab 10
+* readme.md                     
+        - this file
+
+./img:
+* 201203_schema.png
+* 201205pt1Q1.png
+
+./plSqlMaya:
+* PLSQL_ch02.sql                
+        - PL/Sql set serveroutput on, begin end
+* PLSQL_ch03.sql 
+        - PL/Sql DECLARE, v_text := q'[How're you]', :v_outerVar1 := 100;
+* PLSQL_ch04.sql                
+        - PL/Sql create sequence autonum
+* PLSQL_ch05.sql                
+        - PL/Sql MERGE INTO, WHEN MATCHED THEN UPDATE
+* PLSQL_ch06-ConditionLoops.sql 
+        - PL/Sql IF ELSE END IF, CASE WHEN THEN, LOOP, WHILE, FOR I IN 1 .. 10 LOOP 
+* PLSQL_ch06.sql                
+        - PL/Sql ELSEIF, CASE WHEN In ELSE, WHEN THEN, FOR LOOP
+* PLSQL_ch07-composite.sql      
+        - PL/Sql TYPE T_EMP IS RECORD, EMPLOYEES%ROWTYPE
+* PLSQL_ch08-Explicit Cursor.sql      
+        - PL/Sql CURSOR c_emp_cursor IS, FETCH c_emp_cursor INTO
 
 
+---
 Assessment
 
+201203_schema.png <img src="img/201203_schema.png">
+
 Part 1, Q1
+
+201205pt1.png <img src="img/201205pt1Q1.png">
 
 ---
 Part 2, Q1
