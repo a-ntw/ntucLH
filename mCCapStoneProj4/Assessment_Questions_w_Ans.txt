@@ -1,0 +1,291 @@
+ASSESSMENT QUESTIONS - SQL
+
+
+Question 1
+
+Which SELECT statement should you use if you want to display unique combinations of the
+POSITION and MANAGER values from the EMPLOYEE table?
+
+a. SELECT position, manager DISTINCT FROM employee;
+b. SELECT position, manager FROM employee;
+c. SELECT DISTINCT position, manager FROM employee;	 	— <— 
+d. SELECT position, DISTINCT manager FROM employee;
+
+
+Question 2
+
+The TEACHER table contains these columns:
+
+ID NUMBER(9) Primary Key
+LAST_NAME VARCHAR2(25)
+FIRST_NAME VARCHAR2(25)
+SUBJECT_ID NUMBER(9)
+
+Which query should you use to display only the full name of each teacher along with the
+identification number of the subject each teacher is responsible for teaching?
+
+a. SELECT * FROM teacher;
+b. SELECT last_name, subject_id FROM teacher;
+c. SELECT last_name, first_name, id FROM teacher;
+d. SELECT last_name, first_name, subject_id FROM teacher; 	—  <— 
+
+
+Question 3
+
+The STUDENT table contains the following columns:
+LAST_NAME VARCHAR2(25)
+FIRST_NAME VARCHAR2(25)
+EMAIL VARCHAR2(50)
+
+You are writing a SELECT statement to retrieve the names of students that do NOT have an e-mail address.
+
+SELECT last_name||', '||first_name "Student Name"
+FROM student
+
+Which WHERE clause should you use to complete this statement?
+
+a. WHERE email = NULL;
+b. WHERE email != NULL;
+c. WHERE email IS NULL; 			— <—
+d. WHERE email IS NOT NULL;
+
+Question 4
+
+You query the database with this SQL statement:
+
+SELECT *
+FROM transaction;
+
+For which purpose was this statement created?
+
+a. to insert data into the TRANSACTION table
+b. to view the data in the TRANSACTION table		— <—
+c. to review the structure of the TRANSACTION table
+d. to delete selected data from the TRANSACTION table
+
+
+Question 5
+
+The PRODUCT table contains these columns:
+
+PRODUCT_ID NUMBER(9)
+DESCRIPTION VARCHAR2(20)
+COST NUMBER(5,2)
+MANUFACTURER_ID VARCHAR2(10)
+
+You want to display product costs with these desired results:
+• The cost displayed for each product is increased by 20 percent.
+• The product's manufacturer id must be 25001, 25020, or 25050.
+• Twenty percent of the original cost is less than $4.00.
+Which statement should you use?
+
+a. SELECT description, cost * .20
+     FROM product
+     WHERE cost * .20 < 4.00
+     AND manufacturer_id BETWEEN '25001' AND '25050';
+b. SELECT description, cost * 1.20
+     FROM product
+     WHERE cost * .20 < 4
+     AND manufacturer_id = ('25001', '25020', '25050');
+c. SELECT description, cost * 1.20
+    FROM product
+    WHERE cost * .20 < 4.00
+    AND manufacturer_id IN ('25001', '25020', ‘25050');	— <—
+d. SELECT description, cost * 1.20
+    FROM product
+    WHERE cost * .20 < 4.00
+    AND manufacturer_id ANY('25001', '25020', ‘25050'); 
+
+
+Question 6
+
+You attempt to query the database with this SQL statement:
+
+SELECT order_id "Order Number", product_id "Product", quantity "Quantity"
+FROM line_item
+WHERE Order Number = 5570
+ORDER BY "Order Number";
+
+This statement fails when executed.
+Which action should you take to correct the problem?
+
+a. Specify a sort order of ASC or DESC in the ORDER BY clause.
+b. Enclose all of the column aliases in single quotes instead of double quotes.
+c. Remove the column alias from the WHERE clause and use the column name. — <—
+d. Remove the column alias from the ORDER BY clause and use the column name.
+
+
+Question 7
+
+You query the database with this SQL statement:
+
+SELECT bonus
+FROM salary
+WHERE bonus BETWEEN 1 AND 250
+OR (bonus IN(190, 500, 600)
+AND bonus BETWEEN 250 AND 500);
+
+Which BONUS value could the statement return?
+a. _100	— <—
+b. _260	— < X
+c. _400
+d. _600
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Question 8
+
+Evaluate this SQL statement using TEACHER table:
+
+SELECT last_name||', '||first_name
+FROM teacher
+WHERE subject_id != NULL
+ORDER BY last_name;
+
+Which value is displayed first when executing this query?
+
+a. Tsu, Ming
+b. Hann, Jeff		— < X
+c. Smith, Ellen
+d. No value is displayed	— <—
+
+
+Question 9
+
+Which SELECT statement should you use to limit the display of account information to those accounts with a finance charge greater than $75.00?
+
+a. SELECT account_id, new_balance, finance_charge	— <—
+    FROM account
+    WHERE finance_charge > 75.00;
+b. SELECT account_id, new_balance, finance_charge
+    FROM account
+    HAVING finance_charge > 75.00;
+c. SELECT account_id, new_balance, finance_charge
+    FROM account
+    WHERE finance_charge > 75.00
+    GROUP BY finance_charge;
+d. SELECT account_id, new_balance, finance_charge
+    FROM account
+    GROUP BY finance_charge > 75.00;
+
+
+
+Question 10
+
+Which three functions can be used to manipulate character column values? (Choose
+three.)
+
+a. RPAD	— <—
+b. TRUNC	—< X
+c. ROUND	—< X
+d. INSTR	— <—
+e. CONCAT	—<
+
+
+Question 11
+
+You query the database with this SQL statement:
+
+SELECT CONCAT(LOWER(SUBSTR(description, 1, 3)), subject_id) "Subject
+Description"
+FROM subject;
+
+In which order are the functions evaluated?
+
+a. CONCAT, LOWER, SUBSTR
+b. SUBSTR, LOWER, CONCAT	— <—
+c. LOWER, SUBSTR, CONCAT
+d. All three will be evaluated simultaneously.
+
+
+Question 12
+
+How many levels can subqueries be nested in a FROM clause?
+
+a. 2
+b. 4
+c. 8
+d. 16
+e. unlimited	— <—
+
+
+
+
+
+
+
+
+Question 13
+
+Evaluate this SELECT statement:
+
+SELECT employee_id, name
+FROM employee
+WHERE employee_id NOT IN (SELECT employee_id
+FROM employee
+WHERE department_id = 30
+AND job = 'CLERK');
+
+What would happen if the inner query returned NULL?
+
+a. A syntax error would be returned.
+b. No rows would be selected from the EMPLOYEE table.		— <—
+c. All the EMPLOYEE_ID and NAME values in the EMPLOYEE table would be	—< X
+    displayed.
+d. Only the rows with EMPLOYEE_ID values equal to NULL would be included in
+    the results.
+
+
+Question 14
+
+The PRODUCT table contains these columns:
+
+PRODUCT_ID NUMBER NOT NULL
+PRODUCT_NAME VARCHAR2(25)
+SUPPLIER_ID NUMBER NOT NULL
+LIST_PRICE NUMBER(7,2)
+COST NUMBER(5,2)
+QTY_IN_STOCK NUMBER(4)
+LAST_ORDER_DT DATE DEFAULT SYSDATE NOT NULL
+
+Which INSERT statement will execute successfully?
+
+a. INSERT INTO product
+    VALUES (10,'Ladder-back Chair', 5, 59.99, 37.32, 1000, 10-JAN-08);
+b. INSERT INTO product
+    VALUES (10,'Ladder-back Chair', 5, 59.99, 37.32, 2, DEFAULT); 	— <—
+c. INSERT INTO product(product_id, supplier_id, list_price, last_order_dt)
+    VALUES (10, 5, 65.99);
+d. INSERT INTO product
+    VALUES (10,'Ladder-back Chair', NULL, NULL, NULL, NULL, DEFAULT);
+e. INSERT INTO product
+    VALUES (10,'Ladder-back Chair', 5, 59.99, 37.32, 10000, DEFAULT)
+
+
+
+
+Question 15
+
+Which statement will permanently remove all the data in, the indexes on, and the
+structure of the PO_DETAIL table?
+
+a. DROP TABLE po_detail;		— <—
+b. DELETE TABLE po_detail;
+c. TRUNCATE TABLE po_detail;
+d. ALTER TABLE po_detail
+    SET UNUSED (po_num, po_line_id, product_id, quantity, unit_price);
