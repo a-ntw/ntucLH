@@ -552,3 +552,469 @@ select commission_pct from employees where employee_id = 100);
 no rows selected
 no rows selected
 ```
+----------------------
+day 3
+#### merge
+``` sql
+SQL> merge into t1
+	2 using t2
+	3 on(t1.c1=t2.c1)
+	4 when matched then
+	5	update set t1.c2 = 1000
+	6 when not matched then
+	7 	insert values (t2.c1,t2.c2);
+
+SQL> select * from t1;	
+SQL> rollback;  — only on ddl command
+```
+### synonym
+``` sql
+SQL> conn / as sysdba
+SQL> grant create synonym to safari;
+SQL> conn safari/savari
+SQL> create synonym e for employees;
+SQL> desc e
+SQL> select first_name  from e;
+
+SQL> create table sav_emp
+	2 As
+	3 select * from employees;
+
+SQL> conn savari/savari
+SQL> grant select, insert, update, delete on save_emp to savari1;
+SQL> conn savari1/savari1
+SQL> select first_name  from savari.sav_emp;
+
+SQL> conn / as sysdba
+SQL> grant create synonym to savari1;
+SQL> conn savari1/savari1
+SQL> create synonym emp  for savari.sav_emp;
+
+SQL> select first_name  from emp;
+
+SQL> drop synonym emp;
+```
+#### plus sign(+) to display detail table
+``` sql
+select e.first_name, e_salary, e.department_id, d.department_name
+from employees e, departments d
+Where e.department_id = d.department_id(+)
+  
+SQL> conn savari1/savari1
+SQL> create synonym e  for savari.employees;
+Synonym created.
+```
+##### show all synonym
+``` sql
+SQL> show user
+SQL> select object_name, object_type
+	2 from user_objects
+	3 where object_type=’SYNONYM’
+```
+#### desc user_synonyms
+``` sql
+SQL> desc user_synonyms
+SQL>  select synonym_name, table_owner, table_name
+	2 from user_synonyms;
+
+SQL> desc user_tables;
+```
+### views
+``` sql
+SQL> conn savari/savari
+SQL> create view v1
+	2 as
+	3 select * from employees;
+
+SQL> create view v2
+	2 as
+	3 Select first_name, last_name, salary, department_name
+	4 from employees join departments
+	5 using(department_id);
+View created.
+
+SQL> set lines 120
+
+SQL>  create view v3( sumsal, minsal, maxsal, avgsal)
+	2 as
+	3 select sum(salary), min(salary), max(salary), round(avg(salary))
+	4 from employees
+SQL> desc v3
+SQL> select * from v3;
+
+SQL> grant select on v2 to savari1;
+SQL> conn savari1/savari1
+SQL> select * from savari.v2;
+SQL> create synonym v2 from savari.v2;
+SQL> select * from v2;
+ 
+SQL> drop view v1;
+SQL> create v1
+	2 as
+	2 select * from employees;
+
+SQL>  update v1 set salary =100;
+
+SQL> select salary from v1;
+SQL> rollback;
+SQL> desc user_views
+
+SQL> show long
+SQL> set long 10000
+```
+
+### index, execution plan
+```
+SQL> select rownum, first_name, salary
+from employees;
+```
+#### fetch next 5 row 
+``` sql
+  1  select first_name, last_name, salary
+  2  from employees
+  3  order by salary desc
+  4* fetch next 5 row only
+SQL> /
+
+FIRST_NAME	     LAST_NAME			   SALARY
+-------------------- ------------------------- ----------
+Steven		     King			    24000
+Neena		     Kochhar			    17000
+Lex		     De Haan			    17000
+Michael 	     Hartstein			    13000
+Shelley 	     Higgins			    12000
+
+```
+``` sql
+SQL> select first_name, last_name, salary
+ from (select first_name, last_name, salary from employees order by salary desc)
+ where rownum < 6;
+
+SQL> select first_name, rowid
+	2 from employees;
+— noted that rowid will change
+— rowid got base64 digit: a-z A-Z 0-9 / +
+— 6363, first 6 digits are object ID, next 3 digits file id, 
+— next 6 digits block Id, lst 3 digits are rowid
+```
+####  select index_name, index_type
+``` sql
+SQL> create table emp1
+	as
+	select * from employees;
+
+SQL> select index_name, index_type
+	2 from user_indexes
+	3 where table_name = ‘EMP1’;
+
+SQL> create index idx1
+	2 on emp1(first_name);
+
+SQL> drop index idx1;
+```
+### plustrace, autot,  execution plan
+```
+SQL> set autot on
+	SP2-0618: .. Check PLUSTRACE ...
+	SP2-0611: ERROR ...
+SQL> set autot off
+SQL> select * from session_roles;
+
+SQL> conn sys/oracle as sysdba
+
+SQL> @/u01/app/oracle/product/version/db_1/sqlplus/admin/plustrce.sql
+SQL> drop role plustrace;
+drop role plustrace
+         *
+ERROR at line 1:
+ORA-01919: role 'PLUSTRACE' does not exist
+SQL> create role plustrace;
+Role created.
+SQL> grant select on v_$sesstat to plustrace;
+Grant succeeded.
+SQL> grant select on v_$statname to plustrace;
+Grant succeeded.
+SQL> grant select on v_$mystat to plustrace;
+Grant succeeded.
+SQL> grant plustrace to dba with admin option;
+Grant succeeded.
+SQL> 
+SQL> set echo of
+
+SQL> grant plustrace to mickey; ;
+Grant succeeded.
+
+SQL> conn mickey/mickey
+Connected.
+SQL> set autot on
+SQL> select first_name, last_name, salary from emp1
+  2  where first_name='Steven';
+
+FIRST_NAME	     LAST_NAME			   SALARY
+-------------------- ------------------------- ----------
+Steven		     King			    24000
+
+
+Execution Plan
+----------------------------------------------------------
+Plan hash value: 2226897347
+
+--------------------------------------------------------------------------
+| Id  | Operation	  | Name | Rows  | Bytes | Cost (%CPU)| Time	 |
+--------------------------------------------------------------------------
+|   0 | SELECT STATEMENT  |	 |     1 |    19 |     3   (0)| 00:00:01 |
+|*  1 |  TABLE ACCESS FULL| EMP1 |     1 |    19 |     3   (0)| 00:00:01 |
+--------------------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+   1 - filter("FIRST_NAME"='Steven')
+
+Statistics
+----------------------------------------------------------
+	 87  recursive calls
+	  0  db block gets
+	 80  consistent gets
+	  9  physical reads
+	  0  redo size
+	720  bytes sent via SQL*Net to client
+	434  bytes received via SQL*Net from client
+	  2  SQL*Net roundtrips to/from client
+	  5  sorts (memory)
+	  0  sorts (disk)
+	  1  rows processed
+
+SQL> set autoT off
+```
+```
+— show the execution plan
+SQL> save f13
+
+SQL>  create index idex1 on emp1 (first_name);
+SQL> @f13
+
+hr/hr
+Execution PLan show the button on the SQL Developer too
+if 'phisical read' very high will be very slow.
+Ideally ‘physical read’ should be 0, which all will be in memory.
+
+SQL>  drop index idex1;
+```
+---------------
+day 4
+``` 
+PROJECT 
+
+From savari:
+```
+### UNDO. Flashback for Enpterprise edition:
+``` sql
+SQL> update employees
+2 set salary=100;
+
+SQL> select to_char(sysdate, ‘dd/mm/rr hh24:mi:ss’)
+from dual
+
+10/12/20 09:17:18
+
+SQL> update emp set salary = 100;
+SQL>  commit;  — <<< make a mistake
+SQL> flashback table emp
+	2 to timestamp to_timestamp(’10–12-20 9:17:18’, ‘dd-mm-rr hh24:mi:ss’);
+ERROR … cannot flashback the table becuase row movement is not enabled
+SQL> save f16;
+SQL> alter table emp enable row movement; — give permission from oracle to change row ID
+SQL> get f16
+Flashback complete.
+
+SQL> conn / as sysdba
+SQL> show parameter undo
+SQL>   — retention = 900 —> for period of 900sec.
+SQL> alter system set undo_retention=20000;  — set longer
+— cannot go thru flashback thru DDL command, sush as create, truncate, drop
+— there is only 1 undo space, will be overwrite by 1 transaction.
+
+SQL> alter system checkpoint;  — <<< ???
+```
+### administration of dba
+``` sql
+SQL> select flashback_on from v$database
+SQL> archive log list
+SQL> select log_mode from v$database;
+SQL> shutdown immediate  — <<<all memory release ..
+SQL> startup mount
+SQL> alter database archive log;
+SQL> select open_mode from v$database;
+SQL> alter database open;
+SQL> select open_mode from v$database;
+```
+### sid is instance name
+``` sql
+SQL> conn sys/oracle as sysdba
+
+SQL> select instance_name from v$instance;
+INSTANCE_NAME: orclcdb
+
+SQL> select name from v$database;
+NAME: ORCLCDB
+
+1 dabast assess by mupliple instances.
+RAC - real application cluster
+Load balancing
+```
+### user id
+``` sql
+SQL> hr/hr
+SQL> grant select, insert on employees to public;
+Grant succeeded.
+
+— create object in schema belong to user
+```
+
+	C:\Users\User>sqlplus hr/hr@prod1  —<<. in any where
+	SQL> conn hr/hr	 —<< in your local machine
+
+
+Others
+``` sql
+SQL> drop table dept;
+SQL>  create table dept
+2 (id number,
+3 name varchar2(10));
+SQL> create sequence seq1
+2 start with 200
+3 increment by 10
+4 maxvalue 10000;
+SQL>  insert into dept
+2 values(seq1.nextval, ’Sales’);
+SQL> commit;
+SQL> select * from dept;
+id: 200  Name:Sales
+SQL> select seq1.currval from dual;
+currval: 200
+SQL> select id, seq1.currval
+SQL> select seq1.nextval from dual;
+```
+### sequence loader, txt file
+#### create empty table
+``` sql
+	SQL> create table loademp
+	as
+	Select first_name, last_name, salary, department_id
+	From employees
+	Where 1=2;   —<< structure only, no data
+```
+``` sql
+SQL>  set verify off
+SQL> set head off
+SQL> set feed off
+SQL> set pages 0
+SQL> spool d:\emp.dat
+SQL> select first_name || ‘,' || last_name || ‘,‘ ||salary|| ‘,‘ || department_id
+2 from employees;
+…
+SQL> spool off
+— from d: drive > emp.dat from Notepad++
+File save emp_data.dat
+```
+Notepad
+```
+load data
+infile 'd:\emp_data.dat'
+insert into table loademp
+fields terminated by ‘,’
+(First_name, last_name, salary, department_id)
+```
+save as emp.ctl
+
+	D:\>sqlldr
+	D:\sqlldr userid=hr/hr control=emp.ctl.txt
+
+revise bad data
+```
+load data
+infile 'd:\emp_data.bad'
+append into table loademp
+fields terminated by ‘,’
+(First_name, last_name, salary, department_id)
+```
+From Savari Uvakaram to Everyone: (11:51 AM)
+
+	load data
+	infile 'd:\emp_data.bad'
+	append into table loademp
+	fields terminated by ','
+	(first_name,last_name, salary,department_id)
+
+From Sri Ram Panday to Everyone: (12:06 PM)
+
+	C:\> lsnrctl status
+	C:\> lsnrctl start
+From Kiat Leong Chua to Everyone: (12:23 PM)
+
+	https://stackoverflow.com/questions/26236967/oracle-listener-not-running-and-wont-sta
+
+Others
+
+	SQL> create table t1
+	(id number,
+	name varchar2(10)l
+	gender char(1) contrraint t1-gender_ck check(gender in (“M”, “F”));
+	/
+	SQL> desc user_cons_columns
+	SQL> select constraint_name, table, column_name 
+	from user_cons_columns
+	where table_name=’T1’;
+
+	SQL> select table_name
+	from dict
+	Where table_name like ‘%CONS%'
+
+### check  constraint condition
+
+	SQL> select constraint_name, search_condition
+	from user_constraints
+	where table_name=’T1’;
+
+SQL> drop user cascade
+
+	SQL> create table emp as select * from employees;
+	SQL>  create table dept as select * from departments;
+	— — noted that all consitions, PK, FK... are mot copied
+
+	SQL> select constraint_name, constraint_type
+	from user_constraints
+	where table_name = ‘DEPT’;
+
+### Connection issues
+
+	D:\>lsnrctl
+	LSNRCTL> help
+	LSNRCTL> stat
+
+	tnsnames.ora
+
+	D:\>sqlplus hr/hr@orcl
+	D:\>netca
+
+	[oracle@localhost oracle]$ lsnrctl status listener
+
+
+ipconfig
+
+	c:\Windows\system21> ping 58.182.132.17
+if work than can connect...
+
+#### check for erro ?
+
+	SQL> 
+	Rr ora 12560
+	D:\>oerr ora 12560
+
+#### uninstall
+
+	universal uninstaller
+
+	dbhome_2 > deinstall.bat
+
+---
