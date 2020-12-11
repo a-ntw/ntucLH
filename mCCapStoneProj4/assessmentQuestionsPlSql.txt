@@ -1,0 +1,134 @@
+ASSESSMENT QUESTIONS – PL/SQL
+
+
+Question 1
+
+ Which keyword is used instead of the assignment operator to initialize       variables? 
+a. NOT NULL 
+b. DEFAULT		<— 
+c. %TYPE		— x 
+d. %ROWTYPE
+
+Question 2
+
+ PL/SQL programs are written as lines of text using a specific set of   characters. 
+a. Upper- and lower-case letters A .. Z and a .. z 
+b. Numerals 0 .. 9 
+c. Symbols ( ) + - * / < > = ! ~ ^ ; : . ' @ % , " # $ & _ | { } ? [ ] 
+d. Tabs, spaces, and carriage returns 
+e. All mentioned above			— <—
+
+Question 3
+
+Which statements execute a sequence of statements multiple times? 
+a. EXIT 
+b. LOOP			— <— 
+c. Both A & B 
+d. None of the above
+
+Question 4
+
+Which statements are used to control a cursor variable? 
+a. OPEN-FOR 
+b. FETCH 
+c. CLOSE 
+d. All mentioned above		— <—
+
+
+Question 5
+
+ Subprograms are named PL/SQL blocks that can be called with a set of parameters. 
+a. True		— <— 
+b. False
+
+Question 6
+
+When creating a function, in which section will you typically find a return key word? 
+a. Header Only 
+b. Declarative 
+c. Executable and Header 
+d. Executable and exception handling		— <—
+
+Question 7
+
+Which of the following is used to declare a record? 
+a. %ROWTYPE		— <— 
+b. %TYPE 
+c. Both A & B 
+d. None of the above
+
+
+
+Question 8
+
+Which of the following has a return type in its specification and must return a value specified in that type? 
+a. Function		— <— 
+b. Procedure		— x 
+c. Package 
+d. None of the above
+
+
+
+
+
+
+Question 9
+
+From the following PL/SQL Delimiters which symbol is exponentiation operator. 
+a. <> 
+b. ~= 
+c. **			— <— 
+d. –
+
+Question 10
+
+ Which is a database object that groups logically related PL/SQL types, objects and subprograms? 
+a. Package		— <— 
+b. Module 
+c. Body 
+d. Name		— X
+
+Question 11
+
+Which collection exception is raised when a subscript designates an element that was deleted, or a nonexistent element of an associative array? 
+a. NO_DATA_FOUND			— <— 
+b. COLLECTION_IS_NULL 
+c. SUBSCRIPT_BEYOND_COUNT 
+d. SUBSCRIPT_OUTSIDE_LIMIT
+
+
+Question 12
+
+
+Which of the following executes the query and identifies the result set, consisting of all rows that meet the query search criteria. 
+a. Fetching with a Cursor 
+b. Opening a cursor			<— 
+c. Fetching bulk data with a cursor 
+d. None of the above
+
+
+
+
+
+Question 13
+
+Which datatype is used to store large blocks of character data in the database, in-line or out-of-line? Both fixed-width and variable-width character sets are supported. 
+a. BLOB 
+b. CLOB		— <— 
+c. BFILE 
+d. NCLOB
+
+Question 14
+
+ Explicit datatypes, %TYPE and %ROWTYPE, without size specification can be used for parameters in a procedure. 
+a. True		— <— 
+b. False
+
+
+Question 15
+
+What is the advantage of using the %ROWTYPE datatype? 
+a. It is useful to retrieve an entire row from a table. If you do not use the %ROWTYPE datatype, then you have to declare variables for each column separately. 
+b. It can be used even if data type of the table columns is not known. 
+c. It ensures that data type of the variable changes dynamically if the underlying table is altered. 
+d. All mentioned above	<— e. Both A & B			— x
