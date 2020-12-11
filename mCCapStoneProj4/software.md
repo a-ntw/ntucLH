@@ -337,15 +337,22 @@ for save file, clear `cl buff`, get f1, run file @f1, save f1 replace,
                   >> same as host, for linux
       [oracle@localhost ~]$ exit
       exit
-#### ed f1    clear screen  
-      SQL> ed f1
-            >> go to vim editor
-      SQL> @f1
+#### ed f1    clear screen  err col
+	SQL> ed f1
+	    >> go to vim editor
+	SQL> @f1
 
-      SQL> def_editor=gedit		>> to change noteeditor
+	SQL> def_editor=gedit		>> to change noteeditor
 
-      SQL> cle screen
+	SQL> cle screen
 
+	SQL> show err
+		Errors for TRIGGER TRIG1:
+
+	SQL> clear col 		>> to set back default column width
+	SQL> col Manager format a30;
+	SQL> set lines 120;
+	SQL> set verify off
  
 ### `exp` `imp` 
 #### export to hr_full.dmp
@@ -904,6 +911,7 @@ SQL> select seq1.nextval from dual;
 	From employees
 	Where 1=2;   —<< structure only, no data
 ```
+#### set verify, head, feed, pages, spool off
 ``` sql
 SQL>  set verify off
 SQL> set head off
@@ -1017,4 +1025,23 @@ if work than can connect...
 
 	dbhome_2 > deinstall.bat
 
+
+### create empty table
+
+	SQL> create table empty_emp
+	As 
+	Select * from employees
+	Where 1=2;
+	
+### employees%rowtype
+``` sql
+set verify off
+declare
+	emp_rec		employees%rowtype;
+	….
+begin
+end;
+```
+
 ---
+
