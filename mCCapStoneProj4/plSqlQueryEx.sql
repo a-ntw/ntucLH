@@ -1,4 +1,4 @@
-/*
+/* ********** SINGLE QUERY PL/SQL. exercise
 From Savari Uvakaram to Everyone: (4:58 PM)
  - duplicate employees table into EMP table
 - add a column in EMP (new_salary)
@@ -34,41 +34,46 @@ SQL> alter table emp
 SQL> select first_name, salarym new_salary
 from emp;
 SQL> ed f17
-**** console output got error
+**** note.... ELSIF,  else if without e
 */
-
 set serveroutput on
 set verify off
 declare
     f_name      emp.first_name%type;
     l_name      emp.last_name%type;
-    f_sal       emp.salary%type;
-    f_deptid    emp.department_id%type;
-    f_newsal    emp.salary%type;
+    v_sal       emp.salary%type;
+    v_deptid    emp.department_id%type;
+    v_newsal    emp.salary%type;
 begin
+
     select first_name, last_name, salary, department_id
-    into f_name, l_name, f_sal, f_deptid
+    into f_name, l_name, v_sal, v_deptid
     from emp
     where employee_id = &&empid;
-    
-    if f_sal < 5000 then
-        f_newsal := f_sal * 1.18;
-    else if f_sal >= 5000 and f_sal < 10000 then
-        f_newsal := f_sal * 1.12;
-    else if f_sal >=10000 and f_sal < 16000 then
-        f_newsal := f_sal *1.08;
-    endif;
-    
+   
+    IF v_sal < 5000  THEN
+        v_newsal := v_sal * 1.18;
+    ELSIF v_sal >= 5000 AND v_sal < 10000 THEN
+        v_newsal := v_sal * 1.12;
+    ELSIF v_sal >=10000 and v_sal < 16000 THEN
+        v_newsal := v_sal *1.08;
+    END IF;
+   
+
     update emp
-    set new_salary = f_newsal
+    set new_salary = v_newsal
     where employee_id = &empid;
     dbms_output.put_line( f_name || ' ' || l_name || ' '
-        || to_char(f_sal) || to_char(f_newsal));
-    exception
+        || to_char(v_sal) || to_char(v_newsal));
+
+   exception
         when no_data_found then
             dbms_output.put_line('No employee selected.Check with HR');
+        
 end;
 /
 set serveroutput off
 set verify on
 undef empid
+
+
