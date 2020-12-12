@@ -815,34 +815,87 @@ PROJECT
 From savari:
 ```
 ### UNDO. Flashback for Enpterprise edition:
+#### flashback table temp to before drop
 ``` sql
-SQL> update employees
-2 set salary=100;
+SQL> show user 
+	USER is "NEWUSER"
+SQL> create table temp as               
+  2  select * from emp;
+	Table created.
+SQL> select count(*) from temp;
+  COUNT(*) ---------- 20
 
-SQL> select to_char(sysdate, ‘dd/mm/rr hh24:mi:ss’)
-from dual
+SQL> drop table temp;
+	Table dropped.
+SQL> desc temp
+	ERROR: ORA-04043: object temp does not exist
 
-10/12/20 09:17:18
+SQL> rollback;
+	Rollback complete.
+SQL> desc temp
+	ERROR: ORA-04043: object temp does not exist
 
-SQL> update emp set salary = 100;
-SQL>  commit;  — <<< make a mistake
-SQL> flashback table emp
-	2 to timestamp to_timestamp(’10–12-20 9:17:18’, ‘dd-mm-rr hh24:mi:ss’);
-ERROR … cannot flashback the table becuase row movement is not enabled
-SQL> save f16;
-SQL> alter table emp enable row movement; — give permission from oracle to change row ID
-SQL> get f16
-Flashback complete.
+SQL> flashback table temp to before drop;
+	Flashback complete.
 
-SQL> conn / as sysdba
+SQL> desc temp
+ Name					   Null?    Type
+```
+#### flashback table t1 to timestamp to_timestamp('12/12/20 03:25:27', 'DD/MM/RR HH24:MI:SS');
+``` sql
+SQL> select to_char(sysdate, 'DD/MM/RR SSSSS') from dual;
+	TO_CHAR(SYSDAT
+	--------------
+	12/12/20 12964
+
+SQL> create table t1 as 
+  2  select * from emp;
+
+SQL> select to_char(sysdate, 'DD/MM/RR HH24:MI:SS') FROM DUAL;
+	TO_CHAR(SYSDATE,'
+	-----------------
+	12/12/20 03:25:27
+
+SQL> select salary, new_salary from t1;
+	    SALARY NEW_SALARY
+	---------- ----------
+	       100	  999
+       
+SQL> update t1 set salary = 1111;   
+	20 rows updated.
+
+SQL> select salary, new_salary from t1;
+	    SALARY NEW_SALARY
+	---------- ----------
+	      1111	  999
+
+SQL> flashback table t1 to timestamp to_timestamp('12/12/20 03:25:27', 'DD/MM/RR HH24:MI:SS');
+	ERROR at line 1:
+	ORA-08189: cannot flashback the table because row movement is not enabled
+SQL> alter table t1 enable row movement;
+	Table altered.
+	
+SQL> flashback table t1 to timestamp to_timestamp('12/12/20 03:25:27', 'DD/MM/RR HH24:MI:SS');
+	Flashback complete.
+SQL> select salary, new_salary from t1;
+	    SALARY NEW_SALARY
+	---------- ----------
+	       100	  999
+	       100	  999
+```
+
+#### show parameter undo_retention
+``` sql
+SQL> conn / as sysdba 		/* SQL> conn sys/oracle as sysdba*/
 SQL> show parameter undo
 SQL>   — retention = 900 —> for period of 900sec.
 SQL> alter system set undo_retention=20000;  — set longer
 — cannot go thru flashback thru DDL command, sush as create, truncate, drop
 — there is only 1 undo space, will be overwrite by 1 transaction.
-
-SQL> alter system checkpoint;  — <<< ???
 ```
+	SQL> alter system checkpoint;
+google: The SQL statement ALTER SYSTEM CHECKPOINT explicitly forces Oracle to perform a checkpoint for either the current instance or all instances. Forcing a checkpoint ensures that all changes to the database buffers are written to the datafiles on disk. The GLOBAL option of ALTER SYSTEM CHECKPOINT is the default.
+
 ### administration of dba
 ``` sql
 SQL> select flashback_on from v$database
@@ -886,23 +939,23 @@ Others
 ``` sql
 SQL> drop table dept;
 SQL>  create table dept
-2 (id number,
-3 name varchar2(10));
+	2 (id number,
+	3 name varchar2(10));
 SQL> create sequence seq1
-2 start with 200
-3 increment by 10
-4 maxvalue 10000;
+	2 start with 200
+	3 increment by 10
+	4 maxvalue 10000;
 SQL>  insert into dept
-2 values(seq1.nextval, ’Sales’);
+	2 values(seq1.nextval, ’Sales’);
 SQL> commit;
 SQL> select * from dept;
-id: 200  Name:Sales
+	id: 200  Name:Sales
 SQL> select seq1.currval from dual;
-currval: 200
+	currval: 200
 SQL> select id, seq1.currval
 SQL> select seq1.nextval from dual;
 ```
-### sequence loader, txt file
+### sequence loader, SQLLDR, txt file,  
 #### create empty table
 ``` sql
 	SQL> create table loademp
@@ -917,14 +970,76 @@ SQL>  set verify off
 SQL> set head off
 SQL> set feed off
 SQL> set pages 0
-SQL> spool d:\emp.dat
+SQL> spool empDec12.dat  /* WAS SQL> spool d:\emp.dat */
 SQL> select first_name || ‘,' || last_name || ‘,‘ ||salary|| ‘,‘ || department_id
 2 from employees;
 …
 SQL> spool off
-— from d: drive > emp.dat from Notepad++
-File save emp_data.dat
+—- from d: drive > emp.dat from Notepad++. File save emp_data.dat
 ```
+empDec12.dat
+``` text
+SQL> select first_name||','||last_name||','||salary||','||department_id
+  2  from employees;
+Steven,King,24000,90                                                            
+Neena,Kochhar,17000,90                                                          
+...                                                    
+Pat,Fay,6000,20                                                                 
+Shelley,Higgins,12000,110                                                       
+William,Gietz,8300,110                                                          
+SQL> spool off;
+```
+emp_ctl.txt, created from gedit
+``` text
+load data
+infile 'empDec12.dat'
+insert into table loademp
+fields terminated by ','
+(first_name, last_name, salary, department_id)
+```
+#### SQLLDR 
+``` sql
+SQL> exit
+	Disconnected from Oracle Database 19c Enterprise ...
+
+[oracle@localhost oracle]$ sqlldr userid=newuser/newuser control=emp_ctl.txt	
+	SQL*Loader: Release 19.0.0.0.0 - Production ...
+	Path used:      Conventional
+	Commit point reached - logical record count 23
+
+	Table LOADEMP:
+	  19 Rows successfully loaded.
+
+	Check the log file:
+	  emp_ctl.log
+	for more information about the load.
+	
+[oracle@localhost oracle]$ sqlplus newuser/newuser
+
+SQL> select count(*) from loademp;
+	COUNT(*) ---------- 19
+```
+emp_ctl.log
+``` text
+...
+Control File:   emp_ctl.txt
+Data File:      empDec12.dat
+  Bad File:     empDec12.bad
+  Discard File:  none specified
+  ...
+```
+revise bad data, on emp_ctl.txt
+
+	load data
+	infile 'empDec12.bad'
+	append into table loademp
+	fields terminated by ','
+	(first_name, last_name, salary)
+	
+[oracle@localhost oracle]$ sqlldr userid=newuser/newuser control=emp_ctl.txt
+
+
+#### savari  sequence loader, txt file
 Notepad
 ```
 load data
@@ -934,18 +1049,9 @@ fields terminated by ‘,’
 (First_name, last_name, salary, department_id)
 ```
 save as emp.ctl
-
-	D:\>sqlldr
 	D:\sqlldr userid=hr/hr control=emp.ctl.txt
 
-revise bad data
-```
-load data
-infile 'd:\emp_data.bad'
-append into table loademp
-fields terminated by ‘,’
-(First_name, last_name, salary, department_id)
-```
+revise bad data,
 From Savari Uvakaram to Everyone: (11:51 AM)
 
 	load data
@@ -954,10 +1060,13 @@ From Savari Uvakaram to Everyone: (11:51 AM)
 	fields terminated by ','
 	(first_name,last_name, salary,department_id)
 
+### LSNRCTL, listener
+
 From Sri Ram Panday to Everyone: (12:06 PM)
 
 	C:\> lsnrctl status
 	C:\> lsnrctl start
+	
 From Kiat Leong Chua to Everyone: (12:23 PM)
 
 	https://stackoverflow.com/questions/26236967/oracle-listener-not-running-and-wont-sta
