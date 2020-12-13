@@ -4,37 +4,38 @@
 This directories
 * 201121 mySql Connection BackUp.zip 
     - backup connection from MySQlWorkbench.
-* All_LogProjects 
+* [All_LogProjects](All_LogProjects) 
     - samples **logger** for console output, file output on different levels.
-* Calculator 
+* [Calculator](Calculator) 
   -  Chandra's sample on Calculator via **fxml**, see img.
-* CustomerApp-V3 
+* [CustomerApp-V3](CustomerApp-V3) 
   - Chandra's customerApp running on java fxml, see img.
-* CustomerApp.md 
+* [CustomerApp.md](CustomerApp.md) 
   - initiate Chandra's customerApp console output
-* FxTableview 
+* [FxTableview](FxTableview) 
   -  create **ArrayList** and run on fxml, see img.
-* JDBC_App 
+* [JDBC_App](JDBC_App) 
   - Chandra sample **mySql connections**.
 * JavaFx_Samples_V2.0.zip 
   -  FXApp3 w *Alert*, FXApp4 Color & Calender, FXApp5 text entry, FXTimer
-* LocaleEx 
+* [LocaleEx](LocaleEx) 
   -  sample for *language* conversion
-* **corebanking** 
-  - project for this training, all training done here.
-* customerapp 
+* [**corebanking**](corebanking) 
+  - **project for this training, all training done here.**
+* [customerapp](customerapp) 
   - Chandra 1st example, workable
-* logNov16_2020.txt 
+* [logNov16_2020.txt](logNov16_2020.txt) 
   - log text during this two week traning
-* smallDB 
+* [**smallDB**](smallDB) 
   - small sql DB connecton with **pojo**, **DAO** (see below), **CRUD**. **kick-start**.
-* vSimpleFx 
+* [vSimpleFx](vSimpleFx) 
   - Fx SceneBuilder fxml *kick-start*.  
 
+---
 ## snippet
 
 ### Simple console logger
-refer to [All_LogProjects]
+refer to [All_LogProjects](All_LogProjects)
 ``` java
 ...
 public class LogV1 {
@@ -48,7 +49,7 @@ public class LogV1 {
 ```
 
 ### create ArrayList and print
-refer to FxTableview
+refer to [FxTableview](FxTableview)
 ``` java
 //.... pojo
     public static List<alist> rows() {
@@ -153,7 +154,7 @@ public class Dao {
 }
 ```
 
-### CoreBanking snippet
+### [CoreBanking](corebanking) snippet
 set global variable for inter use between object 
 ``` java
 public class AccMap_CRUD {
