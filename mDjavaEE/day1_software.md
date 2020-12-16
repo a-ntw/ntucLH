@@ -59,7 +59,7 @@ wls12214, new folder
 
     antw@Mac-mini bin % . ./config.sh
 
-Oracle Fusuib Middlware
+Oracle Fusion Middlware
 
     Create a new domain
     Domain Locaiton: /Users/antw/wls12214/domain1
@@ -71,11 +71,14 @@ Oracle WebLogic Server
 
 DataSource > Generic Data Source > 
 Create a New JDBC Data Source
+
     NameL ds1
     JNDI Namew: com.ubs.DS 
     <do not hit enter>
+    host name: localhost
     Database Driver: *Oracle's Driver (Thin) for Service Connections; Versions: Any
     > next
+    
 
 
 
