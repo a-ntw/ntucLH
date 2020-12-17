@@ -35,10 +35,26 @@ commit;
 ```
 
 #### WebLogic
-DataSource > Generic Data Source > Create a New JDBC Data Source
-Name:  product
-JNDI Name: jdbc/productDb
-Database driver: Oracle’s Driver (Thin) for Service Connections. version s: Any
+	DataSource > Generic Data Source > Create a New JDBC Data Source
+	Name:  product
+	JNDI Name: jdbc/productDb
+	Database driver: Oracle’s Driver (Thin) for Service Connections. version s: Any
+
+### jdbc.productDB
+Day4 Error:
+Deployment failed. The message was: javax.naming.NameNotFoundException: While trying to lookup 'jdbc.productDB' didn't find subcontext 'jdbc'. Resolved ''; remaining name 'jdbc/productDB’
+
+	check if productDB is available
+	Netbeans > Services 
+		> Servers > Oracle WebLogic
+		> Resources > JDBC > Connection Pools
+	Netbeans > Services
+		Oracle WebLogic > right-click View Admin Console
+	Login to WebLogic
+		> Data Sources > productDB
+		> Targets 
+		> select AdminServer
+
 
 ### Practice 3-1: Creating a JPA Entity
 * Netbeans > File > New Project 
