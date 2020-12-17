@@ -19,8 +19,34 @@ public class ProductClient {
 //            Product p = pm.findProduct(1);
 //            System.out.println(p);
 
-            List<Product> products = pm.findProductByName("Co%");
-            products.stream().forEach(p -> System.out.println(p));
+//            List<Product> products = pm.findProductByName("Co%");
+//            products.stream().forEach(p -> System.out.println(p));
+
+//            Product p = pm.findProduct(1);
+//            p.setPrice(BigDecimal.valueOf(2.5));
+//            p.setBestBefore(LocalDate.now().plusDays(1));
+//            pm.update(p);
+
+//            Product p = pm.findProduct(1);
+//            p.setPrice(BigDecimal.valueOf(0.1));
+//            p.setName("x");
+//            p.setBestBefore(LocalDate.now().plusDays(1));
+//            pm.update(p);
+
+//            Product p = pm.findProduct(1);
+//            p.setPrice(BigDecimal.valueOf(5));
+//            Scanner s = new Scanner(System.in);
+//            System.out.println("Click here and  then press enter to continue");
+//            s.nextLine();
+//            pm.update(p);
+
+//            Product p = new Product();
+//            p.setName("Milk");
+//            p.setPrice(BigDecimal.valueOf(2));
+//            pm.create(p);
+
+//            Product p = pm.findProduct(5);
+//            pm.delete(p);
             
             pm.closeEntityManager();
         } catch (Exception ex) {
