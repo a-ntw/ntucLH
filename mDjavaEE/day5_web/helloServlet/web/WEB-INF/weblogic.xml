@@ -4,5 +4,5 @@
     <keepgenerated>true</keepgenerated>
     <debug>true</debug>
   </jsp-descriptor>
-  <context-root>/hw</context-root>
+  <context-root>/hs</context-root>
 </weblogic-web-app>

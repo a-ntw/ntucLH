@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>NewServlet1</servlet-name>
+        <servlet-class>com.dbs.NewServlet1</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SimpleServlet</servlet-name>
+        <servlet-class>com.dbs.SimpleServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ThirdServlet</servlet-name>
+        <servlet-class>com.dbs.ThirdServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ClockServlet</servlet-name>
+        <servlet-class>com.dbs.ClockServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EnumServlet</servlet-name>
+        <servlet-class>com.dbs.EnumServlet</servlet-class>
+    </servlet>
+ 
+    <servlet-mapping>
+        <servlet-name>NewServlet1</servlet-name>
+        <url-pattern>/ns</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SimpleServlet</servlet-name>
+        <url-pattern>/ss</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ThirdServlet</servlet-name>
+        <url-pattern>/ts</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ClockServlet</servlet-name>
+        <url-pattern>/cs</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EnumServlet</servlet-name>
+        <url-pattern>/es</url-pattern>
+    </servlet-mapping>
+
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>
