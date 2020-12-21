@@ -47,7 +47,7 @@ public class FourthServlet extends HttpServlet {
             }
             out.println("</body>");
             out.println("</html>");
-            // right-click to run from 
+            // right-click to run from `/FourthServlet?a=10&b=20&c=30`
         }
     }
 
