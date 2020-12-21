@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!--
+
+-->
+<html>
+    <head>
+        <title>day 6 - my practice</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>Login to Welcome page!</div>
+        <form action="LoginS" method="get">
+            <br>Enter User Name <input type="text" name="usrN"/>
+            <br>Enter Pass-word <input type="password" name="pWd"/>
+            <br> <input type="submit" name="login" value="Login Here" />
+            <br> <input type="reset" name="resets" value="Cancel Here" />             
+        </form>
+        <br>
+        
+        <br> <div>Sessions at Clock Servlet</div>
+        <form action="ClockS" method="get">
+            <br> Enter the first number :: <input type="text" name="ivar"/>
+            <br> Enter the second number :: <input type="text" name="jvar"/>
+            <br> <input type="submit" name="button1" value="GET_Request to Clock Serlet"  />
+            <br> <input type="reset" name="button2" value="CancelClicked"  />
+            <br> <a href="ClockS"> Go to Clock Servlet ... </a>
+        </form>
+        <br> <a href="CookieS"> Go to Cookies Servlet ... </a><br>
+        <a href="FourthServlet"> Go to FourthServlet ... </a><br>
+    </body>
+</html>
