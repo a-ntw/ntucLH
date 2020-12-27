@@ -83,7 +83,11 @@
             </c:forEach>  
 
         </c:if>
-            
+                  <%-- Redirect to EL_JSP.jsp
+        <%
+            request.getRequestDispatcher("EL_JSP.jsp").forward(request, response);
+            %> 
+                  --%>
         <br>
         <a href="/JSPDemo/SqlUser.jsp">Go back to SqlUser Page </a>
     </body>
