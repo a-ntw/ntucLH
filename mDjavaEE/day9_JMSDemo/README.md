@@ -26,10 +26,10 @@ weblogic.xml
 antw@Mac-mini day9_JMSDemo % 
 ```
 
-201227JmsDemo_Console.png <img src="day9_JMSDemo/images/201227JmsDemo_Console.png">
+201227JmsDemo_Console.png <img src="images/201227JmsDemo_Console.png">
 
-201227JmsDemo_TestMsg1.png <img src="day9_JMSDemo/images/201227JmsDemo_TestMsg1.png">
+201227JmsDemo_TestMsg1.png <img src="images/201227JmsDemo_TestMsg1.png">
 
-201227JmsDemo_TestMsg2.png <img src="day9_JMSDemo/images/201227JmsDemo_TestMsg2.png">
+201227JmsDemo_TestMsg2.png <img src="images/201227JmsDemo_TestMsg2.png">
 
-201227_JmsDemo_msgP.png <img src="day9_JMSDemo/images/201227_JmsDemo_msgP.png">
+201227_JmsDemo_msgP.png <img src="images/201227_JmsDemo_msgP.png">
