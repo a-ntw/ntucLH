@@ -27,7 +27,7 @@ public class PartyPlanProcessor implements MessageListener {
 
     @Override
     public void onMessage(Message message) {
-        System.out.println("******** from onMessage-1 ******");
+        System.out.println("******** from PartyPlanProcessor: 1 ******");
 
         try {
             System.out.println(message.getBody(String.class));

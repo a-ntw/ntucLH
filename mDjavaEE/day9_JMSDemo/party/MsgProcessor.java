@@ -16,7 +16,7 @@ public class MsgProcessor extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // do note "jms_messsage" has triple 's'
+        // do note "jms_messsage" has triple 's'. same as  in index.html
         String jmsMSG = request.getParameter("jms_messsage");
         if (jmsMSG != null) {
             System.out.println(" Received a JMS MSG to the Servlet");
