@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!--
+http://localhost:7001/wsDemo/webPush.html
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .a2 {animation: blinking 6s infinite;
+                font-size: 30px;}
+            @keyframes blinking {
+                0% {color: black;}
+                20% {color: grey;}
+                40% {color: saddlebrown;}
+                60% {color: forestgreen;}
+                80% {color: red;}
+                100% {color: magenta;}
+            }
+        </style>
+        <script language="javascript" type="text/javascript">
+
+            //var wsUri = "wss://echo.websocket.org/";
+            //var wsUri = "ws://localhost:7001/WSDemo/wsep";
+            var wsUri = "ws://localhost:7001/WSDemo/endpoint";
+
+            function init() {
+
+                websocket = new WebSocket(wsUri);
+                websocket.onopen = function (evt) {
+                    onOpen(evt)
+                };
+                websocket.onclose = function (evt) {
+                    onClose(evt)
+                };
+                websocket.onmessage = function (evt) {
+                    onMessage(evt)
+                };
+                websocket.onerror = function (evt) {
+                    onError(evt)
+                };
+                console.log("Web Socket Open ===>>>>  ");
+
+            }
+
+            function onOpen(evt) {
+                websocket.send("hello");
+                // complex processing.
+                console.log(" \n\t\t\t**** Sent Msg to Web Socket *** \n\n")
+            }
+
+            function onClose(evt) {
+                console.log("Web Socket Clsoed !!!!");
+            }
+
+            function onMessage(evt) {
+                console.log(" \n\t\t\t**** Received Msg from the Web Socket *** \n\n")
+                document.getElementById('rcvMsg').value = evt.data;
+                //     websocket.close();
+            }
+
+            function onError(evt) {
+                writeToScreen('<span style="color: red;"> Error with Web Socket !!!! Try Again :-) </span> ' + evt.data);
+            }
+
+
+            init();
+        </script>
+    </head>
+    <body>
+        <div>This page from webPush.html</div>
+
+        <h1 class="a2">WebSocket Test ==== Echo Server </h1>
+
+        <table border="2" style="width : 400px; height:150px;  text-align: center; vertical-align: middle;">
+            <tr>
+                <th> Receiving .... </th>
+            </tr>
+            <tr>
+                <td>
+                    <input  type="text" id="rcvMsg" width="200"/>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

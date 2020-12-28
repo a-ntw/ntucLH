@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<title>WebSocket Test</title>
+
+<script language="javascript" type="text/javascript">
+//var wsUri = "wss://echo.websocket.org/";
+var wsUri = "ws://localhost:7001/wsDemo/wsep";
+
+    function init() {
+        websocket = new WebSocket(wsUri);
+        websocket.onopen = function (evt) { onOpen(evt) };
+        websocket.onclose = function (evt) { onClose(evt) };
+        websocket.onmessage = function (evt) { onMessage(evt) };
+        websocket.onerror = function (evt) { onError(evt) };
+        console.log("Web Socket Open ===>>>>  ");
+    }
+
+    function onOpen(evt) {
+        var msg = document.getElementById('sendMsg').value;
+        websocket.send(msg.toUpperCase());
+        // complex processing.
+        console.log(" \n\t\t\t**** Sent Msg to Web Socket *** \n\n")
+    }
+
+    function onClose(evt) {
+        console.log("Web Socket Clsoed !!!!");
+    }
+
+//Chandra to Everyone (10:15 AM)
+    function onKeyUP(evt) {
+        var msg = document.getElementById('sendMsg').value;
+        websocket.send(msg);
+        // complex processing.
+        console.log(" \n\t\t\t**** Sent Msg to Web Socket *** \n\n")
+    }
+//Chandra to Everyone (10:15 AM)
+    function onMessage(evt) {
+        console.log(" \n\t\t\t**** Received Msg from the Web Socket *** \n\n")
+        var un = (evt.data+"").split(":");
+        document.getElementById('rcvMsg').value = un.shift();
+        document.getElementById('cntr').value = un.shift();
+//        document.getElementById('rcvMsg').value = evt.data;
+   //     websocket.close();
+    }
+
+    function onError(evt) {
+        writeToScreen('<span style="color: red;"> Error with Web Socket !!!! Try Again :-) </span> ' + evt.data);
+    }
+
+
+    init();
+</script>
+
+<div class="a2"><h1> Web Socket </h1> </div>
+
+<table border="2" style="width : 400px; height:150px;  text-align: center; vertical-align: middle;">
+    <tr>
+        <th> Sending .....</th>
+        <th> Receiving .... </th>
+    </tr>
+    <tr>
+        <td>
+            <input onkeyup="onKeyUP()" type="text" id="sendMsg" TABINDEX="1" />
+        </td>
+        <td>
+            <input  type="text" id="rcvMsg" />
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            Message Processed :: <input type="text" id="cntr" disabled />
+           
+        </td>
+    </tr>
+
+</table>
