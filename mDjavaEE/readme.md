@@ -4,10 +4,10 @@ ntuc Java E E
 
 | topics | Lession | Folder | img |
 | ---: | --- | --- | --- |
-|  01 EA3 | Day 1 | [ StockTicker.java ](https://github.com/alvintwng/ntucLH/blob/master/mDjavaEE/EA3/EA1-EJB1/src/java/com/ubs/StockTicker.java) |  |
-|  02 EA3 | Day 1 | [ firstServlet.java ](https://github.com/alvintwng/ntucLH/blob/master/mDjavaEE/EA3/EA1-WEB1/src/java/com/ubs/firstServlet.java) |  |
-|  03 software | Day 1 | [ day1_software.md ]( /mDjavaEE/day1_software.md) |  |
-|  04 software | Day 2 | [ day2_sessions.md ]( /mDjavaEE/day2_sessions.md) |  |
+|  01 install software | Day 1 | [ day1_software.md ]( /mDjavaEE/day1_software.md) |  |
+|  02 sessions | Day 2 | [ day2_sessions.md ]( /mDjavaEE/day2_sessions.md) |  |
+|  03 EA3 | Day 2 | [ StockTicker.java ](/mDjavaEE/EA3/EA1-EJB1/src/java/com/ubs/StockTicker.java) |  |
+|  04 EA3 | Day 2 | [ firstServlet.java ](/mDjavaEE/EA3/EA1-WEB1/src/java/com/ubs/firstServlet.java) | <img src="mDjavaEE/img/210103_day2FirstServlet.png" alt="210103_day2FirstServlet.png" height="72"> |
 |  05 Lab 3 | Day 3 | [ day3_labs3 ]( /mDjavaEE/day3_labs3) |  |
 |  06 Lab 4 | Day 4 | [ day4_labs4 ]( /mDjavaEE/day4_labs4) |  |
 |  07 Web | Day 6 | [ day5_web ]( /mDjavaEE/day5_web) |  |
