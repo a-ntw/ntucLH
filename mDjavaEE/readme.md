@@ -14,7 +14,7 @@ ntuc Java E E
 |  08 EJB Conversion | Day 6 | [ day6_EJBConvn ]( /mDjavaEE/day6_EJBConvn) | <img src="day6_EJBConvn/210103day6_conv.png" alt="210103day6_conv.png" height="144"> |
 |  09 Session Cookies | Day 6 | [ day6_session_cookies ]( /mDjavaEE/day6_session_cookies) | <img src="day6_session_cookies/201222_CoolieS.png" alt="201222_CoolieS.png" height="144"> |
 |  10 Authentication  | Day 7 | [ day7_AuthenTbl ]( /mDjavaEE/day7_AuthenTbl) | <img src="day7_AuthenTbl/201222_AuthN.png" alt="201222_AuthN.png" height="144"> |
-|  11 JSP Calculator | Day 7 | [ day7_JspCalculator ]( /mDjavaEE/day7_JspCalculator) |  |
+|  11 JSP Calculator | Day 7 | [ day7_JspCalculator ]( /mDjavaEE/day7_JspCalculator) | <img src="day7_JspCalculator/201222_calc.png" alt="201222_calc.png" height="144"> |
 |  12 JSP Demo   | Day 8 | [ day8_JspDemo ]( /mDjavaEE/day8_JspDemo) | <img src="day8_JspDemo/img/201226JspDemo_home.png" alt="201226JspDemo_home.png" height="144"> |
 |  13 JMS Message | Day 9 | [ day9_JMSDemo ]( /mDjavaEE/day9_JMSDemo) | <img src="day9_JMSDemo/images/201227JmsDemo_Console.png" alt="201227JmsDemo_Console.png" height="144"> |
 |  14 JMS Demo   | Day A | [ dayA_JMSDemo ]( /mDjavaEE/dayA_JMSDemo) | <img src="dayA_JMSDemo/images/201228JmsDemoMsg.png" alt="201228JmsDemoMsg.png" height="144"> |
