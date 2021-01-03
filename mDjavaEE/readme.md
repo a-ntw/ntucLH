@@ -11,7 +11,7 @@ ntuc Java E E
 |  05 Lab 3 | Day 3 | [ day3_labs3 ]( /mDjavaEE/day3_labs3) |  |
 |  06 Lab 4 | Day 4 | [ day4_labs4 ]( /mDjavaEE/day4_labs4) |  |
 |  07 Web | Day 6 | [ day5_web ]( /mDjavaEE/day5_web) | <img src="day5_web/helloServlet/img/210103day5SimpleServlet.png" alt="210103day5SimpleServlet.png" height="144"> |
-|  08 EJB Conversion | Day 6 | [ day6_EJBConvn ]( /mDjavaEE/day6_EJBConvn) |  |
+|  08 EJB Conversion | Day 6 | [ day6_EJBConvn ]( /mDjavaEE/day6_EJBConvn) | <img src="day6_EJBConvn/2012222_EJB_conv.png" alt="2012222_EJB_conv.png" height="144"> |
 |  09 Session Cookies | Day 6 | [ day6_session_cookies ]( /mDjavaEE/day6_session_cookies) |  |
 |  10 Authentication  | Day 7 | [ day7_AuthenTbl ]( /mDjavaEE/day7_AuthenTbl) | <img src="day7_AuthenTbl/201222_AuthN.png" alt="201222_AuthN.png" height="144"> |
 |  11 JSP Calculator | Day 7 | [ day7_JspCalculator ]( /mDjavaEE/day7_JspCalculator) |  |
