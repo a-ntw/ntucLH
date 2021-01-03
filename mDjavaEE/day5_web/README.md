@@ -13,7 +13,9 @@
     Clean and build > Deploy > index.html Run File
       http://localhost:7001/hs/
         Any changes in html, will show in browser.
-        
+
+210103_dat5RootContext.png <img src="helloServlet/img/210103_dat5RootContext.png">
+
 #### Servlet
     Select File > New File
     Select **Web** and **Servlet**
@@ -70,6 +72,7 @@ public class SimpleServlet extends HttpServlet {
     }
 }
 ```
+210103day5SimpleServlet.png <img src="helloServlet/img/210103day5SimpleServlet.png">
 
 ### GET or POST
 #### ThirdServer.java
@@ -151,27 +154,8 @@ edit [ThirdServlet.java](/mDjavaEE/day5_web/WebApplication1/dbs/ThirdServlet.jav
         }
     }
 ```
+210103_day5ThirdServlet.png <img src="helloServlet/img/210103_day5ThirdServlet.png">
 
-
-
-#### ClockServlet
-    Select File > New File
-    Select Web and Servlet
-      Name and Locatiom
-        Class Name: ClockServlet
-        Package: com.dbs
-    Configure Servlet Deployment
-      Select `Add information to web.xml`
-      URL Patterns(s): /cs
-    modify index.html
-      <a href="cs"> Go to ClockServlet ... </a>
-
-edit [ClockServlet.java](/mDjavaEE/day5_web/helloServlet/dbs/ClockServlet.java) at processRequest, session
-``` java
-response.setIntHeader("Refresh",1); // refresh every 1 sec
-...
-out.println("<h1> " + LocalDateTime.now() + "</h1>");
-```
 
 #### Dynamic input for ThirdServlet
 edit index.html
@@ -223,6 +207,27 @@ edit [ThirdServlet.java](/mDjavaEE/day5_web/helloServlet/dbs/ThirdServlet.java),
         }
     }
 ```
+
+#### ClockServlet
+    Select File > New File
+    Select Web and Servlet
+      Name and Locatiom
+        Class Name: ClockServlet
+        Package: com.dbs
+    Configure Servlet Deployment
+      Select `Add information to web.xml`
+      URL Patterns(s): /cs
+    modify index.html
+      <a href="cs"> Go to ClockServlet ... </a>
+
+edit [ClockServlet.java](/mDjavaEE/day5_web/helloServlet/dbs/ClockServlet.java) at processRequest, session
+``` java
+response.setIntHeader("Refresh",1); // refresh every 1 sec
+...
+out.println("<h1> " + LocalDateTime.now() + "</h1>");
+```
+210103day5ClockServlet.png <img src="helloServlet/img/210103day5ClockServlet.png">
+
 #### Enumeration
     Select File > New File
     Select Web and Servlet
@@ -287,6 +292,7 @@ edit [EnumServlet.java](/mDjavaEE/day5_web/helloServlet/dbs/EnumServlet.java), m
             session.setAttribute("ivar", i);
             session.setAttribute("jvar", j);
 ```
+210103day5_SessionParam.png <img src="helloServlet/img/210103day5_SessionParam.png">
 
 #### LogServlet.java
 added Init(), destroy() , constructor 
@@ -330,6 +336,7 @@ Start Server
 	click LogServlet
 	should show loging statement
 
+210103_day5LogServlet.png <img src="helloServlet/img/210103_day5LogServlet.png">
 
 #### Others
 
