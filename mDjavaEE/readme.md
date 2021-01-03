@@ -12,7 +12,7 @@ ntuc Java E E
 |  06 Lab 4 | Day 4 | [ day4_labs4 ]( /mDjavaEE/day4_labs4) |  |
 |  07 Web | Day 6 | [ day5_web ]( /mDjavaEE/day5_web) | <img src="day5_web/helloServlet/img/210103day5SimpleServlet.png" alt="210103day5SimpleServlet.png" height="144"> |
 |  08 EJB Conversion | Day 6 | [ day6_EJBConvn ]( /mDjavaEE/day6_EJBConvn) | <img src="day6_EJBConvn/210103day6_conv.png" alt="210103day6_conv.png" height="144"> |
-|  09 Session Cookies | Day 6 | [ day6_session_cookies ]( /mDjavaEE/day6_session_cookies) |  |
+|  09 Session Cookies | Day 6 | [ day6_session_cookies ]( /mDjavaEE/day6_session_cookies) | <img src="day6_session_cookies/201222_CoolieS.png" alt="201222_CoolieS.png" height="144"> |
 |  10 Authentication  | Day 7 | [ day7_AuthenTbl ]( /mDjavaEE/day7_AuthenTbl) | <img src="day7_AuthenTbl/201222_AuthN.png" alt="201222_AuthN.png" height="144"> |
 |  11 JSP Calculator | Day 7 | [ day7_JspCalculator ]( /mDjavaEE/day7_JspCalculator) |  |
 |  12 JSP Demo   | Day 8 | [ day8_JspDemo ]( /mDjavaEE/day8_JspDemo) | <img src="day8_JspDemo/img/201226JspDemo_home.png" alt="201226JspDemo_home.png" height="144"> |
