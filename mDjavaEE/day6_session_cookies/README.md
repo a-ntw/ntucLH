@@ -1,19 +1,25 @@
 ## day6Prac
-Create new project
-  Project Namr: day6Prac
-  Context Path: /day6Parc
+
+    Create new project
+      Project Namr: day6Prac
+      Context Path: /day6Parc
 
 For html pages pr images, need to be outside the Web-inf
 
-images folder 
-  day6Prac/Web Pages > right-click > New Folder 
-  Folder Name: images
-  
+    images folder 
+      day6Prac/Web Pages > right-click > New Folder 
+      Folder Name: images
+
+201222_ContextS.png <img src="201222_ContextS.png">  
+
 #### AboutCookie
-  New File > Web Servlet > 
+
+    New File > Web Servlet > 
     Class Name: LoginS
     Package:  com.dbs
-    
+
+201222_CoolieS.png <img src="201222_CoolieS.png">  
+
 #### edit Index.html
 ``` hmtl
     <body>
@@ -25,6 +31,9 @@ images folder
         </form>
     </body>
 ```
+
+201222_index.png <img src="201222_index.png">  
+
 #### edit LoginS.java
 ``` java
             out.println("<body>");
@@ -41,26 +50,30 @@ images folder
             out.println(" <a href='/AboutCookie/welcome.html'> Click here to continue </a> ");
             out.println("</body>");
 ```
-Clean and Build > Deploy
+    Clean and Build > Deploy
 
 #### Browser 
-> Right-Click > Inspect > Application > shown the Cookies 
+
+    > Right-Click > Inspect > Application > shown the Cookies 
 
 #### WebLogic
-Services > Oracle WebLogic Server > View Admin Console
-> Deployment > day6Parc
-> Monitoring > session > shown the sessions ??
+
+    Services > Oracle WebLogic Server > View Admin Console
+    > Deployment > day6Parc
+    > Monitoring > session > shown the sessions ??
 
 
 #### Welcome.html
-New Html > 
-HTML File Name: Welcome
-> save files
+
+    New Html > 
+    HTML File Name: Welcome
+    > save files
 
 ### ClockServlet
-New Servlet >
-Class Name : ClockS
-Package: com.dbs
+
+    New Servlet >
+    Class Name : ClockS
+    Package: com.dbs
 ``` java
             HttpSession session = request.getSession(true);
             String num1 = request.getParameter("ivar");
@@ -88,6 +101,9 @@ edit index.html
             <br> <a href="ClockS"> Go to Clock Servlet ... </a>
         </form>
 ```
+201222_ClockS.png <img src="201222_ClockS.png">  
 
 
+201222_FourthS.png <img src="201222_FourthS.png">  
 
+---
