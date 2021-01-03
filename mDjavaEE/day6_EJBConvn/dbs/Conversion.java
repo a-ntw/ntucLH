@@ -1,3 +1,4 @@
+
 package com.dbs;
 
 import com.logic.ConversionSLSBLocal;
@@ -10,17 +11,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class Conversion extends HttpServlet {
-
     double cel, fah, kel;
 
     @EJB
     ConversionSLSBLocal conv;
-
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-
+            /* TODO output your page here. You may use following sample code. */
             String celStr = request.getParameter("cel");
             String fahStr = request.getParameter("fah");
             String kelStr = request.getParameter("kel");
@@ -41,11 +41,11 @@ public class Conversion extends HttpServlet {
                 cel = conv.convert_K2C(kel);
                 fah = conv.convert_K2F(kel);
             }
-
+            
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Conversion</title>");
+            out.println("<title>Servlet Conversion</title>");            
             out.println("</head>");
             out.println("<body>");
             out.println("     \n"

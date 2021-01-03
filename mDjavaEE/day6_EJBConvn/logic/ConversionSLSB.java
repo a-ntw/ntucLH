@@ -5,7 +5,6 @@ import javax.ejb.Stateless;
 
 @Stateless
 public class ConversionSLSB implements ConversionSLSBLocal {
-
     @Override
     public double convert_C2K(double val) {
         return val + 273.15;
@@ -35,12 +34,4 @@ public class ConversionSLSB implements ConversionSLSBLocal {
     public double convert_K2F(double kel) {
         return (kel -273.15) * 9/5 + 32;
     }
-    
-    
-
-
-    
-    
-    
-    
 }
