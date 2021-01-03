@@ -20,6 +20,9 @@ ntuc Java E E
 |  14 JMS Demo   | Day A | [ dayA_JMSDemo ]( /mDjavaEE/dayA_JMSDemo) | <img src="dayA_JMSDemo/images/201228JmsDemoMsg.png" alt="201228JmsDemoMsg.png" height="144"> |
 |  15 Web Socket | Day A | [ dayA_webSocket ]( /mDjavaEE/dayA_webSocket) | <img src="dayA_webSocket/img/201228wsDemo_WebSocket.png" alt="201228wsDemo_WebSocket.png" height="144"> |
 |  16 chandra | Day A | [ chandra ]( /mDjavaEE/chandra) |  |
+|  17 Singleton | Day - | [ MySingleton.md ]( /mDjavaEE/chandra/MySingleton.md) | <img src="/mDjavaEE/chandra/img/210104ChanSingleton.png" alt="210104ChanSingleton.png" height="144"> |
+|  18 SFSB | Day - | [ StatefulBean.md ]( /mDjavaEE/chandra/StatefulBean.md) | <img src="/mDjavaEE/chandra/img/210104ChanSFSB.png" alt="210104ChanSingleton.png" height="144"> |
+|  19 JSF | Day - | [  ]( /mDjavaEE/chandra) |  |
 
 [:top: Top](#top)
 
