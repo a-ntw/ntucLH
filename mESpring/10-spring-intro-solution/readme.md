@@ -1,7 +1,7 @@
 ### RewardNetworkImpl.java
 
 
-rewardAccountForDining-sequence-color.png <img src="rewardAccountForDining-sequence-color.png">
+
 
 
 ``` java
@@ -44,3 +44,4 @@ public class RewardNetworkImpl implements RewardNetwork {
 	}
 }
 ```
+rewardAccountForDining-sequence-color.png <img src="rewardAccountForDining-sequence-color.png">
