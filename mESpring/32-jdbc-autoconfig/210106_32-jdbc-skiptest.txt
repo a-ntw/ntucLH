@@ -1,0 +1,74 @@
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] 00-rewards-common                                                  [jar]
+[INFO] 32-jdbc-autoconfig                                                 [jar]
+[INFO] 
+[INFO] ---------< io.pivotal.education.core-spring:00-rewards-common >---------
+[INFO] Building 00-rewards-common 5.0.c.RELEASE                           [1/2]
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:3.1.0:clean (default-clean) @ 00-rewards-common ---
+[INFO] Deleting /Users/antw/ntuc/mESpring/core-spring-labfiles/lab/00-rewards-common/target
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:resources (default-resources) @ 00-rewards-common ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 6 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:compile (default-compile) @ 00-rewards-common ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 8 source files to /Users/antw/ntuc/mESpring/core-spring-labfiles/lab/00-rewards-common/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:testResources (default-testResources) @ 00-rewards-common ---
+[INFO] Not copying test resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:testCompile (default-testCompile) @ 00-rewards-common ---
+[INFO] Not compiling test sources
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.22.2:test (default-test) @ 00-rewards-common ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- maven-jar-plugin:3.1.1:jar (default-jar) @ 00-rewards-common ---
+[INFO] Building jar: /Users/antw/ntuc/mESpring/core-spring-labfiles/lab/00-rewards-common/target/00-rewards-common-5.0.c.RELEASE.jar
+[INFO] 
+[INFO] --------< io.pivotal.education.core-spring:32-jdbc-autoconfig >---------
+[INFO] Building 32-jdbc-autoconfig 5.0.c.RELEASE                          [2/2]
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:3.1.0:clean (default-clean) @ 32-jdbc-autoconfig ---
+[INFO] Deleting /Users/antw/ntuc/mESpring/core-spring-labfiles/lab/32-jdbc-autoconfig/target
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:resources (default-resources) @ 32-jdbc-autoconfig ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 3 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:compile (default-compile) @ 32-jdbc-autoconfig ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 18 source files to /Users/antw/ntuc/mESpring/core-spring-labfiles/lab/32-jdbc-autoconfig/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:testResources (default-testResources) @ 32-jdbc-autoconfig ---
+[INFO] Not copying test resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:testCompile (default-testCompile) @ 32-jdbc-autoconfig ---
+[INFO] Not compiling test sources
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.22.2:test (default-test) @ 32-jdbc-autoconfig ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- maven-jar-plugin:3.1.1:jar (default-jar) @ 32-jdbc-autoconfig ---
+[INFO] Building jar: /Users/antw/ntuc/mESpring/core-spring-labfiles/lab/32-jdbc-autoconfig/target/32-jdbc-autoconfig-5.0.c.RELEASE.jar
+[INFO] 
+[INFO] --- spring-boot-maven-plugin:2.3.1.RELEASE:repackage (repackage) @ 32-jdbc-autoconfig ---
+[INFO] Replacing main artifact with repackaged archive
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary:
+[INFO] 
+[INFO] 00-rewards-common 5.0.c.RELEASE .................... SUCCESS [  1.586 s]
+[INFO] 32-jdbc-autoconfig 5.0.c.RELEASE ................... SUCCESS [  0.833 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 3.778 s
+[INFO] Finished at: 2021-01-06T23:22:41+08:00
+[INFO] ------------------------------------------------------------------------

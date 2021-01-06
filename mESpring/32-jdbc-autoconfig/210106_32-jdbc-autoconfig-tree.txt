@@ -1,0 +1,54 @@
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] 00-rewards-common                                                  [jar]
+[INFO] 32-jdbc-autoconfig                                                 [jar]
+[INFO] 
+[INFO] ---------< io.pivotal.education.core-spring:00-rewards-common >---------
+[INFO] Building 00-rewards-common 5.0.c.RELEASE                           [1/2]
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:3.1.2:tree (default-cli) @ 00-rewards-common ---
+[INFO] io.pivotal.education.core-spring:00-rewards-common:jar:5.0.c.RELEASE
+[INFO] +- org.springframework.boot:spring-boot-starter:jar:2.3.1.RELEASE:compile
+[INFO] |  +- org.springframework.boot:spring-boot:jar:2.3.1.RELEASE:compile
+[INFO] |  |  \- org.springframework:spring-context:jar:5.2.7.RELEASE:compile
+[INFO] |  |     +- org.springframework:spring-aop:jar:5.2.7.RELEASE:compile
+[INFO] |  |     \- org.springframework:spring-expression:jar:5.2.7.RELEASE:compile
+[INFO] |  \- org.springframework:spring-core:jar:5.2.7.RELEASE:compile
+[INFO] |     \- org.springframework:spring-jcl:jar:5.2.7.RELEASE:compile
+[INFO] +- org.springframework.boot:spring-boot-starter-test:jar:2.3.1.RELEASE:test
+[INFO] |  \- org.springframework:spring-test:jar:5.2.7.RELEASE:test
+[INFO] \- org.springframework:spring-jdbc:jar:5.2.7.RELEASE:compile
+[INFO]    +- org.springframework:spring-beans:jar:5.2.7.RELEASE:compile
+[INFO]    \- org.springframework:spring-tx:jar:5.2.7.RELEASE:compile
+[INFO] 
+[INFO] --------< io.pivotal.education.core-spring:32-jdbc-autoconfig >---------
+[INFO] Building 32-jdbc-autoconfig 5.0.c.RELEASE                          [2/2]
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:3.1.2:tree (default-cli) @ 32-jdbc-autoconfig ---
+[INFO] io.pivotal.education.core-spring:32-jdbc-autoconfig:jar:5.0.c.RELEASE
+[INFO] +- org.springframework.boot:spring-boot-starter:jar:2.3.1.RELEASE:compile
+[INFO] |  +- org.springframework.boot:spring-boot:jar:2.3.1.RELEASE:compile
+[INFO] |  |  \- org.springframework:spring-context:jar:5.2.7.RELEASE:compile
+[INFO] |  |     +- org.springframework:spring-aop:jar:5.2.7.RELEASE:compile
+[INFO] |  |     \- org.springframework:spring-expression:jar:5.2.7.RELEASE:compile
+[INFO] |  \- org.springframework:spring-core:jar:5.2.7.RELEASE:compile
+[INFO] |     \- org.springframework:spring-jcl:jar:5.2.7.RELEASE:compile
+[INFO] +- org.springframework:spring-jdbc:jar:5.2.7.RELEASE:compile
+[INFO] |  +- org.springframework:spring-beans:jar:5.2.7.RELEASE:compile
+[INFO] |  \- org.springframework:spring-tx:jar:5.2.7.RELEASE:compile
+[INFO] \- org.springframework:spring-test:jar:5.2.7.RELEASE:compile
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary:
+[INFO] 
+[INFO] 00-rewards-common 5.0.c.RELEASE .................... SUCCESS [  0.869 s]
+[INFO] 32-jdbc-autoconfig 5.0.c.RELEASE ................... SUCCESS [  0.064 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 2.685 s
+[INFO] Finished at: 2021-01-06T13:37:49+08:00
+[INFO] ------------------------------------------------------------------------

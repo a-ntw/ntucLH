@@ -1,0 +1,2183 @@
+From: <Saved by Blink>
+Snapshot-Content-Location: https://courses.education.pivotal.io/by/code:spring-core/version:latest/boot/spring-boot-autoconfiguration/spring-boot-autoconfiguration.html
+Subject: Core Spring - Spring Boot Starters, Auto-configuration and Runtime
+Date: Wed, 6 Jan 2021 15:35:36 -0000
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----MultipartBoundary--tlgNZB0tE8trucjPErojLvMPfz5rrhcMsuf9Be7NVJ----"
+
+
+------MultipartBoundary--tlgNZB0tE8trucjPErojLvMPfz5rrhcMsuf9Be7NVJ----
+Content-Type: text/html
+Content-ID: <frame-D645DCD1FCFB9F9B2D5ED9FA6DBCF5A2@mhtml.blink>
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://courses.education.pivotal.io/by/code:spring-core/version:latest/boot/spring-boot-autoconfiguration/spring-boot-autoconfiguration.html
+
+<!DOCTYPE html><html lang=3D"en" xmlns=3D"http://www.w3.org/1999/xhtml"><he=
+ad><meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8"=
+><link rel=3D"stylesheet" type=3D"text/css" href=3D"cid:css-6350f14a-2eb0-4=
+807-a7f4-0e8101ae60ec@mhtml.blink" />
+
+<meta name=3D"course version" content=3D"1.12.1">
+<meta name=3D"generator" content=3D"io.pivotal.pal.shipkin:shipkin-plugin:8=
+.10.0, https://github.com/platform-acceleration-lab/shipkin">
+<meta name=3D"generated on" content=3D"2020-11-13T20:59:12.669Z">
+<meta name=3D"theme-color" content=3D"#34302d">
+
+
+
+<meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D1"=
+>
+
+<title>Core Spring - Spring Boot Starters, Auto-configuration and Runtime</=
+title>
+
+<link rel=3D"icon" href=3D"https://courses.education.pivotal.io/by/code:spr=
+ing-core/version:latest/theme-images/favicon.png">
+
+<link rel=3D"stylesheet" href=3D"https://courses.education.pivotal.io/by/co=
+de:spring-core/version:latest/css/reset.css">
+<link rel=3D"stylesheet" href=3D"https://courses.education.pivotal.io/by/co=
+de:spring-core/version:latest/css/theme.css">
+<link rel=3D"stylesheet" href=3D"https://courses.education.pivotal.io/by/co=
+de:spring-core/version:latest/css/highlight.js.min.css">
+<link rel=3D"stylesheet" href=3D"https://courses.education.pivotal.io/by/co=
+de:spring-core/version:latest/css/github.css">
+
+
+
+
+<link rel=3D"stylesheet" href=3D"https://courses.education.pivotal.io/by/co=
+de:spring-core/version:latest/css/custom.css">
+</head>
+<body>
+
+
+<header>
+    <div class=3D"container">
+        <a id=3D"spring-logo" href=3D"https://courses.education.pivotal.io/=
+by/code:spring-core/version:latest/"><span></span></a>
+
+        <p>
+            Customer agrees that the <a rel=3D"noreferrer noopener" href=3D=
+"https://pivotal.io/svcs-terms">Professional
+                Services Terms and Conditions</a>
+            and the <a rel=3D"noreferrer noopener" href=3D"https://pivotal.=
+io/training/terms">Education
+                And Training Services Terms Of Use</a>
+            are incorporated by reference into this Data Sheet and shall
+            govern the provision of the Pivotal Services and content
+            accessible from this
+            page. Customer may not record or reproduce the training in
+            any medium. Customer may not copy, reproduce, or distribute
+            or otherwise share the
+            training materials in any capacity.
+        </p>
+    </div>
+</header>
+
+<div class=3D"container title">
+    <h1>Spring Boot Starters, Auto-configuration and Runtime</h1>
+</div>
+
+
+<a class=3D"feedback" href=3D"https://docs.google.com/forms/d/1EI7PkShHp5Fo=
+KHcfYX_eVWJfMtxE-tFTWCPr7H6zodA/viewform?entry.1915922799=3Dhttps://courses=
+.education.pivotal.io/by/code:spring-core/version:latest/boot/spring-boot-a=
+utoconfiguration/spring-boot-autoconfiguration.html" data-url-field=3D"entr=
+y.1915922799" target=3D"_blank" rel=3D"noreferrer noopener">
+    feedback
+</a>
+
+<main id=3D"main">
+
+    <div id=3D"content" class=3D"container">
+        <article>
+ <h1 id=3D"purpose">Purpose</h1>
+<p>In this lab you will go a level deeper into core Spring Boot concepts
+while "Bootifying" a previous version of the Rewards application.</p>
+<h1 id=3D"learning-outcomes">Learning Outcomes</h1>
+<p>What you will learn about Spring Boot:</p>
+<ol>
+<li>
+<p>Dependency Management</p>
+</li>
+<li>
+<p>Auto-configuration</p>
+</li>
+<li>
+<p>Packaging &amp; Runtime</p>
+</li>
+<li>
+<p>Spring Boot Testing</p>
+</li>
+</ol>
+<p>Specific subjects you will gain experience with:</p>
+<ol>
+<li>
+<p>Spring Boot Starter Bill-of-Materials (BOMs)</p>
+</li>
+<li>
+<p>Datasource Auto-configuration</p>
+</li>
+<li>
+<p>Application deployment artifact packaging</p>
+</li>
+<li>
+<p>Simple application runtime with <code>CommandLineRunner</code></p>
+</li>
+<li>
+<p>Simple <code>SpringBootTest</code></p>
+</li>
+</ol>
+<p>You will be using the <em>32-jdbc-autoconfig</em> project.</p>
+<p>Estimated time to complete:
+45 minutes.</p>
+<h1 id=3D"use-case">Use Case</h1>
+<p>Take a Spring application using JDBC and convert it to a Spring Boot
+application.</p>
+<p>The application builds the data access layer using a <code>Datasource</c=
+ode> and a
+<code>JdbcTemplate</code>. JDBC implementations of the <code>AccountReposit=
+ory</code>,
+<code>CustomerRepository</code> and <code>RewardRepository</code> have been=
+ implemented
+for you.</p>
+<p>You will alter that application in three ways:</p>
+<ol>
+<li>
+<p><em>Bootify</em> the application, meaning you will wrap the application
+with Spring Boot, and demonstrate how Spring Boot simplifies your
+development experience through starters and auto-configuration.</p>
+</li>
+<li>
+<p><em>Bootify</em> the application's integration test.</p>
+</li>
+<li>
+<p>Add a <code>CommandLineRunner</code> to demonstrate how Spring Boot can =
+package
+and run an application with no additional runtime dependencies.</p>
+</li>
+<li>
+<p>Demonstrate how to exclude an auto-configuration.</p>
+</li>
+<li>
+<p>Demonstrate external configuration.</p>
+</li>
+</ol>
+<h1 id=3D"getting-started">Getting Started</h1>
+<p>You will start with the <code>32-jdbc-autoconfig</code> project.</p>
+<p>You will also need a Terminal or Command window to run Maven or Gradle m=
+anually -
+IntelliJ/Eclipse/STS support a terminal window within the IDE.</p>
+<p>Navigate to the parent directory containing the course projects (this
+is the <code>lab</code> directory of the code you cloned/unzipped from gith=
+ub).</p>
+<h1 id=3D"quick-instructions">Quick Instructions</h1>
+<p>If you are already knowledgeable with the lesson concepts, you may
+consider jumping right to the code, and execute the lab in the form of
+embedded TODO comments.
+Instructions on how to view them are
+<a href=3D"https://courses.education.pivotal.io/by/code:spring-core/version=
+:latest/appendix/appendix-tasks.html" rel=3D"noreferrer noopener">here</a>.=
+</p>
+<p>If you aren=E2=80=99t sure, try the TODO instructions first and refer to=
+ the
+lab instructions by TODO number if you need more help.</p>
+<h1 id=3D"instructions">Instructions</h1>
+<h2 id=3D"review-of-a-spring-app---dependencies">Review of a Spring App - D=
+ependencies</h2>
+<ul>
+<li>
+<p>Navigate to the project, and run the full suite of tests to verify
+the build is successful and tests pass.</p>
+</li>
+<li>
+<p>Examine the <code>pom.xml</code> or <code>build.gradle</code> file of
+the project.
+What do you see for the project dependencies?</p>
+<ul>
+<li>You should see a set of libraries covering Spring Framework,
+JDBC and HSQLDB database</li>
+<li>You should also see a set of libraries for Testing</li>
+</ul>
+</li>
+</ul>
+<h2 id=3D"bootify-your-spring-app">Bootify your Spring App</h2>
+<p>In this section we will wrap our app with Spring Boot.</p>
+<h3 id=3D"refactor-to-starters">Refactor to Starters</h3>
+<p>Part of the value point of Spring Boot is <em>simplified dependency
+management</em>.
+In this section, you will refactor from discrete Spring Framework and
+3rd party dependencies to the Spring Boot Starters.</p>
+<ul>
+<li>
+<p>In your Terminal/Command window, run Maven goal or Gradle
+task for displaying dependencies.
+(The example commands below assume you are running them
+at the <code>lab</code> directory.)</p>
+<pre><code class=3D"language-bash hljs">Windows: mvnw -pl *-common -pl *jdb=
+c-autoconfig dependency:tree -Dincludes=3Dorg.springframework
+Linux/MacOS: ./mvnw -pl *-common -pl *jdbc-autoconfig dependency:tree -Dinc=
+ludes=3Dorg.springframework
+</code></pre>
+<pre><code class=3D"language-bash hljs">Windows: gradlew :32-jdbc-autoconfi=
+g:dependencies --configuration compileClasspath -Dincludes=3Dorg.springfram=
+ework
+Linux:MacOS: ./gradlew :32-jdbc-autoconfig:dependencies --configuration com=
+pileClasspath -Dincludes=3Dorg.springframework
+</code></pre>
+</li>
+<li>
+<p>What dependencies do you see for the <code>jdbc-autoconfig</code> projec=
+t?</p>
+<ul>
+<li>You should see dependencies for Spring JDBC and Spring Test and
+all their transitive dependencies.</li>
+<li>You will also see the <code>spring-boot-starter</code> as this is requi=
+red
+for <code>SpringApplication.run()</code> whether you use the rest of
+Spring Boot or not.</li>
+</ul>
+</li>
+</ul>
+<p><strong>TODO-01</strong> : Add Spring Boot Plugin:</p>
+<ul>
+<li>
+<p>Add the Spring Boot plugin to the project's <code>pom.xml</code> or
+<code>build.gradle</code> file</p>
+<pre><code class=3D"language-xml hljs"><span class=3D"hljs-tag">&lt;<span c=
+lass=3D"hljs-name">build</span>&gt;</span>
+    <span class=3D"hljs-tag">&lt;<span class=3D"hljs-name">plugins</span>&g=
+t;</span>
+        <span class=3D"hljs-tag">&lt;<span class=3D"hljs-name">plugin</span=
+>&gt;</span>
+            <span class=3D"hljs-tag">&lt;<span class=3D"hljs-name">groupId<=
+/span>&gt;</span>org.springframework.boot<span class=3D"hljs-tag">&lt;/<spa=
+n class=3D"hljs-name">groupId</span>&gt;</span>
+            <span class=3D"hljs-tag">&lt;<span class=3D"hljs-name">artifact=
+Id</span>&gt;</span>spring-boot-maven-plugin<span class=3D"hljs-tag">&lt;/<=
+span class=3D"hljs-name">artifactId</span>&gt;</span>
+        <span class=3D"hljs-tag">&lt;/<span class=3D"hljs-name">plugin</spa=
+n>&gt;</span>
+    <span class=3D"hljs-tag">&lt;/<span class=3D"hljs-name">plugins</span>&=
+gt;</span>
+<span class=3D"hljs-tag">&lt;/<span class=3D"hljs-name">build</span>&gt;</s=
+pan>
+</code></pre>
+<pre><code class=3D"hljs groovy">apply <span class=3D"hljs-string">plugin:<=
+/span> <span class=3D"hljs-string">"org.springframework.boot"</span>
+</code></pre>
+<p>What does the Spring Boot plugin do for you?</p>
+<p>You will see, as we build the project, Spring Boot plugin will
+generate the runtime deployment artifact for you through the
+<code>repackage</code> goal for Maven and the <code>bootJar</code> task for=
+ Gradle.
+The <code>repackage</code> goal is run as part of the Maven <code>package</=
+code>
+goal and the <code>bootJar</code> task is run as part of Gradle <code>assem=
+ble</code> task.</p>
+<p>You will see this in action later in this lab.</p>
+</li>
+</ul>
+<p><strong>TODO-02</strong> : Refactor to Spring Boot Starters:</p>
+<ol>
+<li>
+<p>Remove the Spring JDBC and Spring Test dependencies from
+the project's <code>pom.xml</code> or <code>build.gradle</code> file.</p>
+</li>
+<li>
+<p>Add the Spring Boot Starters for:</p>
+<ul>
+<li>JDBC</li>
+<li>Testing (only for Maven)</li>
+</ul>
+<p>Hint:
+If you need help to understand the starter dependencies,
+take a look
+at the <em>Spring Boot Intro</em> lab <code>pom.xml</code> or
+<code>build.gradle</code> that was generated by the
+Spring Initializr.</p>
+</li>
+</ol>
+<ul>
+<li>
+<p>Rerun the maven <code>dependency:tree</code> Maven goal or
+<code>dependencies</code> Gradle task for the project:</p>
+</li>
+<li>
+<p>What dependencies do you see now?</p>
+<ul>
+<li>You should now see the Boot starter dependencies instead.</li>
+</ul>
+</li>
+</ul>
+<p>Typically your Spring Boot <code>pom.xml</code> or <code>build.gradle</c=
+ode> file
+is simpler than the original
+but this example is sufficiently simple that there is little difference.</p=
+>
+<h3 id=3D"create-a-spring-boot-application">Create a Spring Boot Applicatio=
+n</h3>
+<p>Start with creation of the Spring Boot application:</p>
+<p><strong>TODO-03</strong> : Turn the <code>RewardsApplication</code> into=
+ a Spring Boot
+application:</p>
+<ol>
+<li>
+<p>You already have a <code>RewardsApplication</code> class provided for yo=
+u.
+This is the shell for the Spring Boot application.</p>
+</li>
+<li>
+<p>Annotate the <code>RewardsApplication</code> class accordingly.</p>
+<p>What exactly does the annotation do?</p>
+<blockquote>
+<p><strong>Hint:</strong> In your IDE, look at a decompiled version of the
+<code>@SpringBootApplication</code> annotation. (Or look at the
+Javadoc of the annotation.)</p>
+</blockquote>
+</li>
+<li>
+<p>Notice that a <code>main()</code> method has already been defined and th=
+e Spring
+boot classes initialized using <code>SpringApplication.run</code></p>
+</li>
+</ol>
+<p><strong>TODO-04</strong> : Let Spring Boot execute database scripts</p>
+<ol>
+<li>
+<p>Move the <code>schema.sql</code> and <code>data.sql</code> files in the
+<code>src/test/resources/rewards.testdb</code> directory to the
+<code>src/main/resources/</code> directory.</p>
+<p>Why are you doing this?</p>
+<ul>
+<li>
+<p>You are refactoring the directory structure to the default that
+Spring Boot expects for its life-cycle initialization -
+specifically for automatic database initialization.</p>
+<p>In the non-Spring Boot version, the <code>EmbeddedDatabaseBuilder</code>=
+ in
+<code>SystemTestConfig</code> can specify where the SQL initialization file=
+s
+are found.</p>
+<p>In Spring Boot applications, the default files are <code>schema.sql</cod=
+e>
+and <code>data.sql</code> and they must be in the classpath root.</p>
+<blockquote>
+<p><strong>Note:</strong> You may choose to specify these files using
+properties (as described in the slides).</p>
+</blockquote>
+</li>
+<li>
+<p>The starting point of the project does not have a runner, so the
+files originally were provided to set up a test data fixture.</p>
+<p>You are moving the files from <code>test/resources</code> to <code>main/=
+resources</code>
+so you can use the same files in the application runtime to
+demonstrate the <code>CommandLineRunner</code>.</p>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>TODO-05</strong> : Setup a command line runner to print the Rewa=
+rd account
+count:</p>
+<ol>
+<li>
+<p>Implement a <code>CommandLineRunner</code> in your <code>RewardsApplicat=
+ion</code> class.
+Remember it must be configured as a Spring bean.</p>
+</li>
+<li>
+<p>Add code to use a <code>JdbcTemplate</code> to query the number of accou=
+nts
+using <code>SQL</code> query string already declared in the class.
+Request the result as a <code>Long</code> and assign it to <code>numberOfAc=
+counts</code>.
+Remember Spring Boot will auto-configure a <code>JdbcTemplate</code> bean f=
+or you
+automatically.</p>
+</li>
+<li>
+<p>Use the provided <code>logger</code> to log the returned number of accou=
+nts
+at <code>info</code> level- something like following:</p>
+<pre><code class=3D"hljs ruby">logger.info(<span class=3D"hljs-string">"Num=
+ber of accounts: {}"</span> , numberOfAccounts);
+</code></pre>
+</li>
+</ol>
+<p>The Spring Boot <code>CommandLineRunner</code> and <code>ApplicationRunn=
+er</code> abstractions
+are guaranteed to run <em>at most once</em> before
+<code>SpringApplication.run()</code> method returns.
+Multiple runners may be configured, and can be ordered with the <code>@Orde=
+r</code>
+annotation.</p>
+<h3 id=3D"capture-properties-into-a-class">Capture properties into a class<=
+/h3>
+<p><strong>TODO-06</strong> : Use <code>@ConfigurationProperties</code> to =
+capture properties</p>
+<p>Spring Boot <code>@ConfigurationProperties</code> allows developer to ma=
+p
+properties, especially properties with hierarchical structure,
+into a class.</p>
+<ol>
+<li>
+<p>Note that <code>application.properties</code> file already contains
+the following properties</p>
+<pre><code class=3D"hljs">rewards.recipient.name=3DJohn Doe
+rewards.recipient.age=3D10
+rewards.recipient.gender=3DMale
+rewards.recipient.hobby=3DTennis
+</code></pre>
+</li>
+<li>
+<p>Annotate <code>RewardsRecipientProperties</code> class with
+<code>@ConfigurationProperties</code>
+with <code>prefix</code> attribute set to <code>rewards.recipient</code></p=
+>
+</li>
+<li>
+<p>Create fields (along with needed getters/setters) that reflect
+the properties above in the <code>RewardsRecipientProperties</code> class</=
+p>
+<pre><code class=3D"language-java hljs"><span class=3D"hljs-meta">@Configur=
+ationProperties</span>(prefix =3D <span class=3D"hljs-string">"rewards.reci=
+pient"</span>)
+<span class=3D"hljs-keyword">public</span> <span class=3D"hljs-class"><span=
+ class=3D"hljs-keyword">class</span> <span class=3D"hljs-title">RewardsReci=
+pientProperties</span> </span>{
+
+    <span class=3D"hljs-keyword">private</span> String name;
+    <span class=3D"hljs-keyword">private</span> <span class=3D"hljs-keyword=
+">int</span> age;
+    <span class=3D"hljs-keyword">private</span> String gender;
+    <span class=3D"hljs-keyword">private</span> String hobby;
+
+    <span class=3D"hljs-comment">// getter and setter methods</span>
+
+}
+</code></pre>
+</li>
+<li>
+<p>Now use one of the 3 schemes below to enable <code>@ConfigurationPropert=
+ies</code>
+(Feel free to try all of them.)</p>
+<ol>
+<li>Add <code>@EnableConfigurationProperties(RewardsRecipientProperties.cla=
+ss)</code>
+to <code>RewardsApplication</code> class</li>
+<li>Add <code>@ConfigurationPropertiesScan</code> to <code>RewardsApplicati=
+on</code> class
+(This is supported from Spring Boot 2.2.1)</li>
+<li>Annotate the <code>RewardsRecipientProperties</code> class with <code>@=
+Component</code></li>
+</ol>
+</li>
+<li>
+<p>Implement a new command line runner that displays the name of the reward=
+s
+recipient</p>
+<pre><code class=3D"language-java hljs"><span class=3D"hljs-meta">@Bean</sp=
+an>
+<span class=3D"hljs-function">CommandLineRunner <span class=3D"hljs-title">=
+commandLineRunner2</span><span class=3D"hljs-params">(RewardsRecipientPrope=
+rties rewardsRecipientProperties)</span> </span>{
+    <span class=3D"hljs-keyword">return</span> args -&gt; System.out.printl=
+n(<span class=3D"hljs-string">"Recipient: "</span> + rewardsRecipientProper=
+ties.getName());
+}
+</code></pre>
+</li>
+</ol>
+<h3 id=3D"run-your-spring-boot-application">Run your Spring Boot Applicatio=
+n</h3>
+<p><strong>TODO-07 (Optional)</strong> : In your IDE, run the application:<=
+/p>
+<ol>
+<li>
+<p>Add <code>debug=3Dtrue</code> property to your <code>application.propert=
+ies</code>.
+This causes Spring Boot to log everything it does and what
+auto-configuration choices it does and does not make.</p>
+</li>
+<li>
+<p>Run the application. What do you see on the console?</p>
+</li>
+<li>
+<p>You should see your log output from the command line runner:</p>
+<pre><code class=3D"language-bash hljs">INFO : rewards.RewardsApplication -=
+ Number of accounts:21
+</code></pre>
+<p>You should also see an <em>Auto-Configuration Report</em>, that is prefi=
+xed
+as follows:</p>
+<pre><code class=3D"language-bash hljs">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+CONDITIONS EVALUATION REPORT
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D
+
+Positive matches:
+-----------------
+</code></pre>
+<p>Do you see <code>DataSourceAutoConfiguration</code> under <code>Positive=
+ matches</code>?
+Now you know where the <code>DataSource</code> came from.</p>
+<p>Do you also see <code>JdbcTemplateAutoConfiguration</code> under <code>P=
+ositive matches</code>?</p>
+</li>
+</ol>
+<h2 id=3D"bootify-your-integration-test">Bootify your Integration Test</h2>
+<p><strong>TODO-08</strong> : Disable explicit DataSource creation in <code=
+>SystemTestConfig</code>:</p>
+<ol>
+<li>
+<p>Open <code>SystemTestConfig.java</code>.</p>
+</li>
+<li>
+<p>Stop Spring invoking the <code>dataSource()</code> bean factory method b=
+y
+commenting out the <code>@Bean</code> annotation.</p>
+</li>
+</ol>
+<p><strong>TODO-09</strong> : Return to your IDE and refactor <code>RewardN=
+etworkTests</code> into
+a Spring Boot Integration test:</p>
+<ol>
+<li>
+<p>Run this test without making any change, it will fail.
+It fails because the Spring Boot auto-configuration is not
+enabled when the test is run.</p>
+</li>
+<li>
+<p>Remove the <code>@ContextConfiguration</code> and
+<code>@ContextConfiguration(classes =3D {SystemTestConfig.class})</code> an=
+notations.</p>
+</li>
+<li>
+<p>Add <code>@SpringBootTest</code> annotation to run as a Spring Boot Test=
+</p>
+<ul>
+<li>
+<p>There is no need to specify the configuration class to use as
+the annotation will <em>automatically</em> component scan for any
+<code>@Component</code> (or <code>@Configuration</code>) classes in the cur=
+rent package
+or below.
+Since the <code>SystemTestConfig</code> class is in the same package, it
+will be discovered and processed.
+This includes processing the <code>@Import</code> annotation that reference=
+s
+the <code>RewardsConfig</code> class containing all the other bean
+definitions.</p>
+</li>
+<li>
+<p>This is considered an <em>End-To-End</em> integration test, including
+the wired components.</p>
+<p>Note that in a real production application you are most likely
+to configure an external database.
+Spring Boot offers properties to do this.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Run the <code>RewardNetworkTests</code> and verify it succeeds.</p>
+</li>
+<li>
+<p>Do an experimentation</p>
+<ul>
+<li>
+<p>Specify the configuration class with <code>@SpringBootTest</code> like
+following:</p>
+<pre><code class=3D"hljs ruby">@SpringBootTest(classes=3D{SystemTestConfig.=
+<span class=3D"hljs-keyword">class</span>})
+</code></pre>
+</li>
+<li>
+<p>Run the test and observe that it fails.  Think about why it
+fails.</p>
+<p>The failure occurs because Spring Boot autoconfiguration is
+disabled: when you specify the configuration class,
+<code>@SpringBootTest</code> stops searching for configuration class
+annotated with <code>@SpringBootConfiguration</code>, which contains
+<code>@EnableAutoConfiguration</code>.</p>
+</li>
+<li>
+<p>Revert the change and verify the test succeeds again</p>
+</li>
+</ul>
+<p>You will dig deeper into Spring Boot Testing in a later unit.</p>
+</li>
+</ol>
+<h2 id=3D"override-auto-configuration">Override Auto-Configuration</h2>
+<p>You have seen to this point that Spring Boot will detect and
+automatically configure a <code>DataSource</code> on your behalf.
+But how would this work if you needed to configure <em>multiple</em>
+databases from your application?
+In this case auto-configuration cannot really help you.</p>
+<p>You have two options to handle this situation:</p>
+<ol>
+<li>
+<p>Use the default <code>DataSource</code> auto-configuration with supporti=
+ng
+default configuration, and also explicitly set additional
+<code>DataSource</code> beans with different names, as specified by the
+<code>@Qualifier</code> annotation.
+You can also set the order of precedence using the <code>@Order</code>
+annotation.</p>
+</li>
+<li>
+<p>Disable auto-configuration for <code>DataSource</code>, and explicitly
+declare multiple DataSource beans using Java Configuration.</p>
+</li>
+</ol>
+<p>We will use option 2 and disable the <code>DataSource</code>
+auto-configuration both programmatically and using configuration
+properties.</p>
+<h3 id=3D"disable-datasource-auto-configuration-programmatically">Disable D=
+ataSource Auto-Configuration Programmatically</h3>
+<p>Do the following steps if you have extra time.</p>
+<p><strong>TODO-10 (Optional)</strong> : Switch to explicit <code>DataSourc=
+e</code> configuration:</p>
+<ol>
+<li>
+<p>Add <code>DataSource</code> bean explicitly in the <code>RewardsConfig</=
+code> class by
+by uncommenting the code.</p>
+<ul>
+<li>Note the debug log message, so we can tell if this method is
+being used.</li>
+</ul>
+</li>
+<li>
+<p>Remove the code that injects <code>DataSource</code> bean since
+we no longer needs it.</p>
+</li>
+<li>
+<p>Fix any compile errors in the <code>RewardsConfig</code> class.</p>
+</li>
+<li>
+<p>Notice this reverts to the standard Spring way of building a
+<code>DataSource</code>.</p>
+</li>
+</ol>
+<p><strong>TODO-11 (Optional)</strong> : Disable <code>DataSource</code> au=
+to-configuration:</p>
+<ol>
+<li>
+<p>Annotate the <code>@SpringBootApplication</code> to <em>exclude</em> the=
+ <code>DataSource</code>
+auto-configuration - <code>@SpringBootApplication</code> has an
+<code>exclude</code> attribute.</p>
+<ul>
+<li>The bean to exclude is <code>DataSourceAutoConfiguration</code>
+class you were told to remember earlier</li>
+</ul>
+</li>
+<li>
+<p>Import the <code>RewardsConfig</code> configuration</p>
+<ul>
+<li>This is required since the <code>RewardsConfig</code> configuration
+now provides DataSource bean and will not be auto-detected
+through component scanning</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p><em>Note</em>:
+Technically you don't have to disable data-source auto-configuration
+given that Spring Boot will use application defined <code>DataSource</code>=
+ bean over
+auto-configured one.</p>
+</blockquote>
+<p><strong>TODO-12 (Optional)</strong> : Turn on debug level logging and re=
+run:</p>
+<ol>
+<li>
+<p>In your <code>src/main/resources/application.properties</code> configura=
+tion
+modify the <code>logging.level.config</code> property to <code>DEBUG</code>=
+.</p>
+</li>
+<li>
+<p>Run the 'RewardNetworkTests' test.</p>
+<ul>
+<li>
+<p>Do you see your <code>dataSource</code> creation debug log output?</p>
+<p>If so you just proved your <code>dataSource</code> was generated in your
+Java config.</p>
+</li>
+<li>
+<p>Do you see the <code>DataSourceAutoConfiguration</code> is no longer
+matched?</p>
+<p>Look for the following console output:</p>
+<pre><code class=3D"language-bash hljs">Exclusions:
+-----------
+
+org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+</code></pre>
+</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p><em>Trouble-shooting</em>:
+If you experience <code>BeanCurrentlyInCreationException</code>, think abou=
+t why
+that is the case and how to solve it.</p>
+</blockquote>
+<blockquote>
+<p><em>Notes for Thought</em>:
+When you <em>Bootified</em> your application, did you auto-wire a
+<code>JdbcTemplate</code>?
+If you did, what might be some implications for a multi-database
+solution?
+Would you need to remove use of an auto-wired JdbcTemplate?
+How would you do this?</p>
+</blockquote>
+<h3 id=3D"build-and-run-using-command-line-tools---optional">Build and Run =
+using Command Line tools - Optional</h3>
+<p>Do this part of the lab only if you have extra time.</p>
+<p><strong>TODO-13 (Optional)</strong> : Let's see what the Spring Boot Mav=
+en/Gradle plugin is doing:</p>
+<ol>
+<li>
+<p>From either your IDE or your Terminal/Command window, execute
+the Maven <code>package</code> goal or Gradle <code>assemble</code> task.</=
+p>
+<p>The following leverages the parent project multi-module build
+with the maven/gradle wrapper, and is executed from the project root
+<code>lab</code> directory.</p>
+<p>Notice that, when using Maven, it is necessary to skip the
+tests using the
+<code>-Dmaven.test.skip=3Dtrue</code> flag due to the fact that you have
+not yet Bootified the testing portion of the project.</p>
+<pre><code class=3D"language-bash hljs">Windows: mvnw clean package -pl *co=
+mmon -pl *jdbc-autoconfig -Dmaven.test.skip=3D<span class=3D"hljs-literal">=
+true</span>
+Linux/MacOS: ./mvnw clean package -pl *common -pl *jdbc-autoconfig -Dmaven.=
+test.skip=3D<span class=3D"hljs-literal">true</span>
+</code></pre>
+<pre><code class=3D"language-bash hljs">Windows: gradlew :32-jdbc-autoconfi=
+g:clean :32-jdbc-autoconfig:assemble
+Linux/MacOS: ./gradlew :32-jdbc-autoconfig:clean :32-jdbc-autoconfig:assemb=
+le
+</code></pre>
+</li>
+<li>
+<p>In <code>32-jdbc-autoconfig</code>, a <code>target</code> directory (for=
+ Maven), or a
+<code>build/libs</code> directory (for Gradle) should now exist.
+Review its contents, what do you see?</p>
+<ul>
+<li>
+<p>You should see two generated JAR files:</p>
+<ul>
+<li><code>32-jdbc-autoconfig-5.0.c.RELEASE.jar</code> and</li>
+<li><code>32-jdbc-autoconfig-5.0.c.RELEASE.jar.original</code> (for Maven)<=
+/li>
+<li><code>32-jdbc-autoconfig-5.0.c.RELEASE-original.jar</code> (for Gradle)=
+</li>
+</ul>
+<p>Notice that the "original" is <em>much</em> smaller.
+The other JAR is executable and contains all the necessary
+dependencies (hence it is called a "fat" JAR!)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Extract the jar file to a temporary directory, and view the
+contents using <code>jar</code>.</p>
+<p>Windows:</p>
+<pre><code class=3D"language-bash hljs">mkdir temp
+copy *jdbc-autoconfig\target\*RELEASE.jar temp (<span class=3D"hljs-keyword=
+">for</span> Maven)
+copy *jdbc-autoconfig\build\libs\*RELEASE.jar temp (<span class=3D"hljs-key=
+word">for</span> Gradle)
+<span class=3D"hljs-built_in">cd</span> temp
+jar xvf *.jar
+</code></pre>
+<p>Linux or MacOS:</p>
+<pre><code class=3D"language-bash hljs">mkdir temp
+cp *jdbc-autoconfig/target/*RELEASE.jar temp (<span class=3D"hljs-keyword">=
+for</span> Maven)
+cp *jdbc-autoconfig/build/libs/*RELEASE.jar temp (<span class=3D"hljs-keywo=
+rd">for</span> Gradle)
+<span class=3D"hljs-built_in">cd</span> temp
+jar xvf *.jar
+</code></pre>
+</li>
+<li>
+<p>What do you see?</p>
+<p>You will see the classpath resources, manifest file and supporting
+compile scope package classes are included.</p>
+<ul>
+<li>
+<p>Look carefully at the <code>BOOT-INF</code> directory.</p>
+<ul>
+<li>What do you see?</li>
+<li>What do its subdirectories contain?</li>
+</ul>
+</li>
+<li>
+<p>Look in the <code>META-INF</code> directory and display the contents
+of <code>MANIFEST.MF</code> using <code>more</code>.</p>
+<ul>
+<li>What do you see?</li>
+</ul>
+</li>
+</ul>
+<p>You should see the jar is generated to be run as a standalone
+application on your behalf:</p>
+<ul>
+<li>
+<p>Contains all the necessary runtime dependencies - <code>BOOT-INF</code>
+holds all your compiled classes and all the dependency jars.</p>
+</li>
+<li>
+<p>The manifest declares a main entry point (the <code>Main-Class:</code>
+property)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>There are many ways to run this application, either directly using
+the JAR, using <code>spring-boot:run</code> goal from Maven or in your IDE
+as you did earlier.</p>
+<p>Look over the
+<a href=3D"https://courses.education.pivotal.io/by/code:spring-core/version=
+:latest/appendix/appendix-running.html" rel=3D"noreferrer noopener">Running=
+ Spring Boot Applications</a>
+discussing various options for running a Spring Boot application.</p>
+<p>For now run <code>java -jar 32-jdbc-autoconfig-5.0.c.RELEASE.jar</code>,
+you should get the same output as before.</p>
+</li>
+</ol>
+<h3 id=3D"create-custom-auto-configuration-class---optional">Create Custom =
+Auto-configuration class - Optional</h3>
+<p>(Do this part of the lab only if you have extra time.)</p>
+<p>In this part of the lab, you are going to build your own
+auto-configuration class.</p>
+<p>The lab project is provided as <code>33-autoconfig-helloworld</code>
+and it is NOT going to be imported into your IDE along
+with other projects.</p>
+<p>This means you will have to import it separately from
+other projects.</p>
+<ol>
+<li>Import the <code>33-autoconfig-helloworld</code> project</li>
+<li>Follow TODO steps</li>
+</ol>
+<h3 id=3D"reviewing-what-we-did">Reviewing What we Did</h3>
+<p>We overrode Spring Boot's default behavior and defined a <code>DataSourc=
+e</code>
+for ourselves.
+But which approach more appropriate?</p>
+<p>Think about imperative declaration of <code>DataSource</code> auto-
+configuration disablement, versus disabling via configuration.</p>
+<ul>
+<li>
+<p>If your use case is similar to wiring multiple data sources, it
+makes more sense to programmatically disable the auto-
+configuration given this is an fixed aspect of your design.</p>
+</li>
+<li>
+<p>If your design style favors non-functional concerns in configuration
+then Spring Boot external configuration is an available option.</p>
+</li>
+</ul>
+<h1 id=3D"summary">Summary</h1>
+<p>You should surmise by the end of the lab that Spring Boot can save you
+work:</p>
+<ul>
+<li>
+<p>Simplified dependency management</p>
+</li>
+<li>
+<p>Simplified configuration</p>
+</li>
+<li>
+<p>Packaged Runtime</p>
+</li>
+<li>
+<p>Better test coverage with simple integration tests</p>
+</li>
+</ul>
+<p>Congratulations, you have completed the lab!</p>
+         </article>
+            <div class=3D"sidebar-container">
+<nav id=3D"sidebar" class=3D"">
+    <div class=3D"title">
+        <a href=3D"https://courses.education.pivotal.io/by/code:spring-core=
+/version:latest/index.html">Return to Core Spring</a>
+    </div>
+    <div class=3D"content">
+        <a href=3D"https://courses.education.pivotal.io/by/code:spring-core=
+/version:latest/boot/spring-boot-autoconfiguration/spring-boot-autoconfigur=
+ation.html#">Back to top</a>
+
+<ul>
+        <li>
+        <a href=3D"https://courses.education.pivotal.io/by/code:spring-core=
+/version:latest/boot/spring-boot-autoconfiguration/spring-boot-autoconfigur=
+ation.html#purpose" class=3D"highlight">Purpose</a>
+
+        </li>
+        <li>
+        <a href=3D"https://courses.education.pivotal.io/by/code:spring-core=
+/version:latest/boot/spring-boot-autoconfiguration/spring-boot-autoconfigur=
+ation.html#learning-outcomes">Learning Outcomes</a>
+
+        </li>
+        <li>
+        <a href=3D"https://courses.education.pivotal.io/by/code:spring-core=
+/version:latest/boot/spring-boot-autoconfiguration/spring-boot-autoconfigur=
+ation.html#use-case" class=3D"">Use Case</a>
+
+        </li>
+        <li>
+        <a href=3D"https://courses.education.pivotal.io/by/code:spring-core=
+/version:latest/boot/spring-boot-autoconfiguration/spring-boot-autoconfigur=
+ation.html#getting-started" class=3D"">Getting Started</a>
+
+        </li>
+        <li>
+        <a href=3D"https://courses.education.pivotal.io/by/code:spring-core=
+/version:latest/boot/spring-boot-autoconfiguration/spring-boot-autoconfigur=
+ation.html#quick-instructions" class=3D"">Quick Instructions</a>
+
+        </li>
+        <li>
+        <a href=3D"https://courses.education.pivotal.io/by/code:spring-core=
+/version:latest/boot/spring-boot-autoconfiguration/spring-boot-autoconfigur=
+ation.html#instructions" class=3D"">Instructions</a>
+
+<ul>
+        <li>
+        <a href=3D"https://courses.education.pivotal.io/by/code:spring-core=
+/version:latest/boot/spring-boot-autoconfiguration/spring-boot-autoconfigur=
+ation.html#review-of-a-spring-app---dependencies">Review of a Spring App - =
+Dependencies</a>
+
+        </li>
+        <li>
+        <a href=3D"https://courses.education.pivotal.io/by/code:spring-core=
+/version:latest/boot/spring-boot-autoconfiguration/spring-boot-autoconfigur=
+ation.html#bootify-your-spring-app" class=3D"">Bootify your Spring App</a>
+
+<ul>
+        <li>
+        <a href=3D"https://courses.education.pivotal.io/by/code:spring-core=
+/version:latest/boot/spring-boot-autoconfiguration/spring-boot-autoconfigur=
+ation.html#refactor-to-starters">Refactor to Starters</a>
+
+        </li>
+        <li>
+        <a href=3D"https://courses.education.pivotal.io/by/code:spring-core=
+/version:latest/boot/spring-boot-autoconfiguration/spring-boot-autoconfigur=
+ation.html#create-a-spring-boot-application" class=3D"">Create a Spring Boo=
+t Application</a>
+
+        </li>
+        <li>
+        <a href=3D"https://courses.education.pivotal.io/by/code:spring-core=
+/version:latest/boot/spring-boot-autoconfiguration/spring-boot-autoconfigur=
+ation.html#capture-properties-into-a-class" class=3D"">Capture properties i=
+nto a class</a>
+
+        </li>
+        <li>
+        <a href=3D"https://courses.education.pivotal.io/by/code:spring-core=
+/version:latest/boot/spring-boot-autoconfiguration/spring-boot-autoconfigur=
+ation.html#run-your-spring-boot-application" class=3D"">Run your Spring Boo=
+t Application</a>
+
+        </li>
+</ul>
+        </li>
+        <li>
+        <a href=3D"https://courses.education.pivotal.io/by/code:spring-core=
+/version:latest/boot/spring-boot-autoconfiguration/spring-boot-autoconfigur=
+ation.html#bootify-your-integration-test" class=3D"">Bootify your Integrati=
+on Test</a>
+
+        </li>
+        <li>
+        <a href=3D"https://courses.education.pivotal.io/by/code:spring-core=
+/version:latest/boot/spring-boot-autoconfiguration/spring-boot-autoconfigur=
+ation.html#override-auto-configuration" class=3D"">Override Auto-Configurat=
+ion</a>
+
+<ul>
+        <li>
+        <a href=3D"https://courses.education.pivotal.io/by/code:spring-core=
+/version:latest/boot/spring-boot-autoconfiguration/spring-boot-autoconfigur=
+ation.html#disable-datasource-auto-configuration-programmatically" class=3D=
+"">Disable DataSource Auto-Configuration Programmatically</a>
+
+        </li>
+        <li>
+        <a href=3D"https://courses.education.pivotal.io/by/code:spring-core=
+/version:latest/boot/spring-boot-autoconfiguration/spring-boot-autoconfigur=
+ation.html#build-and-run-using-command-line-tools---optional" class=3D"">Bu=
+ild and Run using Command Line tools - Optional</a>
+
+        </li>
+        <li>
+        <a href=3D"https://courses.education.pivotal.io/by/code:spring-core=
+/version:latest/boot/spring-boot-autoconfiguration/spring-boot-autoconfigur=
+ation.html#create-custom-auto-configuration-class---optional" class=3D"">Cr=
+eate Custom Auto-configuration class - Optional</a>
+
+        </li>
+        <li>
+        <a href=3D"https://courses.education.pivotal.io/by/code:spring-core=
+/version:latest/boot/spring-boot-autoconfiguration/spring-boot-autoconfigur=
+ation.html#reviewing-what-we-did" class=3D"">Reviewing What we Did</a>
+
+        </li>
+</ul>
+        </li>
+</ul>
+        </li>
+        <li>
+        <a href=3D"https://courses.education.pivotal.io/by/code:spring-core=
+/version:latest/boot/spring-boot-autoconfiguration/spring-boot-autoconfigur=
+ation.html#summary">Summary</a>
+
+        </li>
+</ul>
+    </div>
+</nav>
+            </div>
+    </div>
+</main>
+
+
+<div class=3D"slide" data-slide=3D"1">
+    <h1>Spring Boot Starters, Auto-configuration and Runtime</h1>
+</div>
+
+<div class=3D"slide transparent" data-slide=3D"2">
+    <h1>Get started!</h1>
+    <h2>Spring Boot Starters, Auto-configuration and Runtime</h2>
+</div>
+
+<div class=3D"slide" data-slide=3D"3">
+    <h1>Wrap up</h1>
+
+    <div class=3D"faces">
+        <svg xmlns=3D"http://www.w3.org/2000/svg" class=3D"face" viewBox=3D=
+"0 0 24 24">
+            <path d=3D"M12,2C6.47,2 2,6.47 2,12C2,17.53 6.47,22 12,22A10,10=
+ 0 0,0 22,12C22,6.47 17.5,2 12,2M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 =
+0,1 20,12A8,8 0 0,1 12,20M13,9.94L14.06,11L15.12,9.94L16.18,11L17.24,9.94L1=
+5.12,7.82L13,9.94M8.88,9.94L9.94,11L11,9.94L8.88,7.82L6.76,9.94L7.82,11L8.8=
+8,9.94M12,17.5C14.33,17.5 16.31,16.04 17.11,14H6.89C7.69,16.04 9.67,17.5 12=
+,17.5Z"></path>
+        </svg>
+
+        <svg xmlns=3D"http://www.w3.org/2000/svg" class=3D"face" viewBox=3D=
+"0 0 24 24">
+            <path d=3D"M8.5,11A1.5,1.5 0 0,1 7,9.5A1.5,1.5 0 0,1 8.5,8A1.5,=
+1.5 0 0,1 10,9.5A1.5,1.5 0 0,1 8.5,11M15.5,11A1.5,1.5 0 0,1 14,9.5A1.5,1.5 =
+0 0,1 15.5,8A1.5,1.5 0 0,1 17,9.5A1.5,1.5 0 0,1 15.5,11M12,20A8,8 0 0,0 20,=
+12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,=
+10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M9,14H15A1,1 0 0,1 16,15=
+A1,1 0 0,1 15,16H9A1,1 0 0,1 8,15A1,1 0 0,1 9,14Z"></path>
+        </svg>
+
+        <svg xmlns=3D"http://www.w3.org/2000/svg" class=3D"face" viewBox=3D=
+"0 0 24 24">
+            <path d=3D"M12,2C6.47,2 2,6.47 2,12C2,17.53 6.47,22 12,22A10,10=
+ 0 0,0 22,12C22,6.47 17.5,2 12,2M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 =
+0,1 20,12A8,8 0 0,1 12,20M16.18,7.76L15.12,8.82L14.06,7.76L13,8.82L14.06,9.=
+88L13,10.94L14.06,12L15.12,10.94L16.18,12L17.24,10.94L16.18,9.88L17.24,8.82=
+L16.18,7.76M7.82,12L8.88,10.94L9.94,12L11,10.94L9.94,9.88L11,8.82L9.94,7.76=
+L8.88,8.82L7.82,7.76L6.76,8.82L7.82,9.88L6.76,10.94L7.82,12M12,14C9.67,14 7=
+.69,15.46 6.89,17.5H17.11C16.31,15.46 14.33,14 12,14Z"></path>
+        </svg>
+    </div>
+</div>
+
+
+<div class=3D"slide lemon-squeezy" data-slide=3D"7">
+    <h1>Easy peasy</h1>
+    <h1>lemon squeezy!</h1>
+</div>
+
+<div class=3D"slide" data-slide=3D"8">
+    <h1>Lunch time!</h1>
+    <label for=3D"lunch-end">will return</label>
+    <input type=3D"text" id=3D"lunch-end" name=3D"lunch-end" data-time=3D"9=
+0">
+</div>
+
+<div class=3D"slide" data-slide=3D"9">
+    <h1>Break time!</h1>
+    <label for=3D"break-end">will return</label>
+    <input type=3D"text" id=3D"break-end" name=3D"break-end" data-time=3D"1=
+5">
+</div>
+
+<audio src=3D"https://courses.education.pivotal.io/by/code:spring-core/vers=
+ion:latest/audio/gong.mp3" id=3D"gong" preload=3D"none">
+</audio>
+
+<div class=3D"slide" data-slide=3D"?">
+    <h2>Keyboard shortcuts</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Key</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>Show <em>introduction</em> slide</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Show <em>get started</em> slide</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Show <em>wrap up</em> slide</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Show <em>instructor notes</em></td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>Easy peasy</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>Show <em>lunch time</em> slide</td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>Show <em>break time</em> slide</td>
+        </tr>
+        <tr>
+            <td>0</td>
+            <td>Play gong sound</td>
+        </tr>
+        <tr>
+            <td>x</td>
+            <td>Close slide</td>
+        </tr>
+        <tr>
+            <td>?</td>
+            <td>Show this help message</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<footer>
+    <div>
+        =C2=A9 Copyright 2020 VMware Software, Inc. All Rights Reserved. =
+=E2=80=A2
+        <a href=3D"https://pivotal.io/privacy-policy" rel=3D"noreferrer noo=
+pener">Privacy Policy</a> =E2=80=A2
+        <a href=3D"https://pivotal.io/legal" rel=3D"noreferrer noopener">Te=
+rms of Use</a>
+    </div>
+    <div>
+        <label class=3D"hidden-checkbox">
+            <input type=3D"checkbox" id=3D"instructor-mode">
+            <span>course version: 1.12.1<sup class=3D"check">IM</sup></span=
+>
+        </label>
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+</body></html>
+------MultipartBoundary--tlgNZB0tE8trucjPErojLvMPfz5rrhcMsuf9Be7NVJ----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: cid:css-6350f14a-2eb0-4807-a7f4-0e8101ae60ec@mhtml.blink
+
+@charset "utf-8";
+
+@import url("https://fonts.googleapis.com/css?family=3DVarela+Round");
+
+#header { border-color: rgb(109, 179, 63); background-color: rgb(52, 48, 45=
+); }
+
+.disclaimer { background-color: rgb(52, 48, 45); }
+
+footer { background-color: rgb(52, 48, 45); }
+
+.label.label-default { background-color: rgb(95, 161, 52); }
+
+a { color: rgb(95, 161, 52); }
+
+th { background-color: rgb(52, 48, 45); border-color: rgb(52, 48, 45); }
+
+blockquote::before { color: rgb(52, 48, 45); }
+
+.label.label-default:hover, .label.label-default:focus { background-color: =
+rgb(110, 176, 67); }
+
+a:hover, a:focus { color: rgb(110, 176, 67); }
+
+.slide { color: rgb(52, 48, 45); }
+
+.slide h2, .slide label { color: rgb(95, 161, 52); }
+
+.slide input { color: rgba(52, 48, 45, 0.65); }
+
+.face path { fill: rgb(95, 161, 52); }
+
+body { background-color: rgb(241, 241, 241); }
+
+.slide { background-color: rgba(241, 241, 241, 0.9); }
+
+.slide.text { background-color: rgb(241, 241, 241); }
+
+.slide h2, .slide label { color: inherit; }
+
+body { color: rgb(52, 48, 45); }
+
+td { border-color: rgb(52, 48, 45); }
+
+html, body { font-family: "Varela Round", sans-serif; }
+------MultipartBoundary--tlgNZB0tE8trucjPErojLvMPfz5rrhcMsuf9Be7NVJ----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://fonts.googleapis.com/css?family=Varela+Round
+
+@charset "utf-8";
+
+@font-face { font-family: "Varela Round"; font-style: normal; font-weight: =
+400; src: url("https://fonts.gstatic.com/s/varelaround/v13/w8gdH283Tvk__Lua=
+32TysjIfpcuPLdshZhVB.woff2") format("woff2"); unicode-range: U+590-5FF, U+2=
+0AA, U+25CC, U+FB1D-FB4F; }
+
+@font-face { font-family: "Varela Round"; font-style: normal; font-weight: =
+400; src: url("https://fonts.gstatic.com/s/varelaround/v13/w8gdH283Tvk__Lua=
+32TysjIfqMuPLdshZhVB.woff2") format("woff2"); unicode-range: U+102-103, U+1=
+10-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+1EA0-1EF9, U+20AB; }
+
+@font-face { font-family: "Varela Round"; font-style: normal; font-weight: =
+400; src: url("https://fonts.gstatic.com/s/varelaround/v13/w8gdH283Tvk__Lua=
+32TysjIfqcuPLdshZhVB.woff2") format("woff2"); unicode-range: U+100-24F, U+2=
+59, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A=
+720-A7FF; }
+
+@font-face { font-family: "Varela Round"; font-style: normal; font-weight: =
+400; src: url("https://fonts.gstatic.com/s/varelaround/v13/w8gdH283Tvk__Lua=
+32TysjIfp8uPLdshZg.woff2") format("woff2"); unicode-range: U+0-FF, U+131, U=
++152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+2000-206F, U+2074, U+20AC, U+21=
+22, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+------MultipartBoundary--tlgNZB0tE8trucjPErojLvMPfz5rrhcMsuf9Be7NVJ----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://courses.education.pivotal.io/by/code:spring-core/version:latest/css/reset.css
+
+@charset "utf-8";
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, b=
+lockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, i=
+mg, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i=
+, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, cap=
+tion, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, emb=
+ed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, se=
+ction, summary, time, mark, audio, video { margin: 0px; padding: 0px; borde=
+r: 0px; font: inherit; vertical-align: baseline; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, =
+nav, section { display: block; }
+
+body { line-height: 1; }
+
+ol, ul { list-style: none; }
+
+blockquote, q { quotes: none; }
+
+blockquote::before, blockquote::after, q::before, q::after { content: none;=
+ }
+
+table { border-collapse: collapse; border-spacing: 0px; }
+------MultipartBoundary--tlgNZB0tE8trucjPErojLvMPfz5rrhcMsuf9Be7NVJ----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://courses.education.pivotal.io/by/code:spring-core/version:latest/css/theme.css
+
+@charset "utf-8";
+
+@import url("https://fonts.googleapis.com/css?family=3DSource+Sans+Pro:400,=
+400i,600,600i,700");
+
+html, body { font-size: 16px; font-family: "Source Sans Pro", sans-serif; l=
+ine-height: 1.5; color: rgb(36, 54, 65); box-sizing: border-box; min-height=
+: 100vh; }
+
+body { padding-bottom: 11rem; position: relative; }
+
+*, ::before, ::after { box-sizing: inherit; }
+
+* { -webkit-font-smoothing: antialiased; }
+
+h1, h2, h3 { margin-top: 0.5rem; margin-bottom: 0.33rem; }
+
+h4, h5 { margin-top: 0.33rem; margin-bottom: 0.33rem; }
+
+h1 { font-size: 2rem; }
+
+h2 { font-size: 1.5rem; }
+
+h3 { font-size: 1.25rem; }
+
+h4 { font-size: 1.125rem; }
+
+h5 { font-size: 1rem; }
+
+a { text-decoration: none; }
+
+a:hover { text-decoration: underline; }
+
+p, ul, ol, table { margin: 0px 0px 0.75rem; }
+
+ul, ol { padding-left: 2.5rem; }
+
+ol { list-style-type: decimal; }
+
+ul { list-style-type: disc; }
+
+ul ul, ul ol, ol ul, ol ol { margin-bottom: 0px; }
+
+ul p + ol, ul p + ul, ol p + ol, ol p + ul { margin-bottom: 1rem; }
+
+em { font-style: italic; }
+
+strong { font-weight: 600; }
+
+pre { display: block; padding: 0.75rem; margin: 0px 0px 0.75rem; position: =
+relative; line-height: 1.5; word-break: break-all; overflow-wrap: break-wor=
+d; color: rgb(51, 51, 51); border: 1px solid rgb(204, 204, 204); border-rad=
+ius: 0.25rem; background-color: rgb(248, 248, 248); }
+
+code { border: 1px solid rgb(232, 232, 232); padding: 0.125rem 0.25rem; bac=
+kground-color: rgb(248, 248, 248); border-radius: 0.25rem; font-family: Men=
+lo, Consolas, "Courier New", monospace; font-size: 90%; overflow-x: scroll;=
+ overflow-wrap: break-word; }
+
+pre code { border: none; white-space: pre; overflow-x: auto; padding: 0.45r=
+em; display: block; }
+
+blockquote { background-color: rgb(248, 248, 248); margin: 0px 0px 0.75rem;=
+ padding: 0.75rem 0.75rem 0.75rem 2.25rem; quotes: "=E2=80=9C" "=E2=80=9D" =
+"=E2=80=98" "=E2=80=99"; position: relative; }
+
+blockquote::before { content: open-quote; font-size: 4rem; position: absolu=
+te; top: -1rem; left: 0.25rem; }
+
+blockquote p { display: inline; }
+
+sup { top: -0.5em; font-size: 75%; line-height: 0; position: relative; vert=
+ical-align: baseline; }
+
+button { color: white; background-color: rgb(96, 117, 128); text-transform:=
+ uppercase; font-weight: 600; font-size: 0.9rem; border-radius: 0.2rem; bor=
+der: none; padding: 0.75rem 1.25rem; cursor: pointer; }
+
+img, svg { max-width: 100%; }
+
+button:hover { background-color: rgb(61, 74, 81); }
+
+th { color: white; padding: 0.5rem; text-align: left; font-weight: bold; }
+
+td, th { border: 1px solid rgb(36, 54, 65); padding: 0.5rem; }
+
+#content { display: flex; position: relative; }
+
+#content > article { flex: 1 1 0%; overflow: auto hidden; }
+
+#content img.figure, #content svg.figure { max-width: 96%; margin: 0.25rem;=
+ border: 1px solid rgb(221, 221, 221); border-radius: 2px; box-shadow: rgba=
+(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.2) 0px 3px 1px -2px, rgba(=
+0, 0, 0, 0.12) 0px 1px 5px 0px; }
+
+.container { margin: 0px auto; max-width: 76rem; padding: 2rem; }
+
+#header { min-height: 15.8rem; width: 100%; position: relative; border-top:=
+ 0.3rem solid; box-shadow: rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, =
+0, 0.2) 0px 3px 1px -2px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px; color: white=
+; }
+
+#header h1, #header h2 { font-weight: 600; }
+
+#header h1 { margin-top: 0px; margin-bottom: 0px; }
+
+#header h2 { margin-top: 0.6rem; }
+
+#header a { color: white; font-weight: 600; }
+
+#header a:hover { text-decoration: none; }
+
+#header .container { height: 100%; padding-top: 1.75rem; display: flex; }
+
+#header .container div { flex: 1 1 0%; }
+
+#header .container img { height: 9.4rem; width: 9.4rem; margin-right: 1.25r=
+em; }
+
+.disclaimer { color: white; font-size: 0.85rem; box-shadow: rgba(0, 0, 0, 0=
+.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.2) 0px 3px 1px -2px, rgba(0, 0, 0, 0.=
+12) 0px 1px 5px 0px; }
+
+.disclaimer .container { padding: 1rem; }
+
+.disclaimer a { color: white; text-decoration: underline; }
+
+.disclaimer p { margin-bottom: 0px; }
+
+.disclaimer a:hover { color: white; }
+
+.sidebar-container { margin-left: 1rem; flex-shrink: 0; }
+
+.sidebar-container, #sidebar { width: 18rem; }
+
+#sidebar { position: absolute; top: 1.25rem; border-width: 1px 1px 2px; bor=
+der-style: solid; border-color: rgba(0, 0, 0, 0.1); border-image: initial; =
+border-radius: 0.25rem; background-clip: padding-box; }
+
+#sidebar.top { position: fixed; top: 1.25rem; }
+
+#sidebar .title { padding: 0.5rem; border-bottom: 3px solid rgba(0, 0, 0, 0=
+.1); font-weight: 600; }
+
+#sidebar .content { padding: 0.5rem; }
+
+#sidebar ul { padding-left: 1.5rem; }
+
+#sidebar a.highlight { font-weight: bold; text-decoration: underline; }
+
+footer { text-align: center; box-shadow: rgba(0, 0, 0, 0.14) 0px -2px 2px 0=
+px, rgba(0, 0, 0, 0.2) 0px 3px 1px -2px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0p=
+x; position: absolute; bottom: 0px; width: 100%; padding: 2em; color: white=
+; }
+
+footer a, footer a:hover { color: white; }
+
+.feedback { position: fixed; bottom: 0px; right: 1rem; z-index: 1; }
+
+.feedback { color: white; background-color: rgb(96, 117, 128); text-transfo=
+rm: uppercase; font-weight: 600; font-size: 0.9rem; border: none; padding: =
+0.75rem 1.25rem; cursor: pointer; border-radius: 0.2rem 0.2rem 0px 0px; }
+
+.feedback:link, .feedback:visited { color: white; text-decoration: none; }
+
+.feedback:hover { background-color: rgb(61, 74, 81); text-decoration: none;=
+ }
+
+.feedback:active { text-decoration: none; }
+
+ul.index { list-style: none; padding-left: 0px; }
+
+ul.index li { padding: 0.5rem 1rem; margin-bottom: -1px; border-top: 1px so=
+lid rgb(221, 221, 221); border-bottom: 1px solid rgb(221, 221, 221); displa=
+y: flex; justify-content: space-between; align-items: center; }
+
+ul.index li:hover { background-color: rgba(220, 220, 220, 0.1); }
+
+.links { display: flex; }
+
+.link { display: flex; width: 5rem; justify-content: flex-end; margin-left:=
+ 0.5rem; }
+
+.link .label { white-space: nowrap; overflow: hidden; text-overflow: ellips=
+is; }
+
+.toggle { display: inline-block; width: 100%; }
+
+.toggle.collapsed { margin-bottom: 0.75rem; }
+
+.when-collapsed::before, .when-expanded::before { content: ""; height: 1rem=
+; width: 1rem; background-position: center center; background-size: contain=
+; background-repeat: no-repeat; margin-right: 0.3rem; }
+
+.when-collapsed::before { background-image: url("data:image/svg+xml;utf8,<s=
+vg xmlns=3D\"http://www.w3.org/2000/svg\" width=3D\"16\" height=3D\"16\" vi=
+ewBox=3D\"0 0 48 48\"><path d=3D\"M24 4C12.95 4 4 12.95 4 24s8.95 20 20 20 =
+20-8.95 20-20S35.05 4 24 4zm10 22h-8v8h-4v-8h-8v-4h8v-8h4v8h8v4z\"/></svg>"=
+); }
+
+.when-expanded::before { background-image: url("data:image/svg+xml;utf8,<sv=
+g xmlns=3D\"http://www.w3.org/2000/svg\" width=3D\"16\" height=3D\"16\" vie=
+wBox=3D\"0 0 48 48\"><path d=3D\"M24 4C12.95 4 4 12.95 4 24s8.95 20 20 20 2=
+0-8.95 20-20S35.05 4 24 4zm10 22H14v-4h20v4z\"/></svg>"); }
+
+.toggle .when-collapsed, .toggle.collapsed .when-expanded, .collapse { disp=
+lay: none; }
+
+.toggle.collapsed .when-collapsed, .toggle .when-expanded { display: flex; =
+align-items: center; }
+
+.collapse.show { display: block; }
+
+.code-header { display: flex; justify-content: space-between; font-size: 0.=
+8rem; }
+
+.slide { position: fixed; z-index: 10; top: 0px; width: 100%; height: 100%;=
+ padding: 6.25rem; display: none; justify-content: center; align-items: cen=
+ter; flex-direction: column; text-align: center; }
+
+.slide p, .slide ul { font-size: 2.5rem; }
+
+.slide h1 { font-size: 5rem; font-weight: 600; }
+
+.slide h2 { font-size: 3.75rem; margin-top: 0px; }
+
+.slide table { text-align: left; }
+
+.slide th { font-weight: bold; }
+
+.slide th, .slide td { padding: 0.125rem 0.625rem; }
+
+.slide ul { text-align: left; }
+
+.slide input { outline: none; border: none; background: none; text-align: c=
+enter; font-size: 4.3rem; font-weight: bold; line-height: 1; }
+
+.slide.lemon-squeezy h1 { color: rgb(255, 205, 76); text-transform: upperca=
+se; font-size: 6.25rem; font-weight: 900; font-style: italic; line-height: =
+1; margin-bottom: 0px; margin-top: 0px; padding: 0px; text-shadow: rgba(255=
+, 205, 76, 0.6) 3px 3px 5px; }
+
+.slide.lemon-squeezy::before { background-image: url("data:image/svg+xml;ba=
+se64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj=
+8+PHN2ZyB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iIHhtbG5zO=
+mNjPSJodHRwOi8vY3JlYXRpdmVjb21tb25zLm9yZy9ucyMiIHhtbG5zOnJkZj0iaHR0cDovL3d3=
+dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIgeG1sbnM6c3ZnPSJodHRwOi8vd3d=
+3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aW=
+V3Qm94PSIwIDAgNDUgNDUiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQ1IDQ1O=
+yIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgdmVyc2lvbj0iMS4xIiBpZD0ic3ZnMiI+PG1ldGFkYXRh=
+IGlkPSJtZXRhZGF0YTgiPjxyZGY6UkRGPjxjYzpXb3JrIHJkZjphYm91dD0iIj48ZGM6Zm9ybWF=
+0PmltYWdlL3N2Zyt4bWw8L2RjOmZvcm1hdD48ZGM6dHlwZSByZGY6cmVzb3VyY2U9Imh0dHA6Ly=
+9wdXJsLm9yZy9kYy9kY21pdHlwZS9TdGlsbEltYWdlIi8+PC9jYzpXb3JrPjwvcmRmOlJERj48L=
+21ldGFkYXRhPjxkZWZzIGlkPSJkZWZzNiI+PGNsaXBQYXRoIGlkPSJjbGlwUGF0aDE2IiBjbGlw=
+UGF0aFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggaWQ9InBhdGgxOCIgZD0iTSAwLDM2IDM=
+2LDM2IDM2LDAgMCwwIDAsMzYgWiIvPjwvY2xpcFBhdGg+PC9kZWZzPjxnIHRyYW5zZm9ybT0ibW=
+F0cml4KDEuMjUsMCwwLC0xLjI1LDAsNDUpIiBpZD0iZzEwIj48ZyBpZD0iZzEyIj48ZyBjbGlwL=
+XBhdGg9InVybCgjY2xpcFBhdGgxNikiIGlkPSJnMTQiPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRl=
+KDExLjQwNTMsMzIuNjYxMSkiIGlkPSJnMjAiPjxwYXRoIGlkPSJwYXRoMjIiIHN0eWxlPSJmaWx=
+sOiM1YzkxM2I7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiIG=
+Q9Ik0gMCwwIEMgNi40OCwxLjI3NSA4LjQ1MywtMS4yNjUgMTEuNjU1LC0wLjA4NCAxNC44NTcsM=
+S4wOTcgMTEuNzQ4LC0yLjkwNCAxMC45MSwtMy41OTIgMTAuMDcsLTQuMjgxIDIuNzcsLTguNDAx=
+IC0wLjM5NiwtNi44OSAtMy41NjMsLTUuMzc5IC0zLjU4LC0wLjcwNSAwLDAiLz48L2c+PGcgdHJ=
+hbnNmb3JtPSJ0cmFuc2xhdGUoMTUuMDAxLDIwKSIgaWQ9ImcyNCI+PHBhdGggaWQ9InBhdGgyNi=
+Igc3R5bGU9ImZpbGw6Izc3YjI1NTtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6bm9uemVybztzd=
+HJva2U6bm9uZSIgZD0ibSAwLDAgYyAtMC4zMDQsMCAtMC42MDUsMC4xMzggLTAuODAxLDAuNCAt=
+MC42ODcsMC45MTYgLTEuMzA4LDEuOTU1IC0xLjk2NSwzLjA1NiAtMi4yNjgsMy43OTUgLTQuODM=
+5LDguMDk4IC0xMS40NTIsOS41NjggLTAuNTM5LDAuMTIgLTAuODc5LDAuNjU0IC0wLjc1OSwxLj=
+E5MyAwLjEyLDAuNTM5IDAuNjU0LDAuODc4IDEuMTkzLDAuNzU5IEMgLTYuMzMsMTMuMzIgLTMuN=
+DAyLDguNDE5IC0xLjA0OSw0LjQ4MSAtMC40MiwzLjQyNyAwLjE3NSwyLjQzMiAwLjc5OSwxLjYg=
+MS4xMywxLjE1OCAxLjA0MSwwLjUzMSAwLjU5OSwwLjIgMC40MTksMC4wNjUgMC4yMDgsMCAwLDA=
+iLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzQuMjk5OCw0LjQ2NTgpIiBpZD0iZzI4Ij=
+48cGF0aCBpZD0icGF0aDMwIiBzdHlsZT0iZmlsbDojZmZjYzRkO2ZpbGwtb3BhY2l0eToxO2Zpb=
+GwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lIiBkPSJtIDAsMCBjIDAuMDAyLDAuMDE3IC0wLjAw=
+MywwLjAyOCAtMC4wMDMsMC4wNDMgMi43NzQsNS4zMzUgMi42NDgsMTUuMTEzIC0zLjM0NiwyMS4=
+xMDcgLTUuOCw1LjggLTEzLjY3OSw1LjgyMSAtMTguNzY3LDQuMDY3IC0xLjU3OCwtMC42MTQgLT=
+IuOTE2LC0wLjA2NiAtMy44MTUsLTAuOTY1IC0wLjg4MSwtMC44ODEgLTAuMzUxLC0yLjcxOSAtM=
+C43MTQsLTMuODE5IC0zLjE2OSwtNS4yMDIgLTMuNDA1LC0xMy4wMjUgMi42ODcsLTE5LjExNyA0=
+Ljk2MiwtNC45NjIgMTAuNDM4LC02Ljg0MSAxOS45OCwtNC44NTIgMC4wMDIsMC4wMDIgMC4wMDU=
+sMTBlLTQgMC4wMDgsMC4wMDIgMS4xNDksMC4yMTggMi45NSwtMC41MjQgMy41NjcsMC4wOTQgQy=
+AwLjY4MywtMi4zNTUgLTAuMDk0LC0xLjA4MyAwLDAiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc=
+2xhdGUoOC4yMDgsMjkuNDE3NSkiIGlkPSJnMzIiPjxwYXRoIGlkPSJwYXRoMzQiIHN0eWxlPSJm=
+aWxsOiM3N2IyNTU7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmU=
+iIGQ9Im0gMCwwIGMgMCwwIC00LjI3LDAuNTkgLTYuODU3LC00LjU5OSAtMi41ODgsLTUuMTg4ID=
+AuNTgyLC05LjEyNCAwLjI4OSwtMTIuNjUyIC0wLjI5MywtMy41MzEgMS41NjYsLTEuMjY1IDIuN=
+jIxLDAuNDQ1IDEuMDU1LDEuNzEgNC4yMyw0Ljg5NCA0LjkzOCw5LjI2OSBDIDEuNjk5LC0zLjE2=
+MyAwLjkyMiwtMS4wODEgMCwwIi8+PC9nPjwvZz48L2c+PC9nPjwvc3ZnPg=3D=3D"); }
+
+.slide label { text-transform: uppercase; font-weight: bold; margin-bottom:=
+ 0px; }
+
+.slide.text { text-align: left; justify-content: flex-start; overflow-y: sc=
+roll; }
+
+.slide .inner { font-size: 1rem; max-width: 44rem; }
+
+.slide .inner * { font-size: 1rem; }
+
+.slide.text h1 { font-size: 2.5rem; font-weight: 400; }
+
+.slide.text h2 { font-size: 1.6rem; }
+
+.slide.text h3 { font-size: 1.15rem; }
+
+.slide.text p { font-size: 1rem; }
+
+.faces { position: absolute; bottom: 1.25rem; right: 1.25rem; display: flex=
+; justify-content: space-between; width: 15.625rem; }
+
+.face { width: 3.75rem; height: 3.75rem; }
+
+.hidden-checkbox { user-select: none; cursor: pointer; color: white; }
+
+.hidden-checkbox input[type=3D"checkbox"] { position: absolute; left: -9999=
+px; }
+
+.hidden-checkbox :checked + span { transform: scale(1.1, 1.1) skewX(-12deg)=
+; text-shadow: white 0px 0px 5px; }
+
+.hidden-checkbox span { display: inline-block; transition: transform 200ms =
+ease 0s, text-shadow; }
+
+.hidden-checkbox .check { opacity: 0; }
+
+.hidden-checkbox :checked + span .check { transition: opacity 200ms ease 0s=
+; opacity: 1; }
+
+@media (max-width: 1050px) {
+  #sidebar, .sidebar-container { display: none; }
+}
+
+@media (max-width: 700px) {
+  .container { padding-left: 1rem; padding-right: 1rem; }
+  .links { flex-direction: column; }
+  .link:first-child { margin-top: 0.25rem; }
+  .link .label { margin-bottom: 0.25rem; }
+}
+
+@media print {
+  .feedback { display: none; }
+}
+
+.label { display: inline-block; border-radius: 3px; color: white; text-tran=
+sform: uppercase; font-weight: 700; padding: 0.125rem 0.5rem; font-size: 0.=
+75rem; }
+
+a.label:hover, a.label:focus { color: white; text-decoration: none; }
+
+.label-gray { background-color: rgb(153, 153, 153); }
+
+.label-gray[href]:hover, .label-gray[href]:focus { background-color: gray; =
+}
+
+.label-teal { background-color: rgb(0, 167, 157); }
+
+.label-teal[href]:hover, .label-teal[href]:focus { background-color: rgb(0,=
+ 116, 109); }
+
+.label-green { background-color: rgb(92, 184, 92); }
+
+.label-green[href]:hover, .label-green[href]:focus { background-color: rgb(=
+68, 157, 68); }
+
+.label-light-blue { background-color: rgb(91, 192, 222); }
+
+.label-light-blue[href]:hover, .label-light-blue[href]:focus { background-c=
+olor: rgb(49, 176, 213); }
+
+.label-orange { background-color: rgb(240, 173, 78); }
+
+.label-orange[href]:hover, .label-orange[href]:focus { background-color: rg=
+b(236, 151, 31); }
+
+.label-red { background-color: rgb(202, 112, 112); }
+
+.label-red[href]:hover, .label-red[href]:focus { background-color: rgb(188,=
+ 75, 75); }
+
+.partial-content.toggled { font-size: 0.9em; margin-left: 2em; border-left:=
+ 1px solid rgb(204, 204, 204); padding: 1.5em; }
+
+#assignment-submit-button { margin: 0.5em; }
+
+#assignment-submit-button.done { background-color: green; }
+------MultipartBoundary--tlgNZB0tE8trucjPErojLvMPfz5rrhcMsuf9Be7NVJ----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700
+
+@charset "utf-8";
+
+@font-face { font-family: "Source Sans Pro"; font-style: italic; font-weigh=
+t: 400; src: url("https://fonts.gstatic.com/s/sourcesanspro/v14/6xK1dSBYKcS=
+V-LCoeQqfX1RYOo3qPZ7qsDJB9cme_xc.woff2") format("woff2"); unicode-range: U+=
+460-52F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
+
+@font-face { font-family: "Source Sans Pro"; font-style: italic; font-weigh=
+t: 400; src: url("https://fonts.gstatic.com/s/sourcesanspro/v14/6xK1dSBYKcS=
+V-LCoeQqfX1RYOo3qPZ7jsDJB9cme_xc.woff2") format("woff2"); unicode-range: U+=
+400-45F, U+490-491, U+4B0-4B1, U+2116; }
+
+@font-face { font-family: "Source Sans Pro"; font-style: italic; font-weigh=
+t: 400; src: url("https://fonts.gstatic.com/s/sourcesanspro/v14/6xK1dSBYKcS=
+V-LCoeQqfX1RYOo3qPZ7rsDJB9cme_xc.woff2") format("woff2"); unicode-range: U+=
+1F00-1FFF; }
+
+@font-face { font-family: "Source Sans Pro"; font-style: italic; font-weigh=
+t: 400; src: url("https://fonts.gstatic.com/s/sourcesanspro/v14/6xK1dSBYKcS=
+V-LCoeQqfX1RYOo3qPZ7ksDJB9cme_xc.woff2") format("woff2"); unicode-range: U+=
+370-3FF; }
+
+@font-face { font-family: "Source Sans Pro"; font-style: italic; font-weigh=
+t: 400; src: url("https://fonts.gstatic.com/s/sourcesanspro/v14/6xK1dSBYKcS=
+V-LCoeQqfX1RYOo3qPZ7osDJB9cme_xc.woff2") format("woff2"); unicode-range: U+=
+102-103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+1EA0-1EF9=
+, U+20AB; }
+
+@font-face { font-family: "Source Sans Pro"; font-style: italic; font-weigh=
+t: 400; src: url("https://fonts.gstatic.com/s/sourcesanspro/v14/6xK1dSBYKcS=
+V-LCoeQqfX1RYOo3qPZ7psDJB9cme_xc.woff2") format("woff2"); unicode-range: U+=
+100-24F, U+259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C=
+60-2C7F, U+A720-A7FF; }
+
+@font-face { font-family: "Source Sans Pro"; font-style: italic; font-weigh=
+t: 400; src: url("https://fonts.gstatic.com/s/sourcesanspro/v14/6xK1dSBYKcS=
+V-LCoeQqfX1RYOo3qPZ7nsDJB9cme.woff2") format("woff2"); unicode-range: U+0-F=
+F, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+2000-206F, U+2074, U=
++20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+@font-face { font-family: "Source Sans Pro"; font-style: italic; font-weigh=
+t: 600; src: url("https://fonts.gstatic.com/s/sourcesanspro/v14/6xKwdSBYKcS=
+V-LCoeQqfX1RYOo3qPZY4lCdh18S0xR41YDw.woff2") format("woff2"); unicode-range=
+: U+460-52F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
+
+@font-face { font-family: "Source Sans Pro"; font-style: italic; font-weigh=
+t: 600; src: url("https://fonts.gstatic.com/s/sourcesanspro/v14/6xKwdSBYKcS=
+V-LCoeQqfX1RYOo3qPZY4lCdo18S0xR41YDw.woff2") format("woff2"); unicode-range=
+: U+400-45F, U+490-491, U+4B0-4B1, U+2116; }
+
+@font-face { font-family: "Source Sans Pro"; font-style: italic; font-weigh=
+t: 600; src: url("https://fonts.gstatic.com/s/sourcesanspro/v14/6xKwdSBYKcS=
+V-LCoeQqfX1RYOo3qPZY4lCdg18S0xR41YDw.woff2") format("woff2"); unicode-range=
+: U+1F00-1FFF; }
+
+@font-face { font-family: "Source Sans Pro"; font-style: italic; font-weigh=
+t: 600; src: url("https://fonts.gstatic.com/s/sourcesanspro/v14/6xKwdSBYKcS=
+V-LCoeQqfX1RYOo3qPZY4lCdv18S0xR41YDw.woff2") format("woff2"); unicode-range=
+: U+370-3FF; }
+
+@font-face { font-family: "Source Sans Pro"; font-style: italic; font-weigh=
+t: 600; src: url("https://fonts.gstatic.com/s/sourcesanspro/v14/6xKwdSBYKcS=
+V-LCoeQqfX1RYOo3qPZY4lCdj18S0xR41YDw.woff2") format("woff2"); unicode-range=
+: U+102-103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+1EA0-=
+1EF9, U+20AB; }
+
+@font-face { font-family: "Source Sans Pro"; font-style: italic; font-weigh=
+t: 600; src: url("https://fonts.gstatic.com/s/sourcesanspro/v14/6xKwdSBYKcS=
+V-LCoeQqfX1RYOo3qPZY4lCdi18S0xR41YDw.woff2") format("woff2"); unicode-range=
+: U+100-24F, U+259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, =
+U+2C60-2C7F, U+A720-A7FF; }
+
+@font-face { font-family: "Source Sans Pro"; font-style: italic; font-weigh=
+t: 600; src: url("https://fonts.gstatic.com/s/sourcesanspro/v14/6xKwdSBYKcS=
+V-LCoeQqfX1RYOo3qPZY4lCds18S0xR41.woff2") format("woff2"); unicode-range: U=
++0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+2000-206F, U+207=
+4, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+@font-face { font-family: "Source Sans Pro"; font-style: normal; font-weigh=
+t: 400; src: url("https://fonts.gstatic.com/s/sourcesanspro/v14/6xK3dSBYKcS=
+V-LCoeQqfX1RYOo3qNa7lujVj9_mf.woff2") format("woff2"); unicode-range: U+460=
+-52F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
+
+@font-face { font-family: "Source Sans Pro"; font-style: normal; font-weigh=
+t: 400; src: url("https://fonts.gstatic.com/s/sourcesanspro/v14/6xK3dSBYKcS=
+V-LCoeQqfX1RYOo3qPK7lujVj9_mf.woff2") format("woff2"); unicode-range: U+400=
+-45F, U+490-491, U+4B0-4B1, U+2116; }
+
+@font-face { font-family: "Source Sans Pro"; font-style: normal; font-weigh=
+t: 400; src: url("https://fonts.gstatic.com/s/sourcesanspro/v14/6xK3dSBYKcS=
+V-LCoeQqfX1RYOo3qNK7lujVj9_mf.woff2") format("woff2"); unicode-range: U+1F0=
+0-1FFF; }
+
+@font-face { font-family: "Source Sans Pro"; font-style: normal; font-weigh=
+t: 400; src: url("https://fonts.gstatic.com/s/sourcesanspro/v14/6xK3dSBYKcS=
+V-LCoeQqfX1RYOo3qO67lujVj9_mf.woff2") format("woff2"); unicode-range: U+370=
+-3FF; }
+
+@font-face { font-family: "Source Sans Pro"; font-style: normal; font-weigh=
+t: 400; src: url("https://fonts.gstatic.com/s/sourcesanspro/v14/6xK3dSBYKcS=
+V-LCoeQqfX1RYOo3qN67lujVj9_mf.woff2") format("woff2"); unicode-range: U+102=
+-103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+1EA0-1EF9, U=
++20AB; }
+
+@font-face { font-family: "Source Sans Pro"; font-style: normal; font-weigh=
+t: 400; src: url("https://fonts.gstatic.com/s/sourcesanspro/v14/6xK3dSBYKcS=
+V-LCoeQqfX1RYOo3qNq7lujVj9_mf.woff2") format("woff2"); unicode-range: U+100=
+-24F, U+259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-=
+2C7F, U+A720-A7FF; }
+
+@font-face { font-family: "Source Sans Pro"; font-style: normal; font-weigh=
+t: 400; src: url("https://fonts.gstatic.com/s/sourcesanspro/v14/6xK3dSBYKcS=
+V-LCoeQqfX1RYOo3qOK7lujVj9w.woff2") format("woff2"); unicode-range: U+0-FF,=
+ U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+2000-206F, U+2074, U+2=
+0AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+@font-face { font-family: "Source Sans Pro"; font-style: normal; font-weigh=
+t: 600; src: url("https://fonts.gstatic.com/s/sourcesanspro/v14/6xKydSBYKcS=
+V-LCoeQqfX1RYOo3i54rwmhdu3cOWxy40.woff2") format("woff2"); unicode-range: U=
++460-52F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
+
+@font-face { font-family: "Source Sans Pro"; font-style: normal; font-weigh=
+t: 600; src: url("https://fonts.gstatic.com/s/sourcesanspro/v14/6xKydSBYKcS=
+V-LCoeQqfX1RYOo3i54rwkxdu3cOWxy40.woff2") format("woff2"); unicode-range: U=
++400-45F, U+490-491, U+4B0-4B1, U+2116; }
+
+@font-face { font-family: "Source Sans Pro"; font-style: normal; font-weigh=
+t: 600; src: url("https://fonts.gstatic.com/s/sourcesanspro/v14/6xKydSBYKcS=
+V-LCoeQqfX1RYOo3i54rwmxdu3cOWxy40.woff2") format("woff2"); unicode-range: U=
++1F00-1FFF; }
+
+@font-face { font-family: "Source Sans Pro"; font-style: normal; font-weigh=
+t: 600; src: url("https://fonts.gstatic.com/s/sourcesanspro/v14/6xKydSBYKcS=
+V-LCoeQqfX1RYOo3i54rwlBdu3cOWxy40.woff2") format("woff2"); unicode-range: U=
++370-3FF; }
+
+@font-face { font-family: "Source Sans Pro"; font-style: normal; font-weigh=
+t: 600; src: url("https://fonts.gstatic.com/s/sourcesanspro/v14/6xKydSBYKcS=
+V-LCoeQqfX1RYOo3i54rwmBdu3cOWxy40.woff2") format("woff2"); unicode-range: U=
++102-103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+1EA0-1EF=
+9, U+20AB; }
+
+@font-face { font-family: "Source Sans Pro"; font-style: normal; font-weigh=
+t: 600; src: url("https://fonts.gstatic.com/s/sourcesanspro/v14/6xKydSBYKcS=
+V-LCoeQqfX1RYOo3i54rwmRdu3cOWxy40.woff2") format("woff2"); unicode-range: U=
++100-24F, U+259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2=
+C60-2C7F, U+A720-A7FF; }
+
+@font-face { font-family: "Source Sans Pro"; font-style: normal; font-weigh=
+t: 600; src: url("https://fonts.gstatic.com/s/sourcesanspro/v14/6xKydSBYKcS=
+V-LCoeQqfX1RYOo3i54rwlxdu3cOWxw.woff2") format("woff2"); unicode-range: U+0=
+-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+2000-206F, U+2074,=
+ U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+@font-face { font-family: "Source Sans Pro"; font-style: normal; font-weigh=
+t: 700; src: url("https://fonts.gstatic.com/s/sourcesanspro/v14/6xKydSBYKcS=
+V-LCoeQqfX1RYOo3ig4vwmhdu3cOWxy40.woff2") format("woff2"); unicode-range: U=
++460-52F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
+
+@font-face { font-family: "Source Sans Pro"; font-style: normal; font-weigh=
+t: 700; src: url("https://fonts.gstatic.com/s/sourcesanspro/v14/6xKydSBYKcS=
+V-LCoeQqfX1RYOo3ig4vwkxdu3cOWxy40.woff2") format("woff2"); unicode-range: U=
++400-45F, U+490-491, U+4B0-4B1, U+2116; }
+
+@font-face { font-family: "Source Sans Pro"; font-style: normal; font-weigh=
+t: 700; src: url("https://fonts.gstatic.com/s/sourcesanspro/v14/6xKydSBYKcS=
+V-LCoeQqfX1RYOo3ig4vwmxdu3cOWxy40.woff2") format("woff2"); unicode-range: U=
++1F00-1FFF; }
+
+@font-face { font-family: "Source Sans Pro"; font-style: normal; font-weigh=
+t: 700; src: url("https://fonts.gstatic.com/s/sourcesanspro/v14/6xKydSBYKcS=
+V-LCoeQqfX1RYOo3ig4vwlBdu3cOWxy40.woff2") format("woff2"); unicode-range: U=
++370-3FF; }
+
+@font-face { font-family: "Source Sans Pro"; font-style: normal; font-weigh=
+t: 700; src: url("https://fonts.gstatic.com/s/sourcesanspro/v14/6xKydSBYKcS=
+V-LCoeQqfX1RYOo3ig4vwmBdu3cOWxy40.woff2") format("woff2"); unicode-range: U=
++102-103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+1EA0-1EF=
+9, U+20AB; }
+
+@font-face { font-family: "Source Sans Pro"; font-style: normal; font-weigh=
+t: 700; src: url("https://fonts.gstatic.com/s/sourcesanspro/v14/6xKydSBYKcS=
+V-LCoeQqfX1RYOo3ig4vwmRdu3cOWxy40.woff2") format("woff2"); unicode-range: U=
++100-24F, U+259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2=
+C60-2C7F, U+A720-A7FF; }
+
+@font-face { font-family: "Source Sans Pro"; font-style: normal; font-weigh=
+t: 700; src: url("https://fonts.gstatic.com/s/sourcesanspro/v14/6xKydSBYKcS=
+V-LCoeQqfX1RYOo3ig4vwlxdu3cOWxw.woff2") format("woff2"); unicode-range: U+0=
+-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+2000-206F, U+2074,=
+ U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+------MultipartBoundary--tlgNZB0tE8trucjPErojLvMPfz5rrhcMsuf9Be7NVJ----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://courses.education.pivotal.io/by/code:spring-core/version:latest/css/highlight.js.min.css
+
+@charset "utf-8";
+
+.hljs { display: block; overflow-x: auto; padding: 0.5em; background: rgb(2=
+40, 240, 240); text-size-adjust: none; }
+
+.hljs, .hljs-subst, .hljs-tag .hljs-title, .nginx .hljs-title { color: blac=
+k; }
+
+.hljs-string, .hljs-title, .hljs-constant, .hljs-parent, .hljs-tag .hljs-va=
+lue, .hljs-rule .hljs-value, .hljs-preprocessor, .hljs-pragma, .hljs-name, =
+.haml .hljs-symbol, .ruby .hljs-symbol, .ruby .hljs-symbol .hljs-string, .h=
+ljs-template_tag, .django .hljs-variable, .smalltalk .hljs-class, .hljs-add=
+ition, .hljs-flow, .hljs-stream, .bash .hljs-variable, .pf .hljs-variable, =
+.apache .hljs-tag, .apache .hljs-cbracket, .tex .hljs-command, .tex .hljs-s=
+pecial, .erlang_repl .hljs-function_or_atom, .asciidoc .hljs-header, .markd=
+own .hljs-header, .coffeescript .hljs-attribute { color: rgb(136, 0, 0); }
+
+.smartquote, .hljs-comment, .hljs-annotation, .diff .hljs-header, .hljs-chu=
+nk, .asciidoc .hljs-blockquote, .markdown .hljs-blockquote { color: rgb(136=
+, 136, 136); }
+
+.hljs-number, .hljs-date, .hljs-regexp, .hljs-literal, .hljs-hexcolor, .sma=
+lltalk .hljs-symbol, .smalltalk .hljs-char, .go .hljs-constant, .hljs-chang=
+e, .lasso .hljs-variable, .makefile .hljs-variable, .asciidoc .hljs-bullet,=
+ .markdown .hljs-bullet, .asciidoc .hljs-link_url, .markdown .hljs-link_url=
+ { color: rgb(0, 136, 0); }
+
+.hljs-label, .hljs-javadoc, .ruby .hljs-string, .hljs-decorator, .hljs-filt=
+er .hljs-argument, .hljs-localvars, .hljs-array, .hljs-attr_selector, .hljs=
+-important, .hljs-pseudo, .hljs-pi, .haml .hljs-bullet, .hljs-doctype, .hlj=
+s-deletion, .hljs-envvar, .hljs-shebang, .apache .hljs-sqbracket, .nginx .h=
+ljs-built_in, .tex .hljs-formula, .erlang_repl .hljs-reserved, .hljs-prompt=
+, .asciidoc .hljs-link_label, .markdown .hljs-link_label, .vhdl .hljs-attri=
+bute, .clojure .hljs-attribute, .asciidoc .hljs-attribute, .lasso .hljs-att=
+ribute, .coffeescript .hljs-property, .hljs-phony { color: rgb(136, 136, 25=
+5); }
+
+.hljs-keyword, .hljs-id, .hljs-title, .hljs-built_in, .css .hljs-tag, .hljs=
+-javadoctag, .hljs-phpdoc, .hljs-dartdoc, .hljs-yardoctag, .smalltalk .hljs=
+-class, .hljs-winutils, .bash .hljs-variable, .pf .hljs-variable, .apache .=
+hljs-tag, .hljs-type, .hljs-typename, .tex .hljs-command, .asciidoc .hljs-s=
+trong, .markdown .hljs-strong, .hljs-request, .hljs-status { font-weight: b=
+old; }
+
+.asciidoc .hljs-emphasis, .markdown .hljs-emphasis { font-style: italic; }
+
+.nginx .hljs-built_in { font-weight: normal; }
+
+.coffeescript .javascript, .javascript .xml, .lasso .markup, .tex .hljs-for=
+mula, .xml .javascript, .xml .vbscript, .xml .css, .xml .hljs-cdata { opaci=
+ty: 0.5; }
+------MultipartBoundary--tlgNZB0tE8trucjPErojLvMPfz5rrhcMsuf9Be7NVJ----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://courses.education.pivotal.io/by/code:spring-core/version:latest/css/github.css
+
+@charset "utf-8";
+
+.hljs { display: block; overflow-x: auto; padding: 0.5em; color: rgb(51, 51=
+, 51); background: rgb(248, 248, 248); }
+
+.hljs-comment, .hljs-quote { color: rgb(153, 153, 136); font-style: italic;=
+ }
+
+.hljs-keyword, .hljs-selector-tag, .hljs-subst { color: rgb(51, 51, 51); fo=
+nt-weight: bold; }
+
+.hljs-number, .hljs-literal, .hljs-variable, .hljs-template-variable, .hljs=
+-tag .hljs-attr { color: rgb(0, 128, 128); }
+
+.hljs-string, .hljs-doctag { color: rgb(221, 17, 68); }
+
+.hljs-title, .hljs-section, .hljs-selector-id { color: rgb(153, 0, 0); font=
+-weight: bold; }
+
+.hljs-subst { font-weight: normal; }
+
+.hljs-type, .hljs-class .hljs-title { color: rgb(68, 85, 136); font-weight:=
+ bold; }
+
+.hljs-tag, .hljs-name, .hljs-attribute { color: rgb(0, 0, 128); font-weight=
+: normal; }
+
+.hljs-regexp, .hljs-link { color: rgb(0, 153, 38); }
+
+.hljs-symbol, .hljs-bullet { color: rgb(153, 0, 115); }
+
+.hljs-built_in, .hljs-builtin-name { color: rgb(0, 134, 179); }
+
+.hljs-meta { color: rgb(153, 153, 153); font-weight: bold; }
+
+.hljs-deletion { background: rgb(255, 221, 221); }
+
+.hljs-addition { background: rgb(221, 255, 221); }
+
+.hljs-emphasis { font-style: italic; }
+
+.hljs-strong { font-weight: bold; }
+------MultipartBoundary--tlgNZB0tE8trucjPErojLvMPfz5rrhcMsuf9Be7NVJ----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://courses.education.pivotal.io/by/code:spring-core/version:latest/css/custom.css
+
+@charset "utf-8";
+
+header { background-color: rgb(52, 48, 45); border-top: 4px solid rgb(109, =
+179, 63); margin-bottom: 20px; display: flex; align-items: center; }
+
+header .container { width: 76rem; padding: 1rem; }
+
+header p { color: white; font-size: 13px; }
+
+#spring-logo { background: url("../images/spring-logo.png") -1px -1px no-re=
+peat; display: block; width: 224px; height: 46px; margin-bottom: 1rem; }
+
+#spring-logo span { background: url("../images/spring-logo.png") -1px -48px=
+ no-repeat; display: block; width: 224px; height: 46px; opacity: 0; transit=
+ion: opacity 0.12s ease-in-out 0s; }
+
+#spring-logo:hover span { opacity: 1; }
+
+#sidebar { border: 1px solid rgb(204, 204, 204); box-shadow: rgb(52, 48, 45=
+) 0px -4px 0px; border-radius: 0px; }
+
+.container.title { padding-top: 1rem; padding-bottom: 0px; }
+
+.container.title h1 { padding: 0px; margin: 0px; line-height: 1; font-weigh=
+t: bold; }
+
+.container.title::before { content: "instructions"; text-transform: upperca=
+se; padding-top: 0.3rem; font-size: 0.8rem; border-top: 3px solid rgb(95, 1=
+61, 52); }
+
+blockquote::before { content: none; }
+
+p > img + p > strong:only-child { margin: auto; display: block; width: 77%;=
+ color: rgb(46, 48, 146); }
+
+blockquote > p > strong:first-child { color: rgb(0, 124, 162); }
+
+img { min-width: 50%; display: block; margin-left: auto; margin-right: auto=
+; }
+------MultipartBoundary--tlgNZB0tE8trucjPErojLvMPfz5rrhcMsuf9Be7NVJ----
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: https://courses.education.pivotal.io/by/code:spring-core/version:latest/images/spring-logo.png
+
+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
+qdL/AHoLKmoY1G/nAAAAAElFTkSuQmCC
+
+------MultipartBoundary--tlgNZB0tE8trucjPErojLvMPfz5rrhcMsuf9Be7NVJ------
