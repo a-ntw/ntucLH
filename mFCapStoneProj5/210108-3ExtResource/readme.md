@@ -40,10 +40,12 @@ method 2 - SpringTool
 * right click on ExtResourcesTR >
 * Run As >
 * Run Configuration >
+* Spring Boot App?
 * Classpath > 
 * User Entries > 
 * Advanced 
-* Add Externak Folder
+* Add External Folder
+* Apply ?
 
 
 
