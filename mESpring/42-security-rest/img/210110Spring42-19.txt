@@ -1,0 +1,25 @@
+
+``` terminal
+antw@Mac-mini ~ % curl -i -u spring:spring http://localhost:8080/accounts/0
+HTTP/1.1 401 
+WWW-Authenticate: Basic realm="Realm"
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Set-Cookie: JSESSIONID=79860537A9BCC4A5C1F065099CC0BC70; Path=/; HttpOnly
+WWW-Authenticate: Basic realm="Realm"
+Content-Length: 0
+Date: Sun, 10 Jan 2021 06:02:38 GMT
+
+antw@Mac-mini ~ % 
+```
+
+browser
+``` console
+{"entityId":0,"number":"123456789","name":"Keith and Keri Donald","beneficiaries":[{"entityId":1,"name":"Corgan","allocationPercentage":0.50,"savings":0.00},{"entityId":0,"name":"Annabelle","allocationPercentage":0.50,"savings":0.00}],"valid":true}
+```
+
+

@@ -1,0 +1,29 @@
+
+antw@Mac-mini ~ % curl -i -u mary:mary http://localhost:8080/accounts/0
+HTTP/1.1 200 
+Set-Cookie: JSESSIONID=D63B4EB0E54AEBB64FE8CAFA4ECC55F7; Path=/; HttpOnly
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sun, 10 Jan 2021 05:53:17 GMT
+
+{"entityId":0,"number":"123456789","name":"Keith and Keri Donald","beneficiaries":[{"entityId":0,"name":"Annabelle","allocationPercentage":0.50,"savings":0.00},{"entityId":1,"name":"Corgan","allocationPercentage":0.50,"savings":0.00}],"valid":true}%                                                                                 antw@Mac-mini ~ % curl -i -u joe:joe http://localhost:8080/accounts/0
+HTTP/1.1 200 
+Set-Cookie: JSESSIONID=AFAE5F554715C5E2DA2F9FC0E188B973; Path=/; HttpOnly
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sun, 10 Jan 2021 05:53:48 GMT
+
+{"entityId":0,"number":"123456789","name":"Keith and Keri Donald","beneficiaries":[{"entityId":1,"name":"Corgan","allocationPercentage":0.50,"savings":0.00},{"entityId":0,"name":"Annabelle","allocationPercentage":0.50,"savings":0.00}],"valid":true}%                                                                                 antw@Mac-mini ~ % 
+
