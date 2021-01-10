@@ -125,3 +125,10 @@ SQ1 : 4477 0090 9089 1
 SQ  : 4477 0090 9089 2
 SQ1 : 4477 0090 9089 3
 ```
+
+### my understanding
+Require annotation to work need
+*  `@Configuation` and `@Bean` as in SpringConfig.java
+*  `ApplicationContext` with `AnnotationConfigApplicationContext(SpringConfig.class)`
+
+---
