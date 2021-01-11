@@ -1,5 +1,12 @@
-JSBC in Spriing
+Spring JDBC
 ---
+
+210111JdbcConfig.png <img src="210111JdbcConfig.png" />
+
+210111JdbcVeDAO.png <img src="210111JdbcVeDAO.png" />
+
+210111depemdency.png<img src="210111depemdency.png" />
+
 
 JdbcAppApplication.java
 ``` java
@@ -249,6 +256,29 @@ public interface VehicleDao {
 
 ```
 
+210111C-console.txt
+``` console
+... - Creating shared instance of singleton bean 'springConfig'
+... - Creating shared instance of singleton bean 'vehicleDao'
+... - Loaded JDBC driver: oracle.jdbc.OracleDriver
+... - Creating new JDBC DriverManager Connection to [jdbc:oracle:thin:@//localhost:1521/orcl]
+... - Creating new JDBC DriverManager Connection to [jdbc:oracle:thin:@//localhost:1521/orcl]
+... - Creating new JDBC DriverManager Connection to [jdbc:oracle:thin:@//localhost:1521/orcl]
+... - Creating new JDBC DriverManager Connection to [jdbc:oracle:thin:@//localhost:1521/orcl]
+... - Creating new JDBC DriverManager Connection to [jdbc:oracle:thin:@//localhost:1521/orcl]
+ vehicle Vehicle [vehicleNo=VBG3456, color=Chery Red, seat=7, wheel=4, getVehicleNo()=VBG3456, getColor()=Chery Red, getSeat()=7, getWheel()=4]
+... - Creating new JDBC DriverManager Connection to [jdbc:oracle:thin:@//localhost:1521/orcl]
+Vehicle [vehicleNo=Temp2234, color=Yellow, seat=4, wheel=7, getVehicleNo()=Temp2234, getColor()=Yellow, getSeat()=4, getWheel()=7]
+Vehicle [vehicleNo=ABC1234, color=Sky Blue, seat=5, wheel=5, getVehicleNo()=ABC1234, getColor()=Sky Blue, getSeat()=5, getWheel()=5]
+Vehicle [vehicleNo=Temp1234, color=Grey, seat=4, wheel=7, getVehicleNo()=Temp1234, getColor()=Grey, getSeat()=4, getWheel()=7]
+Vehicle [vehicleNo=Temp3234, color=Pink, seat=4, wheel=7, getVehicleNo()=Temp3234, getColor()=Pink, getSeat()=4, getWheel()=7]
+Vehicle [vehicleNo=Temp4234, color=Brown, seat=4, wheel=7, getVehicleNo()=Temp4234, getColor()=Brown, getSeat()=4, getWheel()=7]
+Vehicle [vehicleNo=VBG3456, color=Chery Red, seat=7, wheel=4, getVehicleNo()=VBG3456, getColor()=Chery Red, getSeat()=7, getWheel()=4]
+... - Creating new JDBC DriverManager Connection to [jdbc:oracle:thin:@//localhost:1521/orcl]
+ Vehicle VBG3456 has the color Chery Red
+... - Creating new JDBC DriverManager Connection to [jdbc:oracle:thin:@//localhost:1521/orcl]
+ Vehicle count 6
+```
 
 
 
