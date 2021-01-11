@@ -2,7 +2,7 @@ ntuc Java E E
 ===
 [top]: topOfThePage
 
-| topics | Lession | Folder | img |
+| topics | Lesson | Folder | img |
 | ---: | --- | --- | --- |
 |  01 install software | Day 1 | [ day1_software.md ]( /mDjavaEE/day1_software.md) |  |
 |  02 sessions | Day 2 | [ day2_sessions.md ]( /mDjavaEE/day2_sessions.md) |  |
