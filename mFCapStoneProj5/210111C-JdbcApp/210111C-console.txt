@@ -1,0 +1,28 @@
+17:46:22.263 [main] DEBUG org.springframework.context.annotation.AnnotationConfigApplicationContext - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@7e0babb1
+17:46:22.279 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+17:46:22.369 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
+17:46:22.371 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
+17:46:22.372 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+17:46:22.373 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor'
+17:46:22.384 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'springConfig'
+17:46:22.388 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'vehicleDao'
+17:46:22.444 [main] DEBUG org.springframework.jdbc.datasource.DriverManagerDataSource - Loaded JDBC driver: oracle.jdbc.OracleDriver
+17:46:22.461 [main] DEBUG org.springframework.jdbc.datasource.DriverManagerDataSource - Creating new JDBC DriverManager Connection to [jdbc:oracle:thin:@//localhost:1521/orcl]
+17:46:27.991 [main] DEBUG org.springframework.jdbc.datasource.DriverManagerDataSource - Creating new JDBC DriverManager Connection to [jdbc:oracle:thin:@//localhost:1521/orcl]
+17:46:33.051 [main] DEBUG org.springframework.jdbc.datasource.DriverManagerDataSource - Creating new JDBC DriverManager Connection to [jdbc:oracle:thin:@//localhost:1521/orcl]
+17:46:38.111 [main] DEBUG org.springframework.jdbc.datasource.DriverManagerDataSource - Creating new JDBC DriverManager Connection to [jdbc:oracle:thin:@//localhost:1521/orcl]
+17:46:43.169 [main] DEBUG org.springframework.jdbc.datasource.DriverManagerDataSource - Creating new JDBC DriverManager Connection to [jdbc:oracle:thin:@//localhost:1521/orcl]
+ vehicle Vehicle [vehicleNo=VBG3456, color=Chery Red, seat=7, wheel=4, getVehicleNo()=VBG3456, getColor()=Chery Red, getSeat()=7, getWheel()=4]
+17:46:48.265 [main] DEBUG org.springframework.jdbc.datasource.DriverManagerDataSource - Creating new JDBC DriverManager Connection to [jdbc:oracle:thin:@//localhost:1521/orcl]
+Vehicle [vehicleNo=Temp2234, color=Yellow, seat=4, wheel=7, getVehicleNo()=Temp2234, getColor()=Yellow, getSeat()=4, getWheel()=7]
+Vehicle [vehicleNo=ABC1234, color=Sky Blue, seat=5, wheel=5, getVehicleNo()=ABC1234, getColor()=Sky Blue, getSeat()=5, getWheel()=5]
+Vehicle [vehicleNo=Temp1234, color=Grey, seat=4, wheel=7, getVehicleNo()=Temp1234, getColor()=Grey, getSeat()=4, getWheel()=7]
+Vehicle [vehicleNo=Temp3234, color=Pink, seat=4, wheel=7, getVehicleNo()=Temp3234, getColor()=Pink, getSeat()=4, getWheel()=7]
+Vehicle [vehicleNo=Temp4234, color=Brown, seat=4, wheel=7, getVehicleNo()=Temp4234, getColor()=Brown, getSeat()=4, getWheel()=7]
+Vehicle [vehicleNo=VBG3456, color=Chery Red, seat=7, wheel=4, getVehicleNo()=VBG3456, getColor()=Chery Red, getSeat()=7, getWheel()=4]
+17:46:53.325 [main] DEBUG org.springframework.jdbc.datasource.DriverManagerDataSource - Creating new JDBC DriverManager Connection to [jdbc:oracle:thin:@//localhost:1521/orcl]
+ Vehicle VBG3456 has the color Chery Red
+17:46:58.383 [main] DEBUG org.springframework.jdbc.datasource.DriverManagerDataSource - Creating new JDBC DriverManager Connection to [jdbc:oracle:thin:@//localhost:1521/orcl]
+ Vehicle count 6
+
+
