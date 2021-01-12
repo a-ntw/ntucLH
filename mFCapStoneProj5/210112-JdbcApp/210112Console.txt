@@ -1,0 +1,93 @@
+12:39:57.258 [main] DEBUG org.springframework.context.annotation.AnnotationConfigApplicationContext - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@7e0babb1
+12:39:57.274 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+12:39:57.458 [main] DEBUG com.zaxxer.hikari.HikariConfig - Driver class oracle.jdbc.OracleDriver found in Thread context class loader sun.misc.Launcher$AppClassLoader@764c12b6
+12:39:57.497 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
+12:39:57.499 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
+12:39:57.501 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+12:39:57.502 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor'
+12:39:57.510 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'springConfig'
+12:39:57.520 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'vehicleDao'
+12:39:57.541 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'hikariDataSource'
+12:39:57.543 [main] DEBUG com.zaxxer.hikari.HikariConfig - HikariPool-1 - configuration:
+12:39:57.545 [main] DEBUG com.zaxxer.hikari.HikariConfig - allowPoolSuspension.............false
+12:39:57.545 [main] DEBUG com.zaxxer.hikari.HikariConfig - autoCommit......................true
+12:39:57.545 [main] DEBUG com.zaxxer.hikari.HikariConfig - catalog.........................none
+12:39:57.545 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionInitSql...............none
+12:39:57.545 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionTestQuery.............none
+12:39:57.545 [main] DEBUG com.zaxxer.hikari.HikariConfig - connectionTimeout...............30000
+12:39:57.545 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSource......................none
+12:39:57.546 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceClassName.............none
+12:39:57.546 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceJNDI..................none
+12:39:57.546 [main] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceProperties............{password=<masked>}
+12:39:57.546 [main] DEBUG com.zaxxer.hikari.HikariConfig - driverClassName................."oracle.jdbc.OracleDriver"
+12:39:57.546 [main] DEBUG com.zaxxer.hikari.HikariConfig - exceptionOverrideClassName......none
+12:39:57.546 [main] DEBUG com.zaxxer.hikari.HikariConfig - healthCheckProperties...........{}
+12:39:57.546 [main] DEBUG com.zaxxer.hikari.HikariConfig - healthCheckRegistry.............none
+12:39:57.546 [main] DEBUG com.zaxxer.hikari.HikariConfig - idleTimeout.....................600000
+12:39:57.546 [main] DEBUG com.zaxxer.hikari.HikariConfig - initializationFailTimeout.......1
+12:39:57.546 [main] DEBUG com.zaxxer.hikari.HikariConfig - isolateInternalQueries..........false
+12:39:57.547 [main] DEBUG com.zaxxer.hikari.HikariConfig - jdbcUrl.........................jdbc:oracle:thin:@//localhost:1521/orcl
+12:39:57.547 [main] DEBUG com.zaxxer.hikari.HikariConfig - leakDetectionThreshold..........0
+12:39:57.547 [main] DEBUG com.zaxxer.hikari.HikariConfig - maxLifetime.....................1800000
+12:39:57.547 [main] DEBUG com.zaxxer.hikari.HikariConfig - maximumPoolSize.................20
+12:39:57.547 [main] DEBUG com.zaxxer.hikari.HikariConfig - metricRegistry..................none
+12:39:57.547 [main] DEBUG com.zaxxer.hikari.HikariConfig - metricsTrackerFactory...........none
+12:39:57.547 [main] DEBUG com.zaxxer.hikari.HikariConfig - minimumIdle.....................20
+12:39:57.547 [main] DEBUG com.zaxxer.hikari.HikariConfig - password........................<masked>
+12:39:57.547 [main] DEBUG com.zaxxer.hikari.HikariConfig - poolName........................"HikariPool-1"
+12:39:57.547 [main] DEBUG com.zaxxer.hikari.HikariConfig - readOnly........................false
+12:39:57.547 [main] DEBUG com.zaxxer.hikari.HikariConfig - registerMbeans..................false
+12:39:57.547 [main] DEBUG com.zaxxer.hikari.HikariConfig - scheduledExecutor...............none
+12:39:57.547 [main] DEBUG com.zaxxer.hikari.HikariConfig - schema..........................none
+12:39:57.547 [main] DEBUG com.zaxxer.hikari.HikariConfig - threadFactory...................internal
+12:39:57.547 [main] DEBUG com.zaxxer.hikari.HikariConfig - transactionIsolation............default
+12:39:57.547 [main] DEBUG com.zaxxer.hikari.HikariConfig - username........................"hr"
+12:39:57.547 [main] DEBUG com.zaxxer.hikari.HikariConfig - validationTimeout...............5000
+12:39:57.548 [main] INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+12:40:03.056 [main] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@17f7cd29
+12:40:03.057 [main] INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+12:40:03.088 [main] DEBUG org.springframework.jdbc.core.JdbcTemplate - Executing prepared SQL update
+12:40:03.088 [main] DEBUG org.springframework.jdbc.core.JdbcTemplate - Executing prepared SQL statement [INSERT INTO HR.VEHICLE (COLOR, WHEEL, SEAT, VEHICLE_NO) VALUES (?,?,?,?)]
+12:40:03.090 [main] DEBUG org.springframework.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+12:40:03.162 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=1, active=1, idle=0, waiting=0)
+ ==> Inserted Vehicle Vehicle [vehicleNo=XYZ3456, color=Silver, seat=5, wheel=4, getWheel()=4]
+12:40:03.300 [main] DEBUG org.springframework.jdbc.core.JdbcTemplate - Executing prepared SQL update
+12:40:03.301 [main] DEBUG org.springframework.jdbc.core.JdbcTemplate - Executing prepared SQL statement [UPDATE HR.VEHICLE SET COLOR=?, WHEEL=?, SEAT=? WHERE VEHICLE_NO=?]
+12:40:03.302 [main] DEBUG org.springframework.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+ ==> vehicle updatedVehicle [vehicleNo=XYZ3456, color=Golden, seat=5, wheel=4, getWheel()=4]
+12:40:03.347 [main] DEBUG org.springframework.jdbc.core.JdbcTemplate - Executing prepared SQL query
+12:40:03.348 [main] DEBUG org.springframework.jdbc.core.JdbcTemplate - Executing prepared SQL statement [SELECT * FROM HR.VEHICLE WHERE VEHICLE_NO=?]
+12:40:03.348 [main] DEBUG org.springframework.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+12:40:03.426 [main] DEBUG org.springframework.jdbc.core.BeanPropertyRowMapper - Mapping column 'VEHICLE_NO' to property 'vehicleNo' of type 'java.lang.String'
+12:40:03.432 [main] DEBUG org.springframework.jdbc.core.BeanPropertyRowMapper - Mapping column 'COLOR' to property 'color' of type 'java.lang.String'
+12:40:03.432 [main] DEBUG org.springframework.jdbc.core.BeanPropertyRowMapper - Mapping column 'WHEEL' to property 'wheel' of type 'int'
+12:40:03.433 [main] DEBUG org.springframework.jdbc.core.BeanPropertyRowMapper - Mapping column 'SEAT' to property 'seat' of type 'int'
+ ==> FOUND vehicle Vehicle [vehicleNo=XYZ3456, color=Silver, seat=5, wheel=4, getWheel()=4]
+12:40:03.434 [main] DEBUG org.springframework.jdbc.core.JdbcTemplate - Executing SQL query [SELECT * FROM HR.VEHICLE]
+12:40:03.434 [main] DEBUG org.springframework.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+12:40:03.437 [main] DEBUG org.springframework.jdbc.core.BeanPropertyRowMapper - Mapping column 'VEHICLE_NO' to property 'vehicleNo' of type 'java.lang.String'
+12:40:03.437 [main] DEBUG org.springframework.jdbc.core.BeanPropertyRowMapper - Mapping column 'COLOR' to property 'color' of type 'java.lang.String'
+12:40:03.438 [main] DEBUG org.springframework.jdbc.core.BeanPropertyRowMapper - Mapping column 'WHEEL' to property 'wheel' of type 'int'
+12:40:03.438 [main] DEBUG org.springframework.jdbc.core.BeanPropertyRowMapper - Mapping column 'SEAT' to property 'seat' of type 'int'
+Vehicle [vehicleNo=Temp2234, color=Yellow, seat=4, wheel=7, getWheel()=7]
+Vehicle [vehicleNo=ABC1234, color=Sky Blue, seat=5, wheel=5, getWheel()=5]
+Vehicle [vehicleNo=Temp1234, color=Grey, seat=4, wheel=7, getWheel()=7]
+Vehicle [vehicleNo=Temp3234, color=Pink, seat=4, wheel=7, getWheel()=7]
+Vehicle [vehicleNo=Temp4234, color=Brown, seat=4, wheel=7, getWheel()=7]
+Vehicle [vehicleNo=VBG3456, color=Chery Red, seat=7, wheel=4, getWheel()=4]
+Vehicle [vehicleNo=Temp5234, color=Grey, seat=4, wheel=7, getWheel()=7]
+Vehicle [vehicleNo=Temp6234, color=Yellow, seat=4, wheel=7, getWheel()=7]
+Vehicle [vehicleNo=Temp7234, color=Pink, seat=4, wheel=7, getWheel()=7]
+Vehicle [vehicleNo=XYZ3456, color=Silver, seat=5, wheel=4, getWheel()=4]
+12:40:03.447 [main] DEBUG org.springframework.jdbc.core.JdbcTemplate - Executing prepared SQL query
+12:40:03.447 [main] DEBUG org.springframework.jdbc.core.JdbcTemplate - Executing prepared SQL statement [SELECT COLOR FROM HR.VEHICLE WHERE VEHICLE_NO = ?]
+12:40:03.448 [main] DEBUG org.springframework.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+ ==> Vehicle VBG3456 has the color Chery Red
+12:40:03.451 [main] DEBUG org.springframework.jdbc.core.JdbcTemplate - Executing SQL query [SELECT COUNT(*) FROM HR.VEHICLE]
+12:40:03.451 [main] DEBUG org.springframework.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+ ==> Vehicle count 10
+12:40:03.452 [main] DEBUG org.springframework.jdbc.core.JdbcTemplate - Executing prepared SQL update
+12:40:03.452 [main] DEBUG org.springframework.jdbc.core.JdbcTemplate - Executing prepared SQL statement [DELETE FROM HR.VEHICLE WHERE VEHICLE_NO=?]
+12:40:03.452 [main] DEBUG org.springframework.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+ ==> vehicle deletedVehicle [vehicleNo=XYZ3456, color=Silver, seat=5, wheel=4, getWheel()=4]
+

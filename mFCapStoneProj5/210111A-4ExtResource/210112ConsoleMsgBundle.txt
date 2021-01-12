@@ -1,0 +1,27 @@
+ myApp.Properties == {empName=Erisson, empCountry=US, empAge=98}
+13:14:50.605 [main] DEBUG org.springframework.context.annotation.AnnotationConfigApplicationContext - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@7e0babb1
+13:14:50.616 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+13:14:50.709 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'propertyPlaceholderConfigurer'
+13:14:50.714 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
+13:14:50.715 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
+13:14:50.716 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+13:14:50.717 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor'
+13:14:50.720 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'messageSource'
+13:14:50.720 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'springConfig'
+13:14:50.750 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'getEmp'
+Emp [empName=Albert, empAge=9, empCountry=MY]
+13:14:50.771 [main] DEBUG org.springframework.context.support.ReloadableResourceBundleMessageSource - No properties file found for [/messages] - neither plain properties nor XML
+13:14:50.771 [main] DEBUG org.springframework.context.support.ReloadableResourceBundleMessageSource - No properties file found for [/messages_en_GB] - neither plain properties nor XML
+13:14:50.772 [main] DEBUG org.springframework.context.support.ReloadableResourceBundleMessageSource - No properties file found for [/messages_en] - neither plain properties nor XML
+13:14:50.772 [main] DEBUG org.springframework.context.support.ReloadableResourceBundleMessageSource - Loading properties [messages_en_US.properties]
+	 msg1 : Hello World !!
+	 msg2 : Welcome to Spring !!
+13:14:50.773 [main] DEBUG org.springframework.context.support.ReloadableResourceBundleMessageSource - No properties file found for [/messages_fr] - neither plain properties nor XML
+13:14:50.774 [main] DEBUG org.springframework.context.support.ReloadableResourceBundleMessageSource - Loading properties [messages_fr_FR.properties]
+	 msg1 : Hola mundo !!
+	 msg2 : Bienvenue au printemps !!
+13:14:50.774 [main] DEBUG org.springframework.context.support.ReloadableResourceBundleMessageSource - No properties file found for [/messages_zh] - neither plain properties nor XML
+13:14:50.775 [main] DEBUG org.springframework.context.support.ReloadableResourceBundleMessageSource - Loading properties [messages_zh_CN.properties]
+	 msg1 : 你好
+	 msg2 : 欢迎来到 Spring !!
+

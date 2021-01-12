@@ -17,34 +17,34 @@ public class ExtResourcesTrApplication {
 
 	public static void main(String[] args) throws Exception {
 
-//		// method 1
-//		Resource res = new FileSystemResource("/Users/antw/ntuc/mFCap5/myApp.properties");
-//		Properties props = PropertiesLoaderUtils.loadProperties(res);
-//		System.out.println(" myApp.Properties == " + props);
-//
-//		// method 2 thru SpringConfig and EMP
-//		ApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
-//		System.out.println( context.getBean("getEmp", Emp.class));
-//		
+		// method 1
+		Resource res = new FileSystemResource("/Users/antw/ntuc/mFCap5/myApp.properties");
+		Properties props = PropertiesLoaderUtils.loadProperties(res);
+		System.out.println(" myApp.Properties == " + props);
+
+		// method 2 thru SpringConfig and EMP
+		ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringConfig.class);
+		System.out.println( ctx.getBean("getEmp", Emp.class));
 		
+
 		// method 3 thru main/resources
-ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringConfig.class);
-		
+//		ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringConfig.class);
+
 		String hwMsg = ctx.getMessage("msg1", null, Locale.US);
 		String welMsg = ctx.getMessage("msg2", null, Locale.US);
-		
-		System.out.println( "\t msg1 : " + hwMsg + "\n\t msg2 : " + welMsg);
-		
+
+		System.out.println("\t msg1 : " + hwMsg + "\n\t msg2 : " + welMsg);
+
 		hwMsg = ctx.getMessage("msg1", null, Locale.FRANCE);
 		welMsg = ctx.getMessage("msg2", null, Locale.FRANCE);
-		
-		System.out.println( "\t msg1 : " + hwMsg + "\n\t msg2 : " + welMsg);
-		
+
+		System.out.println("\t msg1 : " + hwMsg + "\n\t msg2 : " + welMsg);
+
 		hwMsg = ctx.getMessage("msg1", null, Locale.CHINA);
 		welMsg = ctx.getMessage("msg2", null, Locale.CHINA);
-		
-		System.out.println( "\t msg1 : " + hwMsg + "\n\t msg2 : " + welMsg);
-		
+
+		System.out.println("\t msg1 : " + hwMsg + "\n\t msg2 : " + welMsg);
+
 	}
 
 }
