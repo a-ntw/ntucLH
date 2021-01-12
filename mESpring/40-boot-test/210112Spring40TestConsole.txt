@@ -1,0 +1,652 @@
+INFO : accounts.internal.StubAccountManager - Created STUB account-manager
+INFO : accounts.internal.StubAccountManager - Created STUB account-manager
+INFO : accounts.internal.StubAccountManager - Created STUB account-manager
+INFO : accounts.internal.StubAccountManager - Created STUB account-manager
+INFO : accounts.internal.StubAccountManager - Created STUB account-manager
+INFO : accounts.internal.StubAccountManager - Created STUB account-manager
+INFO : accounts.internal.StubAccountManager - Created STUB account-manager
+INFO : o.s.b.t.a.w.s.WebMvcTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [accounts.web.AccountControllerBootTests], using SpringBootContextLoader
+INFO : o.s.t.c.support.AbstractContextLoader - Could not detect default resource locations for test class [accounts.web.AccountControllerBootTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+INFO : o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [accounts.web.AccountControllerBootTests]: AccountControllerBootTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+INFO : o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration accounts.BootTestApplication for test class accounts.web.AccountControllerBootTests
+INFO : o.s.b.t.a.w.s.WebMvcTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+INFO : o.s.b.t.a.w.s.WebMvcTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@192f2f27, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@8a589a2, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@c65a5ef, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@6b5176f2, org.springframework.test.context.support.DirtiesContextTestExecutionListener@b672aa8, org.springframework.test.context.transaction.TransactionalTestExecutionListener@2fab4aff, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@ec0c838, org.springframework.test.context.event.EventPublishingTestExecutionListener@6e46d9f4, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@5cc69cfe, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@29cfd92b, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@21c64522, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@7997b197, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@11dee337, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@460f76a6]
+ ::                                                         ____
+ /\    ____                 ____             _              \ \ \
+|/\|  / ___|___  _ __ ___  / ___| _ __  _ __(_)_ __   __ _   \ \ \ 
+     | |   / _ \| '__/ _ \ \___ \| '_ \| '__| | '_ \ / _` |   \ \ \
+     | |__| (_) | | |  __/  ___) | |_) | |  | | | | | (_| |   / / /
+      \____\___/|_|  \___| |____/| .__/|_|  |_|_| |_|\__, |  / / / 
+ ================================|_|==================|___/=/_/_/=
+   :: Pivotal Training ::                  :: v5.3.a.RELEASE ::
+
+INFO : accounts.web.AccountControllerBootTests - Starting AccountControllerBootTests on Mac-mini.local with PID 10785 (started by antw in /Users/antw/ntuc/mESpring/core-spring-labfiles/lab/40-boot-test)
+DEBUG: accounts.web.AccountControllerBootTests - Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+INFO : accounts.web.AccountControllerBootTests - No active profile set, falling back to default profiles: default
+INFO : o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+INFO : o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 14ms. Found 0 JPA repository interfaces.
+DEBUG: com.zaxxer.hikari.HikariConfig - Driver class org.hsqldb.jdbcDriver found in Thread context class loader jdk.internal.loader.ClassLoaders$AppClassLoader@4b85612c
+DEBUG: com.zaxxer.hikari.HikariConfig - HikariPool-1 - configuration:
+DEBUG: com.zaxxer.hikari.HikariConfig - allowPoolSuspension.............false
+DEBUG: com.zaxxer.hikari.HikariConfig - autoCommit......................true
+DEBUG: com.zaxxer.hikari.HikariConfig - catalog.........................none
+DEBUG: com.zaxxer.hikari.HikariConfig - connectionInitSql...............none
+DEBUG: com.zaxxer.hikari.HikariConfig - connectionTestQuery.............none
+DEBUG: com.zaxxer.hikari.HikariConfig - connectionTimeout...............30000
+DEBUG: com.zaxxer.hikari.HikariConfig - dataSource......................none
+DEBUG: com.zaxxer.hikari.HikariConfig - dataSourceClassName.............none
+DEBUG: com.zaxxer.hikari.HikariConfig - dataSourceJNDI..................none
+DEBUG: com.zaxxer.hikari.HikariConfig - dataSourceProperties............{password=<masked>}
+DEBUG: com.zaxxer.hikari.HikariConfig - driverClassName................."org.hsqldb.jdbcDriver"
+DEBUG: com.zaxxer.hikari.HikariConfig - exceptionOverrideClassName......none
+DEBUG: com.zaxxer.hikari.HikariConfig - healthCheckProperties...........{}
+DEBUG: com.zaxxer.hikari.HikariConfig - healthCheckRegistry.............none
+DEBUG: com.zaxxer.hikari.HikariConfig - idleTimeout.....................600000
+DEBUG: com.zaxxer.hikari.HikariConfig - initializationFailTimeout.......1
+DEBUG: com.zaxxer.hikari.HikariConfig - isolateInternalQueries..........false
+DEBUG: com.zaxxer.hikari.HikariConfig - jdbcUrl.........................jdbc:hsqldb:mem:380d715e-e19c-42b2-81b8-8326812d28d0
+DEBUG: com.zaxxer.hikari.HikariConfig - leakDetectionThreshold..........0
+DEBUG: com.zaxxer.hikari.HikariConfig - maxLifetime.....................1800000
+DEBUG: com.zaxxer.hikari.HikariConfig - maximumPoolSize.................10
+DEBUG: com.zaxxer.hikari.HikariConfig - metricRegistry..................none
+DEBUG: com.zaxxer.hikari.HikariConfig - metricsTrackerFactory...........none
+DEBUG: com.zaxxer.hikari.HikariConfig - minimumIdle.....................10
+DEBUG: com.zaxxer.hikari.HikariConfig - password........................<masked>
+DEBUG: com.zaxxer.hikari.HikariConfig - poolName........................"HikariPool-1"
+DEBUG: com.zaxxer.hikari.HikariConfig - readOnly........................false
+DEBUG: com.zaxxer.hikari.HikariConfig - registerMbeans..................false
+DEBUG: com.zaxxer.hikari.HikariConfig - scheduledExecutor...............none
+DEBUG: com.zaxxer.hikari.HikariConfig - schema..........................none
+DEBUG: com.zaxxer.hikari.HikariConfig - threadFactory...................internal
+DEBUG: com.zaxxer.hikari.HikariConfig - transactionIsolation............default
+DEBUG: com.zaxxer.hikari.HikariConfig - username........................"sa"
+DEBUG: com.zaxxer.hikari.HikariConfig - validationTimeout...............5000
+INFO : com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+WARN : com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=org.hsqldb.jdbcDriver was not found, trying direct instantiation.
+DEBUG: com.zaxxer.hikari.util.DriverDataSource - Driver class org.hsqldb.jdbcDriver found in Thread context class loader jdk.internal.loader.ClassLoaders$AppClassLoader@4b85612c
+INFO : com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Driver does not support get/set network timeout for connections. (feature not supported)
+DEBUG: com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.hsqldb.jdbc.JDBCConnection@47058864
+INFO : com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+DEBUG: com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=1, active=0, idle=1, waiting=0)
+DEBUG: com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.hsqldb.jdbc.JDBCConnection@448e1ec
+DEBUG: com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.hsqldb.jdbc.JDBCConnection@a8f0f15
+DEBUG: com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.hsqldb.jdbc.JDBCConnection@eb08a9c
+DEBUG: com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.hsqldb.jdbc.JDBCConnection@4bb2052e
+DEBUG: com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.hsqldb.jdbc.JDBCConnection@836ca35
+DEBUG: com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.hsqldb.jdbc.JDBCConnection@7ab38b81
+DEBUG: com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.hsqldb.jdbc.JDBCConnection@70dd1a21
+DEBUG: com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.hsqldb.jdbc.JDBCConnection@2b9dfa61
+DEBUG: com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.hsqldb.jdbc.JDBCConnection@15c4ea45
+DEBUG: com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - After adding stats (total=10, active=0, idle=10, waiting=0)
+INFO : o.s.s.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+INFO : config - Created JpaAccountManager
+INFO : config - Created JpaRestaurantRepository
+INFO : config - Created JdbcRewardRepository
+WARN : o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO : o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+INFO : o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+INFO : o.s.t.web.servlet.TestDispatcherServlet - Initializing Servlet ''
+INFO : o.s.t.web.servlet.TestDispatcherServlet - Completed initialization in 18 ms
+INFO : o.s.d.r.c.DeferredRepositoryInitializationListener - Triggering deferred initialization of Spring Data repositories…
+INFO : o.s.d.r.c.DeferredRepositoryInitializationListener - Spring Data repositories initialized!
+INFO : accounts.web.AccountControllerBootTests - Started AccountControllerBootTests in 8.09 seconds (JVM running for 9.452)
+DEBUG: c.j.jsonpath.internal.path.CompiledPath - Evaluating path: $['name']
+DEBUG: c.j.jsonpath.internal.path.CompiledPath - Evaluating path: $['number']
+DEBUG: c.j.jsonpath.internal.path.CompiledPath - Evaluating path: $..['number']
+DEBUG: c.j.jsonpath.internal.path.CompiledPath - Evaluating path: $..['name']
+ERROR: accounts.web.AccountController - Exception is: 
+java.lang.IllegalArgumentException: No such account with id 0
+	at accounts.web.AccountController.retrieveAccount(AccountController.java:158)
+	at accounts.web.AccountController.accountDetails(AccountController.java:52)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:105)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:879)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:72)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:167)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:134)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:134)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:134)
+	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:183)
+	at accounts.web.AccountControllerBootTests.accountDetailsFail(AccountControllerBootTests.java:82)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:686)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:149)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:140)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:84)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(ExecutableInvoker.java:115)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker.lambda$invoke$0(ExecutableInvoker.java:105)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker.invoke(ExecutableInvoker.java:104)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker.invoke(ExecutableInvoker.java:98)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$6(TestMethodTestDescriptor.java:212)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:208)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:137)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:71)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:135)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:125)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:135)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:122)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:80)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:38)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:125)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:135)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:122)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:80)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:38)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:125)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:135)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:122)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:80)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:32)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:51)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:248)
+	at org.junit.platform.launcher.core.DefaultLauncher.lambda$execute$5(DefaultLauncher.java:211)
+	at org.junit.platform.launcher.core.DefaultLauncher.withInterceptedStreams(DefaultLauncher.java:226)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:199)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:141)
+	at org.eclipse.jdt.internal.junit5.runner.JUnit5TestReference.run(JUnit5TestReference.java:98)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:41)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:542)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:770)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:464)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:210)
+ERROR: accounts.web.AccountController - Exception is: 
+java.lang.IllegalArgumentException: No such beneficiary with name 'Noname'
+	at rewards.internal.account.Account.getBeneficiary(Account.java:178)
+	at accounts.web.AccountController.removeBeneficiary(AccountController.java:97)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:105)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:879)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doDelete(FrameworkServlet.java:931)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:666)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:72)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:167)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:134)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:134)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:134)
+	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:183)
+	at accounts.web.AccountControllerBootTests.removeBeneficiaryFail(AccountControllerBootTests.java:167)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:686)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:149)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:140)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:84)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(ExecutableInvoker.java:115)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker.lambda$invoke$0(ExecutableInvoker.java:105)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker.invoke(ExecutableInvoker.java:104)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker.invoke(ExecutableInvoker.java:98)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$6(TestMethodTestDescriptor.java:212)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:208)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:137)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:71)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:135)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:125)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:135)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:122)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:80)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:38)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:125)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:135)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:122)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:80)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:38)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:125)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:135)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:122)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:80)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:32)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:51)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:248)
+	at org.junit.platform.launcher.core.DefaultLauncher.lambda$execute$5(DefaultLauncher.java:211)
+	at org.junit.platform.launcher.core.DefaultLauncher.withInterceptedStreams(DefaultLauncher.java:226)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:199)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:141)
+	at org.eclipse.jdt.internal.junit5.runner.JUnit5TestReference.run(JUnit5TestReference.java:98)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:41)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:542)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:770)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:464)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:210)
+INFO : o.s.b.t.c.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [accounts.client.AccountClientTests], using SpringBootContextLoader
+INFO : o.s.t.c.support.AbstractContextLoader - Could not detect default resource locations for test class [accounts.client.AccountClientTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+INFO : o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [accounts.client.AccountClientTests]: AccountClientTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+INFO : o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration accounts.BootTestApplication for test class accounts.client.AccountClientTests
+INFO : o.s.b.t.c.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+INFO : o.s.b.t.c.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@2b1d1a5, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@41e7a544, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@3b66ac74, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@573870cb, org.springframework.test.context.support.DirtiesContextTestExecutionListener@5b88af70, org.springframework.test.context.transaction.TransactionalTestExecutionListener@2739ecc0, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@2932e15f, org.springframework.test.context.event.EventPublishingTestExecutionListener@3d98729a, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@2375a976, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@4bc21e34, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@7544260a, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@bb6869a, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@506b083, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@5eee3da9]
+ ::                                                         ____
+ /\    ____                 ____             _              \ \ \
+|/\|  / ___|___  _ __ ___  / ___| _ __  _ __(_)_ __   __ _   \ \ \ 
+     | |   / _ \| '__/ _ \ \___ \| '_ \| '__| | '_ \ / _` |   \ \ \
+     | |__| (_) | | |  __/  ___) | |_) | |  | | | | | (_| |   / / /
+      \____\___/|_|  \___| |____/| .__/|_|  |_|_| |_|\__, |  / / / 
+ ================================|_|==================|___/=/_/_/=
+   :: Pivotal Training ::                  :: v5.3.a.RELEASE ::
+
+INFO : accounts.client.AccountClientTests - Starting AccountClientTests on Mac-mini.local with PID 10785 (started by antw in /Users/antw/ntuc/mESpring/core-spring-labfiles/lab/40-boot-test)
+DEBUG: accounts.client.AccountClientTests - Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+INFO : accounts.client.AccountClientTests - No active profile set, falling back to default profiles: default
+INFO : o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+INFO : o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 3ms. Found 0 JPA repository interfaces.
+INFO : o.s.b.w.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 0 (http)
+INFO : o.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-auto-1"]
+INFO : org.apache.catalina.core.StandardService - Starting service [Tomcat]
+INFO : org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.36]
+INFO : o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+INFO : o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 717 ms
+DEBUG: com.zaxxer.hikari.HikariConfig - Driver class org.hsqldb.jdbcDriver found in Thread context class loader jdk.internal.loader.ClassLoaders$AppClassLoader@4b85612c
+DEBUG: com.zaxxer.hikari.HikariConfig - HikariPool-2 - configuration:
+DEBUG: com.zaxxer.hikari.HikariConfig - allowPoolSuspension.............false
+DEBUG: com.zaxxer.hikari.HikariConfig - autoCommit......................true
+DEBUG: com.zaxxer.hikari.HikariConfig - catalog.........................none
+DEBUG: com.zaxxer.hikari.HikariConfig - connectionInitSql...............none
+DEBUG: com.zaxxer.hikari.HikariConfig - connectionTestQuery.............none
+DEBUG: com.zaxxer.hikari.HikariConfig - connectionTimeout...............30000
+DEBUG: com.zaxxer.hikari.HikariConfig - dataSource......................none
+DEBUG: com.zaxxer.hikari.HikariConfig - dataSourceClassName.............none
+DEBUG: com.zaxxer.hikari.HikariConfig - dataSourceJNDI..................none
+DEBUG: com.zaxxer.hikari.HikariConfig - dataSourceProperties............{password=<masked>}
+DEBUG: com.zaxxer.hikari.HikariConfig - driverClassName................."org.hsqldb.jdbcDriver"
+DEBUG: com.zaxxer.hikari.HikariConfig - exceptionOverrideClassName......none
+DEBUG: com.zaxxer.hikari.HikariConfig - healthCheckProperties...........{}
+DEBUG: com.zaxxer.hikari.HikariConfig - healthCheckRegistry.............none
+DEBUG: com.zaxxer.hikari.HikariConfig - idleTimeout.....................600000
+DEBUG: com.zaxxer.hikari.HikariConfig - initializationFailTimeout.......1
+DEBUG: com.zaxxer.hikari.HikariConfig - isolateInternalQueries..........false
+DEBUG: com.zaxxer.hikari.HikariConfig - jdbcUrl.........................jdbc:hsqldb:mem:0b0d4f0e-e4b8-4b7a-843c-db2f83da09db
+DEBUG: com.zaxxer.hikari.HikariConfig - leakDetectionThreshold..........0
+DEBUG: com.zaxxer.hikari.HikariConfig - maxLifetime.....................1800000
+DEBUG: com.zaxxer.hikari.HikariConfig - maximumPoolSize.................10
+DEBUG: com.zaxxer.hikari.HikariConfig - metricRegistry..................none
+DEBUG: com.zaxxer.hikari.HikariConfig - metricsTrackerFactory...........none
+DEBUG: com.zaxxer.hikari.HikariConfig - minimumIdle.....................10
+DEBUG: com.zaxxer.hikari.HikariConfig - password........................<masked>
+DEBUG: com.zaxxer.hikari.HikariConfig - poolName........................"HikariPool-2"
+DEBUG: com.zaxxer.hikari.HikariConfig - readOnly........................false
+DEBUG: com.zaxxer.hikari.HikariConfig - registerMbeans..................false
+DEBUG: com.zaxxer.hikari.HikariConfig - scheduledExecutor...............none
+DEBUG: com.zaxxer.hikari.HikariConfig - schema..........................none
+DEBUG: com.zaxxer.hikari.HikariConfig - threadFactory...................internal
+DEBUG: com.zaxxer.hikari.HikariConfig - transactionIsolation............default
+DEBUG: com.zaxxer.hikari.HikariConfig - username........................"sa"
+DEBUG: com.zaxxer.hikari.HikariConfig - validationTimeout...............5000
+INFO : com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Starting...
+WARN : com.zaxxer.hikari.util.DriverDataSource - Registered driver with driverClassName=org.hsqldb.jdbcDriver was not found, trying direct instantiation.
+DEBUG: com.zaxxer.hikari.util.DriverDataSource - Driver class org.hsqldb.jdbcDriver found in Thread context class loader jdk.internal.loader.ClassLoaders$AppClassLoader@4b85612c
+INFO : com.zaxxer.hikari.pool.PoolBase - HikariPool-2 - Driver does not support get/set network timeout for connections. (feature not supported)
+DEBUG: com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Added connection org.hsqldb.jdbc.JDBCConnection@1c7744c1
+INFO : com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Start completed.
+INFO : o.s.s.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+INFO : accounts.internal.JpaAccountManager - Created JPA account-manager
+DEBUG: com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=1, active=0, idle=1, waiting=0)
+DEBUG: com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Added connection org.hsqldb.jdbc.JDBCConnection@40e3aea2
+DEBUG: com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Added connection org.hsqldb.jdbc.JDBCConnection@4e2448ce
+DEBUG: com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Added connection org.hsqldb.jdbc.JDBCConnection@4a1bc5d2
+DEBUG: com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Added connection org.hsqldb.jdbc.JDBCConnection@f1942f5
+DEBUG: com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Added connection org.hsqldb.jdbc.JDBCConnection@52526b0a
+DEBUG: com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Added connection org.hsqldb.jdbc.JDBCConnection@3e5c2bb6
+DEBUG: com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Added connection org.hsqldb.jdbc.JDBCConnection@2afd5cfa
+DEBUG: com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Added connection org.hsqldb.jdbc.JDBCConnection@6f36bdba
+DEBUG: com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Added connection org.hsqldb.jdbc.JDBCConnection@2e7d916d
+DEBUG: com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - After adding stats (total=10, active=0, idle=10, waiting=0)
+INFO : accounts.internal.JpaAccountManager - Created JPA account-manager
+INFO : config - Created JpaAccountManager
+INFO : config - Created JpaRestaurantRepository
+INFO : config - Created JdbcRewardRepository
+WARN : o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO : o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+INFO : o.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-auto-1"]
+INFO : o.s.b.w.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 57895 (http) with context path ''
+INFO : o.s.d.r.c.DeferredRepositoryInitializationListener - Triggering deferred initialization of Spring Data repositories…
+INFO : o.s.d.r.c.DeferredRepositoryInitializationListener - Spring Data repositories initialized!
+INFO : accounts.client.AccountClientTests - Started AccountClientTests in 1.319 seconds (JVM running for 11.161)
+INFO : o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+Hibernate: 
+    select
+        account0_.id as id1_0_0_,
+        beneficiar1_.id as id1_1_1_,
+        account0_.name as name2_0_0_,
+        account0_.number as number3_0_0_,
+        beneficiar1_.allocation_percentage as allocati2_1_1_,
+        beneficiar1_.name as name3_1_1_,
+        beneficiar1_.savings as savings4_1_1_,
+        beneficiar1_.account_id as account_5_1_0__,
+        beneficiar1_.id as id1_1_0__ 
+    from
+        t_account account0_ 
+    left outer join
+        t_account_beneficiary beneficiar1_ 
+            on account0_.id=beneficiar1_.account_id
+Hibernate: 
+    select
+        account0_.id as id1_0_0_,
+        account0_.name as name2_0_0_,
+        account0_.number as number3_0_0_ 
+    from
+        t_account account0_ 
+    where
+        account0_.id=?
+Hibernate: 
+    select
+        beneficiar0_.account_id as account_5_1_0_,
+        beneficiar0_.id as id1_1_0_,
+        beneficiar0_.id as id1_1_1_,
+        beneficiar0_.allocation_percentage as allocati2_1_1_,
+        beneficiar0_.name as name3_1_1_,
+        beneficiar0_.savings as savings4_1_1_ 
+    from
+        t_account_beneficiary beneficiar0_ 
+    where
+        beneficiar0_.account_id=?
+Hibernate: 
+    insert 
+    into
+        t_account
+        (id, name, number) 
+    values
+        (default, ?, ?)
+Hibernate: 
+    insert 
+    into
+        t_account_beneficiary
+        (id, allocation_percentage, name, savings) 
+    values
+        (default, ?, ?, ?)
+Hibernate: 
+    update
+        t_account_beneficiary 
+    set
+        account_id=? 
+    where
+        id=?
+Hibernate: 
+    select
+        account0_.id as id1_0_0_,
+        account0_.name as name2_0_0_,
+        account0_.number as number3_0_0_ 
+    from
+        t_account account0_ 
+    where
+        account0_.id=?
+Hibernate: 
+    select
+        beneficiar0_.account_id as account_5_1_0_,
+        beneficiar0_.id as id1_1_0_,
+        beneficiar0_.id as id1_1_1_,
+        beneficiar0_.allocation_percentage as allocati2_1_1_,
+        beneficiar0_.name as name3_1_1_,
+        beneficiar0_.savings as savings4_1_1_ 
+    from
+        t_account_beneficiary beneficiar0_ 
+    where
+        beneficiar0_.account_id=?
+Hibernate: 
+    select
+        account0_.id as id1_0_0_,
+        account0_.name as name2_0_0_,
+        account0_.number as number3_0_0_ 
+    from
+        t_account account0_ 
+    where
+        account0_.id=?
+Hibernate: 
+    select
+        beneficiar0_.account_id as account_5_1_0_,
+        beneficiar0_.id as id1_1_0_,
+        beneficiar0_.id as id1_1_1_,
+        beneficiar0_.allocation_percentage as allocati2_1_1_,
+        beneficiar0_.name as name3_1_1_,
+        beneficiar0_.savings as savings4_1_1_ 
+    from
+        t_account_beneficiary beneficiar0_ 
+    where
+        beneficiar0_.account_id=?
+Hibernate: 
+    insert 
+    into
+        t_account_beneficiary
+        (id, allocation_percentage, name, savings) 
+    values
+        (default, ?, ?, ?)
+Hibernate: 
+    update
+        t_account_beneficiary 
+    set
+        account_id=? 
+    where
+        id=?
+Hibernate: 
+    select
+        account0_.id as id1_0_0_,
+        account0_.name as name2_0_0_,
+        account0_.number as number3_0_0_ 
+    from
+        t_account account0_ 
+    where
+        account0_.id=?
+Hibernate: 
+    select
+        beneficiar0_.account_id as account_5_1_0_,
+        beneficiar0_.id as id1_1_0_,
+        beneficiar0_.id as id1_1_1_,
+        beneficiar0_.allocation_percentage as allocati2_1_1_,
+        beneficiar0_.name as name3_1_1_,
+        beneficiar0_.savings as savings4_1_1_ 
+    from
+        t_account_beneficiary beneficiar0_ 
+    where
+        beneficiar0_.account_id=?
+Hibernate: 
+    select
+        account0_.id as id1_0_0_,
+        account0_.name as name2_0_0_,
+        account0_.number as number3_0_0_ 
+    from
+        t_account account0_ 
+    where
+        account0_.id=?
+Hibernate: 
+    select
+        beneficiar0_.account_id as account_5_1_0_,
+        beneficiar0_.id as id1_1_0_,
+        beneficiar0_.id as id1_1_1_,
+        beneficiar0_.allocation_percentage as allocati2_1_1_,
+        beneficiar0_.name as name3_1_1_,
+        beneficiar0_.savings as savings4_1_1_ 
+    from
+        t_account_beneficiary beneficiar0_ 
+    where
+        beneficiar0_.account_id=?
+Hibernate: 
+    update
+        t_account_beneficiary 
+    set
+        account_id=null 
+    where
+        account_id=?
+Hibernate: 
+    select
+        account0_.id as id1_0_0_,
+        account0_.name as name2_0_0_,
+        account0_.number as number3_0_0_ 
+    from
+        t_account account0_ 
+    where
+        account0_.id=?
+Hibernate: 
+    select
+        beneficiar0_.account_id as account_5_1_0_,
+        beneficiar0_.id as id1_1_0_,
+        beneficiar0_.id as id1_1_1_,
+        beneficiar0_.allocation_percentage as allocati2_1_1_,
+        beneficiar0_.name as name3_1_1_,
+        beneficiar0_.savings as savings4_1_1_ 
+    from
+        t_account_beneficiary beneficiar0_ 
+    where
+        beneficiar0_.account_id=?
+ERROR: accounts.web.AccountController - Exception is: 
+java.lang.IllegalArgumentException: No such beneficiary with name 'David'
+	at rewards.internal.account.Account.getBeneficiary(Account.java:178)
+	at accounts.web.AccountController.getBeneficiary(AccountController.java:72)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:105)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:879)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:373)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+INFO : o.s.s.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+INFO : com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+DEBUG: com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Before shutdown stats (total=10, active=0, idle=10, waiting=0)
+DEBUG: com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.hsqldb.jdbc.JDBCConnection@47058864: (connection evicted)
+DEBUG: com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.hsqldb.jdbc.JDBCConnection@448e1ec: (connection evicted)
+DEBUG: com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.hsqldb.jdbc.JDBCConnection@a8f0f15: (connection evicted)
+DEBUG: com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.hsqldb.jdbc.JDBCConnection@eb08a9c: (connection evicted)
+DEBUG: com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.hsqldb.jdbc.JDBCConnection@4bb2052e: (connection evicted)
+DEBUG: com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.hsqldb.jdbc.JDBCConnection@836ca35: (connection evicted)
+DEBUG: com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.hsqldb.jdbc.JDBCConnection@7ab38b81: (connection evicted)
+DEBUG: com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.hsqldb.jdbc.JDBCConnection@70dd1a21: (connection evicted)
+DEBUG: com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.hsqldb.jdbc.JDBCConnection@2b9dfa61: (connection evicted)
+DEBUG: com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.hsqldb.jdbc.JDBCConnection@15c4ea45: (connection evicted)
+DEBUG: com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - After shutdown stats (total=0, active=0, idle=0, waiting=0)
+INFO : com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+INFO : o.s.s.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+INFO : com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown initiated...
+DEBUG: com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Before shutdown stats (total=10, active=0, idle=10, waiting=0)
+DEBUG: com.zaxxer.hikari.pool.PoolBase - HikariPool-2 - Closing connection org.hsqldb.jdbc.JDBCConnection@1c7744c1: (connection evicted)
+DEBUG: com.zaxxer.hikari.pool.PoolBase - HikariPool-2 - Closing connection org.hsqldb.jdbc.JDBCConnection@40e3aea2: (connection evicted)
+DEBUG: com.zaxxer.hikari.pool.PoolBase - HikariPool-2 - Closing connection org.hsqldb.jdbc.JDBCConnection@4e2448ce: (connection evicted)
+DEBUG: com.zaxxer.hikari.pool.PoolBase - HikariPool-2 - Closing connection org.hsqldb.jdbc.JDBCConnection@4a1bc5d2: (connection evicted)
+DEBUG: com.zaxxer.hikari.pool.PoolBase - HikariPool-2 - Closing connection org.hsqldb.jdbc.JDBCConnection@f1942f5: (connection evicted)
+DEBUG: com.zaxxer.hikari.pool.PoolBase - HikariPool-2 - Closing connection org.hsqldb.jdbc.JDBCConnection@52526b0a: (connection evicted)
+DEBUG: com.zaxxer.hikari.pool.PoolBase - HikariPool-2 - Closing connection org.hsqldb.jdbc.JDBCConnection@3e5c2bb6: (connection evicted)
+DEBUG: com.zaxxer.hikari.pool.PoolBase - HikariPool-2 - Closing connection org.hsqldb.jdbc.JDBCConnection@2afd5cfa: (connection evicted)
+DEBUG: com.zaxxer.hikari.pool.PoolBase - HikariPool-2 - Closing connection org.hsqldb.jdbc.JDBCConnection@6f36bdba: (connection evicted)
+DEBUG: com.zaxxer.hikari.pool.PoolBase - HikariPool-2 - Closing connection org.hsqldb.jdbc.JDBCConnection@2e7d916d: (connection evicted)
+DEBUG: com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - After shutdown stats (total=0, active=0, idle=0, waiting=0)
+INFO : com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown completed.
+
