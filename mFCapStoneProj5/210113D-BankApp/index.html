@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Bank App</title>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<style>
+.parent {
+	border: 5px solid #E18728;
+	padding: 20px;
+	margin: 20px;
+	float: left;
+}
+/* 
+body {
+	font-family: sans-serif;
+	font-size: 1.1em;
+} */
+</style>
+</head>
+<body>
+	<div class="parent">
+		<h2>Customer List</h2>
+
+		<a class="nav-link" th:href="@{/showNewCustomerForm}"> Add Customer </a>
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">Customer ID</th>
+					<th scope="col">Name</th>
+					<th scope="col">Date of Birth</th>
+					<th scope="col">Email</th>
+					<th scope="col">is Active ?</th>
+					<th scope="col">Phone No</th>
+					<th scope="col">Actions</th>
+			</thead>
+			<tbody>
+				<tr th:each="customer : ${listCustomers}">
+					<th scope="row" th:text="${customer.custId}" /th>
+					<td th:text="${customer.custName}" />
+					<td th:text="${customer.dob}" />
+					<td th:text="${customer.email}" />
+					<td><input type="checkbox"
+						th:checked="${customer.isActive} ? 'checked'"></td>
+					<td th:text="${customer.phoneNo}" />
+					<td><a
+						th:href="@{/showFormForUpdate/{custId}(custId=${customer.custId})}">
+							Update </a> &nbsp;&nbsp;&nbsp; <a
+						th:href="@{/deleteCustomer/{custId}(custId=${customer.custId})}">
+							Delete </a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
