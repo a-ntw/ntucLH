@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Bank App.</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+
+<style>
+.parent {
+	width: 60%;
+	border: 5px solid #E18728;
+	padding: 20px;
+	margin: 20px;
+	float: left;
+}
+</style>
+
+</head>
+<body>
+	<div class="parent">
+		<h2>New Customer Page</h2>
+		<a class="nav-link" th:href="@{/}"> Back to Customer Listing </a>
+		<hr>
+
+		<form method="POST" th:action="@{/saveCustomer}" action="#"
+			th:object="${customer}">
+			<br>Customer Name : <input type="text" 
+				th:field="*{custName}" placeholder="Customer Name " /> 
+				<div th:if="${#fields.hasErrors('custName')}"
+					th:errors="*{custName}">Name Error</div>
+			
+			<br>Date of Birth : <input
+				type="date" th:field="*{dob}" placeholder="Date of Birth  " />
+				<div th:if="${#fields.hasErrors('dob')}"
+					th:errors="*{dob}">DOB Error</div> 
+			
+			<br>Email Address : <input type="text" th:field="*{email}"
+				placeholder="Email Address " />
+				<div th:if="${#fields.hasErrors('email')}"
+					th:errors="*{email}">Email Error</div>
+			
+			<br>is Active ? : <input
+				type="checkbox" th:field="*{isActive}" placeholder="is Active ? : " />
+			
+			<br>Phone Name : <input type="text" th:field="*{phoneNo}"
+				placeholder="Phone Name " />
+				<td width="25%" th:if="${#fields.hasErrors('phoneNo')}"
+					th:errors="*{phoneNo}">PhoneNo Error</td>
+			
+			<br>Positivity Rating: <input
+				type="text" th:field="*{positivity}"
+				placeholder="Posivity Rating " /> 
+			
+			<br>Passcode : <input
+				type="text" th:field="*{passCode}" placeholder="PassCode " />
+				<td width="25%" th:if="${#fields.hasErrors('passCode')}"
+					th:errors="*{passCode}">Passcode Error</td>
+			
+			<br>
+			<button type="Submit">Save Customer Details</button>
+		</form>
+
+	</div>
+</body>
+</html>
+
+<!-- 
+	https://getbootstrap.com/docs/4.0/components/forms/
+
+	 -->
+
+
