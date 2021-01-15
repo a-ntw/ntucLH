@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<html>
+<head>
+<meta charset="UTF-8">
+<title>my file sys</title>
+</head>
+<body>
+<h1>New file Page</h1>
+
+	<hr>
+		<form method="POST" th:action="@{/saveMyfile}" action="#" 
+			th:object="${myfile}">
+			
+			
+		<input type="hidden" th:field="*{fid}">
+			
+		<br>File Name : <input type="text" th:field="*{fname}" placeholder="file name  " />
+
+		<br>File Kind : <input type="text" th:field="*{fkind}" placeholder="type / kind " />
+		
+		<br>Date Created : <input type="date" th:field="*{fdcreate}" placeholder="file created  " />
+		
+		<br>File Folder : <input type="text" th:field="*{ffolder}" placeholder="folder " />
+		
+		<br>File Size (MB) : <input type="text" th:field="*{fsize}" placeholder="size " />
+		
+		<br>is Active ? : <input type="checkbox" th:field="*{isActive}" placeholder="is Active ?  " />
+
+		<br><button type="Submit">Save Myfile Details</button>
+	
+	</form>
+	<hr>
+	
+	<a th:href="@{/}"> Back to Myfile Listing </a>
+	
+</body>
+</html>

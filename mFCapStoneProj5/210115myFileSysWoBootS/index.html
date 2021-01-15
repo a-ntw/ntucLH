@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>myFile List</h1>
+
+	<table border="1">
+		<thead>
+		
+			<tr>
+				<th><a th:href="@{'/page/' + ${currentPage} + '?sortField=fid&sortDirection=' + ${reverseSortDirection} }">ID</a></th>
+
+				<th><a th:href="@{'/page/' + ${currentPage} + '?sortField=fname&sortDirection=' + ${reverseSortDirection} }">Name</a></th>
+
+				<th><a th:href="@{'/page/' + ${currentPage} + '?sortField=fkind&sortDirection=' + ${reverseSortDirection} }">Kind</a></th>
+				
+				<th><a th:href="@{'/page/' + ${currentPage} + '?sortField=fdcreate&sortDirection=' + ${reverseSortDirection} }">Created</a></th>
+				
+				<th><a th:href="@{'/page/' + ${currentPage} + '?sortField=ffolder&sortDirection=' + ${reverseSortDirection} }">Folder</a></th>
+				
+				<th><a th:href="@{'/page/' + ${currentPage} + '?sortField=fsize&sortDirection=' + ${reverseSortDirection} }">Size</a></th>
+
+				<th><a th:href="@{'/page/' + ${currentPage} + '?sortField=isActive&sortDirection=' + ${reverseSortDirection} }">Is Active ?</a></th>
+				
+				<th>Actions</th>
+
+		</thead>
+		<tbody>
+			<tr th:each="myfile : ${listMyfile}">
+				<td th:text="${myfile.fid}" />
+				<td th:text="${myfile.fname}" />
+				<td th:text="${myfile.fkind}" />
+				<td th:text="${myfile.fdcreate}"/>
+				<td th:text="${myfile.ffolder}"/>
+				<td th:text="${myfile.fsize}"/>
+
+				<td><input type="checkbox"
+						th:checked="${myfile.isActive} ? 'checked'"></td>
+				<td>
+				<a
+					th:href="@{/showFormForUpdate/{fid}(fid=${myfile.fid})}">
+							Update </a> &nbsp;&nbsp;&nbsp; 
+				<a
+					th:href="@{/deleteMyfile/{fid}(fid=${myfile.fid})}">
+							Delete </a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
+		<nav class="navbar navbar-light bg-light">
+		<form class="form-inline">
+			<span class="navbar-text"  th:if="${totalPages > 1}">
+				<div>Total Rows  : [[${totalItems}]]</div>
+				<div>Total Pages : [[${totalPages}]]</div>
+			</span>
+			
+			<a class="nav-link" th:href="@{/showNewMyfileForm}"> Add file </a>
+	
+			<!-- <a th:href="@{'/page/1'}"> First </a> -->
+			<a class="nav-link"  th:href="@{'/page/1' + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}"> First </a>
+			
+			<a class="nav-link" th:if="${currentPage > 1}">
+				<a th:href="@{'/page/' + ${currentPage - 1} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}"> Prev </a>
+				<!-- <a th:href="@{'/page/' + ${currentPage - 1}}"> Prev </a> -->
+			</a>
+	
+			<a class="nav-link" th:if="${currentPage < totalPages}">
+				<a th:href="@{'/page/' + ${currentPage + 1} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}"> Next </a>
+				<!-- <a th:href="@{'/page/' + ${currentPage + 1}}"> Next </a> -->
+			</a>
+			
+			<!-- <a th:href="@{'/page/' + ${totalPages}}"> Last </a> -->
+			<a class="nav-link" th:href="@{'/page/' + ${totalPages} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}"> Last </a>
+		</form>
+		</nav>
+</body>
+</html>

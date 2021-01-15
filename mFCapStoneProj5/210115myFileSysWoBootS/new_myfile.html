@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<html>
+<head>
+<meta charset="UTF-8">
+<title>my file sys</title>
+</head>
+<body>
+<h1>New file Page</h1>
+
+	<hr>
+		<form method="POST" th:action="@{/saveMyfile}" action="#" 
+			th:object="${myfile}">
+			
+		<br>File Name : <input type="text" th:field="*{fname}" placeholder="file name  " />
+		<div th:if="${#fields.hasErrors('fname')}"
+					th:errors="*{fname}">Name Error</div>
+					
+		<br>File Kind : <input type="text" th:field="*{fkind}" placeholder="type / kind " />
+		<div th:if="${#fields.hasErrors('fkind')}"
+					th:errors="*{fkind}">Kind Error</div>
+					
+		<br>Date Created : <input type="date" th:field="*{fdcreate}" placeholder="file created  " />
+		<div th:if="${#fields.hasErrors('fdcreate')}"
+					th:errors="*{fdcreate}">Name Error</div>
+							
+		<br>File Folder : <input type="text" th:field="*{ffolder}" placeholder="folder " />
+		<div th:if="${#fields.hasErrors('ffolder')}"
+					th:errors="*{ffolder}">Folder Error</div>
+					
+
+		<br>File Size (MB) : <input type="text" th:field="*{fsize}" placeholder="size " />
+		
+		<br>is Active ? : <input type="checkbox" th:field="*{isActive}" placeholder="is Active ?  " />
+
+		<br><button type="Submit">Save Myfile Details</button>
+	
+	</form>
+	<hr>
+	
+	<a th:href="@{/}"> Back to Myfile Listing </a>
+	
+</body>
+</html>
+<!-- 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long fid;
+	
+	@Column(name = "fname") private String fname;
+	
+	@Column(name = "fkind") private String fkind;
+	
+	@Column(name = "fdcreate") private LocalDate fdcreate;
+	
+	@Column(name = "ffolder") private String ffolder;
+
+	@Column(name = "fsize") private double fsize;
+	
+	@Column(name = "isActive") private boolean isActive;	 -->
+	
