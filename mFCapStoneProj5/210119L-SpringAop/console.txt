@@ -1,0 +1,17 @@
+10:24:08.785 [main] DEBUG org.springframework.context.support.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@6f195bc3
+10:24:09.058 [main] DEBUG org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loaded 5 bean definitions from class path resource [spring.xml]
+10:24:09.078 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.aop.config.internalAutoProxyCreator'
+10:24:09.181 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'triangle'
+10:24:09.223 [main] DEBUG org.springframework.aop.aspectj.annotation.ReflectiveAspectJAdvisorFactory - Found AspectJ method: public void com.Aop.demo.aspect.LoggingAspect.LoggingAdvice()
+10:24:09.225 [main] DEBUG org.springframework.aop.aspectj.annotation.ReflectiveAspectJAdvisorFactory - Found AspectJ method: public void com.Aop.demo.aspect.LoggingAspect.SecondLogging()
+10:24:09.395 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'circle'
+10:24:09.402 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'shapeService'
+10:24:09.408 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'loggingAspect'
+Advice run. The Get method is called
+10:24:09.419 [main] INFO com.Aop.demo.SpringAopApplication - The Advice Get method has been called.
+Advice run Second time.
+Circle name
+Advice run. The Get method is called
+10:24:09.431 [main] INFO com.Aop.demo.SpringAopApplication - The Advice Get method has been called.
+Advice run Second time.
+Triangle's name
