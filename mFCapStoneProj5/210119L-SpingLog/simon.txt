@@ -1,0 +1,146 @@
+2021-01-19 14:29:45.094  INFO 2223 --- [main] ntuc.SpringlogsApplication               : Starting SpringlogsApplication using Java 11.0.8 on Mac-mini.local with PID 2223 (/Users/antw/ntuc/mFCap5/Springlogs/target/classes started by antw in /Users/antw/ntuc/mFCap5/Springlogs)
+2021-01-19 14:29:45.098  INFO 2223 --- [main] ntuc.SpringlogsApplication               : No active profile set, falling back to default profiles: default
+2021-01-19 14:29:45.810  INFO 2223 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-01-19 14:29:45.818  INFO 2223 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-01-19 14:29:45.818  INFO 2223 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-01-19 14:29:45.882  INFO 2223 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-01-19 14:29:45.883  INFO 2223 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 739 ms
+2021-01-19 14:29:46.039  INFO 2223 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-19 14:29:46.213  INFO 2223 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-01-19 14:29:46.222  INFO 2223 --- [main] ntuc.SpringlogsApplication               : Started SpringlogsApplication in 1.447 seconds (JVM running for 6.971)
+2021-01-19 14:29:50.219  INFO 2223 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-01-19 14:29:50.220  INFO 2223 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-01-19 14:29:50.221  INFO 2223 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2021-01-19 14:29:50.237  INFO 2223 --- [http-nio-8080-exec-1] ntuc.testlog                             : This is a info log!
+2021-01-19 14:42:53.725  INFO 2337 --- [main] ntuc.SpringlogsApplication               : Starting SpringlogsApplication using Java 11.0.8 on Mac-mini.local with PID 2337 (/Users/antw/ntuc/mFCap5/Springlogs/target/classes started by antw in /Users/antw/ntuc/mFCap5/Springlogs)
+2021-01-19 14:42:53.728  INFO 2337 --- [main] ntuc.SpringlogsApplication               : No active profile set, falling back to default profiles: default
+2021-01-19 14:42:54.620  INFO 2337 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-01-19 14:42:54.634  INFO 2337 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-01-19 14:42:54.634  INFO 2337 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-01-19 14:42:54.699  INFO 2337 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-01-19 14:42:54.699  INFO 2337 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 932 ms
+2021-01-19 14:42:54.870  INFO 2337 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-19 14:42:55.060  WARN 2337 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is org.springframework.boot.web.server.PortInUseException: Port 8080 is already in use
+2021-01-19 14:42:55.062  INFO 2337 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-19 14:42:55.065  INFO 2337 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2021-01-19 14:42:55.075  INFO 2337 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2021-01-19 14:42:55.086 ERROR 2337 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2021-01-19 14:43:08.203  INFO 2223 --- [http-nio-8080-exec-6] ntuc.testlog                             : This is a info log!
+2021-01-19 14:43:35.780  INFO 2223 --- [RMI TCP Connection(18)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2021-01-19 14:43:35.800  INFO 2223 --- [RMI TCP Connection(18)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-19 14:43:52.246  INFO 2347 --- [main] ntuc.SpringlogsApplication               : Starting SpringlogsApplication using Java 11.0.8 on Mac-mini.local with PID 2347 (/Users/antw/ntuc/mFCap5/Springlogs/target/classes started by antw in /Users/antw/ntuc/mFCap5/Springlogs)
+2021-01-19 14:43:52.248  INFO 2347 --- [main] ntuc.SpringlogsApplication               : No active profile set, falling back to default profiles: default
+2021-01-19 14:43:53.028  INFO 2347 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-01-19 14:43:53.036  INFO 2347 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-01-19 14:43:53.036  INFO 2347 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-01-19 14:43:53.094  INFO 2347 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-01-19 14:43:53.094  INFO 2347 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 806 ms
+2021-01-19 14:43:53.234  INFO 2347 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-19 14:43:53.392  INFO 2347 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-01-19 14:43:53.400  INFO 2347 --- [main] ntuc.SpringlogsApplication               : Started SpringlogsApplication in 1.465 seconds (JVM running for 6.956)
+2021-01-19 14:44:04.405  INFO 2347 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-01-19 14:44:04.405  INFO 2347 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-01-19 14:44:04.406  INFO 2347 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2021-01-19 14:48:12.476  INFO 2347 --- [RMI TCP Connection(6)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2021-01-19 14:48:12.495  INFO 2347 --- [RMI TCP Connection(6)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-19 14:48:22.175  INFO 2361 --- [main] ntuc.SpringlogsApplication               : Starting SpringlogsApplication using Java 11.0.8 on Mac-mini.local with PID 2361 (/Users/antw/ntuc/mFCap5/Springlogs/target/classes started by antw in /Users/antw/ntuc/mFCap5/Springlogs)
+2021-01-19 14:48:22.177  INFO 2361 --- [main] ntuc.SpringlogsApplication               : No active profile set, falling back to default profiles: default
+2021-01-19 14:48:22.938  INFO 2361 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-01-19 14:48:22.947  INFO 2361 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-01-19 14:48:22.947  INFO 2361 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-01-19 14:48:22.997  INFO 2361 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-01-19 14:48:22.997  INFO 2361 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 785 ms
+2021-01-19 14:48:23.168  INFO 2361 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-19 14:48:23.331  INFO 2361 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-01-19 14:48:23.340  INFO 2361 --- [main] ntuc.SpringlogsApplication               : Started SpringlogsApplication in 1.459 seconds (JVM running for 6.982)
+2021-01-19 14:48:31.036  INFO 2361 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-01-19 14:48:31.037  INFO 2361 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-01-19 14:48:31.038  INFO 2361 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2021-01-19 14:49:10.237  INFO 2361 --- [RMI TCP Connection(3)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2021-01-19 14:49:10.257  INFO 2361 --- [RMI TCP Connection(3)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-19 14:49:22.157  INFO 2365 --- [main] ntuc.SpringlogsApplication               : Starting SpringlogsApplication using Java 11.0.8 on Mac-mini.local with PID 2365 (/Users/antw/ntuc/mFCap5/Springlogs/target/classes started by antw in /Users/antw/ntuc/mFCap5/Springlogs)
+2021-01-19 14:49:22.160  INFO 2365 --- [main] ntuc.SpringlogsApplication               : No active profile set, falling back to default profiles: default
+2021-01-19 14:49:22.913  INFO 2365 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-01-19 14:49:22.921  INFO 2365 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-01-19 14:49:22.921  INFO 2365 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-01-19 14:49:22.969  INFO 2365 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-01-19 14:49:22.970  INFO 2365 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 776 ms
+2021-01-19 14:49:23.126  INFO 2365 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-19 14:49:23.282  INFO 2365 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-01-19 14:49:23.290  INFO 2365 --- [main] ntuc.SpringlogsApplication               : Started SpringlogsApplication in 1.426 seconds (JVM running for 6.928)
+2021-01-19 14:49:27.302  INFO 2365 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-01-19 14:49:27.304  INFO 2365 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-01-19 14:49:27.304  INFO 2365 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2021-01-19 14:49:52.785  INFO 2365 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2021-01-19 14:49:52.804  INFO 2365 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-19 15:10:41.111  INFO 2417 --- [main] ntuc.SpringlogsApplication               : Starting SpringlogsApplication using Java 11.0.8 on Mac-mini.local with PID 2417 (/Users/antw/ntuc/mFCap5/Springlogs/target/classes started by antw in /Users/antw/ntuc/mFCap5/Springlogs)
+2021-01-19 15:10:41.113  INFO 2417 --- [main] ntuc.SpringlogsApplication               : No active profile set, falling back to default profiles: default
+2021-01-19 15:10:41.932  INFO 2417 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-01-19 15:10:41.940  INFO 2417 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-01-19 15:10:41.940  INFO 2417 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-01-19 15:10:41.991  INFO 2417 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-01-19 15:10:41.991  INFO 2417 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 838 ms
+2021-01-19 15:10:42.173  INFO 2417 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-19 15:10:42.367  INFO 2417 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-01-19 15:10:42.376  INFO 2417 --- [main] ntuc.SpringlogsApplication               : Started SpringlogsApplication in 1.573 seconds (JVM running for 7.077)
+2021-01-19 15:10:51.813  INFO 2417 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-01-19 15:10:51.813  INFO 2417 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-01-19 15:10:51.814  INFO 2417 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2021-01-19 15:12:04.043  INFO 2425 --- [main] ntuc.SpringlogsApplication               : Starting SpringlogsApplication using Java 11.0.8 on Mac-mini.local with PID 2425 (/Users/antw/ntuc/mFCap5/Springlogs/target/classes started by antw in /Users/antw/ntuc/mFCap5/Springlogs)
+2021-01-19 15:12:04.046  INFO 2425 --- [main] ntuc.SpringlogsApplication               : No active profile set, falling back to default profiles: default
+2021-01-19 15:12:04.890  INFO 2425 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-01-19 15:12:04.899  INFO 2425 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-01-19 15:12:04.899  INFO 2425 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-01-19 15:12:04.949  INFO 2425 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-01-19 15:12:04.949  INFO 2425 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 856 ms
+2021-01-19 15:12:05.127  INFO 2425 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-19 15:12:05.293  WARN 2425 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is org.springframework.boot.web.server.PortInUseException: Port 8080 is already in use
+2021-01-19 15:12:05.294  INFO 2425 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-19 15:12:05.296  INFO 2425 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2021-01-19 15:12:05.306  INFO 2425 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2021-01-19 15:12:05.318 ERROR 2425 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2021-01-19 15:12:14.784  INFO 2417 --- [RMI TCP Connection(6)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2021-01-19 15:12:14.805  INFO 2417 --- [RMI TCP Connection(6)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-19 15:12:28.531  INFO 2427 --- [main] ntuc.SpringlogsApplication               : Starting SpringlogsApplication using Java 11.0.8 on Mac-mini.local with PID 2427 (/Users/antw/ntuc/mFCap5/Springlogs/target/classes started by antw in /Users/antw/ntuc/mFCap5/Springlogs)
+2021-01-19 15:12:28.533  INFO 2427 --- [main] ntuc.SpringlogsApplication               : No active profile set, falling back to default profiles: default
+2021-01-19 15:12:29.309  INFO 2427 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-01-19 15:12:29.317  INFO 2427 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-01-19 15:12:29.318  INFO 2427 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-01-19 15:12:29.367  INFO 2427 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-01-19 15:12:29.367  INFO 2427 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 798 ms
+2021-01-19 15:12:29.538  INFO 2427 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-19 15:12:29.703  INFO 2427 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-01-19 15:12:29.713  INFO 2427 --- [main] ntuc.SpringlogsApplication               : Started SpringlogsApplication in 1.481 seconds (JVM running for 7.006)
+2021-01-19 15:12:36.202  INFO 2427 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-01-19 15:12:36.202  INFO 2427 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-01-19 15:12:36.203  INFO 2427 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
