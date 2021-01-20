@@ -28,7 +28,15 @@ public class Logger {
 	}
 }
 ```
-
+CustomerController.java
+``` java
+	@GetMapping("/deleteCustomer/{custId}")
+	public String deleteCustomer(@PathVariable (value = "custId") long custId) {
+	 // call delete employee method 
+	 this.customerDao.deleteCustomerById(custId);
+	 return "redirect:/";
+	}
+```
 
 210119HBankApp.png <img src="210119HBankApp.png">
 
