@@ -64,6 +64,7 @@ public String findPaginated(@PathVariable(value = "pageNo") int pageNo,
 	public String saveCustomer(@Valid @ModelAttribute("customer") Customer customer, BindingResult bindingResult) {
 		// same customer to database
 		if(bindingResult.hasErrors())
+//			System.out.println(bindingResult.getAllErrors());
 			return "new_customer";
 		customerDao.saveCustomer(customer);
 		return "redirect:/";
