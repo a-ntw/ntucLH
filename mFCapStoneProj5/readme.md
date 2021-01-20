@@ -15,7 +15,7 @@ ntuc CapStone 5
 | 10 | get/deleteCust | [ 210113D-BankApp ](/mFCapStoneProj5/210113D-BankApp) | <img src="210113D-BankApp/210113DBankApp.png" alt="210113DBankApp.png" height="144"> |
 | 11 | Sql Validation | [ 210114E-BankApp ](/mFCapStoneProj5/210114E-BankApp/) | <img src="210114E-BankApp/210114Validation.png" alt="210114Validation.png" height="144"> |
 | 12 | Sort n Paginate | [ 210114F-BankApp ](/mFCapStoneProj5/210114F-BankApp) | <img src="210114F-BankApp/210114pmBankApp.png" alt="210114pmBankApp.png" height="144"> |
-| 13 | --- | [ ](/) | <img src="" alt="" height="144"> |
+| 13 | Aspect n Log | [ 210120J-BankApp ](/mFCapStoneProj5/210120J-BankApp) | <img src="210120J-BankApp/210120JBankAppSc.png" alt="210120JBankAppSc.png" height="144"> |
 | 14 | --- | [ ](/) | <img src="" alt="" height="144"> |
 | 15 | --- | [ ](/) | <img src="" alt="" height="144"> |
 | 16 | --- | [ ](/) | <img src="" alt="" height="144"> |
