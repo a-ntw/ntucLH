@@ -1,6 +1,7 @@
 
 AppSecurity
 ===
+##### top
 [top]: topOfThePage
 
 
@@ -64,6 +65,16 @@ may need to add dependency. Spring > Add Starter > Spring Security
 
 
 210121AppSecurity.png <img src="210121AppSecurity.png">
+
+#### application.properties
+``` 
+server.servlet.session.cookie.name=Customer_Management
+server.servlet.session.cookie.max-age= 120
+server.servlet.session.timeout=300
+#server.port=8081
+```
+
+210121Session.png <img src="210121Session.png">
 
 ---
 [:top: Top](#top)
