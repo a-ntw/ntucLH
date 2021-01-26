@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+      
+<head>
+    <title>Login</title>
+
+   </head>
+<body>
+
+<h1 style="text-align:center"> Welcome</h1>
+
+		<form action="login" method="post">
+			<table style="margin-left:auto;margin-right:auto;">
+			<tr>
+		   		<td>	<input type="text" name="username" value='' /> </td>
+		   	</tr>
+		   	<tr>
+		   		<td> <input type="password" name="password" />  </td>
+		   	</tr>
+		   	<tr align="center">
+		  		<td > <input name="submit" style= "background-color: grey" type="submit" value="login" /> </td>
+		  	</tr>
+		   </table>
+		</form>
+
+</body>
+</html>
+
+<!-- 
+
+spring.jpa.hibernate.ddl-auto=update
+
+will create...??
+
+CREATE TABLE "HR"."USERS" 
+   (	
+   	"ID" NUMBER,
+   	"USERNAME" VARCHAR2(20 BYTE), 
+	"PASSWORD" VARCHAR2(100 BYTE), 
+	"FIRSTNAME" VARCHAR2(255 CHAR), 
+	"LASTNAME" VARCHAR2(255 CHAR)
+	)
+
+for hashing password use
+http://bcrypt-generator.com/
+ -->
