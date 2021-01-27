@@ -1,80 +1,177 @@
-
-AppSecurity
+BankApp with SpringAuthentication
 ===
-##### top
-[top]: topOfThePage
 
+antw@Mac-mini BankApp % ls -R
+``` console
+HELP.md		mvnw		pom.xml		src
+log.txt		mvnw.cmd	readme.md	target
 
+./src:
+main	test
+
+./src/main:
+java		resources
+
+./src/main/java:
+com
+
+./src/main/java/com:
+cp5	main
+
+./src/main/java/com/cp5:
+BankAppApplication.java	CustomerDao.java	LoggerAspect.java
+Customer.java		CustomerDaoImpl.java	authenticate
+CustomerController.java	CustomerRepository.java	sqlData.txt
+
+./src/main/java/com/cp5/authenticate:
+AppSecurity.java		UserControl.java
+CheckUser.java			UserDetailImpl.java
+MyUserDetailService.java	UserRepo.java
+Myusers.java
+
+./src/main/java/com/main:
+
+./src/main/resources:
+Customer.java		readme.md		templates
+application.properties	static
+
+./src/main/resources/static:
+css	static
+
+./src/main/resources/static/css:
+main.css
+
+./src/main/resources/static/static:
+img
+
+./src/main/resources/static/static/img:
+logo.png
+
+./src/main/resources/templates:
+Welcome.html		index.html		new_customer.html
+Welcomeaop.html		login.html		update_customer.html
+error.html		logout.html
+
+./src/test:
+java
+
+./src/test/java:
+com
+
+./src/test/java/com:
+cp5
+
+./src/test/java/com/cp5:
+BankAppApplicationTests.java
+
+./target:
+classes		test-classes
+
+./target/classes:
+Customer.java		com			templates
+META-INF		readme.md
+application.properties	static
+
+./target/classes/META-INF:
+MANIFEST.MF	maven
+
+./target/classes/META-INF/maven:
+com.cp5
+
+./target/classes/META-INF/maven/com.cp5:
+BankApp
+
+./target/classes/META-INF/maven/com.cp5/BankApp:
+pom.properties	pom.xml
+
+./target/classes/com/cp5:
+BankAppApplication.class	CustomerRepository.class
+Customer.class			LoggerAspect.class
+CustomerController.class	authenticate
+CustomerDao.class		sqlData.txt
+CustomerDaoImpl.class
+
+./target/classes/com/cp5/authenticate:
+AppSecurity.class		UserControl.class
+CheckUser.class			UserDetailImpl.class
+MyUserDetailService.class	UserRepo.class
+Myusers.class
+
+./target/classes/com/main:
+
+./target/classes/static:
+css	static
+
+./target/classes/static/css:
+main.css
+
+./target/classes/static/static:
+img
+
+./target/classes/static/static/img:
+logo.png
+
+./target/classes/templates:
+Welcome.html		index.html		new_customer.html
+Welcomeaop.html		login.html		update_customer.html
+error.html		logout.html
+
+./target/test-classes:
+com
+
+./target/test-classes/com:
+cp5
+
+./target/test-classes/com/cp5:
+BankAppApplicationTests.class
+antw@Mac-mini BankApp % 
+```
+
+antw@Mac-mini cp5 % ls -1
+```
+BankAppApplication.java
+Customer.java
+CustomerController.java
+CustomerDao.java
+CustomerDaoImpl.java
+CustomerRepository.java
+LoggerAspect.java
+authenticate
+sqlData.txt
+```
+
+authenticate
+```
 AppSecurity.java
-``` java
-package com.cp5;
-
-import java.util.ArrayList;
-import java.util.List;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-
-@Configuration
-@EnableWebSecurity
-public class AppSecurity extends WebSecurityConfigurerAdapter{
-	
-	@Bean
-	@Override
-	protected UserDetailsService userDetailsService() {
-		
-		List<UserDetails> users= new ArrayList<>();
-		users.add(User.withDefaultPasswordEncoder().
-				username("simon").
-				password("simon").
-				roles("USER").
-				build());
-		
-		users.add(User.withDefaultPasswordEncoder().
-				username("sridhar").
-				password("simon").
-				roles("USER").
-				build());
-			
-		return new InMemoryUserDetailsManager(users);
-	}
-
-}
-
-```
-#### pom.xml
-may need to add dependency. Spring > Add Starter > Spring Security
-``` xml
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
+CheckUser.java
+MyUserDetailService.java
+Myusers.java
+UserControl.java
+UserDetailImpl.java
+UserRepo.java
 ```
 
-
-
-210121AppSecurity.png <img src="210121AppSecurity.png">
-
-#### application.properties
-``` 
-server.servlet.session.cookie.name=Customer_Management
-server.servlet.session.cookie.max-age= 120
-server.servlet.session.timeout=300
-#server.port=8081
+resources
+```
+Customer.java
+application.properties
+readme.md
+static
+templates
 ```
 
-210121Session.png <img src="210121Session.png">
+templates
+```
+Welcome.html
+Welcomeaop.html
+error.html
+index.html
+login.html
+logout.html
+new_customer.html
+update_customer.html
+```
+
+210127BankApp.png <img src="210127BankApp.png">
 
 ---
-[:top: Top](#top)
