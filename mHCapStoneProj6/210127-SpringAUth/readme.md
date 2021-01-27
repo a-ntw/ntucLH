@@ -1,10 +1,9 @@
 Users roles Authenticatiom
 ===
 
+[ index.html ]( /mHCapStoneProj6/210127-SpringAUth/index.html)
 
-[ index.html ]( /210127-SpringAUth/index.html)
-
-[ WebSecurityConfig.java ]( /210127-SpringAUth/WebSecurityConfig.java)
+[ WebSecurityConfig.java ]( /mHCapStoneProj6/210127-SpringAUth/WebSecurityConfig.java)
 
 210127SpringAuth.png <img src="210127SpringAuth.png">
 
