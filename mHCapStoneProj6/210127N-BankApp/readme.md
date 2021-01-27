@@ -127,7 +127,7 @@ BankAppApplicationTests.class
 antw@Mac-mini BankApp % 
 ```
 
-antw@Mac-mini cp5 % ls -1
+[antw@Mac-mini cp5 % ls -1](/mHCapStoneProj6/210127N-BankApp/BankApp/src/main/java/com/cp5)
 ```
 BankAppApplication.java
 Customer.java
@@ -139,8 +139,7 @@ LoggerAspect.java
 authenticate
 sqlData.txt
 ```
-
-authenticate
+[authenticate](/mHCapStoneProj6/210127N-BankApp/BankApp/src/main/java/com/cp5/authenticate)
 ```
 AppSecurity.java
 CheckUser.java
@@ -151,7 +150,7 @@ UserDetailImpl.java
 UserRepo.java
 ```
 
-resources
+[resources](/mHCapStoneProj6/210127N-BankApp/BankApp/src/main/resources)
 ```
 Customer.java
 application.properties
@@ -160,7 +159,7 @@ static
 templates
 ```
 
-templates
+[templates](/mHCapStoneProj6/210127N-BankApp/BankApp/src/main/resources/templates)
 ```
 Welcome.html
 Welcomeaop.html
