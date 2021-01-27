@@ -1,6 +1,8 @@
 BankApp with SpringAuthentication
 ===
 
+210127BankApp.png <img src="210127BankApp.png">
+
 antw@Mac-mini BankApp % ls -R
 ``` console
 HELP.md		mvnw		pom.xml		src
@@ -171,6 +173,5 @@ new_customer.html
 update_customer.html
 ```
 
-210127BankApp.png <img src="210127BankApp.png">
 
 ---
