@@ -173,5 +173,99 @@ new_customer.html
 update_customer.html
 ```
 
+#### AppSecurity.java
+``` java
+
+@Configuration
+@EnableWebSecurity
+public class AppSecurity extends WebSecurityConfigurerAdapter{
+	
+	@Autowired
+	private UserDetailsService userDetailService;
+
+	@Bean
+	public AuthenticationProvider authprovider() {
+		System.out.println("=======>>>>>>>> AppSecurity..AuthenticationProvider");
+		DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+		provider.setUserDetailsService((UserDetailsService) userDetailService);
+//		provider.setPasswordEncoder(NoOpPasswordEncoder.getInstance());
+		provider.setPasswordEncoder(new BCryptPasswordEncoder());
+		return provider;
+		
+	}
+	
+
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		System.out.println("=======>>>>>>>>>>>>>>>>>>>> AppSecurity configure ..");
+	
+		http
+			.csrf().disable()
+			.authorizeRequests().antMatchers("/login").permitAll()
+			.anyRequest().authenticated()
+			.and()
+			.formLogin()
+			.loginPage("/login").permitAll()
+			.and()
+			.logout().invalidateHttpSession(true)
+			.clearAuthentication(true)
+			.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+			.logoutSuccessUrl("/logout-success").permitAll();
+
+	}
+	
+
+//	@Bean
+//	@Override
+//	protected UserDetailsService userDetailsService() {
+//		
+//		List<UserDetails> users= new ArrayList<>();
+//		users.add(User.withDefaultPasswordEncoder().
+//				username("simon").
+//				password("simon").
+//				roles("USER").
+//				build());
+//		
+//		users.add(User.withDefaultPasswordEncoder().
+//				username("sridhar").
+//				password("simon").
+//				roles("USER").
+//				build());
+//			
+//		return new InMemoryUserDetailsManager(users);
+//	}
+
+}
+
+```
+#### login.html
+``` html
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title> :::::: Login :::::</title>
+</head>
+<body>
+
+<h1 style="text-align:center"> ::::: Welcome :::::</h1>
+
+		<form action="login" method="post">
+			<table style="margin-left:auto;margin-right:auto;">
+			<tr>
+		   		<td>	<input type="text" name="username" value='' /> </td>
+		   	</tr>
+		   	<tr>
+		   		<td> <input type="password" name="password" />  </td>
+		   	</tr>
+		   	<tr align="center">
+		  		<td > <input name="submit" style= "background-color: grey" type="submit" value="login" /> </td>
+		  	</tr>
+		   </table>
+		</form>
+
+</body>
+</html>
+```
 
 ---
