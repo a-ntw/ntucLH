@@ -1,4 +1,6 @@
 
+210121CreatingJar.png <img src="210121CreatingJar.png">
+
 ### Creating JAR from Spring
 
 In STS, right-click the project and select ‘Run As’ - Maven Build
