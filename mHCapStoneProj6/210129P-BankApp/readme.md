@@ -1,3 +1,7 @@
+210129Session.png <img src="210129Session.png">
+
+210129Sessions.png <img src="210129Sessions.png">
+
 ``` sql
 CREATE TABLE SPRING_SESSION (
 	PRIMARY_ID CHAR(36) NOT NULL,
