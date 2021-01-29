@@ -1,4 +1,7 @@
 
+210129BrowserScreenShot.png <img src="210129BrowserScreenShot.png">
+
+
 Using 'Nice Admin' Template from SpringAuth
 
 Issues resolved on stuck at login page after the login
