@@ -1,7 +1,4 @@
 
-210128NiceAdmin.png <img src="210128NiceAdmin.png">
-
-
 source: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
 
 210128NiceAdmin.png <img src="210128NiceAdmin.png">
