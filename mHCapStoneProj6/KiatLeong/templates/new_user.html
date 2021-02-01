@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="../static/login.css" th:href="@{login.css}"/>
+<meta charset="ISO-8859-1">
+<title>Bank App</title>
+</head>
+<body>
+<div class="wrapper">
+	<div class="container">
+	<h1> New User Page</h1>
+	<hr>
+	<form class="form" method="POST" th:action="@{/saveUser}" action="#"
+		th:object="${user}" autocomplete = "off">
+		<table width="100%">
+			<tr>
+				<td><label for="username"> User Name </label></td>			
+				<td><input type="text" id="username" th:field="*{username}"
+					class="form-control mb-4 col-4" placeholder="Name ?">
+					<label th:if="${#fields.hasErrors('username')}"
+					th:errors="*{username}">Name Error</label></td>			
+			</tr>			
+			<tr>
+				<td><label for="password"> Password </label></td>
+				<td><input type="password" id="password" th:field="*{password}"
+					class="form-control mb-4 col-4" placeholder="Password">
+					<label th:if="${#fields.hasErrors('password')}"
+					th:errors="*{password}">Password Error</label></td>				
+			</tr>						
+			<tr>
+				<td rowspan="2"></td>
+			</tr>			
+		</table>
+		<button type="submit" class="form-control mb-4 col-4">Save User Details</button>
+		<br><a th:href="@{/login}">Back to Home Page</a>		
+	</form>	
+	
+	<hr> 
+		
+	</div>
+	<ul class="bg-bubbles">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+	</div>
+		</body>
+</html>

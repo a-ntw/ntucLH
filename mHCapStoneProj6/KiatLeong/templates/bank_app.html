@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+				xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<link rel="stylesheet" href = "..static/index.css" th:href="@{/index.css}"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script type="text/javascript">
+    function clearSearch() {
+        window.location = "[[@{/bank}]]";
+    }
+</script>
+<meta charset="ISO-8859-1">
+<title>Bank App</title>
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	<div class="container" align="center">		
+	<h1> Customer List </h1>
+	<div sec:authorize="hasAnyAuthority('CREATOR', 'ADMIN')">	
+		<a id="newForm" th:href="@{/showNewCustomerForm}"> Add Customer</a>
+	</div>
+	<br><br>
+	<form id="searchBox" th:action="@{/page/1}">
+		<input type="hidden" name="sortField" th:value="${sortField}" />
+		<input type="hidden" name="sortDirection" th:value="${sortDirection}" />
+		<input type="search" name="keyword" id="keyword" size="50" placeholder="Search.."
+			th:value="${keyword}" required /> &nbsp; <input type="submit"
+			id="searchButton" value="Search" /> &nbsp; <input type="button"
+			value="Clear" id="btnClear" onclick="clearSearch()" />
+	</form>
+	<br>
+	<table border="1">
+		<thead>
+			<tr>
+				<th> <a th:href="@{'/page/' + ${currentPage} + '?sortField=custId&sortDirection=' + ${reverseSortDir} + ${keyword!=null ? '&keyword=' + keyword: ''}}"> Customer ID </a></th>
+				<th> <a th:href="@{'/page/' + ${currentPage} + '?sortField=custName&sortDirection=' + ${reverseSortDir} + ${keyword!=null ? '&keyword=' + keyword: ''}}"> Name </a></th>
+				<th> <a th:href="@{'/page/' + ${currentPage} + '?sortField=dob&sortDirection=' + ${reverseSortDir} + ${keyword!=null ? '&keyword=' + keyword: ''}}"> Date of Birth </a></th>
+				<th> <a th:href="@{'/page/' + ${currentPage} + '?sortField=email&sortDirection=' + ${reverseSortDir} + ${keyword!=null ? '&keyword=' + keyword: ''}}">Email </a></th>
+				<th> <a th:href="@{'/page/' + ${currentPage} + '?sortField=isActive&sortDirection=' + ${reverseSortDir} + ${keyword!=null ? '&keyword=' + keyword: ''}}">is Active?</a></th>
+				<th> <a th:href="@{'/page/' + ${currentPage} + '?sortField=phoneNo&sortDirection=' + ${reverseSortDir} + ${keyword!=null ? '&keyword=' + keyword: ''}}"> Phone No </a></th>
+				<th> <a th:href="@{'/page/' + ${currentPage} + '?sortField=positivity&sortDirection=' + ${reverseSortDir} + ${keyword!=null ? '&keyword=' + keyword: ''}}">Positivity Rating </a></th>
+				<th sec:authorize="hasAnyAuthority('ADMIN', 'EDITOR')"> Actions </th>
+		</tr>
+		</thead>
+		<tbody>
+			<tr th:each="customer : ${listCustomers}">
+				<td th:text="${customer.custId}"></td>
+				<td th:text="${customer.custName}"></td>
+				<td th:text="${customer.dob}"></td>
+				<td th:text="${customer.email}"></td>
+				<td><input type="checkbox" th:checked="${customer.isActive} ? 'checked' "></td>
+				<td th:text="${customer.phoneNo}"></td>
+				<td th:text="${customer.positivity}"></td>
+				<td sec:authorize="hasAnyAuthority('ADMIN', 'EDITOR')"><a id="update" th:href="@{/showFormForUpdate/{custId}(custId=${customer.custId})}"> Update </a>
+				<a sec:authorize="hasAuthority('ADMIN')" id = "delete" th:href="@{/deleteCustomer/{custId}(custId=${customer.custId})}"> Delete </a></td>
+			</tr>				
+		</tbody>	
+	</table>
+<!-- 	<div th:if="${totalPages>1}"> Total Rows : [[${totalItems}]] </div> -->
+<!-- 	<div th:if="${totalPages>1}"> Total Pages : [[${totalPages}]] </div> -->
+	<div style="display:inline-block" th:if="${totalPages > 1}">
+		<a th:href="@{'/page/1' + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}"> First </a>
+	</div>
+	<div style="display:inline-block" th:if="${currentPage > 1}">  
+		<a th:href="@{'/page/' + ${currentPage - 1} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}"> Previous </a>
+	</div>
+	<div style="display:inline-block" th:if="${currentPage < totalPages}">
+		<a th:href="@{'/page/' + ${currentPage + 1} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}"> Next </a>
+	</div>
+	<div style="display:inline-block" th:if="${totalPages > 1}">
+		<a th:href="@{'/page/' + ${totalPages} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}"> Last </a>
+	</div>
+	
+</div>
+</body>
+</html> 

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" type = "text/css" href = "../static/login.css" th:href="@{login.css}" />
+
+<title>Login</title>
+</head>
+<body>
+<div class="wrapper">
+	<div class="container">
+		<h1>Welcome</h1>
+		<div th:if="${param.error}"> Invalid Username or Password !!!</div>
+		<form class="form" action="login" method = "post">
+			<input type="text" placeholder="Username" name="username"/>
+			<input type="password" placeholder="Password" name="password"/>
+			<button type="submit" id="login-button">Login</button>
+			<br><a th:href="@{/newUserForm}"> Register </a>
+		</form>
+	</div>
+	
+	<ul class="bg-bubbles">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+</body>
+</html>

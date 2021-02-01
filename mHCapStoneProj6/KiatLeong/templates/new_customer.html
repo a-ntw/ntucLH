@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" th:href="@{new_customer.css}"/>
+<meta charset="ISO-8859-1">
+<title>Bank App</title>
+</head>
+<body>
+	<h1> New Customer Page</h1>
+	<hr>
+	<form method="POST" th:action="@{/saveCustomer}" action="#"
+		th:object="${customer}">
+		<table width="100%">
+			<tr>
+				<td width="10%"><label for="custName"> Customer Name </label></td>			
+				<td><input type="text" id="custName" th:field="*{custName}"
+					class="form-control mb-4 col-4" placeholder="Name ?">
+					<label th:if="${#fields.hasErrors('custName')}"
+					th:errors="*{custName}">Name Error</label></td>			
+			</tr>			
+			<tr>				
+				<td><label for="dob"> Date of Birth </label></td>
+				<td><input type="date" id="dob" th:field="*{dob}"
+					class="form-control mb-4 col-4"></td>
+			</tr>					
+			<tr>
+				<td><label for="email"> Email Address </label></td>
+				<td><input type="text" id="email" th:field="*{email}"
+					class="form-control mb-4 col-4" placeholder="Email ?">
+					<label th:if="${#fields.hasErrors('email')}"
+					th:errors="*{email}">Email Address Error</label></td>				
+			</tr>
+			<tr>
+				<td><label for="passCode"> Password </label></td>
+				<td><input type="password" id="passCode" th:field="*{passCode}"
+					class="form-control mb-4 col-4" placeholder="Password">
+					<label th:if="${#fields.hasErrors('passCode')}"
+					th:errors="*{passCode}">Password Error</label></td>				
+			</tr>
+			<tr>
+				<td><label for="isActive"> Is Active ? </label></td>
+				<td><input type="checkbox" id="isActive" th:field="*{isActive}"
+					class="form-control mb-4 col-4" placeholder="Is Active ?">
+				</td>
+			</tr>
+			<tr>
+				<td><label for="phoneNo"> Phone No </label></td>
+				<td><input type="text" id="phoneNo" th:field="*{phoneNo}"
+					class="form-control mb-4 col-4" placeholder=" Phone No ?">
+					<label th:if="${#fields.hasErrors('phoneNo')}"
+					th:errors="*{phoneNo}">Phone No Error</label></td>				
+			</tr>
+			<tr>
+				<td><label for="positivity"> Positivity </label></td>
+				<td><input type="range" id="positivity"
+					th:field="*{positivity}" class="form-control mb-4 col-4"
+					placeholder=" Positivity Rating"></td>				
+			</tr>			
+			<tr>
+				<td rowspan="2"><button type="submit"
+						class="form-control mb-4 col-4">Save Customer Details</button></td>
+			</tr>
+		</table>
+		<input type="hidden" name="newOrUpdate" id="newOrUpdate" value="new" />
+	</form>	
+	
+	<hr> <a th:href="@{/}">Back to Customer Listing</a>	
+
+		</body>
+</html>
