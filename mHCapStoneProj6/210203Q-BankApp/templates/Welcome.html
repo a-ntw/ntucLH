@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" media="all" 
+          href="../../css/gtvg.css" th:href="@{/css/gtvg.css}" />
+</head>
+<body>
+	<h1 style="text-align:center">
+	
+	<span>  Welcome to SpringBoot Security </span>
+	<br>
+	<span th:text="${#authentication.getPrincipal().getUsername()}"></span>
+
+
+   </h1>
+</body>
+</html>

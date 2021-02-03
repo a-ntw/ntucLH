@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Bank App</title>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<style>
+.parent {
+	border: 5px solid #E18728;
+	padding: 20px;
+	margin: 20px;
+	float: left;
+}
+/* 
+body {
+	font-family: sans-serif;
+	font-size: 1.1em;
+} */
+</style>
+</head>
+<body>
+	<div class="parent">
+		<h2>Customer List</h2>
+
+
+		<!-- <table class="table-hover"> -->
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col"><a th:href="@{'/page/' + ${currentPage} + '?sortField=custId&sortDirection=' + ${reverseSortDirection} }">Customer ID</a></th>
+					<th scope="col"><a th:href="@{'/page/' + ${currentPage} + '?sortField=custName&sortDirection=' + ${reverseSortDirection} }">Name</a></th>
+					<th scope="col">Date of Birth</th>
+					<th scope="col">Email</th>
+					<th scope="col">is Active ?</th>
+					<th scope="col">Phone Number</th>
+					<th scope="col">Positivity Rating</th>
+					<th scope="col">Passcode</th>
+					<th scope="col">Actions</th>
+					
+			</thead>
+			<tbody>
+				<tr th:each="customer : ${listCustomers}">
+					<th scope="row" th:text="${customer.custId}" /th>
+					<td th:text="${customer.custName}" />
+					<td th:text="${customer.dob}" />
+					<td th:text="${customer.email}" />
+					<td><input type="checkbox"
+						th:checked="${customer.isActive} ? 'checked'"></td>
+					<td th:text="${customer.phoneNo}" />
+					<td th:text="${customer.positivity}" />
+					<td th:text="${customer.passCode}" />
+					<td><a
+						th:href="@{/showFormForUpdate/{custId}(custId=${customer.custId})}">
+							Update </a> &nbsp;&nbsp;&nbsp; <a
+						th:href="@{/deleteCustomer/{custId}(custId=${customer.custId})}">
+							Delete </a></td>
+					
+				</tr>
+
+			</tbody>
+		</table>
+
+		<nav class="navbar navbar-light bg-light">
+		<form class="form-inline">
+			<span class="navbar-text"  th:if="${totalPages > 1}">
+				<div>Total Rows  : [[${totalItems}]]</div>
+				<div>Total Pages : [[${totalPages}]]</div>
+			</span>
+			
+			<a class="nav-link" th:href="@{/showNewCustomerForm}"> Add Customer </a>
+	
+			<!-- <a th:href="@{'/page/1'}"> First </a> -->
+			<a class="nav-link"  th:href="@{'/page/1' + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}"> First </a>
+			
+			<a class="nav-link" th:if="${currentPage > 1}">
+				<a th:href="@{'/page/' + ${currentPage - 1} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}"> Prev </a>
+				<!-- <a th:href="@{'/page/' + ${currentPage - 1}}"> Prev </a> -->
+			</a>
+	
+			<a class="nav-link" th:if="${currentPage < totalPages}">
+				<a th:href="@{'/page/' + ${currentPage + 1} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}"> Next </a>
+				<!-- <a th:href="@{'/page/' + ${currentPage + 1}}"> Next </a> -->
+			</a>
+			
+			<!-- <a th:href="@{'/page/' + ${totalPages}}"> Last </a> -->
+			<a class="nav-link" th:href="@{'/page/' + ${totalPages} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}"> Last </a>
+			
+			<a class="nav-link" th:href="@{/users}"> Edit Users </a>
+			
+			<a class="nav-link" th:href="@{/Welcome}"> Welcome </a>
+		
+		
+		</form>
+		</nav>
+	</div>
+</body>
+</html>
+
