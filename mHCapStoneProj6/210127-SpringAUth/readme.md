@@ -124,6 +124,34 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 }
 ```
 
+#### MyUserDetails.java
+``` java
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+public class MyUserDetails implements UserDetails {
+
+	private Users users;
+	
+	public MyUserDetails(Users users) {
+		this.users = users;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		Set<UserRole> userRoles = users.getRoles();
+		List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+		
+		for (UserRole userRole : userRoles) {
+			authorities.add(new SimpleGrantedAuthority(userRole.getName()));
+
+		}
+		
+		return authorities;
+	}
+```
+
 check on username role
 
 ``` sql
