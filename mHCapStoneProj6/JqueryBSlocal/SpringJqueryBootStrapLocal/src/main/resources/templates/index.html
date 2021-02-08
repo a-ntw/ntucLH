@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>BootStrap Offline usage demo</title>
+
+	<link rel = "stylesheet" th:href="@{/bootstrap.min.css}">
+		<script th:src="@{/jquery-3.5.1.min.js}"></script>
+	<script th:src="@{/bootstrap.min.js}"></script>
+
+</head>
+<body>
+
+	<div class="container">
+		<div>
+			<nav class="navbar navbar-expand bg-dark navbar-dark">
+			
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link " href="/"> Home </a>
+					</li>
+					
+					<li class="nav-item">
+							<a class="nav-link" href="Users"> Users </a>  
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link "  href="Customers"> Customers </a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link " href="products"> Products </a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link " href="orders"> Orders </a>
+					</li>
+					
+				</ul>
+				<form class="form-inline">
+					<input type="search" class="form-control" placeholder="search" id="fieldkeyword" />
+						<button class="btn btn-primary m-2"  id="buttonSearch" > Search </button> 
+				</form>	
+			
+			</nav>
+		
+		</div>
+			<h1>  Welcome </h1>
+		
+		<div class="text-center m-3"> 
+				<h5> Copyright &copy; NTUC Ltd. </h5>
+		
+		</div>
+		
+		
+		</div>
+</body>
+
+<script type="text/javascript">
+
+	$(document).ready(new function() {
+		$("#buttonSearch").on("click",function(e) {
+			keyword = $("#fieldkeyword").val();
+			alert("keyword: " + keyword);
+	});	
+	});
+</script>
+
+
+</html>
