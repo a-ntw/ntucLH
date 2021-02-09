@@ -1,7 +1,13 @@
 ### Swagger
 210205Swagger.png <img src="210205Swagger.png">
 
+Swagger is an Interface Description Language for describing RESTful APIs expressed using JSON. Swagger is used together with a set of open-source software tools to design, build, document, and use RESTful web services. Swagger includes automated documentation, code generation (into many programming languages), and test-case generation.
+ref: https://en.wikipedia.org/wiki/Swagger_(software)
+
+**login: simon/simon**
+
 *http://localhost:8080/swagger-ui.html*
+
 
 #### pom.xml
 ``` xml
