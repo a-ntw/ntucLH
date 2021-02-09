@@ -62,7 +62,7 @@
 				<a class="h4" th:href="@{/products/new}">Create New Product</a>
 			</div> 
 			<div>
-				<table class="table table-bordered">
+				<table class="table table-bordered" id="table">
 						<thead class="thead-dark">
 						<tr>
 							<th> ID </th>
@@ -89,7 +89,7 @@
 									
 								</tr>
 								
-								<p class="visibility=hidden" id = "prname"> [[${product.name}]] </p> 
+								<!-- <p class="visibility=hidden" id = "prname"> [[${product.name}]] </p>  -->
 								
 							</th:block>
 						</tbody>

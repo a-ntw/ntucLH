@@ -9,6 +9,22 @@ Directory arrangement
 #### products.java
 ``` java
 ...
+		<div> 	<h1>Product List </h1> </div>
+			<div class="p-2">
+				<a class="h4" th:href="@{/products/new}">Create New Product</a>
+			</div> 
+			<div>
+				<table class="table table-bordered" id="table">
+						<thead class="thead-dark">
+						<tr>
+							<th> ID </th>
+							<th> Name </th>
+							<th> Price </th>
+							<th> Category </th>
+							<th> Details </th>
+							<th> Actions </th>				
+						</tr>
+						</thead>
 						<tbody>
 							<th:block th:each="product : ${listProducts}">
 								<tr> 
@@ -25,7 +41,7 @@ Directory arrangement
 									
 								</tr>
 								
-								<p class="visibility=hidden" id = "prname"> [[${product.name}]] </p> 
+								<!-- <p class="visibility=hidden" id = "prname"> [[${product.name}]] </p>  -->
 								
 							</th:block>
 						</tbody>
@@ -80,10 +96,23 @@ Directory arrangement
 $(document).ready(function () {
 	$('.table .delBtn').on('click',function(event) {
 		event.preventDefault();
-		var href = $(this).attr('href');
-		
+			var href = $(this).attr('href');
 
-		
+var table = document.getElementById("table"),rIndex,cIndex;
+for(i=0; i<table.rows.length; i++)
+
+	for (j=0;j<table.rows[i].cells.length; j++)
+	{
+		table.rows[i].cells[j].onclick = function()
+		{
+			rIndex = this.parentElement.rowIndex;
+			var temp = table.rows[rIndex].cells[1].innerHTML;
+			var divmain = document.getElementById("main");
+			divmain.innerHTML = table.rows[rIndex].cells[1].innerHTML;
+
+		}
+	}
+
 		$('#deleteModal #delRef').attr('href',href);
 		$('#deleteModal').modal();
 		
