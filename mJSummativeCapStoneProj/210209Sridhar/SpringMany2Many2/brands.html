@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<title>List Brands</title>
+<div th:replace="common :: header"></div>
+</head>
+<body>
+
+	<div th:replace="common :: navbar"></div>
+
+<div class="container text-center">
+
+		<div>
+			<h1> Brand List</h1>
+		
+			<div>
+				<table class="table table-bordered">
+						<thead class="thead-light">
+						<tr>
+							<th> ID </th>
+							<th> Name </th>
+							<th> Category </th>
+							<th> Modify </th>
+						</tr>
+						</thead>
+						<tbody>
+							<th:block th:each="brand : ${listBrands}">
+								<tr> 
+									<td> [[${brand.id}]]</td>
+									<td> [[${brand.name}]]</td>
+									<td> [[${brand.categories}]]</td>
+									<td>
+											<a th:href="@{'/brands/edit/' + ${brand.id}}"><span class="fa fa-edit"></span> </a>
+											<a class="btn-danger btn-sm" th:href="@{'/brands/delete/' + ${brand.id}}"><span class="fa fa-trash">  </a>
+									</td>
+									
+								</tr>
+							</th:block>
+						
+						
+						</tbody>
+				
+				</table>
+			
+			</div>
+		
+			
+		</div>
+	</div>
+		<div th:replace="common :: footer"></div>
+</body>
+</html>

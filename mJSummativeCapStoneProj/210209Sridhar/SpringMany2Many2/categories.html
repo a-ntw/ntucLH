@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<div th:replace="common :: header"></div>
+<title>List Categories</title>
+
+</head>
+<body>
+
+<div th:replace="common :: navbar"></div>
+<div class="container text-center">
+	
+		<div>
+			<h1> Category List</h1>
+			<div>
+				<table class="table table-bordered">
+						<thead class="thead-light">
+						<tr>
+							<th> ID </th>
+							<th> Name </th>
+						</tr>
+						</thead>
+						<tbody>
+							<th:block th:each="category : ${listcategories}">
+								<tr> 
+									<td> [[${category.id}]]</td>
+									<td> [[${category.name}]]</td>
+								</tr>
+							</th:block>
+						</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div th:replace="common :: footer"></div>
+</body>
+</html>
