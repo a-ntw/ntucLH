@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+ 
+<head>
+
+<meta charset="ISO-8859-1">
+<script
+    src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script type="text/javascript"
+    src="https://www.gstatic.com/charts/loader.js"></script>
+
+<title>carDate - Employee Maintenance</title>
+<style>
+.message {
+	color: orange;
+}
+#empId {
+    border: 0;
+}
+</style>
+</head>
+<body>
+<h1 align=left>Emp List</h1>
+<div sec:authorize="isAuthenticated()">
+		You are signed in as <b><span sec:authentication="name">Employee Name</span></b>
+		&nbsp;
+		<i><span sec:authentication="principal.authorities">Roles</span></i>
+		<a href="/cust"><button type="button">Customer Maintenance</button></a>
+		<a href="/logout"><button type="button">Sign-out</button></a>
+</div>
+<span class="message" th:text="${optMsg} ?:_"></span>
+<form method="POST" th:action="@{'/empSaveOts'}" action="#" th:object="${newEmp}">
+	<table border="1">
+		<thead>
+			<tr>
+				<th><a th:href="@{'/empSort/empId'}">Emp Id<span th:if="${session.empSortField} == 'empId'"><br>([[${session.empSortDirection}]])</span></a></th>
+				<th><a th:href="@{'/empSort/empName'}">Login Name<span th:if="${session.empSortField} == 'empName'"><br>([[${session.empSortDirection}]])</span></a></th>
+				<th>Password</th>
+				<th>Roles</th>
+				<th><a th:href="@{'/empSort/empFullName'}">Full Name<span th:if="${session.empSortField} == 'empFullName'"><br>([[${session.empSortDirection}]])</span></a></th>
+				<th><a th:href="@{'/empSort/phoneNo'}">Phone No<span th:if="${session.empSortField} == 'phoneNo'"><br>([[${session.empSortDirection}]])</span></a></th>
+				<th><a th:href="@{'/empSort/email'}">Email<span th:if="${session.empSortField} == 'email'"><br>([[${session.empSortDirection}]])</span></a></th>
+				<th><a th:href="@{'/empSort/jobTitle'}">Job Title<span th:if="${session.empSortField} == 'jobTitle'"><br>([[${session.empSortDirection}]])</span></a></th>
+				<th><a th:href="@{'/empSort/isActive'}">Enabled<span th:if="${session.empSortField} == 'isActive'"><br>([[${session.empSortDirection}]])</span></a></th>
+				<th><a th:href="@{'/empSort/userExpiry'}">User Expiry<span th:if="${session.empSortField} == 'userExpiry'"><br>([[${session.empSortDirection}]])</span></a></th>
+				<th><a th:href="@{'/empSort/pswdExpiry'}">Password Expiry<span th:if="${session.empSortField} == 'pswdExpiry'"><br>([[${session.empSortDirection}]])</span></a></th>
+				<th>Actions</th>
+				</tr>
+		</thead>
+		<tbody>
+			<tr th:each="emp : ${listEmps}">
+				<td th:text="${emp.empId}" />
+				<td th:text="${emp.empName} " />
+				<td></td>
+				<td th:text="${emp.roles}" />
+				<td th:text="${emp.empFullName}" />
+				<td th:text="${emp.phoneNo}" />
+				<td th:text="${emp.email}" />
+				<td th:text="${emp.jobTitle}" />
+				<td><input type="checkbox"  disabled="disabled" 
+					th:checked="${emp.isActive} ? 'checked' "></td>
+				<td th:text="${emp.userExpiry}" />
+				<td th:text="${emp.pswdExpiry}" />
+				<td>
+					<span th:if="${session.empName} != ${emp.empName}">
+					<a th:href="@{'/empUpdateOts/' + ${emp.empId}}"><button type="button" class="btn btn-primary">Update</button></a>
+ 					<a th:href="@{'/empDeleteOts/' + ${emp.empId}}"><button type="button" class="btn btn-primary">Delete</button></a>
+					<span th:hidden="${emp.isActive} ? 'true' ">
+					    <a th:href="@{'/empAndOts/' + ${emp.empId}}"><button type="button">Reactivate</button></a>
+					</span>
+					<span th:hidden="${!emp.isActive} ? 'true' ">
+						<a th:href="@{'/empAndOts/' + ${-emp.empId}}"><button type="button">Deactivate</button></a>
+					</span>
+					</span>
+					<a th:href="@{'/empUpdateOts/' + ${-emp.empId}}"><button type="button" class="btn btn-primary">Duplicate</button></a>
+				</td>
+			</tr>
+		</tbody>
+
+		<tr>
+			<td colspan="12">
+			<table width="100%" border="1"><tr>
+			<span th:if="${session.totalPages > 1}">
+			<td><a th:href="@{'/empPage/-9'}"><button type="button">First</button></a></td>
+			<td th:if="${session.currPage == 1}"><button type="button">Prev</button></td>
+			<td th:if="${session.currPage > 1}"><a th:href="@{'/empPage/-1'}"><button type="button">Prev</button></a></td>
+			<td th:if="${session.currPage < session.totalPages}"><a th:href="@{'/empPage/1'}"><button type="button">Next</button></a></td>
+			<td th:if="${session.currPage >= session.totalPages}"><button type="button">Next</button></td>
+			<td><a th:href="@{'/empPage/9'}"><button type="button">Last</button></a></td>
+			</span>
+			<td>Page [[${session.empCurrPage}]] of [[${session.empTotalPages}]]</td>
+			<td align="right">Total Rows: [[${session.empTotalItems}]]</td>
+			<td align='right'>
+					<a th:href="@{'/empPageSize/' + ${session.empNextPageSize}}"><button type="button">Page size --> [[${session.empNextPageSize}]]</button></a></td>
+			</tr></table>
+			</td>
+		</tr>
+
+		<tr>
+			<td><input type="text" th:field="*{empId}" readonly size="5"/></td>
+			<td><input type="text" autofocus th:field="*{empName}"/></td>
+			<td><input type="text" th:field="*{password}"/></td>
+	        <td><th:block th:each="roles : ${roles}" >
+		 			<div><input type="checkbox" th:field="*{roles}" th:text="${roles.name}" th:value="${roles.roleId}" /></div>
+				</th:block></td>
+ 			<td><input type="text" th:field="*{empFullName}"/></td>
+ 			<td><input type="text" th:field="*{phoneNo}"/></td>
+ 			<td><input type="email" th:field="*{email}"/></td>
+ 			<td><input type="text" th:field="*{jobTitle}"/></td>
+ 			<td><input type="checkbox" th:field="*{isActive}" readonly /></td>
+			<td><input type="date" th:field="*{userExpiry}"/></td>
+			<td><input type="date" th:field="*{pswdExpiry}"/></td>
+			<td><button type="Submit">Save</button>
+			    <a th:href="@{'/empPage/0'}"><button type="button">Reset</button></a>
+		    </td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><span th:if="${#fields.hasErrors('empName')}" th:errors="*{empName}"></span></td>
+			<td><span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span></td>
+			<td></td>
+			<td><span th:if="${#fields.hasErrors('empFullName')}" th:errors="*{empFullName}"></span></td>
+			<td><span th:if="${#fields.hasErrors('phoneNo')}" th:errors="*{phoneNo}"></span></td>
+			<td><span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span></td>
+			<td><span th:if="${#fields.hasErrors('jobTitle')}" th:errors="*{jobTitle}"></span></td>
+			<td><span th:if="${#fields.hasErrors('isActive')}" th:errors="*{isActive}"></span></td>
+			<td><span th:if="${#fields.hasErrors('userExpiry')}" th:errors="*{userExpiry}"></span></td>
+			<td><span th:if="${#fields.hasErrors('pswdExpiry')}" th:errors="*{pswdExpiry}"></span></td>
+			<td></td>
+			
+		</tr>
+	</table>
+</form>
+
+
+<table border="1">
+<tr><th colspan="2">Session Attributes (System)</th></tr>
+<tr><td>Session Id</td><td th:text="${#session.Id}"> </td></tr>
+<tr><td>Session Last Accessed</td><td th:text="${#session.lastAccessedTime}"> </td></tr>  
+<tr><td>Current date time</td><td th:text="${#dates.format(#dates.createNow(), 'dd MMM yyyy HH:mm')}"> </td></tr>  
+<tr><td>Session Last Accessed</td><td th:text="${#dates.format(#session.lastAccessedTime, 'dd MMM yyyy HH:mm')}"> </td></tr>  
+<tr><td>Session Created</td><td th:text="${#dates.format(#session.CreationTime, 'dd MMM yyyy HH:mm')}"> </td></tr>  
+<tr><th colspan="2">Session Attributes (User)</th></tr>
+<tr><td>empName</td><td th:text="${session.empName}"> </td></tr>
+<tr><td>sortField</td><td th:text="${session.empSortField}"> </td></tr>
+<tr><td>sortDirection</td><td th:text="${session.empSortDirection}"> </td></tr>
+<tr><td>pageSize</td><td th:text="${session.empPageSize}"> </td></tr>
+<tr><td>nextPageSize</td><td th:text="${session.empNextPageSize}"> </td></tr>
+<tr><td>Curr page</td><td th:text="${session.empCurrPage}"> </td></tr>
+<tr><td>Page count</td><td th:text="${session.empTotalPages}"> </td></tr>
+<tr><td>Row count</td><td th:text="${session.empTotalItems}"> </td></tr>
+</table>
+ 
+
+</body>
+</html>
+
