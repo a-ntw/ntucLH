@@ -1,7 +1,6 @@
 package carDate.cust;
 
 import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -11,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -21,6 +19,7 @@ import javax.validation.constraints.Email;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import carDate.emp.Role;
 import carDate.hire.Hire;
 
 
@@ -92,8 +91,7 @@ public class Customer {
 	// links this.Customer to current hire
     @ManyToOne(fetch = FetchType.EAGER, optional = true)
     @JoinColumn(name = "CURRHIREID", nullable = true)
-    private Customer currHire;
-
+    private Hire currHire;
 
 	// links this.Customer to Hires
     @OneToMany(fetch = FetchType.EAGER)
@@ -108,84 +106,74 @@ public class Customer {
 	// Getters and Setters
 	
 	
+
 	public long getCustId() {
 		return custId;
 	}
+
 
 	public void setCustId(long custId) {
 		this.custId = custId;
 	}
 
+
 	public String getCustName() {
 		return custName;
 	}
+
 
 	public void setCustName(String custName) {
 		this.custName = custName;
 	}
 
+
 	public String getNric() {
 		return nric;
 	}
+
 
 	public void setNric(String nric) {
 		this.nric = nric;
 	}
 
+
 	public String getEmail() {
 		return email;
 	}
+
 
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
+
 	public String getPhoneNo() {
 		return phoneNo;
 	}
+
 
 	public void setPhoneNo(String phoneNo) {
 		this.phoneNo = phoneNo;
 	}
 
+
 	public String getAddr1() {
 		return addr1;
 	}
+
 
 	public void setAddr1(String addr1) {
 		this.addr1 = addr1;
 	}
 
+
 	public String getAddr2() {
 		return addr2;
 	}
 
+
 	public void setAddr2(String addr2) {
 		this.addr2 = addr2;
-	}
-
-	public LocalDate getDob() {
-		return dob;
-	}
-
-	public void setDob(LocalDate dob) {
-		this.dob = dob;
-	}
-
-	public boolean getIsActive() {
-		return isActive;
-	}
-
-	public void setIsActive(boolean isActive) {
-		this.isActive = isActive;
-	}
-
-	public LocalDate getDateUpd() {
-		return dateUpd;
-	}
-
-	public void setDateUpd(LocalDate dateUpd) {
-		this.dateUpd = dateUpd;
 	}
 
 
@@ -199,6 +187,34 @@ public class Customer {
 	}
 
 
+	public LocalDate getDob() {
+		return dob;
+	}
+
+
+	public void setDob(LocalDate dob) {
+		this.dob = dob;
+	}
+
+
+	public boolean getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(boolean isActive) {
+		this.isActive = isActive;
+	}
+
+	public LocalDate getDateUpd() {
+		return dateUpd;
+	}
+
+
+	public void setDateUpd(LocalDate dateUpd) {
+		this.dateUpd = dateUpd;
+	}
+
+
 	public Customer getCustLinked() {
 		return custLinked;
 	}
@@ -209,24 +225,45 @@ public class Customer {
 	}
 
 
+	public Hire getCurrHire() {
+		return currHire;
+	}
+
+
+	public void setCurrHire(Hire currHire) {
+		this.currHire = currHire;
+	}
+
+
 	public Set<Hire> getHires() {
 		return hires;
 	}
 
+
+	public void setHires(Set<Hire> hires) {
+		this.hires = hires;
+	}
+
+
 	//
-//	public void setHires(Set<Hire> hires) {
-//		this.hires = hires;
-//	}
-//
+
+	public void addHire(Hire hire) {
+		this.hires.add(hire);
+	}
+
+	public void removeHire(Hire hire) {
+		this.hires.remove(hire);
+	}
 
 
 	@Override
 	public String toString() {
 		return "Customer [custId=" + custId + ", custName=" + custName + ", nric=" + nric + ", email=" + email
 				+ ", phoneNo=" + phoneNo + ", addr1=" + addr1 + ", addr2=" + addr2 + ", city=" + city + ", dob=" + dob
-				+ ", isActive=" + isActive + ", dateUpd=" + dateUpd + ", custLinked=" + custLinked + ", hires=" + hires
+				+ ", isActive=" + isActive + ", dateUpd=" + dateUpd + ", hires=" + hires.size()
 				+ "]";
 	}
+
 
 	
 

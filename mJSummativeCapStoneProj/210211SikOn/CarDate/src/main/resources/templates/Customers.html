@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+ 
+<head>
+<div th:replace="common :: header"></div>
+<meta charset="ISO-8859-1">
+<script
+    src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script type="text/javascript"
+    src="https://www.gstatic.com/charts/loader.js"></script>
+
+<title>carDate - Customer Maintenance</title>
+<style>
+.message {
+	color: orange;
+}
+</style>
+</head>
+<body>
+<div th:replace="common :: navbar"></div>
+<h2 align=left>Customers</h2>
+<span class="message" th:text="${optMsg} ?:_"></span>
+<form method="POST" th:action="@{'/custSaveOts'}" action="#" th:object="${newCust}">
+	<table border="1">
+		<tr th:if="${pinVeh.vehId>0}">
+			<td colspan="15">
+				<table  width="100%" border="1">
+					<tr>
+						<td>Vehicle Id</td>
+						<td>Model</td>
+						<td>Brand</td>
+						<td>License Plate</td>
+						<td>Hired to</td>
+						<td>Status</td>
+						<td>Daily Rate</td>
+						<td>Actions</td>
+					</tr>
+					<tr>
+					    <td th:text="${pinVeh.vehId}" />
+						<td th:text="${pinVeh.vehModel}"/>
+						<td th:text="${pinVeh.vehBrand}"/>
+						<td th:text="${pinVeh.vehLicPlate}"/>
+						<td><span th:if="${pinVeh.currHire!=null}" th:text="${pinVeh.currHire.customer.custName}" /></td>
+						<td><span th:if="${pinVeh.vehId!=0}" th:text="${pinVeh.vehStatus.name}"/></td>
+						<td th:text="${pinVeh.dailyRate}"/>
+						<td><a th:href="@{'/custPinVeh/0'}"><button type="button">Unpin</button></a></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	
+		<tr th:if="${pinCust.custId>0}">
+		    <td th:text="${pinCust.custId}" />
+			<td th:text="${pinCust.custName}"/>
+			<td th:text="${pinCust.nric}"/>
+			<td th:text="${pinCust.email}"/>
+			<td th:text="${pinCust.phoneNo}"/>
+			<td th:text="${pinCust.addr1}">
+			<td th:text="${pinCust.addr2}"/>
+			<td th:text="${pinCust.city}"/>
+			<td th:text="${pinCust.dob}"/>
+			<td><input type="checkbox"  disabled="disabled" th:checked="${pinCust.isActive} ? 'checked' "></td>
+			<td th:text="${pinCust.dateUpd}"/>
+			<td><span th:if="${pinCust.custLinked!=null}"><a th:href="@{'/custPin/' + ${pinCust.custLinked.custId}}">[[${pinCust.custLinked.custName}]]</a></span></td>
+			<td><span th:if="${pinCust.currHire!=null}" th:text="${pinCust.currHire.vehicle.vehLicPlate}" /></td>
+			<td><span th:text="${pinCust.hires.size()}" /></td>
+			<td><a th:href="@{'/custPin/0'}"><button type="button">Unpin</button></a>
+				<a th:href="@{'/custUpdaOts/' + ${pinCust.custId}}"><button type="button">Update</button></a>
+				<a sec:authorize="hasRole('MANAGER')" th:href="@{'/custDeleOts/' + ${pinCust.custId}}"><button type="button">Delete</button></a>
+				<a th:href="@{'/custUpdaOts/' + ${-pinCust.custId}}"><button type="button">Duplicate</button></a>
+					<span sec:authorize="hasRole('MANAGER')">
+						<span th:if="${!pinCust.isActive}">
+						    <a th:href="@{'/custAndOts/' + ${pinCust.custId}}"><button type="button">Reactivate</button></a>
+						</span>
+					</span>
+					<span th:if="${pinCust.isActive}">
+						<a th:href="@{'/custAndOts/' + ${-pinCust.custId}}"><button type="button">Deactivate</button></a>
+					</span>
+			</td>
+		</tr>
+		<tr>
+			<td><a th:href="@{'/custSort/custId'}">Customer Id<span th:if="${session.custSortField} == 'custId'"><br>([[${session.custSortDirection}]])</span></a></td>
+			<td><a th:href="@{'/custSort/custName'}">Customer Name<span th:if="${session.custSortField} == 'custName'"><br>([[${session.custSortDirection}]])</span></a></td>
+			<td><a th:href="@{'/custSort/nric'}">NRIC<span th:if="${session.custSortField} == 'nric'"><br>([[${session.custSortDirection}]])</span></a></td>
+			<td><a th:href="@{'/custSort/email'}">Email<span th:if="${session.custSortField} == 'email'"><br>([[${session.custSortDirection}]])</span></a></td>
+			<td><a th:href="@{'/custSort/phoneNo'}">Phone No<span th:if="${session.custSortField} == 'phoneNo'"><br>([[${session.custSortDirection}]])</span></a></td>
+			<td><a th:href="@{'/custSort/addr1'}">Address line 1<span th:if="${session.custSortField} == 'addr1'"><br>([[${session.custSortDirection}]])</span></a></td>
+			<td><a th:href="@{'/custSort/addr2'}">Address line 2<span th:if="${session.custSortField} == 'addr2'"><br>([[${session.custSortDirection}]])</span></a></td>
+			<td><a th:href="@{'/custSort/city'}">City<span th:if="${session.custSortField} == 'city'"><br>([[${session.custSortDirection}]])</span></a></td>
+			<td><a th:href="@{'/custSort/dob'}">Date of Birth<span th:if="${session.custSortField} == 'dob'"><br>([[${session.custSortDirection}]])</span></a></td>
+			<td><a th:href="@{'/custSort/isActive'}">Is Active<span th:if="${session.custSortField} == 'isActive'"><br>([[${session.custSortDirection}]])</span></a></td>
+			<td><a th:href="@{'/custSort/dateUpd'}">Last Updated<span th:if="${session.custSortField} == 'dateUpd'"><br>([[${session.custSortDirection}]])</span></a></td>
+			<td><a th:href="@{'/custSort/custLinked.custName'}">Alternate Contact<span th:if="${session.custSortField} == 'custLinked.custName'"><br>([[${session.custSortDirection}]])</span></a></td>
+			<td>Current Hire</td>
+			<td>Hire history</td>
+			<td>Actions</td>
+		</tr>
+		
+	
+		<tbody>
+			<tr th:each="cust : ${listCusts}">
+				<td th:text="${cust.custId}" />
+				<td th:text="${cust.custName} " />
+				<td th:text="${cust.nric}" />
+				<td th:text="${cust.email}" />
+				<td th:text="${cust.phoneNo}" />
+				<td th:text="${cust.addr1}" />
+				<td th:text="${cust.addr2}" />
+				<td th:text="${cust.city}" />
+				<td th:text="${cust.dob}" />
+				<td><input type="checkbox"  disabled="disabled" th:checked="${cust.isActive} ? 'checked' "></td>
+				<td th:text="${cust.dateUpd}" />
+				<td><span th:if="${cust.custLinked!=null}">
+						<a th:href="@{'/custPin/' + ${cust.custLinked.custId}}">[[${cust.custLinked.custName}]]</a><br></span>
+			     	<span th:if="${pinCustId>0 and cust.custId!=pinCustId and cust.custLinked!=null and cust.custLinked.custId!=pinCustId}">
+						<a th:href="@{'/custPin/' + ${-cust.custId}}">
+							<button type="button">Change to Pinned</button></a></span>
+					<span th:if="${pinCustId>0 and cust.custId!=pinCustId and cust.custLinked==null}">
+			     		<a th:href="@{'/custPin/' + ${-cust.custId}}">
+			     			<button type="button">Change to Pinned</button></a></span>
+					<span th:if="${cust.custLinked!=null}">
+			     		<a th:href="@{'/custPin/' + ${-cust.custId}}">
+			     			<button type="button">Clear</button></a></span>
+					
+				</td>
+				<td><span th:if="${cust.currHire!=null}" th:text="${cust.currHire.vehicle.vehLicPlate}" /></td>
+				<td th:text="${cust.hires.size()}" />
+				<td>
+					<span th:hidden="${cust.custId==pinCust.custId} ? 'hidden'"><a th:href="@{'/custPin/' + ${cust.custId}}"><button type="button">Pin</button></a></span>
+					<a th:href="@{'/custUpdaOts/' + ${cust.custId}}"><button type="button">Update</button></a>
+ 					<a sec:authorize="hasRole('MANAGER')" th:href="@{'/custDeleOts/' + ${cust.custId}}"><button type="button">Delete</button></a>
+					<a th:href="@{'/custUpdaOts/' + ${-cust.custId}}"><button type="button">Duplicate</button></a>
+					<span sec:authorize="hasRole('MANAGER')" th:hidden="${cust.isActive} ? 'true' ">
+					    <a th:href="@{'/custAndOts/' + ${cust.custId}}"><button type="button">Reactivate</button></a>
+					</span>
+					<span th:hidden="${!cust.isActive} ? 'true' ">
+						<a th:href="@{'/custAndOts/' + ${-cust.custId}}"><button type="button">Deactivate</button></a>
+					</span>
+				</td>
+			</tr>
+		</tbody>
+
+		<tr>
+			<td colspan="15">
+			<table width="100%" border="1"><tr>
+			<span th:if="${session.totalPages > 1}">
+			<td><a th:href="@{'/custPage/-9'}"><button type="button">First</button></a></td>
+			<td th:if="${session.currPage == 1}"><button type="button">Prev</button></td>
+			<td th:if="${session.currPage > 1}"><a th:href="@{'/custPage/-1'}"><button type="button">Prev</button></a></td>
+			<td th:if="${session.currPage < session.totalPages}"><a th:href="@{'/custPage/1'}"><button type="button">Next</button></a></td>
+			<td th:if="${session.currPage >= session.totalPages}"><button type="button">Next</button></td>
+			<td><a th:href="@{'/custPage/9'}"><button type="button">Last</button></a></td>
+			</span>
+			<td>Page [[${session.custCurrPage}]] of [[${session.custTotalPages}]]</td>
+			<td align="right">Total Rows: [[${session.custTotalItems}]]</td>
+			<td align='right'>
+					<a th:href="@{'/custPageSize/' + ${session.custNextPageSize}}"><button type="button">Page size --> [[${session.custNextPageSize}]]</button></a></td>
+			</tr></table>
+			</td>
+		</tr>
+
+		<tr>
+			<td><input hidden="true" type="text" th:field="*{custId}" readonly />
+			    <span th:text="*{custId}" /></td>
+			<td><input type="text" autofocus th:field="*{custName}" /></td>
+			<td><input type="text" th:field="*{nric}" size="9"/></td>
+			<td><input type="email" th:field="*{email}"/></td>
+			<td><input type="text" th:field="*{phoneNo}" size="15"/></td>
+			<td><input type="text" th:field="*{addr1}"/></td>
+			<td><input type="text" th:field="*{addr2}"/></td>
+			<td><input type="text" th:field="*{city}"/></td>
+			<td><input type="date" th:field="*{dob}"/></td>
+			<td><input type="checkbox" th:field="*{isActive}"/></td>
+			<td><input hidden="true" type="text" th:field="*{dateUpd}"  size="9" readonly/>
+			    <span th:text="*{dateUpd}" /></td>
+ 			<td><input hidden="true" type="text" th:field="*{custLinked}" readonly/>
+ 			    <span th:if="*{custLinked!=null}" th:text="*{custLinked.custName}" /></td>
+ 			<td><input hidden="true" type="text" th:field="*{currHire}" readonly/>
+ 			    <span th:if="*{currHire!=null}" th:text="*{currHire.vehicle.vehLicPlace}" /></td>
+ 			<td><input hidden="true" type="text" th:field="*{hires}" readonly/>
+ 			    <span th:if="*{hires!=null}" th:text="*{hires.size()}" /></td>
+
+			<td><button type="Submit">Save</button>
+			    <a th:href="@{'/custPage/0'}"><button type="button">Reset</button></a>
+		    </td>
+		</tr>
+		
+		<tr>
+			<td></td>
+			<td><span th:if="${#fields.hasErrors('custName')}" th:errors="*{custName}"></span></td>
+			<td><span th:if="${#fields.hasErrors('nric')}" th:errors="*{nric}"></span></td>
+			<td><span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span></td>
+			<td><span th:if="${#fields.hasErrors('phoneNo')}" th:errors="*{phoneNo}"></span></td>
+			<td><span th:if="${#fields.hasErrors('addr1')}" th:errors="*{addr1}"></span></td>
+			<td><span th:if="${#fields.hasErrors('addr2')}" th:errors="*{addr2}"></span></td>
+			<td><span th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></span></td>
+			<td><span th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}"></span></td>
+			<td><span th:if="${#fields.hasErrors('isActive')}" th:errors="*{isActive}"></span></td>
+			<td><span th:if="${#fields.hasErrors('dateUpd')}" th:errors="*{dateUpd}"></span></td>
+			<td><span th:if="${#fields.hasErrors('custLinked')}" th:errors="*{custLinked}"></span></td>
+			
+			<td></td>
+			<td></td>
+			
+		</tr>
+	</table>
+</form>
+<hr>
+
+ 
+	<div th:replace="common :: footer"></div>
+
+</body>
+</html>
+

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+ 
+<head>
+<div th:replace="common :: header"></div>
+<meta charset="ISO-8859-1">
+<script
+    src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script type="text/javascript"
+    src="https://www.gstatic.com/charts/loader.js"></script>
+
+<title>carDate - Vehicle Maintenance</title>
+<style>
+.message {
+	color: orange;
+}
+</style>
+</head>
+<body>
+<div th:replace="common :: navbar"></div>
+<h2 align=left>Vehicles</h2>
+<span class="message" th:text="${optMsg} ?:_"></span>
+<form method="POST" th:action="@{'/vehSaveOts'}" action="#" th:object="${newVeh}">
+	<table border="1">
+	
+<!--                            -->
+<!-- 	display pinned customer -->
+		<tr th:if="${pinCust.custId>0}">
+			<td colspan="9">
+				<table  width="100%" border="1">
+					<tr>
+						<td>Customer Id</th>
+						<td>Customer Name</th>
+						<td>NRIC</th>
+						<td>Email</th>
+						<td>Phone No</th>
+						<td>Is Active</th>
+						<td>Alternate Contact</th>
+						<td>Current Hirer</th>
+						<td>Hire history</th>
+						<td>Actions</th>
+					</tr>
+					<tr>
+					    <td th:text="${pinCust.custId}" />
+						<td th:text="${pinCust.custName}"/>
+						<td th:text="${pinCust.nric}"/>
+						<td th:text="${pinCust.email}"/>
+						<td th:text="${pinCust.phoneNo}"/>
+						<td><input type="checkbox"  disabled="disabled" th:checked="${pinCust.isActive} ? 'checked' "></td>
+						<td><span th:if="${pinCust.custLinked!=null}">
+								<a th:href="@{'/vehPinCust/' + ${pinCust.custLinked.custId}}">[[${pinCust.custLinked.custName}]]</a></span></td>
+						<td><span th:if="${pinCust.currHire!=null}" th:text="${pinCust.currHire.vehicle.vehLicPlate}" /></td>
+						<td><span th:text="${pinCust.hires.size()}" /></td>
+						<td><a th:href="@{'/vehPinCust/0'}">
+								<button type="button">Unpin</button></a></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	
+<!--                            -->
+<!-- 	display pinned vehicle  -->
+		<tr th:if="${pinVeh.vehId>0}">
+		    <td th:text="${pinVeh.vehId}" />
+			<td th:text="${pinVeh.vehModel}"/>
+			<td th:text="${pinVeh.vehBrand}"/>
+			<td th:text="${pinVeh.vehLicPlate}"/>
+			<td><span th:if="${pinVeh.currHire!=null}" th:text="${pinVeh.currHire.customer.custName}" /></td>
+			<td><span th:if="${pinVeh.vehId!=0}" th:text="${pinVeh.vehStatus.name}"/></td>
+			<td th:text="${pinVeh.dailyRate}"/>
+			<td th:text="${pinVeh.hires.size()}"/>
+			<td><a th:href="@{'/vehPin/0'}"><button type="button">Unpin</button></a>
+				<a th:href="@{'/vehUpdaOts/' + ${pinVeh.vehId}}"><button type="button">Update</button></a>
+				<a sec:authorize="hasRole('MANAGER')" th:if="${pinVeh.currHire==null}" th:href="@{'/vehDeleOts/' + ${pinVeh.vehId}}"><button type="button">Delete</button></a>
+				<a th:href="@{'/vehUpdaOts/' + ${-pinVeh.vehId}}"><button type="button">Duplicate</button></a></td>
+		</tr>
+		<tr>
+			<th><a th:href="@{'/vehSort/vehId'}">Vehicle Id<span th:if="${session.vehSortField} == 'vehId'"><br>([[${session.vehSortDirection}]])</span></a></th>
+			<th><a th:href="@{'/vehSort/vehModel'}">Model<span th:if="${session.vehSortField} == 'vehModel'"><br>([[${session.vehSortDirection}]])</span></a></th>
+			<th><a th:href="@{'/vehSort/vehBrand'}">Brand<span th:if="${session.vehSortField} == 'vehBrand'"><br>([[${session.vehSortDirection}]])</span></a></th>
+			<th><a th:href="@{'/vehSort/vehLicPlate'}">License Plate<span th:if="${session.vehSortField} == 'vehLicPlate'"><br>([[${session.vehSortDirection}]])</span></a></th>
+			<th><a th:href="@{'/vehSort/currHire'}">Current Hire<span th:if="${session.vehSortField} == 'currHire'"><br>([[${session.vehSortDirection}]])</span></a></th>
+			<th><a th:href="@{'/vehSort/vehStatus.name'}">Status<span th:if="${session.vehSortField} == 'vehStatus.name'"><br>([[${session.vehSortDirection}]])</span></a></th>
+			<th><a th:href="@{'/vehSort/dailyRate'}">Daily Rate<span th:if="${session.vehSortField} == 'dailyRate'"><br>([[${session.vehSortDirection}]])</span></a></th>
+			<th><a th:href="@{'/vehSort/hires.size()'}">Hire history<span th:if="${session.vehSortField} == 'hires.size()'"><br>([[${session.vehSortDirection}]])</span></a></th>
+			<th>Actions</th>
+		</tr>
+		
+<!--                              -->
+<!-- 	display list of vehicles  -->
+		<tbody>
+			<tr th:each="veh : ${listVehs}">
+				<td th:text="${veh.vehId}" />
+				<td th:text="${veh.vehModel} " />
+				<td th:text="${veh.vehBrand}" />
+				<td th:text="${veh.vehLicPlate}" />
+				<td><span th:if="${veh.currHire!=null}"><span th:text="${veh.currHire.customer.custName}" /></span></td>
+				<td th:text="${veh.vehStatus.name}" />
+				<td th:text="${veh.dailyRate}" />
+				<td th:text="${veh.hires.size()}" />
+				<td>
+					<span th:hidden="${veh.vehId==pinVeh.vehId} ? 'hidden'"><a th:href="@{'/vehPin/' + ${veh.vehId}}"><button type="button">Pin</button></a></span>
+					<a th:href="@{'/vehUpdaOts/' + ${veh.vehId}}"><button type="button">Update</button></a>
+ 					<a sec:authorize="hasRole('MANAGER')" th:if="${veh.currHire==null}" th:href="@{'/vehDeleOts/' + ${veh.vehId}}"><button type="button">Delete</button></a>
+					<a th:href="@{'/vehUpdaOts/' + ${-veh.vehId}}"><button type="button">Duplicate</button></a></td>
+			</tr>
+		</tbody>
+		
+<!--                            -->
+<!-- 	Vehicle list navigation -->
+		<tr>
+			<td colspan="9">
+				<table width="100%" border="1">
+					<tr>
+						<span th:if="${session.totalPages > 1}">
+							<td><a th:href="@{'/vehPage/-9'}"><button type="button">First</button></a></td>
+							<td th:if="${session.currPage == 1}"><button type="button">Prev</button></td>
+							<td th:if="${session.currPage > 1}"><a th:href="@{'/vehPage/-1'}"><button type="button">Prev</button></a></td>
+							<td th:if="${session.currPage < session.totalPages}"><a th:href="@{'/vehPage/1'}"><button type="button">Next</button></a></td>
+							<td th:if="${session.currPage >= session.totalPages}"><button type="button">Next</button></td>
+							<td><a th:href="@{'/vehPage/9'}"><button type="button">Last</button></a></td>
+						</span>
+						<td>Page [[${session.vehCurrPage}]] of [[${session.vehTotalPages}]]</td>
+						<td align="right">Total Rows: [[${session.vehTotalItems}]]</td>
+						<td align='right'>
+							<a th:href="@{'/vehPageSize/' + ${session.vehNextPageSize}}"><button type="button">Page size --> [[${session.vehNextPageSize}]]</button></a></td>
+					</tr></table>
+			</td>
+		</tr>
+		
+<!--                                          -->
+<!-- 	On screen Vehicle input/modifications -->
+		<tr>
+			<td><input type="text" th:field="*{vehId}" readonly size="5" /></td>
+			<td><input type="text" th:field="*{vehModel}" /></td>
+			<td><select id="vehBrand" th:field="*{vehBrand}">
+					<option value="BMW">BMW</option>
+					<option value="Mazda">Mazda</option>
+					<option value="Honda">Honda</option>
+					<option value="Proto Saga">Proton Saga</option>
+					<option value="Tata">Tata</option>
+					<option value="Toyota">Toyota</option>
+			  	</select>
+			</td>
+			<td><input type="text" th:field="*{vehLicPlate}" /></td>
+ 			<td><input hidden="true" type="text" th:field="*{currHire}" readonly />
+ 			    <span th:if="*{currHire!=null}" zth:text="*{currHire.customer.custName}" /></td>
+            <td><select id="vehStatus" th:field="*{vehStatus}">
+					<th:block th:if="*{vehId==0 or vehStatus.name=='FREE' or vehStatus.name=='SUSPENDED'}" th:each="vehStts : ${listVehStatus}">
+						<option th:if="${vehStts.name=='FREE' or vehStts.name=='SUSPENDED'}" th:text="${vehStts.name}" th:value="${vehStts.vehSttsId}" />
+					</th:block>
+					<th:block  th:if="*{vehId>0 and (vehStatus.name=='HIRED')}" th:each="vehStts : ${listVehStatus}">
+						<option th:if="${vehStts.name=='HIRED'}" th:text="${vehStts.name}" th:value="${vehStts.vehSttsId}" />
+					</th:block>
+				</select></td>
+			<td><input type="number" th:field="*{dailyRate}" /></td>
+			<td><input hidden="true" type="text" th:field="*{hires}" readonly />
+  			    <span th:if="*{hires!=null}" th:text="*{hires.size()}" /></td>
+			<td><button type="Submit">Save</button> <a th:href="@{'/vehPage/0'}"><button type="button">Reset</button></a></td>
+		</tr>
+		<tr>
+			<td><span th:if="${#fields.hasErrors('vehId')}" th:errors="*{vehId}"></span></td>
+			<td><span th:if="${#fields.hasErrors('vehModel')}" th:errors="*{vehModel}"></span></td>
+			<td><span th:if="${#fields.hasErrors('vehBrand')}" th:errors="*{vehBrand}"></span></td>
+			<td><span th:if="${#fields.hasErrors('vehLicPlate')}" th:errors="*{vehLicPlate}"></span></td>
+			<td><span th:if="${#fields.hasErrors('currHire')}" th:errors="*{currHire}"></span></td>
+			<td><span th:if="${#fields.hasErrors('vehStatus')}" th:errors="*{vehStatus}"></span></td>
+			<td><span th:if="${#fields.hasErrors('dailyRate')}" th:errors="*{dailyRate}"></span></td>
+			<td><span th:if="${#fields.hasErrors('hires')}" th:errors="*{hires}"></span></td>
+			<td/>
+		</tr>
+	</table>
+</form>
+<hr>
+
+	<div th:replace="common :: footer"></div>
+
+</body>
+</html>
+

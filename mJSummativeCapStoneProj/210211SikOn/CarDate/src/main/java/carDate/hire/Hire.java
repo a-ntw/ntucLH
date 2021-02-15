@@ -20,6 +20,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 
 import carDate.cust.Customer;
+import carDate.emp.Employee;
 import carDate.veh.Vehicle;
 
 @Entity // meaning this is linked to a table in the database
@@ -40,24 +41,167 @@ public class Hire {
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "EMPIDBEG", nullable = false)
-	private Vehicle empFulfill;
+	private Employee empFulfill;
     
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "EMPIDEND", nullable = false)
-	private Vehicle empReturn;
+    @ManyToOne(fetch = FetchType.EAGER, optional = true)
+    @JoinColumn(name = "EMPIDEND", nullable = true)
+	private Employee empReturn;
 
-    private LocalDateTime DtsStart;
+    @NotNull
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private LocalDateTime dtsStart;
 
-	private LocalDateTime DtsEnd;
+    @NotNull
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+	private LocalDateTime dtsEnd;
 	
+    @NotNull
+	private double dailyRate;  // daily rate of this Vehicle as at time of hire,
+    // rate will be used through out this Hire.
+	
+    @NotNull
 	private double deposit;
 	
+    @NotNull
 	private double HireFee;
 
-	private LocalDateTime DtsEndActual;
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+	private LocalDateTime dtsEndActual;
 	
-	private double HireFeeActual;
+	private double hireFeeActual;
+	
 
+	// Constructor	
+	public Hire() {
+		super();
+	}
+
+	// getters and setters
+
+	public long getHireId() {
+		return hireId;
+	}
+
+
+	public void setHireId(long hireId) {
+		this.hireId = hireId;
+	}
+
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+
+	public Vehicle getVehicle() {
+		return vehicle;
+	}
+
+
+	public void setVehicle(Vehicle vehicle) {
+		this.vehicle = vehicle;
+	}
+
+
+	public Employee getEmpFulfill() {
+		return empFulfill;
+	}
+
+
+	public void setEmpFulfill(Employee empFulfill) {
+		this.empFulfill = empFulfill;
+	}
+
+
+	public Employee getEmpReturn() {
+		return empReturn;
+	}
+
+
+	public void setEmpReturn(Employee empReturn) {
+		this.empReturn = empReturn;
+	}
+
+
+	public LocalDateTime getDtsStart() {
+		return dtsStart;
+	}
+
+	public void setDtsStart(LocalDateTime dtsStart) {
+		this.dtsStart = dtsStart;
+	}
+
+
+	public LocalDateTime getDtsEnd() {
+		return dtsEnd;
+	}
+
+
+	public void setDtsEnd(LocalDateTime dtsEnd) {
+		this.dtsEnd = dtsEnd;
+	}
+
+	public double getDailyRate() {
+		return dailyRate;
+	}
+
+	public void setDailyRate(double dailyRate) {
+		this.dailyRate = dailyRate;
+	}
+
+	public double getDeposit() {
+		return deposit;
+	}
+
+
+	public void setDeposit(double deposit) {
+		this.deposit = deposit;
+	}
+
+
+	public double getHireFee() {
+		return HireFee;
+	}
+
+
+	public void setHireFee(double hireFee) {
+		HireFee = hireFee;
+	}
+
+
+	public LocalDateTime getDtsEndActual() {
+		return dtsEndActual;
+	}
+
+
+	public void setDtsEndActual(LocalDateTime dtsEndActual) {
+		this.dtsEndActual = dtsEndActual;
+	}
+
+
+	public double getHireFeeActual() {
+		return hireFeeActual;
+	}
+
+
+	public void setHireFeeActual(double hireFeeActual) {
+		this.hireFeeActual = hireFeeActual;
+	}
+
+	@Override
+	public String toString() {
+		return "Hire [hireId=" + hireId + ", dtsStart=" + dtsStart + ", dtsEnd=" + dtsEnd
+				+ ", deposit=" + deposit + ", HireFee=" + HireFee + ", dtsEndActual=" + dtsEndActual
+				+ ", hireFeeActual=" + hireFeeActual + "]";
+	}
+	
+
+	
 }
 
 

@@ -1,23 +1,18 @@
-DELETE employees_roles;
-DROP TABLE EMPLOYEES_ROLES;
+// To install, modify your application.properties to update your database and credentials.
+// To refresh database:  step 1: stop the application, run the following script to drop all tables:
+
+DROP TABLE EMPLOYEES_ROLES CASCADE CONSTRAINTS;
 DROP TABLE ROLE;
+DROP TABLE CUSTOMER_HIRES CASCADE CONSTRAINTS;
+DROP TABLE HIRE CASCADE CONSTRAINTS;
+DROP TABLE VEHICLE CASCADE CONSTRAINTS;
+DROP TABLE VEH_STATUS;
+DROP TABLE CUSTOMER;
 DROP TABLE EMPLOYEE;
-DROP TABLE VEHICLE;
-DROP TABLE VEHSTATUS;
+DROP TABLE VEHICLE_HIRES CASCADE CONSTRAINTS;
 
 
-insert into ROLE (NAME)  values  ('ADMIN');
-insert into ROLE (NAME)  values  ('MANAGER');
-insert into ROLE (NAME)  values  ('USER');
-
-insert into EMPLOYEE (EMAIL, EMP_FULL_NAME, EMPNAME, ISACTIVE, JOB_TITLE, PASSWORD, PHONE_NO, PSWD_EXPIRY, USER_EXPIRY)
-            VALUES ('root@carDate.com', 'Simon Sridhar', 'root', 1, 'Director', '$2y$12$B6v4.Xt3A/Ru850pmXwzjunyTZJkcv3kTOekHB2.vU/jmh31I9XiG',
-                    '+9198989897', '27-MAY-2021', '27-JUL-2021');
-
-insert into VEHSTATUS (NAME)  values  ('FREE');
-insert into VEHSTATUS (NAME)  values  ('HIRED');
-                    
-
+// To refresh database:  step 2: run the following script if SPRING_SESSION tables are not already created.
 CREATE TABLE SPRING_SESSION (
 	PRIMARY_ID CHAR(36) NOT NULL,
 	SESSION_ID CHAR(36) NOT NULL,
@@ -40,5 +35,35 @@ CREATE TABLE SPRING_SESSION_ATTRIBUTES (
 	CONSTRAINT SPRING_SESSION_ATTRIBUTES_PK PRIMARY KEY (SESSION_PRIMARY_ID, ATTRIBUTE_NAME),
 	CONSTRAINT SPRING_SESSION_ATTRIBUTES_FK FOREIGN KEY (SESSION_PRIMARY_ID) REFERENCES SPRING_SESSION(PRIMARY_ID) ON DELETE CASCADE
 );
+
+
+
+// To refresh database:  step 3: start the application, tables will be created base on the POJO.
+
+// To refresh database:  step 4: After the application has started, execute these scripts to create roles, vehicle types, and root user.
+
+insert into ROLE (NAME)  values  ('ROLE_ADMIN');
+insert into ROLE (NAME)  values  ('ROLE_MANAGER');
+insert into ROLE (NAME)  values  ('ROLE_USER');
+
+insert into VEH_STATUS (NAME)  values  ('FREE');
+insert into VEH_STATUS (NAME)  values  ('HIRED');
+insert into VEH_STATUS (NAME)  values  ('SUSPENDED');
+
+insert into EMPLOYEE (EMAIL, EMP_FULL_NAME, EMPNAME, ISACTIVE, JOB_TITLE, PASSWORD, PHONE_NO, PSWD_EXPIRY, USER_EXPIRY)
+            VALUES ('root@carDate.com', 'Simon Sridhar', 'root', 1, 'Director', '$2y$12$B6v4.Xt3A/Ru850pmXwzjunyTZJkcv3kTOekHB2.vU/jmh31I9XiG',
+                    '+9198989897', '27-MAY-2021', '27-JUL-2021');
+
+insert into EMPLOYEES_ROLES (EMPLOYEEID, ROLEID)  
+SELECT EMPLOYEE.EMPLOYEEID, ROLE.ROLEID
+ from EMPLOYEE,
+      ROLE
+ where EMPLOYEE.EMPNAME='root' and ROLE.NAME='ROLE_ADMIN';
+
+// To refresh database:  step 5: now you can access the application (localhost:8081) and sign-in with user root password root.
+
+
+                    
+
 
 

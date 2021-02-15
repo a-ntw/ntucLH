@@ -4,7 +4,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
  
 <head>
-
+<div th:replace="common :: header"></div>
 <meta charset="ISO-8859-1">
 <script
     src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -18,20 +18,11 @@
 .message {
 	color: orange;
 }
-#empId {
-    border: 0;
-}
 </style>
 </head>
 <body>
-<h1 align=left>Emp List</h1>
-<div sec:authorize="isAuthenticated()">
-		You are signed in as <b><span sec:authentication="name">Employee Name</span></b>
-		&nbsp;
-		<i><span sec:authentication="principal.authorities">Roles</span></i>
-		<a href="/cust"><button type="button">Customer Maintenance</button></a>
-		<a href="/logout"><button type="button">Sign-out</button></a>
-</div>
+<div th:replace="common :: navbar"></div>
+<h2 align=left>Employees</h2>
 <span class="message" th:text="${optMsg} ?:_"></span>
 <form method="POST" th:action="@{'/empSaveOts'}" action="#" th:object="${newEmp}">
 	<table border="1">
@@ -61,8 +52,7 @@
 				<td th:text="${emp.phoneNo}" />
 				<td th:text="${emp.email}" />
 				<td th:text="${emp.jobTitle}" />
-				<td><input type="checkbox"  disabled="disabled" 
-					th:checked="${emp.isActive} ? 'checked' "></td>
+				<td><input type="checkbox"  disabled="disabled" th:checked="${emp.isActive} ? 'checked' "></td>
 				<td th:text="${emp.userExpiry}" />
 				<td th:text="${emp.pswdExpiry}" />
 				<td>
@@ -101,11 +91,12 @@
 		</tr>
 
 		<tr>
-			<td><input type="text" th:field="*{empId}" readonly size="5"/></td>
+			<td><input hidden="true" type="text" th:field="*{empId}" readonly />
+			    <span th:text="*{empId}" /></td>
 			<td><input type="text" autofocus th:field="*{empName}"/></td>
 			<td><input type="text" th:field="*{password}"/></td>
-	        <td><th:block th:each="roles : ${roles}" >
-		 			<div><input type="checkbox" th:field="*{roles}" th:text="${roles.name}" th:value="${roles.roleId}" /></div>
+			<td><th:block th:each="roles : ${roles}" >
+				<div><input type="checkbox" th:field="*{roles}" th:text="${roles.name}" th:value="${roles.roleId}" /></div>
 				</th:block></td>
  			<td><input type="text" th:field="*{empFullName}"/></td>
  			<td><input type="text" th:field="*{phoneNo}"/></td>
@@ -135,26 +126,10 @@
 		</tr>
 	</table>
 </form>
+<hr>
 
-
-<table border="1">
-<tr><th colspan="2">Session Attributes (System)</th></tr>
-<tr><td>Session Id</td><td th:text="${#session.Id}"> </td></tr>
-<tr><td>Session Last Accessed</td><td th:text="${#session.lastAccessedTime}"> </td></tr>  
-<tr><td>Current date time</td><td th:text="${#dates.format(#dates.createNow(), 'dd MMM yyyy HH:mm')}"> </td></tr>  
-<tr><td>Session Last Accessed</td><td th:text="${#dates.format(#session.lastAccessedTime, 'dd MMM yyyy HH:mm')}"> </td></tr>  
-<tr><td>Session Created</td><td th:text="${#dates.format(#session.CreationTime, 'dd MMM yyyy HH:mm')}"> </td></tr>  
-<tr><th colspan="2">Session Attributes (User)</th></tr>
-<tr><td>empName</td><td th:text="${session.empName}"> </td></tr>
-<tr><td>sortField</td><td th:text="${session.empSortField}"> </td></tr>
-<tr><td>sortDirection</td><td th:text="${session.empSortDirection}"> </td></tr>
-<tr><td>pageSize</td><td th:text="${session.empPageSize}"> </td></tr>
-<tr><td>nextPageSize</td><td th:text="${session.empNextPageSize}"> </td></tr>
-<tr><td>Curr page</td><td th:text="${session.empCurrPage}"> </td></tr>
-<tr><td>Page count</td><td th:text="${session.empTotalPages}"> </td></tr>
-<tr><td>Row count</td><td th:text="${session.empTotalItems}"> </td></tr>
-</table>
  
+	<div th:replace="common :: footer"></div>
 
 </body>
 </html>

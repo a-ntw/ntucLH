@@ -9,7 +9,7 @@ import org.springframework.session.jdbc.config.annotation.web.http.EnableJdbcHtt
 
 @SpringBootApplication
 @EnableJdbcHttpSession
-@ComponentScan(basePackages= {"carDate", "carDate.emp"})
+@ComponentScan(basePackages= {"carDate"})
 public class CarDateApplication {
 
 	public static void main(String[] args) {

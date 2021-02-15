@@ -49,84 +49,31 @@ import io.swagger.annotations.ApiOperation;
 		long pinVehId;
 		
 		private boolean loadSessionAttributes(HttpSession session) {
-			try {
-				currFunc = (String) session.getAttribute("currFunc");
-			} catch (Exception e) {}
-			if (currFunc==null || !currFunc.equalsIgnoreCase("ADM")) {
-				currFunc = "ADM";
-				session.setAttribute("currFunc", currFunc);
-				currPage = 1;
-				session.setAttribute("empCurrPage", currPage);
-				totalPages = 1;
-				session.setAttribute("empTotalPages", totalPages);
-				pageSize = 5;
-				session.setAttribute("empPageSize", pageSize);
-				nextPageSize = pageSize==5?10:(pageSize==10?20:5);
-				session.setAttribute("empNextPageSize", nextPageSize);
-				sortField = "empId";
-				session.setAttribute("empSortField", sortField);
-				sortDirection = "ASC";
-				session.setAttribute("empSortDirection", sortDirection);
-				try {
-					pinCustId = (long) session.getAttribute("pinCustId");
-				} catch (Exception e) {
-					pinCustId = 0;
-					session.setAttribute("pinCustId", pinCustId);
-				}
-				try {
-					pinVehId = (long) session.getAttribute("pinVehId");
-				} catch (Exception e) {
-					pinVehId = 0;
-					session.setAttribute("pinAcctId", pinVehId);
-				}
-				return true;
-			} else {
-				try {
-					currPage = (int) session.getAttribute("empCurrPage");
-				} catch (Exception e) {
-					currPage = 1;
-					session.setAttribute("empCurrPage", currPage);
-				}
-				try {
-					totalPages = (int) session.getAttribute("empTotalPages");
-				} catch (Exception e) {
-					totalPages = 1;
-					session.setAttribute("empTotalPages", totalPages);
-				}
-				try {
-					pageSize = (int) session.getAttribute("empPageSize");
-				} catch (Exception e) {
-					pageSize = 5;
-					session.setAttribute("empPageSize", pageSize);
-				}
-				nextPageSize = pageSize==5?10:(pageSize==10?20:5);
-				session.setAttribute("empNextPageSize", nextPageSize);
-				try {
-					sortField = (String) session.getAttribute("empSortField");
-				} catch (Exception e) {
-					sortField = "empId";
-					session.setAttribute("empSortField", sortField);
-				}
-				try {
-					sortDirection = (String) session.getAttribute("empSortDirection");
-				} catch (Exception e) {
-					sortDirection = "ASC";
-					session.setAttribute("empSortDirection", sortDirection);
-				}
-				try {
-					pinCustId = (long) session.getAttribute("pinCustId");
-				} catch (Exception e) {
-					pinCustId = 0;
-					session.setAttribute("pinCustId", pinCustId);
-				}
-				try {
-					pinVehId = (long) session.getAttribute("pinVehId");
-				} catch (Exception e) {
-					pinVehId = 0;
-					session.setAttribute("pinVehId", pinVehId);
-				}
-				return true;
-			} 
+			currPage = (session.getAttribute("empCurrPage")==null)?1:(int) session.getAttribute("empCurrPage");
+			session.setAttribute("empCurrPage", currPage);
+			
+			totalPages = (session.getAttribute("empTotalPages"))==null?1:(int) session.getAttribute("empTotalPages");
+			session.setAttribute("empTotalPages", totalPages);
+
+			pageSize = (session.getAttribute("empPageSize")==null)?5:(int) session.getAttribute("empPageSize");
+			session.setAttribute("empPageSize", pageSize);
+
+			nextPageSize = pageSize==5?10:(pageSize==10?20:5);
+			session.setAttribute("empNextPageSize", nextPageSize);
+
+			sortField = (session.getAttribute("empSortField")==null)?"empId":(String) session.getAttribute("empSortField");
+			session.setAttribute("empSortField", sortField);
+			
+			sortDirection = (session.getAttribute("empSortDirection")==null)?"ASC":(String) session.getAttribute("empSortDirection");
+			session.setAttribute("empSortDirection", sortDirection);
+
+			pinCustId = (session.getAttribute("pinCustId")==null)?0:(long) session.getAttribute("pinCustId");
+			session.setAttribute("pinCustId", pinCustId);
+
+			pinVehId = (session.getAttribute("pinVehId")==null)?0:(long) session.getAttribute("pinVehId");
+			session.setAttribute("pinVehId", pinVehId);
+
+			return true;
 		}
 		
 		
@@ -141,7 +88,7 @@ import io.swagger.annotations.ApiOperation;
 				System.out.println("\t Authenticating User=" + empName + "  for Role=" + role + "...");
 				System.out.println("\t authenticaed user has these roles=" + ((UserDetails) principal).getAuthorities());
 				if (SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream()
-		          .anyMatch(r -> r.getAuthority().equals(role))) {
+		          .anyMatch(r -> r.getAuthority().equals("ROLE_".concat(role)))) {
 					System.out.println("\t Explicit authentication ends with true.");
 					return true;
 				}
@@ -151,45 +98,6 @@ import io.swagger.annotations.ApiOperation;
 				System.out.println("\t Explicit authentication ends with false due to missing UserDetails.");
 				return false;
 			}
-		}
-
-		@ApiOperation(value="carDate application entry point", tags="home")
-		@RequestMapping("/")
-		public String Welcome(Model model, HttpSession session) { 
-			// Model is used to prepare data (using model.addAttribute) to be present on html page (using th:${})
-			// Once presented on html, Model is gone.  That's why we need HttpSession to keep data to maintain 
-			// the statefulness of the session.
-
-			if (hasRole("ADMIN")) {
-				session.setAttribute("empName", empName);
-				return "redirect:/emp";
-			}
-			if ((hasRole("MANAGER")) || (hasRole("USER"))) {
-				session.setAttribute("empName", empName);
-				return "redirect:/cust";
-			}
-			return "redirect:/login";
-		}
-
-
-		@RequestMapping("/login")
-		public String login() {
-			System.out.println("\tlogin detected...");
-				return "login";
-		}
-		
-		@RequestMapping("/bye")
-		public String bye(Model model) {
-			model.addAttribute("optMsg", "You are logged out.");
-			return "login";
-		}
-		
-		
-		@GetMapping("/emp") //this is the home page at root directory of the website to be triggered by a http GET. 
-		public String viewHomePage(Model model, HttpSession session) {
-			if (!hasRole("ADMIN")) {return "/403";}
-			if (!loadSessionAttributes(session)) {return "redirect:/";}
-			return empPaginated(0, model, session);
 		}
 
 		
@@ -229,7 +137,7 @@ import io.swagger.annotations.ApiOperation;
 			List <Employee> listEmps = page.getContent();
 			model.addAttribute("listEmps", listEmps);
 			session.setAttribute("empTotalItems", page.getTotalElements());
-			
+			session.setAttribute("empName", empName);
 			return "Employees";
 		}
 		
@@ -374,7 +282,7 @@ import io.swagger.annotations.ApiOperation;
 							}
 							employeeDao.saveEmployee(newEmp);
 							newEmp = new Employee();
-							model.addAttribute("newEmp", newEmp);
+							model.addAttribute("newEmp", null);
 						}
 					}
 				}

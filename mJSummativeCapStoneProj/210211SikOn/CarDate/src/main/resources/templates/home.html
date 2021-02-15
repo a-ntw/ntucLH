@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+ 
+<head>
+<div th:replace="common :: header"></div>
+<meta charset="ISO-8859-1">
+<script
+    src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script type="text/javascript"
+    src="https://www.gstatic.com/charts/loader.js"></script>
+
+<title>carDate - My Profile</title>
+<style>
+.message {
+	color: orange;
+}
+</style>
+</head>
+<body>
+<div th:replace="common :: navbar"></div>
+<h2>My Profile</h2>
+<span class="message" th:text="${optMsg} ?:_"></span>
+
+	<hr>
+	
+
+	<table>
+		<tr hidden="true">
+			<td>Employee Id :</td>
+			<td th:text="${meEmp.empId}" /></tr>
+		<tr>
+			<td>Sign-in name:</td>
+			<td th:text="${meEmp.empName}" /></tr>
+		<tr hidden="true">
+			<td>Password (encrypted) :</td>
+			<td th:text="${meEmp.password}" /></tr>
+		<tr>
+			<td>Full name:</td>
+			<td th:text="${meEmp.empFullName}" /></tr>
+		<tr>
+			<td>Phone no:</td>
+			<td th:text="${meEmp.phoneNo}" /></tr>
+		<tr>
+			<td>Email:</td>
+			<td th:text="${meEmp.email}" /></tr>
+		<tr>
+			<td>Job title:</td>
+			<td th:text="${meEmp.jobTitle}" /></tr>
+		<tr>
+			<td>is Active?:</td>
+			<td th:text="${meEmp.isActive}" /></tr>
+		<tr>
+			<td>Sign-in expirying:</td>
+			<td th:text="${meEmp.userExpiry}" /></tr>
+		<tr>
+			<td>Password expirying:</td>
+			<td th:text="${meEmp.pswdExpiry}" /></tr>
+			
+		</table>
+<hr>
+<!-- To create dialog for user to reset own password.  Resetting of password have to: -->
+<!-- 1. input correct current password (pass Bcrypt test)) -->
+<!-- 2. key in new password twice and they must be the same. -->
+<!-- 3. new password and old password must not have the same Bcrypt hash result) -->
+
+<hr>
+
+ 
+	<div th:replace="common :: footer"></div>
+
+</body>
+</html>
+
