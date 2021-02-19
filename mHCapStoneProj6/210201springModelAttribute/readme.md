@@ -1,6 +1,6 @@
 210201ModelAttribute.png <img src="210201ModelAttribute.png">
 
-210219modelAttribute <img src="210219modelAttribute">
+210219modelAttribute.png <img src="210219modelAttribute.png">
 
 #### ModelController.java
 ``` java
