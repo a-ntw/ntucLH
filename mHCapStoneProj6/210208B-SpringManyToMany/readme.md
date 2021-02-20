@@ -1,8 +1,6 @@
 ManyToMany NavBar BootStrap
 ===
 
-210208ManyToMany.png <img src="210208ManyToMany.png">
-
 #### Directory arrangement
 antw@Mac-mini ntuc % ls -R -1
 * [AppController.java](/mHCapStoneProj6/210208B-SpringManyToMany/SpringBootOneToMany/src/main/java/com/ntuc/AppController.java)
@@ -46,7 +44,7 @@ antw@Mac-mini resources % ls -R -1
 
 antw@Mac-mini resources % 
 
-
+210208ManyToMany.png <img src="210208ManyToMany.png">
 
 #### Category.java
 ``` java
