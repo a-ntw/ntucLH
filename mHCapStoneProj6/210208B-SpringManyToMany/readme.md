@@ -3,7 +3,49 @@ ManyToMany NavBar BootStrap
 
 210208ManyToMany.png <img src="210208ManyToMany.png">
 
-Directory arrangement
+#### Directory arrangement
+antw@Mac-mini ntuc % ls -R -1
+* [AppController.java](/mHCapStoneProj6/210208B-SpringManyToMany/SpringBootOneToMany/src/main/java/com/ntuc/AppController.java)
+* SpringBootManyToManyApplication.java
+
+./controller:
+- [BrandController.java](/mHCapStoneProj6/210208B-SpringManyToMany/SpringBootOneToMany/src/main/java/com/ntuc/controller/BrandController.java)
+- [CategoryController.java](/mHCapStoneProj6/210208B-SpringManyToMany/SpringBootOneToMany/src/main/java/com/ntuc/controller/CategoryController.java)
+- [ProductController.java](/mHCapStoneProj6/210208B-SpringManyToMany/SpringBootOneToMany/src/main/java/com/ntuc/controller/ProductController.java)
+
+./model:
+- [Brands.java](/mHCapStoneProj6/210208B-SpringManyToMany/SpringBootOneToMany/src/main/java/com/ntuc/model/Brands.java)
+- [Category.java](/mHCapStoneProj6/210208B-SpringManyToMany/SpringBootOneToMany/src/main/java/com/ntuc/model/Category.java)
+- [ProductDetails.java](/mHCapStoneProj6/210208B-SpringManyToMany/SpringBootOneToMany/src/main/java/com/ntuc/model/ProductDetails.java)
+- [Products.java](/mHCapStoneProj6/210208B-SpringManyToMany/SpringBootOneToMany/src/main/java/com/ntuc/model/Products.java)
+
+./repository:
+- [BrandRepository.java](/mHCapStoneProj6/210208B-SpringManyToMany/SpringBootOneToMany/src/main/java/com/ntuc/repository/BrandRepository.java)
+- [CategoryRepository.java](/mHCapStoneProj6/210208B-SpringManyToMany/SpringBootOneToMany/src/main/java/com/ntuc/repository/CategoryRepository.java)
+- [ProductRepository.java](/mHCapStoneProj6/210208B-SpringManyToMany/SpringBootOneToMany/src/main/java/com/ntuc/repository/ProductRepository.java)
+
+antw@Mac-mini resources % ls -R -1    
+* application.properties
+
+./static:
+- bootstrap.min.css
+- bootstrap.min.js
+- jquery-3.5.1.min.js
+- [main.js](/mHCapStoneProj6/210208B-SpringManyToMany/SpringBootOneToMany/src/main/resources/static/main.js)
+
+./templates:
+- [brand_form.html](/mHCapStoneProj6/210208B-SpringManyToMany/SpringBootOneToMany/src/main/resources/templates/brand_form.html)
+- [brands.html](/mHCapStoneProj6/210208B-SpringManyToMany/SpringBootOneToMany/src/main/resources/templates/brands.html)
+- [bsNavBar.html](/mHCapStoneProj6/210208B-SpringManyToMany/SpringBootOneToMany/src/main/resources/templates/bsNavBar.html)
+- [categories.html](/mHCapStoneProj6/210208B-SpringManyToMany/SpringBootOneToMany/src/main/resources/templates/categories.html)
+- [category_form.html](/mHCapStoneProj6/210208B-SpringManyToMany/SpringBootOneToMany/src/main/resources/templates/category_form.html)
+- [index.html](/mHCapStoneProj6/210208B-SpringManyToMany/SpringBootOneToMany/src/main/resources/templates/index.html)
+- [product_form.html](/mHCapStoneProj6/210208B-SpringManyToMany/SpringBootOneToMany/src/main/resources/templates/product_form.html)
+- [products.html](/mHCapStoneProj6/210208B-SpringManyToMany/SpringBootOneToMany/src/main/resources/templates/products.html)
+- [welcome.html](/mHCapStoneProj6/210208B-SpringManyToMany/SpringBootOneToMany/src/main/resources/templates/welcome.html)
+
+antw@Mac-mini resources % 
+
 
 
 #### Category.java
