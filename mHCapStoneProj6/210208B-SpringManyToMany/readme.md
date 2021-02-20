@@ -344,5 +344,47 @@ drop down categories
 	</div>
 </form>
 ```
+#### BrandController.java
+``` java
+@Controller
+public class BrandController {
+
+	@Autowired
+	private BrandRepository repo;
+	
+	@Autowired
+	private CategoryRepository catrepo;
+	
+	@GetMapping("/brands/new")
+	public String ShowNewBrandForm(Model model) {
+		model.addAttribute("brand", new Brands());
+		List<Category> listcategories = catrepo.findAll();
+		model.addAttribute("listcategories",listcategories);
+		return "brand_form";
+	}
+	
+	@PostMapping("/brands/save")
+	public String saveBrand(Brands brand) {
+		repo.save(brand);
+		return "redirect:/brands";
+	}
+	
+	@GetMapping("/brands")
+	public String  listBrands(Model model) {
+		List<Brands> listBrands = repo.findAll();
+		model.addAttribute("listBrands",listBrands);
+		return "brands";
+	}
+	
+	@GetMapping("/brands/edit/{id}")
+	public String ShowBrandEditForm(@PathVariable("id") Integer id, Model model) {
+		Brands brand = repo.findById(id).get();
+		model.addAttribute("brand",brand);
+		List<Category> listcategories = catrepo.findAll();
+		model.addAttribute("listcategories", listcategories);
+		return "brand_form";
+	}
+}
+```
 
 ---
