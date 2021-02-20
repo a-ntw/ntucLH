@@ -31,6 +31,12 @@ public class Category {
 			)
 	
 	private List<Brands> brand = new ArrayList<>();
+	...
+	// For display output thru html page
+	@Override
+	public String toString() {
+		return  name ;
+	}
 ```
 
 #### Brands.java
@@ -262,6 +268,81 @@ public class ProductDetails {
 
 </html>
 ```
+#### brands.html
+``` html
+	<table class="table table-bordered">
+		<thead class="thead-dark">
+		<tr>
+			<th> ID </th>
+			<th> Name </th>
+			<th> Category </th>
+			<th> Modify </th>
+		</tr>
+		</thead>
+		<tbody>
+			<th:block th:each="brand : ${listBrands}">
+				<tr> 
+				<td> [[${brand.id}]]</td>
+				<td> [[${brand.name}]]</td>
+				<td> [[${brand.categories}]]</td>
+				<td>
+					<a th:href="@{'/brands/edit/' + ${brand.id}}"> Edit </a>
+					<a th:href="@{'/brands/delete/' + ${brand.id}}"> Delete </a>
+				</td>
+				</tr>
+			</th:block>
+		</tbody>
+	</table>
+```
 
+---
+### Create New Brand
+ref: SpringBootManyToMany
+####BrandController.java
+``` java
+	@GetMapping("/brands/new")
+	public String ShowNewBrandForm(Model model) {
+		model.addAttribute("brand", new Brands());
+		List<Category> listcategories = catrepo.findAll();
+		model.addAttribute("listcategories",listcategories);
+		return "brand_form";
+	}
+	
+	@PostMapping("/brands/save")
+	public String saveBrand(Brands brand) {
+		repo.save(brand);
+		return "redirect:/brands";
+	}
+```
+#### brand_form.html
+drop down categories
+``` html
+<form th:action="@{/brands/save}" th:object="${brand}" method="post" style="max-width: 600px; margin: 0 auto;">
+	<input type="hidden"  th:field="*{id}" th:value="${brand.id}" />   
+	<div class="m-3">
+		<div class="form-group row">
+			<label class="col-form-label col-sm-18"> Brand Name : </label>
+			<div class="col-sm-8">
+				<input type="text" th:field="*{name}" step= "0.1" class="form-control" required />
+			</div>
+		</div>	
+	</div>
+
+	<div class="form-group row">
+		<label class="col-form-label col-sm-18"> Choose One or more Categories : </label>
+		<div class="col-sm-8">
+			<select th:field="*{categories}" class="form-control" required multiple="multiple"> 
+				<th:block th:each="cat : ${listcategories}">
+					<option th:text="${cat.name}" th:value="${cat.id}" />
+				</th:block>
+			</select>
+		</div>
+	</div>	
+
+	<div class="text-center p-3">
+		<button type="submit" class="btn btn-primary" > Save </button>
+	</div>
+</form>
+```
 
 ---
