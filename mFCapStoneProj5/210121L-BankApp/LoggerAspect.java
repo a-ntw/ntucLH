@@ -55,3 +55,17 @@ public class LoggerAspect {
 	}
 
 }
+
+/*
+5
+  ===> customer com.cp6.cust.Customer@222a1d7c
+Request to Delete by the name, Erisson John, with an Customer ID = 5 has been Received.
+2021-02-22 22:18:00.292  INFO 2592 --- [nio-8080-exec-5] com.cp6.cust.LoggerAspect                : com.cp6.cust.Customer@222a1d7c
+2021-02-22 22:18:00.293  WARN 2592 --- [nio-8080-exec-5] com.cp6.cust.LoggerAspect                :  ===> deleteLog :: com.cp6.cust.Customer@222a1d7c >===
+==========> UsersDetailImpl Set<Roles> userRoles.size():: 4
+==========> UsersDetailImpl,userRole:: SALESPERSON
+==========> UsersDetailImpl,userRole:: ADMIN
+==========> UsersDetailImpl,userRole:: MANAGER
+==========> UsersDetailImpl,userRole:: USER
+
+*/
