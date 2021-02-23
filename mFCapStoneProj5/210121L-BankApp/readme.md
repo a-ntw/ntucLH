@@ -76,5 +76,12 @@ server.servlet.session.timeout=300
 
 210121Session.png <img src="210121Session.png">
 
+#### non-sql login on BankAppCP6
+reference to mHCapStoneProj6/210203Q-BankApp/
+
+210223BankAppCP6.png <img src="210223BankAppCP6.png">
+
+
+
 ---
 [:top: Top](#top)
