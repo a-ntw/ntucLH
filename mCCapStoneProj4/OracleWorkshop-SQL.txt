@@ -1,0 +1,256 @@
+The following is extracted from ORACLE_SQL_PROJECT.pdf only text
+12c Sowftware download from:
+http://www.oracle.com/technetwork/database/enterprise-edition/downloads/index.html
+
+
+=====
+Oracle Workshop - SQL 1) Install Oracle 12c software
+ To install Oracle database on your computer, you need to download the installer from the download page of Oracle website.
+After having the installation files which are in ZIP format, you need to extract them into a specific folder on your computer.
+ 
+The following picture shows the structure of the folder of the Oracle installation files after extraction.
+ 
+Now you need to double-click the setup.exe file to start the installation process. There will be 9 steps which mostly automatically execute.
+Step 1. The installer asks you to provide your email address to get the latest security issues and updates. You can ignore it by clicking the Next button
+  Because I didn’t provide the email address, the Oracle database installer confirm it, you just need to click the No button to continue.
+  Step 2. In step 2, Oracle installer ask you to whether you want to create and configure a database, install database software only or just upgrade an existing database. Because you install the Oracle database at the first time, choose the option 1 and click the Next button.
+
+ Step 3. The installer allows you to choose the system class. Because you install Oracle on your computer, not a server, therefore, you choose the first option: desktop class and click the Next button.
+   Step 4. This step allows you to specify the Windows user account to install and configure Oracle Home for enhanced security. Choose the third option: “Use Windows Built-in Account”.
+
+  Step 5. in this step you can (1) choose the folder on which Oracle database will be installed, (2) Global database name and password, (3) pluggable database name.
+  Step 6. The installer performs the prerequisite check.
+
+  Step 7. The installer shows you the summary of the information such as global settings, database information, etc. You need to review the information and click the install button if everything is fine.
+  Step 8. The installer starts installing Oracle database. It will take a few minutes to complete, depending on your computer.
+
+  
+  You will see the Database Configuration Assistant window. Click the Password management... button to enter the password for Oracle database accounts.
+  Enter the password for SYS and SYSTEM accounts and then click OK button.
+
+ Step 9. Once installation completes successfully, the installer will inform you as shown in the following screenshot. Click the Close button to close the window.
+  
+2) Connecting to Oracle Database
+ First, launch the SQL developer application provided by the Oracle Database.
+Second, right-click the connections node and choose New Connection ... menu item to create a new connection.
+ Third, enter the information that you provided during the installation process as shown in the following screenshot. Click the Connect button to connect to the Oracle Database.
+   SQL developer will display all objects as shown below.
+
+  Congratulation! you have installed Oracle Database 12c successfully. Let’s start exploring Oracle.
+
+3) Create a new Oracle Database
+ • Log in as the Oracle software owner.
+• Go to a command prompt.
+• Type dbca.
+ You see a splash screen and another screen with options.
+  • Select the Create a Database option.
+• You are presented with the option of using a default configuration or an advanced one.
+• Select the Advanced option.
+• Click Next.
+• You’ll see output. Optional database templates are shown:
+ • General Purpose
+• Data Warehouse
+• Custom Database
+• Select the Custom Database option.
+
+ • Click Show Details if you want to see the features, parameters, and files chosen by default for
+  each type of database.
+• Click Next.
+• A screen asks you to choose the database name.
+• Fill in these fields:
+   •
+- Global Database Name: Your database name with your network domain attached. If you don’t want to attach your network domain, leave this field blank.
+1. SID: This is the short name for your database. It equates to your environment variable ORACLE_SID.
+    • Click Next.
+• You’re asked whether you want to manage your database with Oracle Enterprise Manager.
+
+ •
+  • You can configure this two ways:
+1. Configure Enterprise Manager (EM) Database Express: Database Express is a management package that runs locally on the database machine and has many of the features of Cloud Control. However, it controls only one database. If you’re setting up
+    Oracle on a machine with limited resources, you’re going to feel Database Express.
+2. Register with Enterprise Manager (EM) Cloud Control: An Oracle software package that typically runs on its own server elsewhere on your network. It can manage many databases, many versions of Oracle, servers, application servers, and even other non-Oracle software, such as Microsoft SQL server, and firewalls.
+ • Select the Configure Enterprise Manager (EM) Database Express option.
+• Click Next to continue.
+• Set the database credentials (passwords).
+• You have two choices here. You can set the passwords individually for the users that are created with the database or set the same password for all users.
+ • Click Next.
+• You’re asked whether you want to register your database with a listener. If you do, choose the
+correct listener and click Next.
+• Select an option for how you want to store your files.
+• The screen has a drop-down list for you to select how you want to store your files:
+
+ 1. File System: All your data files are put into formatted drives attached to your
+• Select a place to store your files:
+1. File Locations from Template: This option doesn’t let you make any changes. Oracle
+ computer.
+2. Automatic Storage Management (ASM): Don’t choose this now. ASM has some great benefits but isn’t as easy to set up as the DBCA leads you to believe.
+   chooses where to put the files.
+2. Common Location: This option activates the grayed-out field. You choose type or browse for a location to store the files.
+ • Choose File Locations from Template and click Next.
+• The Fast Recovery Area (FRA) is a storage area that resides on disk which can house
+backups, archive logs files, control files, and redo log files.
+• Choose to configure the FRA.
+• Doing so simplifies the storage of backups and archive log files.
+• Determine what FRA space you have available and increase it accordingly.
+• The default value is about 5GB. This might be okay for the archive log files of small databases. You can resize the FRA anytime without taking down the database.
+• Choose to archive later and click Next.
+• Archiving adds drain on the system while creating the database. It’s easy enough to enable later on.
+• Ensure you select sample schemas
+• Click Next.
+• The Memory tab has two options: Typical Settings and Custom Settings.
+
+ •
+   • Select the Typical Settings option.
+• Because we’re talking Oracle 12c, selecting Typical Settings sets the memory target as one
+large chunk and lets Oracle figure out where everything goes.
+• Click the Sizing tab.
+• Select the block size.
+• If you get this wrong, your only option is to re-create your database (if the performance problems haven’t gotten you fired).
+• Click the Character Set tab.
+• You can change the character set after creating the database, but it’s time consuming and
+tedious. Select a character set that will house all the characters that your application may use.
+• Click the Connection Mode tab.
+• You have two options:
+ 1. Dedicated Server Mode
+2. Shared Server Mode
+
+ •
+• Breathe.
+• Click the Customize Storage Button to make storage adjustments.
+• Now is a good time to make sure the files spread across multiple mount points. Click each menu: Controlfile, Tablespaces, Datafiles, and Redo Log Groups. Change the directories (on the right) so they’re not all in the same place.
+• The screen lists the file and storage objects. The screen currently shows the Controlfile choices.
+ 
+    • Click the Close button when you are finished adjusting any files.
+• Decide if you want to save your decisions as a template for future use.
+• If you think you may create a similar database again, this step is a good idea. You can give it a name and a description.
+• Save everything you did in a set of scripts and decide where you want them.
+• It’s a good idea to keep these around just in case. Also, if you’re curious about all the scripting
+work you just avoided by using the DBCA, have a look.
+• Decide whether you want to create the database now.
+• Click Next to go to the summary screen.
+• Click Finish.
+• A screen shows all the options you just chose and the parameters you set.
+ • The creation status screen appears. A status bar and options also appear. You can watch it go through everything until it’s done.
+• When the database is complete, a screen shows the details. A Password Management button lets you unlock or change the passwords of the users that were created as part of the options you installed. All users except SYS, SYSTEM, DBSNMP, and SYSMAN are locked.
+• Click Exit then Close to close the DBCA.
+
+3) Configure a new Oracle user and manage security in the new database (prod)
+• Use SQL command to create a user (syntax given below)
+CREATE USER username
+IDENTIFIED BY password
+[DEFAULT TABLESPACE tablespace]
+[QUOTA {size | UNLIMITED} ON tablespace] [PROFILE profile]
+[PASSWORD EXPIRE]
+[ACCOUNT {LOCK | UNLOCK}];
+• Assign privileges to the new user (ie. grant CONNECT and RESOURCE roles to the new user)
+• Now connect to the new user you created by using SQLPlus or SQL Developer tool
+• Confirm that you are connected to the new user (schema) - (show user or SELECT user_name
+from user_users; SQL command)
+• Create the following tables (Entity Relation (ER) diagram given below) in the new schema
+       
+Human Resources Data Set
+  LOCATIONS
+location_id (PK) street_address postal_code
+city state_province country_id (FK)
+   DEPARTMENTS
+department_id (PK) department_name manager_id Location_id (FK)
+JOB_HISTORTY
+employee_id (NN) start_date end_date
+job_id (FK) department_id (FK)
+  EMPLOYEES
+employee_id (PK) manager_id department_id (FK) first_name last_name (NN) email phone_number hire_date
+job_id (FK) salary commission_pct
+JOBS
+job_id (PK) job_title min_salary max_salary
+      COUNTRIES
+country_id (PK) country_name region_id (FK)
+  REGIONS
+region_id (PK) region_name
+ JOB_GRADES
+grade (PK) lowest_sal highest_sal
+
+Human Resources (HR) Data Set
+The project in this course use the data from the HR schema.
+Table Descriptions
+REGIONS contains rows representing a region (such as Americas, Asia, and so on). COUNTRIES contains rows for countries, each of which are associated with a region.
+LOCATIONS contains the addresses of specific offices, warehouses, and/or production sites of a company in a particular country.
+DEPARTMENTS shows details of the departments in which employees work. Each department can have a relationship representing the department manager in the EMPLOYEES table.
+EMPLOYEES contains details about each employee who works for a department. Some employees may not be assigned to any department.
+JOBS contains the job types that can be held by each employee.
+JOB_HISTORY contains the job history of the employees. If an employee changes departments within the job or changes jobs within the department, a new row is inserted in this table with the old job information of the employee.
+JOB_GRADES identifies a salary range per job grade. The salary ranges do not overlap.
+COUNTRIES table Describe countries
+DEPARTMENTS table Describe departments
+  
+EMPLOYEES table describe employees
+ JOBS table describe jobs
+ JOB_GRADES table describe job_grades
+ 
+JOB_HISTORY table describe job_history
+ LOCATIONS table describe locations
+ REGIONS table describe regions
+ 
+Data for the above tables
+SELECT * FROM COUNTRIES;
+  SELECT * FROM DEPARTMENTS;
+ 
+SELECT * FROM EMPLOYEES;
+ 
+SELECT * FROM EMPLOYEES (continued)
+ 
+SELECT * FROM JOBS;
+ SELECT * FROM JOB_GRADES;
+ 
+SELECT * FROM JOB_HISTORY;
+ SELECT * FROM LOCATIONS;
+ SELECT * FROM REGIONS;
+ 
+4.
+• • • • • •
+•
+• •
+• • •
+SQL commands – Practices
+Duplicate employees table into employees1 table
+Duplicate employees table into employees2 table without any data (ie. only the structure)
+Query all the departments data
+Create a view to display the employee_id, fisrt_name, last_name, salary from employees table
+Query the view to display the data
+Create another view to display the first_name, last_name, salary, department_name (complex view- view based on multiple tables)
+Query all the employees first_name, last_name, salary who earn more than $7000. Sort the data by salary in descending order
+Display all employees last_name whose third letter in last_name is “a”
+Display the last_name and department number of all employees in department 20 or 50. Sort the data by department number
+Query the employees table to display the department id and total salary for each department
+Display all the employees who earn more than the average salary of the company (use sub-query)
+Create the following table in your schema. Name the table DEPT
+   Column name Key type Null/unique FK table FK column Datatype Length
+ID NAME Primary key
+Unique
+Number Varchar2 7 25
+                     • • • • • •
+Describe the table to find the DEPT table structure
+Insert five rows in DEPT table and commit the inserts. Query the DEPT table to confirm your inserts Update one of the department names in DEPT table to another value and commit the data
+Delete ONE of the rows from DEPT table
+You realise you made a mistake of deleting the wrong row. Undo the delete
+Create the following table in your schema. Name the table EMP
+     Column name Key type Null/unique FK table FK column Datatype
+ID Primary key
+FIRST_NAME Not null
+LAST_NAME
+DEPT_ID
+               DEPT ID number
+          Number
+Length 7 25 25 7
+Varchar2
+Varchar2
+          •
+• • • • •
+Insert eight rows in the EMP table. Ensure PK/FK relationship not violated (ie. department must exist in DEPT table before inserting an employee in the EMP table.
+Modify the table by adding COMMISSION column
+Change the column length of FIRST_NAME to 30 characters
+Drop the COMMISSION column from table EMP table
+Duplicate the EMP table to NEW_EMP table
+Make the NEW_EMP table read only. Confirm it by querying. Try to update a row in NEW_EMP table. What happens?
+
+• Revert the NEW_EMP table to read write and confirm it.
+• Drop DEPT, EMP, and NEW_EMP tables

@@ -1,0 +1,1564 @@
+.LOG mCCS4 wk1 Dec 07
+
+Letter of Confirmation: JAVA DEVELOPER - CAPSTONE PROJECT 4 on 07 Dec 20 - 28 Dec 20 (VLC-SGITP53-20-0650
+JAVA DEVELOPER - CAPSTONE PROJECT 4
+SkillsConnect Reference Code:
+Funding Grant Hours:
+
+We are pleased to confirm your application to attend the above-mentioned course. Attached here within is the Letter of Confirmation for your perusal.
+
+mCCapStoneProj4/software.md
+——
+
+
+From Sri Ram Panday to Everyone: (10:26 AM)
+ https://drive.google.com/file/d/1vj7o0HkYbQJu66n6JYShNzg5iCyVoU6C/view?usp=sharing 
+
+From Sik On LEE to Everyone: (11:00 AM)
+ If you https://www.youtube.com/watch?v=F81gfUnznZY&t=190s I followed this clip, and resolved the sqlplus connection problem. 
+
+From TAY KianLye to Everyone: (11:01 AM)
+ To connect to hr schema on Express db, at the DOS prompt, input:
+ 
+ sqlplus hr/hr@localhost/xepdb1<enter>
+
+From Kiat Leong Chua to Everyone: (11:31 AM)
+ The solution: kill the RemoteExecService.exe process in the Task Manager, remove the service if it still exists and try the installation again. https://community.oracle.com/tech/developers/discussion/4032422/installation-failure-of-oracle-database-12c-error-ins-30131 there are a few solutions in the link you can try it
+
+From Sri Ram Panday to Everyone: (12:02 PM)
+ 1. Go to START. 
+2. Click on OracleDB12Home1. 
+3. Click on Database Configuration Assistant.
+4. Select Database Operation - select Create a Database.
+5. Database Creation Mode - Select Advanced configuration.
+6. Wait.
+
+$ cd $ORACLEHOME
+$ cd bin
+$ 
+
+—-
+From Sri Ram Panday to Everyone: (12:46 PM)
+ 1. Go to START. 
+
+2. Click on OracleDB12Home1. 
+
+3. Click on Database Configuration Assistant.
+
+4. Select Database Operation - select Create a Database.
+
+5. Database Creation Mode - Select Advanced configuration.
+
+6. Database Deployment Type - 
+      --> Database type: Oracle Single Instance 
+      --> Template name: General Purpose or Transaction Processing
+
+7. Specify Database Identification Details -
+      --> Global database name : prod.oracle.com
+      --> SID: prod
+      --> UNCHECK Create a Container Database
+
+8. Select Database Storage Option - No change.
+
+9. Select Fast Recovery Option - Don't select anything.
+
+10. Specify Network Configuration Details -
+       --> CHECK Create a new listener
+           --> Listener name: LISTENER1
+           --> Listener port: 1522
+
+11. Specify Configuration Options - 
+       --> At Memory Tab
+          --> Set SGA size = 1000
+          --> Set PGA size = 400
+       --> At Sample Schemas Tan
+          --> CHECK Add sample schemas to the database 
+From Sri Ram Panday to Everyone: (12:46 PM)
+ 12. Specify Management Options - 
+         --> UNCHECK Configure Enterprise Manager (EM) database express
+
+13. Specify Database User Credentials
+       --> CHECK Use the same administrative password for all accounts
+          --> Password: oracle_4U
+          --> Confirm Password: oracle_4U
+
+14. Select Database Creation Option - No change
+
+15. Summary - Click Finish
+
+—
+From Toh Chun Wing to Me: (Privately) (2:27 PM)
+ Step By Step Installation Of Oracle 11g On Windows 7 (64bit) https://www.c-sharpcorner.com/article/step-by-step-installation-of-oracle-11g-on-windows-7-64bit2/ 
+
+From TAY KianLye to Everyone: (2:54 PM)
+ alter user hr identified by hr account unlock; 
+
+—
+to stop from previous oracle, search for ’services’, and change tomanul mode
+
+on Windows version:
+Install oracle 12c std edition…  from Alvin
+no database create yet
+
+to start Oracle 12c
+c:\orac;e12c> dbca
+
+from my mac virtual machine
+[oracle@localhost oracle]$ sqlplus hr/oracle
+SQL> select table_name
+  2  from user_tables;
+
+—
+From Wong Keng to Me: (Privately) (3:14 PM)
+ Conn system/oracle 
+From Me to Wong Keng: (Privately) (3:15 PM)
+ Ok, thks 
+
+SQL> conn sys/oracle as sysdba
+Connected.
+SQL> show user
+USER is "SYS"
+SQL> select * 
+  2  from session_privs;
+
+
+—
+[oracle@localhost oracle]$ sqlplus sys/oracle as sysdba
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Mon Dec 7 03:25:15 2020
+Version 19.3.0.0.0
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+
+SQL> create user savari
+  2  identified by savari
+  3  default tablespace users
+  4  temporary tablespace temp
+  5  quota unlimited on users
+  6  password expire;
+
+User created.
+
+SQL> select username from dba_users;
+
+
+SQL> create user mickey
+  2  identified by mickey
+  3  default tablespace users
+  4  temporary tablespace temp
+  5  quota unlimited on users
+  6  password expire;
+
+User created.
+
+SQL> grant connect, resource to savari;
+
+Grant succeeded.
+
+SQL> grant connect, resource to mickey;
+
+Grant succeeded.
+
+—
+------------------------------------- 
+From Savari Uvakaram to Everyone: (4:52 PM)
+ create user savari1
+identified by savari1
+default tablespace users
+temporary tablespace temp
+quota unlimited on users; 
+—————————
+ grant connect, resource to savari1;
+
+conn savari1/savari1
+ —————————————
+
+SQL> conn sys/oracle as sysdba
+Connected.
+SQL> grant create view to savari;
+
+Grant succeeded.
+
+SQL> grant create view to mickey;
+
+Grant succeeded.
+
+SQL> 
+SQL> select username from dba_users;
+
+sqlDeveloper =>
+Name: hr
+Username hr
+Password: oracle
+Service name: orcl
+
+sqlDeveloper =>
+Name: savari
+Username savari
+Password: savari
+Service name: orcl
+
+
+
+----
+sal> flashback table amp to before drop;
+
+—
+Dec 08, 2020
+View, indexes 
+
+Schema
+
+For windows:
+Connection: sys_connection
+Username sys
+Password: oracle_4U
+Role: STSDBA
+Port: 1522
+SID: pord1
+
+For my Mac:
+Connection: sys_connection
+Username sys
+Password: oracle
+Role: STSDBA
+Port: 1521
+Service name: oral
+
+Window’s user; if got error, use prompt:
+c:/Users/User>sqlplus / as sysdba
+SQL> alter user sys indentified by oracle_4U
+
+Connection Name: system_connection
+Username: system
+Passeword: oracle_4U
+Role: default
+Port: 1522
+SID: pord1
+
+Form system_connection:
+select username
+from dba_users
+
+Data dictionaries; collection of tables
+
+
+
+SQL> conn savari/savari
+Connected.
+SQL> i
+  3  
+SQL> 
+#### ‘l' means list
+SQL> l
+  1  select table_name
+  2* from user_tables
+SQL> /
+
+TABLE_NAME
+--------------------------------------------------------------------------------
+T1
+
+
+—
+#### export to hr_full.dmp
+[oracle@localhost ~]$ exp 
+
+Username: hr
+Password: oracle
+
+Connected to: Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+Enter array fetch buffer size: 4096 > 
+Export file: expdat.dmp > hr_full.dmp
+(2)U(sers), or (3)T(ables): (2)U > 2
+Export grants (yes/no): yes > 
+Export table data (yes/no): yes > 
+Compress extents (yes/no): yes > 
+Export done 
+[oracle@localhost ~]$ ls
+
+#### import from hr_full.dmp
+[oracle@localhost ~]$ imp
+
+Username: mickey
+Password: mickey
+
+Connected to: Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+Import data only (yes/no): no > no
+Import file: expdat.dmp > hr_full.dmp
+Enter insert buffer size (minimum is 8192) 30720> 
+Export file created by EXPORT:V19.00.00 via conventional path
+Warning: the objects were exported by HR, not by you
+import done in US7ASCII character set and AL16UTF16 NCHAR character set
+import server uses AL32UTF8 character set (possible charset conversion)
+List contents of import file only (yes/no): no > 
+Ignore create error due to object existence (yes/no): no > 
+Import grants (yes/no): yes > 
+Import table data (yes/no): yes > 
+Import entire export file (yes/no): no > yes
+
+SQL> conn mickey/mickey
+Connected.
+SQL> select table_name
+  2  from user_tables;
+SQL> select count(*)
+  2  from employees;
+
+#### editor Notepad, vim 
+SQL> ed
+
+Projection
+Selection/Restriction
+
+SQL> select first_name, last_name, selary
+  2  from employees;
+select first_name, last_name, selary
+                              *
+ERROR at line 1:
+ORA-00904: "SELARY": invalid identifier
+
+
+SQL> l
+  1  select first_name, last_name, selary
+  2* from employees
+SQL> 1
+  1* select first_name, last_name, selary
+SQL> c/selary/salary/
+  1* select first_name, last_name, salary
+SQL> l
+  1  select first_name, last_name, salary
+  2* from employees
+SQL>  /
+SQL> l
+  1  select first_name, last_name, salary
+  2* from employees
+SQL> i
+  3  where salary > 10000
+  4  
+SQL> l
+  1  select first_name, last_name, salary
+  2  from employees
+  3* where salary > 10000
+SQL> /
+
+SQL> del
+SQL> i
+  3  
+SQL> 
+SQL> l
+  1  select first_name, last_name, salary
+  2* from employees
+SQL> 1
+  1* select first_name, last_name, salary
+SQL> 1 select first_name
+SQL> l
+  1  select first_name
+  2* from employees
+SQL> save f1
+Created file f1.sql
+SQL> cl buff
+buffer cleared
+SQL> l
+SP2-0223: No lines in SQL buffer.
+SQL> get f1
+  1  select first_name
+  2* from employees
+SQL> cl buff
+buffer cleared
+SQL> @f1
+
+SQL> save f1
+SP2-0540: File "f1.sql" already exists.
+Use "SAVE filename[.ext] REPLACE".
+SQL> save f1 replace
+Wrote file f1.sql
+SQL> host
+		>> go out to host command
+[oracle@localhost ~]$ dir
+[oracle@localhost ~]$ exit
+exit
+SQL> !
+		>> same as host, for linux
+[oracle@localhost ~]$ exit
+exit
+SQL> ed f1
+	>> go to vim editor
+SQL> @f1
+
+SQL> def_editor=gedit		>> to change noteeditor
+
+
+#### sqlplus/sqldeveloper
+	SQL
+		DQL
+		DDL
+		DML
+		DCL
+		Trans Control
+	SQLPlus
+		desc
+		set
+		show col
+	PL/SQL
+
+#### why use ‘order by'
+SQL> l
+  1  select first_name, last_name
+  2* from employees
+SQL> select first_name, salary
+  2  from employees
+  3  where employee_id=100
+  4  order by first_name;
+
+FIRST_NAME		 SALARY
+-------------------- ----------
+Steven			  24000
+
+SQL> del
+SQL> l
+  1  select first_name, salary
+  2  from employees
+  3* where employee_id=100
+SQL> /
+
+FIRST_NAME		 SALARY
+-------------------- ----------
+Steven			  24000
+
+SQL> 
+
+—
+#### last week sql practices
+
+Object Relation Data Management
+
+SQL> l
+  1  select first_name
+  2  from employees
+  3* where employee_id=to_number('100')
+SQL> /
+
+FIRST_NAME
+--------------------
+Steven
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select first_name fname, last_name lname, salary
+  2  from employees
+  3* where first_name like 'S__v%'
+SQL> /
+
+FNAME		     LNAME			   SALARY
+-------------------- ------------------------- ----------
+Steven		     King			    24000
+Steven		     Markle			     2200
+
+
+
+
+to off there `&` verification
+SQL> set verify off
+SQL> def deptid
+SQL> Undef detpid
+
+SQL> select first_name, last_name, salary
+  2  from employees
+  3  where department_id=&&deptid;
+Enter value for deptid: 70 
+
+FIRST_NAME	     LAST_NAME			   SALARY
+-------------------- ------------------------- ----------
+Hermann 	     Baer			    10000
+
+SQL> /
+FIRST_NAME	     LAST_NAME			   SALARY
+-------------------- ------------------------- ----------
+Hermann 	     Baer			    10000
+
+SQL> def deptid
+DEFINE DEPTID	       = "70" (CHAR)
+SQL> undef deptid
+SQL> 
+
+SQL> show pages
+pagesize 14
+SQL> set pages 24
+SQL> 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select first_name, salary
+  2  from employees
+  3* where hire_date=to_date('17/06/87','dd/mm/rr')
+SQL> /
+
+
+
+
+SQL> select sysdate
+  2  from dual;
+
+SYSDATE
+---------
+07-DEC-20
+
+SQL> select user
+  2  from duel;
+from duel
+     *
+ERROR at line 2:
+ORA-00942: table or view does not exist
+
+
+SQL> select user 
+  2  from dual;
+
+
+SQL> select to_char(sysdate, 'fmddspth Month Year pm')
+  2  from dual;
+
+TO_CHAR(SYSDATE,'FMDDSPTHMONTHYEARPM')
+--------------------------------------------------------------------------------
+seventh December Twenty Twenty pm
+
+SQL> ed
+SQL> /
+
+TO_CHAR(SYSDATE,'FMDDSPTHMONTHYEARPMHH24:MI:SS')
+--------------------------------------------------------------------------------
+seventh December Twenty Twenty pm 22:56:37
+
+SQL> 
+
+17-JUN-87
+
+—
+select
+from
+where
+group by
+having
+order by
+
+  1  select first_name, last_name, salary
+  2  from employees JOIN departments
+  3  USING (department_id)
+  4  JOIN locations
+  5  USING (location_id)
+  6  JOIN countries
+  7  USING (country_id)
+  8* WHERE country_name='Canada'
+
+SQL> @f3
+
+—
+
+From Savari Uvakaram to Everyone: (12:36 PM)
+ select first_name, last_name, salary
+from employees join departments
+using (department_id)
+join locations
+using (location_id)
+join countries 
+using (country_id)
+where country_name='Canada'
+/
+
+
+select first_name, last_name, salary
+from employees e, departments d, locations l, countries c
+where e.department_id=d.department_id
+and d.location_id=l.location_id
+and l.country_id=c.country_id
+and c.country_name='Canada'
+/
+
+
+SELECT e.first_name, e.last_name, e.salary, c.country_name
+FROM employees e JOIN departments d
+ON (e.department_id = d.department_id)
+JOIN locations l
+ON (d.location_id = l.location_id)
+JOIN countries c
+ON(l.country_id = c.country_id)
+WHERE c.country_name = 'Canada'
+/ 
+
+—
+
+
+SQL> create table t2
+  2  (c1 number constraint t2_c1_pk primary key);
+
+Table created.
+
+SQL> insert into t2 values (10);
+
+1 row created.
+
+SQL> /
+insert into t2 values (10)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (MICKEY.T2_C1_PK) violated
+
+-—
+SQL> get f4
+	1  insert into detail
+	2* values (1, ’Savari’,’Analyst’, 9999, 20)  
+SQL> insert into master values (20, ’Sales’, '
+
+SQL> update detail set deptid=30
+	2 where name=’Savari’;
+
+SQL> drop table master cascade constraints;
+
+—
+drop table detail
+/
+
+drop table master
+/
+
+create table master
+(id number constraint master_id_pk primary key,
+name varchar2(10),
+location varchar2(10))
+/
+
+
+create table detail
+(empid number constraint detail_empid_pk primary key,
+name    varchar2(10),
+job     varchar2(10),
+salary  number(9,2),
+deptid number, constraint detail_deptid_fk foreign key deptid references master(id) on delete cascade);
+/
+
+—
+
+create table t1
+(c1 number,
+c2 number,
+c3 number, constraint t1_c1_c2_pk primary key (c1,c2))
+/
+
+Table created.
+
+SQL> insert into t1 values (1,2,3)
+  2  ;
+
+SQL> c/2/6
+  1* insert into t1 values (1,6,3)
+SQL> 
+
+—
+
+create table t2
+(c1 number,
+c2 number,
+c3 number, constraint c3_c1_ck check (c3 > c1))
+/
+
+create table t3
+(id number,
+name varchar2(10),
+region varchar2(10) constraint t3_region_ch check (region in ('North','South')))
+/
+—
+SQL> ed   
+Wrote file afiedt.buf
+
+  1  create table t4
+  2  (id number,
+  3  name varchar2(10),
+  4  region varchar2(10) constraint t3_region_pk primary key
+  5* constraint t3_region_ck check (region in ('North','South')))
+SQL> save f6 replace
+Wrote file f6.sql
+SQL> 
+   
+—
+drop table detail
+/
+
+drop table master
+/
+
+create table master
+(id number constraint master_id_pk primary key,
+name            varchar2(10),
+location        varchar2(10))
+/
+
+#### on real application no bidy do that
+create table detail
+(empid number constraint detail_empid_pk primary key,
+name    varchar2(10),
+job     varchar2(10),
+salary  number(9,2),
+deptid number constraint detail_deptid_fk references master(id) on delete cascade)
+/
+
+Should :::
+drop table detail
+/
+
+drop table master
+/
+
+create table master
+(id number constraint master_id_pk primary key,
+name            varchar2(10),
+location        varchar2(10))
+/
+
+
+create table detail
+(empid number constraint detail_empid_pk primary key,
+name    varchar2(10),
+job     varchar2(10),
+salary  number(9,2),
+deptid number constraint detail_deptid_fk references master(id) on delete set null)
+/
+
+—
+Subquery are not great performance
+
+select first_name, last_name, salary
+from employees
+where department_id IN (select department_id
+                        from departments
+where  location_id IN (select location_id
+                        from locations
+where  country_id IN (select country_id
+                        from countries
+where country_name = 'Canada')))
+/
+
+—-
+Sequence
+
+
+SQL> cle screen
+
+### NULL
+`` sql
+SELECT employee_id
+FROM employees
+WHERE commission_pct NOT IN (
+select commission_pct from employees where employee_id = 100);
+
+SELECT employee_id
+FROM employees
+WHERE commission_pct IN (
+select commission_pct from employees where employee_id = 100);
+```
+``` console
+no rows selected
+no rows selected
+```
+
+—
+Dec 09, 2020
+
+### merge
+SQL> conn savari/savari
+Connected.
+SQL> show recyclebin
+SQL> purge recyclebin;
+
+Recyclebin purged.
+
+SQL> create table t2
+(C1 number,
+c2 number
+….
+
+SQL> merge into t1
+	2 using t2
+	3 on(t1.c1=t2.c1)
+	4 when matched then
+	5	update set t1.c2 = 1000
+	6 when not matched then
+	7 	insert values (t2.c1,t2.c2);
+
+SQL> select * from t1;	
+SQL> rollback;  — only on ddl command
+
+
+### synonym
+SQL> conn / as sysdba
+SQL> grant create synonym to safari;
+SQL> conn safari/savari
+SQL> create synonym e for employees;
+SQL> desc e
+
+SQL> select first_name  from e;
+
+SQL> create table sav_emp
+	2 As
+	3 select * from employees;
+
+SQL> select first_name  from savari.emp;
+ERROR at line 2:
+
+SQL> conn savari/savari
+SQL> grant select, insert, update, delete on save_emp to savari1;
+SQL> conn savari1/savari1
+SQL> select first_name  from savari.sav_emp;
+
+SQL> create synonym emp  for savari.sav_emp;
+SQL> conn / as sysdba
+SQL> grant create synonym to savari1;
+SQL> conn savari1/savari1
+SQL> create synonym emp  for savari.sav_emp;
+
+SQL> select first_name  from emp;
+
+SQL> drop synonym emp;
+
+#### plus sign(+) to display detail table
+select e.first_name, e_salary, e.department_id, d.department_name
+from employees e, departments d
+Where e.department_id = d.department_id(+)
+  
+SQL> conn savari1/savari1
+SQL> create synonym e  for savari.employees;
+Synonym created.
+
+##### show all synonym
+SQL> show user
+SQL> select object_name, object_type
+	2 from user_objects
+	3 where object_type=’SYNONYM’
+SQL> c/SYNONYM/TABLE
+Where 
+
+#### desc user_synonyms
+SQL> desc user_synonyms
+SQL>  select synonym_name, table_owner, table_name
+	2 from user_synonyms;
+
+SQL> desc user_tables;
+
+——
+### views
+SQL> conn savari/savari
+SQL> create view v1
+	2 as
+	3 select * from employees;
+
+SQL> create view v2
+	2 as
+	3 Select first_name, last_name, salary, department_name
+	4 from employees join departments
+	5 using(department_id);
+
+View created.
+
+SQL> set lines 120
+
+SQL>  create view v3( sumsal, minsal, maxsal, avgsal)
+	2 as
+	3 select sum(salary), min(salary), max(salary), round(avg(salary))
+	4 from employees
+
+SQL> desc v3
+SQL> select * from v3;
+
+SQL> grant select on v2 to savari1;
+SQL> conn savari1/savari1
+SQL> select * from savari.v2;
+SQL> create synonym v2 from savari.v2;
+SQL> select * from v2;
+ 
+SQL> drop view v1;
+SQL> create v1
+	2 as
+	2 select * from employees;
+
+SQL>  update v1 set salary =100;
+
+SQL> select salary from v1;
+SQL> rollback;
+SQL> desc user_views
+SQL> 
+
+
+SQL> show long
+SQL> set long 10000
+
+——
+### index, execution plan
+
+SQL> select rownum, first_name, salary
+from employees;
+``` sql
+  1  select first_name, last_name, salary
+  2  from employees
+  3  order by salary desc
+  4* fetch next 5 row only
+SQL> /
+
+FIRST_NAME	     LAST_NAME			   SALARY
+-------------------- ------------------------- ----------
+Steven		     King			    24000
+Neena		     Kochhar			    17000
+Lex		     De Haan			    17000
+Michael 	     Hartstein			    13000
+Shelley 	     Higgins			    12000
+
+SQL> 
+```
+
+SQL> select first_name, last_name, salary
+ from (select first_name, last_name, salary from employees order by salary desc)
+ where rownum < 6;
+
+SQL> select first_name, rowid
+	2 from employees;
+— noted that rowid will change
+— rowid got base64 digit: a-z A-Z 0-9 / +
+— 6363, first 6 digits are object ID, next 3 digits file id, 
+— next 6 digits block Id, lst 3 digits are rowid
+
+SQL> create table emp1
+2 as:q
+3 select * from employees;
+
+####  select index_name, index_type
+SQL> select index_name, index_type
+	2 from user_indexes
+	3 where table_name = ‘EMP1’;
+
+SQL> create index idx1
+	2 on emp1(first_name);
+
+SQL> drop index idx1;
+
+### plustrace
+SQL> set autot on
+	SP2-0618: .. Check PLUSTRACE ...
+	SP2-0611: ERROR ...
+SQL> set autot off
+SQL> select * from session_roles;
+insufficient privileges on underlying objects of the view
+
+SQL> conn / as sysdba
+SQL> conn sys/oracle as sysdba
+SQL> grant plustrace to savari1;
+	ERROR at line 1:
+	ORA-01919: rolw ‘PLUSTRACE’ does not exit
+SQL> @D:\app\User \Virtual\product\12.2.0\dbhome_2\sqlplus\admin \plustrce.sql
+SQL> grant plustrace to savari
+SQL> conn savari1/savari
+SQL> select * from session_roles;
+SQL> set autot on
+SQL> select first_name, last_name, salary
+2 from emp1
+3 where first_name= ’Steven’;
+
+— show the execution plan
+SQL> save f13
+
+SQL>  create index idex1 on emp1 (first_name);
+SQL> @f13
+
+hr/hr
+Execution PLan show th button on the SQL Developer too
+if 'phisical read' very high will be very slow.
+Ideally ‘physical read’ should be 0, which all will be in memory.
+
+
+SQL>  drop index idex1;
+
+
+``` sql
+SQL> conn sys/oracle as sysdba
+
+SQL> @/u01/app/oracle/product/version/db_1/sqlplus/admin/plustrce.sql
+SQL> 
+SQL> drop role plustrace;
+drop role plustrace
+          *
+ERROR at line 1:
+ORA-01919: role 'PLUSTRACE' does not exist
+
+
+SQL> create role plustrace;
+
+
+Role created.
+
+SQL> 
+SQL> grant select on v_$sesstat to plustrace;
+
+Grant succeeded.
+
+SQL> grant select on v_$statname to plustrace;
+
+Grant succeeded.
+
+SQL> grant select on v_$mystat to plustrace;
+
+Grant succeeded.
+
+SQL> grant plustrace to dba with admin option;
+
+Grant succeeded.
+
+SQL> 
+SQL> set echo of
+
+SQL> grant plustrace to mickey; ;
+
+Grant succeeded.
+
+SQL> conn mickey/mickey
+Connected.
+SQL> set autot on
+SQL> select first_name, last_name, salary from emp1
+  2  where first_name='Steven';
+
+FIRST_NAME	     LAST_NAME			   SALARY
+-------------------- ------------------------- ----------
+Steven		     King			    24000
+
+
+Execution Plan
+----------------------------------------------------------
+Plan hash value: 2226897347
+
+--------------------------------------------------------------------------
+| Id  | Operation	  | Name | Rows  | Bytes | Cost (%CPU)| Time	 |
+--------------------------------------------------------------------------
+|   0 | SELECT STATEMENT  |	 |     1 |    19 |     3   (0)| 00:00:01 |
+|*  1 |  TABLE ACCESS FULL| EMP1 |     1 |    19 |     3   (0)| 00:00:01 |
+--------------------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   1 - filter("FIRST_NAME"='Steven')
+
+
+Statistics
+----------------------------------------------------------
+	 87  recursive calls
+	  0  db block gets
+	 80  consistent gets
+	  9  physical reads
+	  0  redo size
+	720  bytes sent via SQL*Net to client
+	434  bytes received via SQL*Net from client
+	  2  SQL*Net roundtrips to/from client
+	  5  sorts (memory)
+	  0  sorts (disk)
+	  1  rows processed
+
+SQL> set autoT off
+
+
+
+```
+
+—
+
+- —
+Dec 10, 2020
+PROJECT 
+From savari:
+### UNDO. Flashback for Enpterprise edition:
+SQL> update employees
+2 set salary=100;
+
+SQL> select to_char(sysdate, ‘dd/mm/rr hh24:mi:ss’)
+from dual
+
+10/12/20 09:17:18
+
+SQL> update emp set salary = 100;
+SQL>  commit;  — <<< make a mistake
+SQL> flashback table emp
+	2 to timestamp to_timestamp(’10–12-20 9:17:18’, ‘dd-mm-rr hh24:mi:ss’);
+ERROR … cannot flashback the table becuase row movement is not enabled
+SQL> save f16;
+SQL> alter table emp enable row movement; — give permission from oracle to change row ID
+SQL> get f16
+Flashback complete.
+
+SQL> conn / as sysdba
+SQL> show parameter undo
+SQL>   — retention = 900 —> for period of 900sec.
+SQL> alter system set undo_retention=20000;  — set longer
+— cannot go thru flashback thru DDL command, sush as create, truncate, drop
+— there is only 1 undo space, will be overwrite by 1 transaction.
+
+SQL> alter system checkpoint;  — <<< ???
+
+### administration of dba
+SQL> select flashback_on from v$database
+SQL> archive log list
+SQL> select log_mode from v$database;
+SQL> shutdown immediate  — <<<all memory release ..
+SQL> startup mount
+SQL> alter database archive log;
+SQL> select open_mode from v$database;
+SQL> alter database open;
+SQL> select open_mode from v$database;
+
+### sid is instance name
+SQL> conn sys/oracle as sysdba
+
+SQL> select instance_name from v$instance;
+INSTANCE_NAME: orclcdb
+
+SQL> select name from v$database;
+NAME: ORCLCDB
+
+SQL> 
+
+1 dabast assess by mupliple instances.
+RAC - real application cluster
+Load balancing
+
+### user id
+SQL> hr/hr
+SQL> grant select, insert on employees to public;
+Grant succeeded.
+
+— create object in schema belong to user
+
+
+###
+
+C:\Users\User>sqlplus hr/hr@prod1  —<<. in any where
+SQL> conn hr/hr	 —<< in your local machine
+
+
+----
+SQL> drop table dept;
+SQL>  create table dept
+2 (id number,
+3 name varchar2(10));
+SQL> create sequence seq1
+2 start with 200
+3 increment by 10
+4 maxvalue 10000;
+SQL>  insert into dept
+2 values(seq1.nextval, ’Sales’);
+SQL> commit;
+SQL> select * from dept;
+id: 200  Name:Sales
+SQL> select seq1.currval from dual;
+currval: 200
+SQL> select id, seq1.currval
+SQL> select seq1.nextval from dual;
+
+### sequence loader, txt file
+SQL> create table loademp
+as
+Select first_name, last_name, salary, department_id
+From employees
+Where 1=2;   —<< structure only, no data
+SQL>  set verify off
+SQL> set head off
+SQL> set feed off
+SQL> set pages 0
+SQL> spool d:\emp.dat
+SQL> select first_name || ‘,' || last_name || ‘,‘ ||salary|| ‘,‘ || department_id
+2 from employees;
+…
+SQL> spool off
+— from d: drive > emp.dat from Notepad++
+File save emp_data.dat
+
+Notepad
+```
+load data
+infile 'd:\emp_data.dat'
+insert into table loademp
+fields terminated by ‘,’
+(First_name, last_name, salary, department_id)
+```
+save as emp.ctl
+D:\>sqlldr
+D:\sqlldr userid=hr/hr control=emp.ctl.txt
+
+revise bad data
+```
+load data
+infile 'd:\emp_data.bad'
+append into table loademp
+fields terminated by ‘,’
+(First_name, last_name, salary, department_id)
+```
+From Savari Uvakaram to Everyone: (11:51 AM)
+ load data
+infile 'd:\emp_data.bad'
+append into table loademp
+fields terminated by ','
+(first_name,last_name, salary,department_id) 
+
+—
+From Sri Ram Panday to Everyone: (12:06 PM)
+ C:\> lsnrctl status C:\> lsnrctl start 
+From Kiat Leong Chua to Everyone: (12:23 PM)
+ https://stackoverflow.com/questions/26236967/oracle-listener-not-running-and-wont-sta
+
+
+---
+
+SQL> create table t1
+(id number,
+name varchar2(10)l
+gender char(1) contrraint t1-gender_ck check(gender in (“M”, “F”));
+/
+SQL> desc user_cons_columns
+SQL> select constraint_name, table, column_name 
+from user_cons_columns
+where table_name=’T1’;
+
+SQL> select table_name
+from dict
+Where table_name like ‘%CONS%'
+
+### check  constraint condition
+SQL> select constraint_name, search_condition
+from user_constraints
+where table_name=’T1’;
+
+
+—
+SQL> drop user cascade
+
+
+
+SQL> create table emp as select * from employees;
+SQL>  create table dept as select * from departments;
+— — noted that all consitions, PK, FK... are mot copied
+
+SQL> select constraint_name, constraint_type
+from user_constraints
+where table_name = ‘DEPT’;
+
+### Connection issues
+D:\>lsnrctl
+LSNRCTL> help
+LSNRCTL> stat
+
+tnsnames.ora
+
+D:\>sqlplus hr/hr@orcl
+D:\>netca
+
+[oracle@localhost oracle]$ lsnrctl status listener
+
+
+ipconfig
+c:\Windows\system21> ping 58.182.132.17
+if work than can connect...
+
+—
+#### check for erro ?
+SQL> 
+Rr ora 12560
+
+D:\>oerr ora 12560
+
+#### uninstall
+
+universal uninstaller
+
+dbhome_2 > deinstall.bat
+
+---
+Dec 11, 2020
+
+Condition
+for single row must have implicit, into clause
+
+explicit cursor for multi rows selection
+
+From Savari Uvakaram to Everyone: (10:19 AM)
+ suvakara@yahoo.com +6012-238-7264 
+
+#### Handling Exception
+raise exception ?
+
+SQL> create table t1
+	2 (c1 varchar2(10));
+SQL> insert into t1
+	2 value(‘’asdasdadadad’);
+ERROR at line 2;
+ORA-12899: value too large ….
+
+#### pragma
+``` sql
+declare 
+	savari	exception;
+	pragma exception_init(savari, -12899);
+Begin
+	insert intot1
+	values(‘abdadasdasdc’);
+	dbms_output.put_line(‘Insert is okay savari. Value too large’);
+End;
+/
+```
+SQL> @f19
+Insert is okay savari. Value too large
+
+#### manual raise Exception
+``` sql
+declare
+	savari exception;
+	x	number := 20;
+	y	number := 30;
+Begin
+	if x <y then
+		dbms_output.put_line(‘x less than y’);
+	else
+		raise savari;
+	end if;
+	exception
+		when savari then
+			dbms_output.put_line(‘Exception raise’);
+			…
+			...	
+End;
+/
+```
+SQL> 
+
+### Procedure
+``` sql
+create or replace procedure p1 is
+	x	number	:= 100 ;
+begin
+	dbms_out.put_line(to_char(x));
+end;
+/
+```
+SQL> @f21
+Warning ……
+SQL> show err
+Errors for PROCEDURE P1:
+SQL> show err
+No errors.
+
+SQL> exec p1; --or
+SQL> begin p1; end; /
+SQL> desc user_source
+
+SQL>  select text
+	2 from user_soruce
+	3 where name=‘P1’;
+
+SQL> select object_name
+	2 from user_objects
+	3 where object_type=‘PROCEDURE’;
+
+### exercise
+From Savari Uvakaram to Everyone: (11:56 AM) 
+ 1) Write a stored procedure to evaluate new salary based on the earlier exercise (pass the salary into the procedure) (pass in the salary and pass out the new salary) 
+ 2) Write annonymous block to use explict cursor and call the procedure. When returned from procedure, update new_salary in EMP table 
+
+SQL> ed udp_emp_sal
+
+
+From Savari Uvakaram to Everyone: (11:56 AM)
+ 1)   Write a stored procedure to evaluate new salary based on the earlier exercise
+     (pass the salary into the procedure)   (pass in the salary and pass out the new salary)
+
+2) Write annonymous block to use explict cursor and call the procedure. When returned from procedure,
+   update new_salary in EMP table 
+From Sri Ram Panday to Everyone: (12:14 PM)
+ Please check your emails. 
+From Savari Uvakaram to Everyone: (12:18 PM)
+ If done with procedure, convert the procedure to function to do the same thing. --------------------------------- If done with the function, start working on the workshop questions which you would have received just now through email. 
+
+—
+#### afternoon
+### TRIGGER
+SQL> drop table t1;
+SQL> drop table t2;
+SQL>  create table t1
+	 2 (c1 number);
+SQL> create table t2
+	2 (c1 number);
+SQL> ed f24
+#### inserting, updating, deleting, instead of
+``` sql
+create or replace trigger trig1
+after insert or delete or update 
+on t1
+for each row
+begin
+	if inserting then
+		insert into t2
+		values (100);
+	elsif updating then
+		insert into t2
+		values (200);
+	else
+		insert into t2
+		values (300);
+	end if;
+end;
+/
+```
+SQL> @f24
+Trigger created.
+SQL> insert into t1
+	2 values (1);
+SQL> select * from t1;
+-> 100
+SQL> update t1 set c1-2;
+SQL>  select * from t1
+SQL> del t1;
+
+		:old		:new
+insert	null		actual value
+update	1000	2000
+delete	2000	null
+
+SQL> 
+SQL>
+``` sql
+create table audit_emp
+(userid         varchar2(10),
+trans_date      timestamp,
+emp_name        varchar2(10),
+inserts number,
+updates number,
+deletes number,
+old_salary number(9,2)
+new_salary number(9,2))
+/
+
+```
+SQL> alter table audit_emp
+  2  modify emp_name varchar2(20);
+
+Table altered.
+
+SQL> create table emp1
+  2  as
+  3  select first_name, last_name, salary, job_id, department_id
+  4  from employees;
+
+Table created.
+
+SQL> 
+
+From Savari Uvakaram to Everyone: (2:37 PM)
+ Write a trigger on EMP1
+
+Insert an audit row for each insert, update or delete
+
+Create the trigger
+
+Grant select, insert, update, delete on EMP1 to HR
+
+You insert one row, update one row, delete one row
+
+Connect to HR
+
+Let HR insert one row and update one row
+
+Query AUDIT_EMP table to get the audit info
+
+*** You cannot end a transaction in a trigger (COMMIT, ROLLBACK, SAVEPOINT) 
+From Savari Uvakaram to Everyone: (2:39 PM)
+ create or replace trigger trig1 
+after insert or delete or update
+on t1
+for each row
+begin
+     if inserting then
+        insert into t2
+        values (100);
+     elsif updating then
+        insert into t2
+        values (200);
+     else
+        insert into t2
+        values (300);
+     end if;
+end; 
+
+—
+SQL> show err
+Errors for TRIGGER TRIG1:
+—
+
+From Savari Uvakaram to Everyone: (3:28 PM)
+``` sql
+ create or replace trigger emp_trig
+after insert or update or delete
+on emp1
+for each row
+begin
+     if inserting then
+        insert into audit_emp (userid, trans_date, emp_name, inserts, updates, deletes, old_salary, new_salary)
+        values (user, sysdate, :new.first_name||' '||:new.last_name,1,0,0,:old.salary,:new.salary);
+     elsif updating then
+        insert into audit_emp (userid, trans_date, emp_name, inserts, updates, deletes, old_salary, new_salary)
+        values (user, sysdate, :new.first_name||' '||:new.last_name,0,1,0,:old.salary,:new.salary);
+     else
+        insert into audit_emp (userid, trans_date, emp_name, inserts, updates, deletes, old_salary, new_salary)
+        values (user, sysdate, :old.first_name||' '||:old.last_name,0,0,1,:old.salary,:new.salary);
+     end if;
+end;
+/ 
+```
+SQL> @f25
+Trigger created.
+SQL>  insert into emp1
+	2 values(’Savari’, ‘Uvak’, 2000, ‘Manager’, 20);
+1 row created.
+SQL> select * from audit_emp;
+SQL> col trans_date format a30
+SQL> set lines 120
+SQL> conn plsql/plsql
+SQL>  grant select, update on emp1 to hr;
+SQL>  conn hr/hr
+SQL> update plsql.emp1 set salary=3333 where first_name=’Savari’;
+1 row updated.
+SQL>  conn plsql/plsql
+connected.
+SQL> select * from audit_emp;
+
+### copy the whole rec
+SQL> create table empty_emp
+As 
+Select * from employees
+Where 1=2;
+
+``` sql
+set verify off
+declare
+	emp_rec		employees%rowtype;
+	….
+begin
+end;
+```
+
+Others:
+SQL> show err
+Errors for TRIGGER TRIG1:
+to set back default column width
+SQL> clear col
+---
