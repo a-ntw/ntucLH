@@ -217,7 +217,19 @@ public class CategoryRepositorTestDatabase {
 ```
 #### BankAppCP6/UserRepositoryTest.java
 ``` java
+@DataJpaTest
+@AutoConfigureTestDatabase(replace = Replace.NONE)
+@Rollback(false)
+public class UserRepositoryTest {
 
+	@Autowired
+	private UsersRepository repo;
+
+	@Autowired
+	private TestEntityManager entityManager;
+	
+	...
+	
 	/* TestCreationOfUsersWithTwoRoles, Create new user with 2 roles */
 	/* myRemoveRoleFromUser, Identify existing user and removed its 2 roles */
 	/* removeUser,Delete existing user with no role */
@@ -234,7 +246,6 @@ public class CategoryRepositorTestDatabase {
 		Users user = new Users("test@test.com", "test123");
 		user.addRole(rolesUser);
 		user.addRole(rolesManager);
-
 		repo.save(user);
 	}
 	//	@Test
@@ -243,7 +254,6 @@ public class CategoryRepositorTestDatabase {
 		Roles roles = new Roles(3);
 		user.removeRole(roles);
 		roles = new Roles(2);
-		
 		user.removeRole(roles);
 	}
 	//	@Test
@@ -252,7 +262,6 @@ public class CategoryRepositorTestDatabase {
 		
 		repo.deleteById(user.getId()); // need to remove roles, prior to delete
 	}
-
 ```
 
 
