@@ -215,5 +215,45 @@ public class CategoryRepositorTestDatabase {
 }
 
 ```
+#### BankAppCP6/UserRepositoryTest.java
+``` java
+
+	/* TestCreationOfUsersWithTwoRoles, Create new user with 2 roles */
+	/* myRemoveRoleFromUser, Identify existing user and removed its 2 roles */
+	/* removeUser,Delete existing user with no role */
+	@Test
+	public void CreateAndDeleteUserWRoles() {
+		TestCreationOfUsersWithTwoRoles();
+		myRemoveRoleFromUser();
+		removeUser();
+	}
+	//	@Test
+	private void TestCreationOfUsersWithTwoRoles() {
+		Roles rolesUser = entityManager.find(Roles.class, 3);
+		Roles rolesManager = entityManager.find(Roles.class, 2);
+		Users user = new Users("test@test.com", "test123");
+		user.addRole(rolesUser);
+		user.addRole(rolesManager);
+
+		repo.save(user);
+	}
+	//	@Test
+	private void myRemoveRoleFromUser() {
+		Users user = repo.findByUsername("test@test.com");
+		Roles roles = new Roles(3);
+		user.removeRole(roles);
+		roles = new Roles(2);
+		
+		user.removeRole(roles);
+	}
+	//	@Test
+	private void removeUser() {
+		Users user = repo.findByUsername("test@test.com");
+		
+		repo.deleteById(user.getId()); // need to remove roles, prior to delete
+	}
+
+```
+
 
 ---
