@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Built-By: antw
+Build-Jdk: 15.0.1
+Implementation-Title: 24-test-solution
+Implementation-Version: 5.0.c.RELEASE
+Implementation-Vendor-Id: io.pivotal.education.core-spring
+Implementation-Vendor: Pivotal Education
+Implementation-URL: https://spring.io/projects/spring-boot/parentProject
+ /24-test-solution
+Created-By: Maven Integration for Eclipse
+
