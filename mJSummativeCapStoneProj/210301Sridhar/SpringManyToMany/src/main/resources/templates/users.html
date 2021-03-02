@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>List User</title>
+</head>
+<body>
+
+		<H1> User List</H1>
+			
+		<div> 
+		
+				<h3> <a th:href="@{/users/new}"> Create New User</a>   </h3>
+	
+		</div>	
+			
+			
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Username</th>
+				<th>Roles</th>
+				
+			</tr>
+			</thead>
+			
+			<tbody>
+				<th:block th:each="users: ${listUsers}">
+				<tr>
+					<td>[[${users.id}]] </td>
+					<td>[[${users.username}]] </td>
+					<td>[[${users.roles}]]]</td>
+					<td>
+							<a th:href="@{'/users/edit/' + ${users.id}}"> Edit </a>
+					</td>
+					<td>
+							<a th:href="@{'/users/delete/' + ${users.id}}"> Delete </a>
+					</td>
+					
+					
+				</tr>
+				</th:block>	
+			</tbody>
+				
+</table>				
+
+<br>
+
+<a th:href="@{/users/export/pdf}">Export to PDF</a> &nbsp;&nbsp;&nbsp; <a th:href="@{/users/export}">Export to CSV</a>
+	
+<!-- 
+<table border="1" cellpadding="10">
+		<thead>
+			<tr>
+				<th>User ID</th>
+				<th>Email</th>
+				<th>Brand</th>
+				<th>Roles</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="users : ${listUsers}">
+				<td th:text="${users.id}">Product ID</td>
+				<td th:text="${users.email}">Name</td>
+				<td th:text="${users.roles}">Brand</td>
+			</tr>
+		</tbody>
+</table>
+		 -->	
+				
+
+
+</body>
+</html>
