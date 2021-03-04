@@ -1,5 +1,6 @@
 package com.ntuc;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -13,16 +14,38 @@ import org.springframework.stereotype.Component;
 @Table(name="booked_dates")
 @Component
 public class blockdates {
+
 	@Id
-	@DateTimeFormat(pattern="dd-MM-yyyy")
+	private Integer id;
+	
+	@DateTimeFormat(pattern = "d-m-yyyy")
+//	@Temporal(TemporalType.DATE)
 	private Date bdate;
 	
+	public Integer getId() {
+		return id;
+	}
 
-	public Date getBate() {
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+
+	public Date getBdate() {
 		return bdate;
 	}
 
 	public void setBdate(Date bdate) {
 		this.bdate = bdate;
 	}
+
+
+	@Override
+	public String toString() {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+		String blkDate= formatter.format(bdate);
+	 		return  blkDate;
+	}
+	
+	
 }
