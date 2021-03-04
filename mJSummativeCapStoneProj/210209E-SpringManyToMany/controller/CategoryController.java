@@ -38,6 +38,11 @@ public class CategoryController {
 		return "redirect:/categories";
 	}
 	
-	
+	@GetMapping("/error")
+	public String Error() {
+		
+		return "error";
+						
+	}
 	
 }
