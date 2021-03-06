@@ -1,8 +1,4 @@
-https://evantage.gilmoreglobal.com/#/
 
-si:emailpw:bday+$(8c)
-
----
 ### 24-test-solution
 
 Evaluate the test
