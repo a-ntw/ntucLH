@@ -58,7 +58,7 @@ It is the only *service-layer* component in the application.
 A `RewardNetwork` rewards an account for dining by making a monetary contribution to the account that is in turn distributed among the account's beneficiaries. The sequence diagram below shows a client's interaction with the application illustrating this process:
 
 <img>A client calling the RewardNetwork to reward an account for dining.
-<img src="Rewards-application.png">
+<img src="rewards-application.png">
 
 **Figure 5: A client calling the RewardNetwork to reward an account for dining**
 
