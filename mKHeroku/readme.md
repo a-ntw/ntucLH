@@ -10,7 +10,7 @@ This exercise to deploy of app to Heroku, and using Heroku Postgres for database
 2. at tab **Resource**, add in `Heroku Postgres`.
 3. Amend `application.properties` and `pom.xml` prior to git add & push
 
-210308Heroku.png<imc src="210308Heroku.png">
+210308Heroku.png<img src="210308Heroku.png">
 
 #### installation, git init, git push
 for my mac, I relog in to admin. from Terminal and run:
