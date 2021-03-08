@@ -52,6 +52,11 @@ antw@Mac-mini SpringBootManyToMany % pwd
 /Users/antw/ntuc/mKHeroku/SpringBootManyToMany
 
 ```
+Some optional commands:
+- heroku logs
+- heroku logs —tail
+- data.sql, add in bnext to application.properties
+
 
 #### application.properties
 ``` properties
