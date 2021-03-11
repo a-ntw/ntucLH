@@ -78,6 +78,12 @@ spring.datasource.initialization-mode=always
 ```
 Pom.xml
 ``` xml
+	<properties>
+		<Java.version>1.8</java.version>
+	</properties>
+
+	...
+
 <!-- comment out for Heroku only	 -->	
 <!-- 		<dependency>
 			<groupId>com.oracle.database.jdbc</groupId>
