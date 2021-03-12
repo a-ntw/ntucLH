@@ -99,3 +99,37 @@ Pom.xml
 		
 ```
 ---
+#### CarZoom. Init 3 roles
+
+210312carzoom.png <img src="210312carzoom.png">
+	
+- this was done on the carzoom's codes with only Employee and Role, wiihout Customer, Vehicle, Hire.
+- initiat with role data via sql script, to insert 3 roles. Thereafter need to remove.
+- this file, data.sql placed at carzoom/src/main/resources
+- ref: https://www.baeldung.com/spring-boot-data-sql-and-schema-sql
+``` sql
+/* -- REM if necessary:
+-- DROP TABLE EMPLOYEES_ROLES;
+-- DROP TABLE EMPLOYEES;
+-- DROP TABLE ROLE;
+
+-- REM Or if necessary:
+-- Delete ROLE;
+*/
+
+Insert into ROLE (NAME) values ('ADMIN');
+Insert into ROLE (NAME) values ('MANAGER');
+Insert into ROLE (NAME) values ('USER');
+
+-- for schema creation need to `spring.jpa.hibernate.ddl-auto=none`
+```
+``` console
+antw@Mac-mini carzoom % git add .              
+antw@Mac-mini carzoom % git commit -am "ONLY init: data sql, insert ADMIN MANAGER USER"
+[master a934d1a] ONLY init: data sql, insert ADMIN MANAGER USER
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+antw@Mac-mini carzoom % git push heroku master                                         
+Enumerating objects: 11, done.
+
+```
+
