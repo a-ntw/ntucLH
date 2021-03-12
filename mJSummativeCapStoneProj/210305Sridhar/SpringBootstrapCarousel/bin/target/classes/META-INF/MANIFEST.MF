@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Built-By: sridh
+Build-Jdk: 15.0.1
+Implementation-Title: SpringBootstrapCarousel
+Implementation-Version: 0.0.1
+Implementation-Vendor-Id: com.javasampleapproach
+Implementation-Vendor: Pivotal Software, Inc.
+Implementation-URL: http://projects.spring.io/spring-boot/SpringBootstra
+ pCarousel/
+Created-By: Maven Integration for Eclipse
+

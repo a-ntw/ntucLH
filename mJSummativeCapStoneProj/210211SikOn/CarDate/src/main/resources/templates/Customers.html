@@ -1,18 +1,22 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
+<html lang="en" 
+    xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script> -->
  
 <head>
 <div th:replace="common :: header"></div>
 <meta charset="ISO-8859-1">
-<script
-    src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<link rel="stylesheet"
-    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script type="text/javascript"
-    src="https://www.gstatic.com/charts/loader.js"></script>
-
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+<!-- <link rel="stylesheet" -->
+<!--     href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+<!--     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/> -->
+    
+    
+<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    
+    
+    
 <title>carDate - Customer Maintenance</title>
 <style>
 .message {
@@ -22,152 +26,244 @@
 </head>
 <body>
 <div th:replace="common :: navbar"></div>
+
+<!-- 	Display pinned Vehicle -->
+	<table  th:if="${pinVeh.vehId>0}" border="1">
+		<tr class="table table-warning table-dark">
+			<td>Vehicle Id</td>
+			<td>License Plate</td>
+			<td>Model</td>
+			<td>Brand</td>
+			<td>Hired to</td>
+			<td>Status</td>
+			<td>Daily Rate</td>
+			<td>Actions</td>
+		</tr>
+		<tr class="table table-warning">
+		    <td th:text="${pinVeh.vehId}" />
+			<td th:text="${pinVeh.vehLicPlate}"/>
+			<td th:text="${pinVeh.vehModel}"/>
+			<td th:text="${pinVeh.vehBrand}"/>
+			<td><a th:if="${pinVeh.currHire!=null}" th:href="@{'/custPin/' +${pinVeh.currHire.customer.custId}}"
+				   th:text="${pinVeh.currHire.customer.custName}" /></td>
+			<td><span th:if="${pinVeh.vehId!=0}" th:text="${pinVeh.vehStatus.name}"/></td>
+			<td th:text="${pinVeh.dailyRate}"/>
+			<td><a th:href="@{'/custPinVeh/0'}" title="Un-pin this Vehicle."><span class="fa fa-times" /></a></td>
+		</tr>
+	</table>
+
 <h2 align=left>Customers</h2>
 <span class="message" th:text="${optMsg} ?:_"></span>
+<!-- Filter area -->
+<form th:action="@{/custFilter}">
+	Filter: <input type="text" name="keyword" id="keyword" size="20" th:value="${session.keyword}" />
+	<input type="submit" value="Apply" />
+	<input type="submit" value="Clear" onclick="clearSearch()" />
+</form>
+<script type="text/javascript">
+	function clearSearch() {
+	    var myHandleDisplay = document.getElementById("keyword");
+	    myHandleDisplay.value = "";
+	}
+</script>
+
+
+
 <form method="POST" th:action="@{'/custSaveOts'}" action="#" th:object="${newCust}">
-	<table border="1">
-		<tr th:if="${pinVeh.vehId>0}">
-			<td colspan="15">
-				<table  width="100%" border="1">
-					<tr>
-						<td>Vehicle Id</td>
-						<td>Model</td>
-						<td>Brand</td>
-						<td>License Plate</td>
-						<td>Hired to</td>
-						<td>Status</td>
-						<td>Daily Rate</td>
-						<td>Actions</td>
-					</tr>
-					<tr>
-					    <td th:text="${pinVeh.vehId}" />
-						<td th:text="${pinVeh.vehModel}"/>
-						<td th:text="${pinVeh.vehBrand}"/>
-						<td th:text="${pinVeh.vehLicPlate}"/>
-						<td><span th:if="${pinVeh.currHire!=null}" th:text="${pinVeh.currHire.customer.custName}" /></td>
-						<td><span th:if="${pinVeh.vehId!=0}" th:text="${pinVeh.vehStatus.name}"/></td>
-						<td th:text="${pinVeh.dailyRate}"/>
-						<td><a th:href="@{'/custPinVeh/0'}"><button type="button">Unpin</button></a></td>
-					</tr>
-				</table>
-			</td>
-		</tr>
-	
+	<table border="1" class="table table-hover table-success table-striped">
+
+
+	<!-- 	Display pinned Customer -->
 		<tr th:if="${pinCust.custId>0}">
 		    <td th:text="${pinCust.custId}" />
-			<td th:text="${pinCust.custName}"/>
+			<td><a th:href="@{'/custPin/0'}"><span th:text="${pinCust.custName}"/></a></td>
 			<td th:text="${pinCust.nric}"/>
+			<td><span th:if="${pinCust.drLic==null}">
+					<button th:id="${'pinCustThumb' + pinCust.custId}" type="button" class="btn btn-link" data-bs-toggle="modal"
+						data-bs-target="#pictModal"
+						th:data-bs-custName="${pinCust.custName}"
+						th:data-bs-custId="${pinCust.custId}"
+						th:data-bs-pictId="0">
+						<span class="fa fa-id-card-o" />
+					</button>
+				</span>
+				<span th:if="${pinCust.drLic!=null}">
+					<button th:id="${'pinCustThumb' + pinCust.custId}" type="button" class="btn btn-link" data-bs-toggle="modal"
+						data-bs-target="#pictModal"
+						th:data-bs-custName="${pinCust.custName}"
+						th:data-bs-custId="${pinCust.custId}"
+						th:data-bs-pictId="${pinCust.drLic.pictId}">
+						<img th:src="@{${'/pictGet/'+ pinCust.drLic.pictId}}"
+							style="width: 50px" alt="" />
+					</button>
+				</span></td>
 			<td th:text="${pinCust.email}"/>
 			<td th:text="${pinCust.phoneNo}"/>
 			<td th:text="${pinCust.addr1}">
 			<td th:text="${pinCust.addr2}"/>
 			<td th:text="${pinCust.city}"/>
 			<td th:text="${pinCust.dob}"/>
-			<td><input type="checkbox"  disabled="disabled" th:checked="${pinCust.isActive} ? 'checked' "></td>
+				<td><span th:if="${pinCust.isActive}">
+						<a th:href="@{'/custAndOts/' + ${-pinCust.custId}}"
+						   th:onclick="return confirm('Proceed to de-activate [[${pinCust.custName}]]?')"
+						   th:title="${'De-activate ' + pinCust.custName}">
+							<span class="fa fa-check-square-o" /></a></span>
+					<span sec:authorize="hasRole('MANAGER')" th:if="${!pinCust.isActive}"
+						   th:onclick="return confirm('Proceed to re-activate [[${pinCust.custName}]]?')"
+						   th:title="${'Re-activate ' + pinCust.custName}">
+						<a th:href="@{'/custAndOts/' + ${pinCust.custId}}">
+							<span class="fa fa-square-o" /></a></span>
+					<span sec:authorize="!hasRole('MANAGER')" th:if="${!pinCust.isActive}" class="fa fa-square-o" /></td>
 			<td th:text="${pinCust.dateUpd}"/>
-			<td><span th:if="${pinCust.custLinked!=null}"><a th:href="@{'/custPin/' + ${pinCust.custLinked.custId}}">[[${pinCust.custLinked.custName}]]</a></span></td>
-			<td><span th:if="${pinCust.currHire!=null}" th:text="${pinCust.currHire.vehicle.vehLicPlate}" /></td>
+			<td><span th:if="${pinCust.custLinked!=null}">
+					<a th:href="@{'/custLink/' + ${-pinCust.custId}}"
+				           th:onclick="return confirm('Proceed to discard [[${pinCust.custLinked.custName}]] as alternate contact for [[${pinCust.custName}]]?')"
+				           title="Clear alternate contact">
+			     			<span class="fa fa-eraser" /></a>
+			     	<a th:href="@{'/custPin/' + ${pinCust.custLinked.custId}}">[[${pinCust.custLinked.custName}]]</a></span></td>
+			<td><a th:if="${pinCust.currHire!=null}" th:href="@{'/custPinVeh/' +${pinCust.currHire.vehicle.vehId}}"
+				   th:text="${pinCust.currHire.vehicle.vehLicPlate}" /></td>
 			<td><span th:text="${pinCust.hires.size()}" /></td>
-			<td><a th:href="@{'/custPin/0'}"><button type="button">Unpin</button></a>
-				<a th:href="@{'/custUpdaOts/' + ${pinCust.custId}}"><button type="button">Update</button></a>
-				<a sec:authorize="hasRole('MANAGER')" th:href="@{'/custDeleOts/' + ${pinCust.custId}}"><button type="button">Delete</button></a>
-				<a th:href="@{'/custUpdaOts/' + ${-pinCust.custId}}"><button type="button">Duplicate</button></a>
-					<span sec:authorize="hasRole('MANAGER')">
-						<span th:if="${!pinCust.isActive}">
-						    <a th:href="@{'/custAndOts/' + ${pinCust.custId}}"><button type="button">Reactivate</button></a>
-						</span>
-					</span>
-					<span th:if="${pinCust.isActive}">
-						<a th:href="@{'/custAndOts/' + ${-pinCust.custId}}"><button type="button">Deactivate</button></a>
-					</span>
+			<td><a th:href="@{'/custUpdaOts/' + ${pinCust.custId}}" title="Edit this Customer"><span class="fa fa-pencil-square-o" /></a>
+				<a sec:authorize="hasRole('MANAGER')"
+					th:href="@{'/custDeleOts/' + ${pinCust.custId}}"
+					title="Delete this Customer"
+					th:onclick="return confirm('Proceed to delete Customer [[${pinCust.custName}]]?')">
+					<span class="fa fa-trash-o" /></a> 
+				<a th:href="@{'/custUpdaOts/' + ${-pinCust.custId}}" title="Clone this Customer"><span class="fa fa-clone" /></a>
 			</td>
 		</tr>
-		<tr>
-			<td><a th:href="@{'/custSort/custId'}">Customer Id<span th:if="${session.custSortField} == 'custId'"><br>([[${session.custSortDirection}]])</span></a></td>
+		
+<!-- 		Customer list header and sorting -->
+		<tr class="table-dark">
+			<td><a th:href="@{'/custSort/custId'}">Customer<br th:if="${session.custSortField} != 'custId'">Id<span th:if="${session.custSortField} == 'custId'"><br>([[${session.custSortDirection}]])</span></a></td>
 			<td><a th:href="@{'/custSort/custName'}">Customer Name<span th:if="${session.custSortField} == 'custName'"><br>([[${session.custSortDirection}]])</span></a></td>
 			<td><a th:href="@{'/custSort/nric'}">NRIC<span th:if="${session.custSortField} == 'nric'"><br>([[${session.custSortDirection}]])</span></a></td>
+			<td>Driving License</td>
 			<td><a th:href="@{'/custSort/email'}">Email<span th:if="${session.custSortField} == 'email'"><br>([[${session.custSortDirection}]])</span></a></td>
 			<td><a th:href="@{'/custSort/phoneNo'}">Phone No<span th:if="${session.custSortField} == 'phoneNo'"><br>([[${session.custSortDirection}]])</span></a></td>
 			<td><a th:href="@{'/custSort/addr1'}">Address line 1<span th:if="${session.custSortField} == 'addr1'"><br>([[${session.custSortDirection}]])</span></a></td>
 			<td><a th:href="@{'/custSort/addr2'}">Address line 2<span th:if="${session.custSortField} == 'addr2'"><br>([[${session.custSortDirection}]])</span></a></td>
 			<td><a th:href="@{'/custSort/city'}">City<span th:if="${session.custSortField} == 'city'"><br>([[${session.custSortDirection}]])</span></a></td>
 			<td><a th:href="@{'/custSort/dob'}">Date of Birth<span th:if="${session.custSortField} == 'dob'"><br>([[${session.custSortDirection}]])</span></a></td>
-			<td><a th:href="@{'/custSort/isActive'}">Is Active<span th:if="${session.custSortField} == 'isActive'"><br>([[${session.custSortDirection}]])</span></a></td>
-			<td><a th:href="@{'/custSort/dateUpd'}">Last Updated<span th:if="${session.custSortField} == 'dateUpd'"><br>([[${session.custSortDirection}]])</span></a></td>
+			<td><a th:href="@{'/custSort/isActive'}">Is<br th:if="${session.custSortField} != 'isActive'">Active<span th:if="${session.custSortField} == 'isActive'"><br>([[${session.custSortDirection}]])</span></a></td>
+			<td><a th:href="@{'/custSort/dateUpd'}">Last<br th:if="${session.custSortField} != 'dateUpd'">Updated<span th:if="${session.custSortField} == 'dateUpd'"><br>([[${session.custSortDirection}]])</span></a></td>
 			<td><a th:href="@{'/custSort/custLinked.custName'}">Alternate Contact<span th:if="${session.custSortField} == 'custLinked.custName'"><br>([[${session.custSortDirection}]])</span></a></td>
-			<td>Current Hire</td>
-			<td>Hire history</td>
+			<td>Current<br>Hire</td>
+			<td>Hire<br>history</td>
 			<td>Actions</td>
 		</tr>
 		
 	
+<!-- 	Customer list display -->
 		<tbody>
 			<tr th:each="cust : ${listCusts}">
 				<td th:text="${cust.custId}" />
-				<td th:text="${cust.custName} " />
+				<td><a th:href="@{'/custPin/' + ${cust.custId}}"><span th:text="${cust.custName} " /></a></td>
 				<td th:text="${cust.nric}" />
+				
+				<td><span th:if="${cust.drLic==null}">
+						<button th:id="${'custThumb' + cust.custId}" type="button" class="btn btn-link" data-bs-toggle="modal"
+							data-bs-target="#pictModal"
+							th:data-bs-custName="${cust.custName}"
+							th:data-bs-custId="${cust.custId}"
+							th:data-bs-pictId="0">
+							<span class="fa fa-id-card-o" />
+						</button>
+					</span>
+					<span th:if="${cust.drLic!=null}">
+						<button th:id="${'custThumb' + cust.custId}" type="button" class="btn btn-link" data-bs-toggle="modal"
+							data-bs-target="#pictModal"
+							th:data-bs-custName="${cust.custName}"
+							th:data-bs-custId="${cust.custId}"
+							th:data-bs-pictId="${cust.drLic.pictId}">
+							<img th:src="@{${'/pictGet/'+ cust.drLic.pictId}}"
+								style="width: 50px" alt="" />
+						</button>
+					</span></td>
 				<td th:text="${cust.email}" />
 				<td th:text="${cust.phoneNo}" />
 				<td th:text="${cust.addr1}" />
 				<td th:text="${cust.addr2}" />
 				<td th:text="${cust.city}" />
 				<td th:text="${cust.dob}" />
-				<td><input type="checkbox"  disabled="disabled" th:checked="${cust.isActive} ? 'checked' "></td>
+				<td><span th:if="${cust.isActive}">
+						<a th:href="@{'/custAndOts/' + ${-cust.custId}}"
+						   th:onclick="return confirm('Proceed to de-activate [[${cust.custName}]]?')"
+						   th:title="${'De-activate ' + cust.custName}">
+							<span class="fa fa-check-square-o" /></a></span>
+					<span sec:authorize="hasRole('MANAGER')" th:if="${!cust.isActive}">
+						<a th:href="@{'/custAndOts/' + ${cust.custId}}"
+						   th:onclick="return confirm('Proceed to re-activate [[${cust.custName}]]?')"
+						   th:title="${'Re-activate ' + cust.custName}">
+							<span class="fa fa-square-o"/></a></span>
+					<span sec:authorize="!hasRole('MANAGER')" th:if="${!cust.isActive}" class="fa fa-square-o" /></td>
 				<td th:text="${cust.dateUpd}" />
 				<td><span th:if="${cust.custLinked!=null}">
-						<a th:href="@{'/custPin/' + ${cust.custLinked.custId}}">[[${cust.custLinked.custName}]]</a><br></span>
-			     	<span th:if="${pinCustId>0 and cust.custId!=pinCustId and cust.custLinked!=null and cust.custLinked.custId!=pinCustId}">
-						<a th:href="@{'/custPin/' + ${-cust.custId}}">
-							<button type="button">Change to Pinned</button></a></span>
-					<span th:if="${pinCustId>0 and cust.custId!=pinCustId and cust.custLinked==null}">
-			     		<a th:href="@{'/custPin/' + ${-cust.custId}}">
-			     			<button type="button">Change to Pinned</button></a></span>
-					<span th:if="${cust.custLinked!=null}">
-			     		<a th:href="@{'/custPin/' + ${-cust.custId}}">
-			     			<button type="button">Clear</button></a></span>
-					
+			     		<a th:href="@{'/custLink/' + ${-cust.custId}}"
+				           th:onclick="return confirm('Proceed to discard [[${cust.custLinked.custName}]] as alternate contact for [[${cust.custName}]]?')"
+				           title="Clear alternate contact">
+			     			<span class="fa fa-eraser" /></a>
+			     		<a th:href="@{'/custPin/' + ${cust.custLinked.custId}}">[[${cust.custLinked.custName}]]</a></span>
+			     	<span th:if="${pinCustId>0 and pinCustId!=cust.custId and pinCust.custLinked==null}">
+						<a th:href="@{'/custLink/' + ${cust.custId}}"
+				           th:onclick="return confirm('Proceed to nominate [[${cust.custName}]] as alternate contact for [[${pinCust.custName}]]?')"
+				           th:title="${'Make ' + cust.custName + ' the alt contact of ' + pinCust.custName}"><span class="fa fa-user-plus" /></a></span>
+			     	<span th:if="${pinCustId>0 and pinCustId!=cust.custId and pinCust.custLinked!=null and pinCust.custLinked.custId!=cust.custId}">
+						<a th:href="@{'/custLink/' + ${cust.custId}}"
+				           th:onclick="return confirm('Proceed to nominate [[${cust.custName}]] as alternate contact for [[${pinCust.custName}]]?')"
+						   th:title="${'Make ' + cust.custName + ' the alt contact of ' + pinCust.custName}"><span class="fa fa-user-plus" /></a></span>
 				</td>
-				<td><span th:if="${cust.currHire!=null}" th:text="${cust.currHire.vehicle.vehLicPlate}" /></td>
+				<td><a th:if="${cust.currHire!=null}" th:href="@{'/custPinVeh/' +${cust.currHire.vehicle.vehId}}"
+					   th:text="${cust.currHire.vehicle.vehLicPlate}" /></td>
 				<td th:text="${cust.hires.size()}" />
 				<td>
-					<span th:hidden="${cust.custId==pinCust.custId} ? 'hidden'"><a th:href="@{'/custPin/' + ${cust.custId}}"><button type="button">Pin</button></a></span>
-					<a th:href="@{'/custUpdaOts/' + ${cust.custId}}"><button type="button">Update</button></a>
- 					<a sec:authorize="hasRole('MANAGER')" th:href="@{'/custDeleOts/' + ${cust.custId}}"><button type="button">Delete</button></a>
-					<a th:href="@{'/custUpdaOts/' + ${-cust.custId}}"><button type="button">Duplicate</button></a>
-					<span sec:authorize="hasRole('MANAGER')" th:hidden="${cust.isActive} ? 'true' ">
-					    <a th:href="@{'/custAndOts/' + ${cust.custId}}"><button type="button">Reactivate</button></a>
-					</span>
-					<span th:hidden="${!cust.isActive} ? 'true' ">
-						<a th:href="@{'/custAndOts/' + ${-cust.custId}}"><button type="button">Deactivate</button></a>
-					</span>
+					<a th:href="@{'/custUpdaOts/' + ${cust.custId}}" title="Edit this Customer"><span class="fa fa-pencil-square-o" /></a>
+					<a sec:authorize="hasRole('MANAGER')" th:if="${cust.currHire==null}"
+						th:href="@{'/custDeleOts/' + ${cust.custId}}"
+						title="Delete this Customer"
+						th:onclick="return confirm('Proceed to delete Customer [[${cust.custName}]]?')">
+						<span class="fa fa-trash-o" /></a>
+					<a th:href="@{'/custUpdaOts/' + ${-cust.custId}}" title="Clone this Customer"><span class="fa fa-clone" /></a>
 				</td>
 			</tr>
 		</tbody>
 
+<!-- 	Customer list navigation -->
 		<tr>
-			<td colspan="15">
-			<table width="100%" border="1"><tr>
-			<span th:if="${session.totalPages > 1}">
-			<td><a th:href="@{'/custPage/-9'}"><button type="button">First</button></a></td>
-			<td th:if="${session.currPage == 1}"><button type="button">Prev</button></td>
-			<td th:if="${session.currPage > 1}"><a th:href="@{'/custPage/-1'}"><button type="button">Prev</button></a></td>
-			<td th:if="${session.currPage < session.totalPages}"><a th:href="@{'/custPage/1'}"><button type="button">Next</button></a></td>
-			<td th:if="${session.currPage >= session.totalPages}"><button type="button">Next</button></td>
-			<td><a th:href="@{'/custPage/9'}"><button type="button">Last</button></a></td>
-			</span>
-			<td>Page [[${session.custCurrPage}]] of [[${session.custTotalPages}]]</td>
-			<td align="right">Total Rows: [[${session.custTotalItems}]]</td>
-			<td align='right'>
-					<a th:href="@{'/custPageSize/' + ${session.custNextPageSize}}"><button type="button">Page size --> [[${session.custNextPageSize}]]</button></a></td>
-			</tr></table>
+			<td colspan="16">
+				<table width="100%" border="1">
+					<tr>
+						<span th:if="${session.custTotalPages > 1}">
+							<td><a th:href="@{'/custPage/-9'}"><button type="button">First</button></a></td>
+					
+							<td th:if="${session.custCurrPage == 1}"><button type="button">Prev</button></td>
+							<td th:if="${session.custCurrPage > 1}">
+								<a th:href="@{'/custPage/-1'}"><button type="button">Prev</button></a></td>
+					
+							<td th:if="${session.custCurrPage < session.custTotalPages}">
+								<a th:href="@{'/custPage/1'}"><button type="button">Next</button></a></td>
+							<td th:if="${session.custCurrPage >= session.custTotalPages}"><button type="button">Next</button></td>
+					
+							<td><a th:href="@{'/custPage/9'}"><button type="button">Last</button></a></td>
+						</span>
+						<td>Page [[${session.custCurrPage}]] of [[${session.custTotalPages}]]</td>
+						<td align="right">Total Rows: [[${session.custTotalItems}]]</td>
+						<td align='right'>
+							<a th:href="@{'/custPageSize/' + ${session.custNextPageSize}}">
+								<button type="button">Page size --> [[${session.custNextPageSize}]]</button></a></td>
+					</tr>
+				</table>
 			</td>
 		</tr>
 
+<!-- Customer input and editing area -->
 		<tr>
 			<td><input hidden="true" type="text" th:field="*{custId}" readonly />
 			    <span th:text="*{custId}" /></td>
-			<td><input type="text" autofocus th:field="*{custName}" /></td>
+			<td><input type="text" th:field="*{custName}" /></td>
 			<td><input type="text" th:field="*{nric}" size="9"/></td>
+			<td></td>
 			<td><input type="email" th:field="*{email}"/></td>
 			<td><input type="text" th:field="*{phoneNo}" size="15"/></td>
 			<td><input type="text" th:field="*{addr1}"/></td>
@@ -175,7 +271,7 @@
 			<td><input type="text" th:field="*{city}"/></td>
 			<td><input type="date" th:field="*{dob}"/></td>
 			<td><input type="checkbox" th:field="*{isActive}"/></td>
-			<td><input hidden="true" type="text" th:field="*{dateUpd}"  size="9" readonly/>
+			<td><input hidden="true" type="text" th:field="*{dateUpd}" readonly/>
 			    <span th:text="*{dateUpd}" /></td>
  			<td><input hidden="true" type="text" th:field="*{custLinked}" readonly/>
  			    <span th:if="*{custLinked!=null}" th:text="*{custLinked.custName}" /></td>
@@ -184,7 +280,7 @@
  			<td><input hidden="true" type="text" th:field="*{hires}" readonly/>
  			    <span th:if="*{hires!=null}" th:text="*{hires.size()}" /></td>
 
-			<td><button type="Submit">Save</button>
+			<td><button type="Submit"><span class="fa fa-floppy-o" /></button>
 			    <a th:href="@{'/custPage/0'}"><button type="button">Reset</button></a>
 		    </td>
 		</tr>
@@ -193,6 +289,7 @@
 			<td></td>
 			<td><span th:if="${#fields.hasErrors('custName')}" th:errors="*{custName}"></span></td>
 			<td><span th:if="${#fields.hasErrors('nric')}" th:errors="*{nric}"></span></td>
+			<td></td>
 			<td><span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span></td>
 			<td><span th:if="${#fields.hasErrors('phoneNo')}" th:errors="*{phoneNo}"></span></td>
 			<td><span th:if="${#fields.hasErrors('addr1')}" th:errors="*{addr1}"></span></td>
@@ -202,7 +299,7 @@
 			<td><span th:if="${#fields.hasErrors('isActive')}" th:errors="*{isActive}"></span></td>
 			<td><span th:if="${#fields.hasErrors('dateUpd')}" th:errors="*{dateUpd}"></span></td>
 			<td><span th:if="${#fields.hasErrors('custLinked')}" th:errors="*{custLinked}"></span></td>
-			
+			<td></td>
 			<td></td>
 			<td></td>
 			
@@ -211,8 +308,68 @@
 </form>
 <hr>
 
- 
-	<div th:replace="common :: footer"></div>
+<!-- MODAL AREA BEGIN -->
+<div class="modal fade" id="pictModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" >Customer Driving license</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+			</div>
+			<div class="modal-body">
+				<p id="modalCustName">Customer name goes here</p> 
+				<div id="modalPictSrc">
+				</div>
+				<div id="uploadPict">
+					<form id="uploadPictForm" method="POST" action="" enctype="multipart/form-data">
+						<input type="text" id="id" name="id" hidden="true"/>
+						<input type="text" id="entityId" name="entityId" hidden="true"/>
+						<input type="file" id="file" name="file" accept="image/png, image/jpeg" />
+						<p><img id="thumbnail" style="width: 150px"></p>
+						<button id="uploadBtn" type="Submit"><span id="uploadPictBtn" /></button>
+					</form>
+				</div>
+				<a id="modalPictRmv" hidden="true" href="">
+					<button id="deleteBtn" type="button" class="btn-secondary">Delete picture</button></a>
+			</div>
+			<div class="modal-footer">
+      			<div>
+         			<span id="execResult"></span>
+      			</div>			
+				<button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+$(document).ready(function() {
+	$('#file').change(function() {
+		showImageThumbnail(this);
+	});
+	function showImageThumbnail(fileInput) {
+		file = fileInput.files[0];
+		reader = new FileReader();
+		
+		reader.onload = function(e) {
+			$('#thumbnail').attr('src', e.target.result);
+		};
+		
+		reader.readAsDataURL(file);
+	}
+	
+});
+</script>
+<script src="/Customers.js"></script>
+<!-- MODAL AREA END -->
+
+
+
+<div th:replace="common :: footer"></div>
+
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js"></script> -->
+
 
 </body>
 </html>

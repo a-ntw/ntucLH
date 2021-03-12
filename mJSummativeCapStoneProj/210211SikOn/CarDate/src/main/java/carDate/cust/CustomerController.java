@@ -1,8 +1,6 @@
 package carDate.cust;
 
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -10,25 +8,33 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestParam;
+import carDate.Home;
 import carDate.veh.Vehicle;
 import carDate.veh.VehicleDao;
+import carDate.pict.Picture;
+import carDate.pict.PictureStorageService;
+import carDate.pict.UploadForm;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 	@Api(value = "CustomerController", description = "Customer maintenance")
 	@Controller
+	@ControllerAdvice
 	public class CustomerController {
+
+		@Autowired
+		private Home home;
 
 		@Autowired
 		private CustomerDao customerDao;
@@ -36,10 +42,10 @@ import io.swagger.annotations.ApiOperation;
 		@Autowired
 		private VehicleDao vehicleDao;
 
-		private Object principal;
-		private String empName;
+		@Autowired
+		private PictureStorageService storageService;
 
-
+		String currFunc;
 		int currPage;
 		int totalPages;
 		int pageSize;
@@ -48,8 +54,15 @@ import io.swagger.annotations.ApiOperation;
 		String sortDirection;
 		long pinCustId;
 		long pinVehId;
+		String keyword;
 		
 		private boolean loadSessionAttributes(HttpSession session) {
+			currFunc = (session.getAttribute("currFunc")==null)?"":(String) session.getAttribute("currFunc");
+			if (!currFunc.equals("cust")) {
+				currFunc = "cust";
+				session.setAttribute("currFunc", currFunc);
+			}
+			
 			currPage = (session.getAttribute("custCurrPage")==null)?1:(int) session.getAttribute("custCurrPage");
 			session.setAttribute("custCurrPage", currPage);
 			
@@ -74,46 +87,25 @@ import io.swagger.annotations.ApiOperation;
 			pinVehId = (session.getAttribute("pinVehId")==null)?0:(long) session.getAttribute("pinVehId");
 			session.setAttribute("pinVehId", pinVehId);
 
+			keyword = (session.getAttribute("keyword")==null)?"":(String) session.getAttribute("keyword");
+			session.setAttribute("keyword", keyword);
+
 			return true;
 		}
 		
-		
-		public boolean hasRole(String role) {
-
-			System.out.println("\n\t Explicit authentication begins...");
-			principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-			empName = "";
-			
-			if (principal instanceof UserDetails) {
-				empName = ((UserDetails) principal).getUsername();
-				System.out.println("\t Authenticating User=" + empName + "  for Role=" + role + "...");
-				System.out.println("\t authenticaed user has these roles=" + ((UserDetails) principal).getAuthorities());
-				if (SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream()
-		          .anyMatch(r -> r.getAuthority().equals("ROLE_".concat(role)))) {
-					System.out.println("\t Explicit authentication ends with true.");
-					return true;
-				}
-				System.out.println("\t Explicit authentication ends with false due to missing required Role " + role + ".");
-				return false;
-			} else {
-				System.out.println("\t Explicit authentication ends with false due to missing UserDetails.");
-				return false;
-			}
-		}
-
 		
 		@GetMapping("/custPage/{pageMvnt}")
 		public String custPaginated(@PathVariable(value="pageMvnt") int pageMvnt,
 				Model model, 
 				HttpSession session) {
-			if ((!hasRole("MANAGER")) && (!hasRole("USER"))) {return "/403";}
+			if ((!home.hasRole("MANAGER")) && (!home.hasRole("USER"))) {return "/403";}
 			if (!loadSessionAttributes(session)) {return "redirect:/";}
 
 			switch (pageMvnt) {
 			    case -9: currPage = 1; break;                            // go to first page
 			    case -1: currPage = currPage > 1? currPage - 1:1; break; // go to prev page  
 			    case  0: break;                                          // stay at curr page
-			    case  1: currPage = currPage < totalPages? totalPages + 1:totalPages; break;  // go to next page
+			    case  1: currPage = currPage < totalPages? currPage + 1:totalPages; break;  // go to next page
 			    case  9: currPage = totalPages; break;                   // go to last page
 			    default: currPage = 1;
 			}
@@ -144,20 +136,32 @@ import io.swagger.annotations.ApiOperation;
 			model.addAttribute("newCust", newCust);
 			
 			session.setAttribute("custCurrPage", currPage);
-			Page <Customer> page = customerDao.custPaginated(currPage, pageSize, sortField, sortDirection);
+			Page <Customer> page = customerDao.custPaginated(currPage, pageSize, keyword, sortField, sortDirection);
 			session.setAttribute("custTotalPages", page.getTotalPages());
 			if ((currPage > 1) && (currPage > page.getTotalPages())) {return custPaginated(9, model, session);}
 			List <Customer> listCusts = page.getContent();
 			model.addAttribute("listCusts", listCusts);
 			session.setAttribute("custTotalItems", page.getTotalElements());
-			session.setAttribute("empName", empName);
+			session.setAttribute("empName", home.getEmpName());
 			return "Customers";
 		}
 		
-
-		@GetMapping("/custSort/{sortField}")
+		
+		@GetMapping("/custFilter")
 		//change sortField, if same sortField given, change the sort direction
-		public String custSort(@PathVariable(value="sortField") String newSortField, 
+		public String custFilter(
+				@RequestParam("keyword") String keyword, 
+				Model model, 
+				HttpSession session) {
+			
+			this.keyword = keyword;
+			session.setAttribute("keyword", keyword);
+			return custPaginated(0, model, session);
+		}
+
+		@GetMapping("/custSort/{newSortField}")
+		//change sortField, if same sortField given, change the sort direction
+		public String custSort(@PathVariable(value="newSortField") String newSortField, 
 				Model model, 
 				HttpSession session) {
 			
@@ -216,29 +220,63 @@ import io.swagger.annotations.ApiOperation;
 				pinCustId = pinCust.getCustId();
 				model.addAttribute("pinCust", pinCust);
 				session.setAttribute("pinCustId", pinCustId);
+			}
+			return custPaginated(0, model, session);
+		}
+
+		
+		@GetMapping("/custPinVeh/{theVehId}")
+		public String custPinVeh(@PathVariable(value = "theVehId") long theVehId, 
+	            Model model, HttpSession session) {
+
+			if (!loadSessionAttributes(session)) {return "redirect:/";}
+
+			if (theVehId >= 0) {
+				// when theVehId is 0, unpin the pinned vehicle
+				// when theVehId is >0, make it the pinned vehicle
+				pinVehId = theVehId;
+				Vehicle pinVeh = new Vehicle();
+				if (pinVehId > 0) {
+					pinVeh = vehicleDao.getVehicleById(pinVehId);
+				}
+				pinVehId = pinVeh.getVehId();
+				model.addAttribute("pinVeh", pinVeh);
+				session.setAttribute("pinVehId", pinVehId);
+			}
+			return custPaginated(0, model, session);
+		}
+
+		
+		@GetMapping("/custLink/{theCustId}")
+		public String custLink(@PathVariable(value = "theCustId") long theCustId, 
+	            Model model, HttpSession session) {
+
+			if (!loadSessionAttributes(session)) {return "redirect:/";}
+
+			if (theCustId == 0) {  // this should not have happened
 				return custPaginated(0, model, session);
-			} else {                  // else to make pinCust the alt contract of the customer
-				// when theCustId is <0,:
-				// when pinCustId = 0, clear custLinked for the customer whose custId = -theCustId
-				// when pinCustId > 0, update custLinked tp the pinned customer for the customer whose custId = -theCustId
-				theCustId = - theCustId;
-				if (theCustId == pinCustId) {
+			}
+			Customer myCust = customerDao.getCustomerById((theCustId>0)?theCustId:-theCustId);
+			if (myCust==null) {
+				model.addAttribute("optMsg", "Customer by id " + theCustId + " does not exist.");
+				return custPaginated(0, model, session);
+			}
+			Customer pinCust = new Customer();
+			if (pinCustId > 0) {pinCust = customerDao.getCustomerById(pinCustId);}
+			if (theCustId >= 0) {
+				// when theCustId is >0, link theCustId to pinCustId
+				if (myCust.getCustId() == pinCust.getCustId()) {
 					model.addAttribute("optMsg", "You cannot nominate a customer to be his/her own alternate contact.");
 					return custPaginated(0, model, session);
 				}
-				Customer pinCust = new Customer();
-				Customer myCust = customerDao.getCustomerById(theCustId);
-				if (pinCustId == 0) {
-					myCust.setCustLinked(null);
-					myCust.setDateUpd(java.time.LocalDate.now());
-				} else {
-					myCust.setCustLinked(customerDao.getCustomerById(pinCustId));
-					myCust.setDateUpd(java.time.LocalDate.now());
-				}
-//				System.out.println("\t About to saveCustoemr.");
-//				customerDao.saveCustomer(myCust);
-				return custPaginated(0, model, session);
+				pinCust.setCustLinked(myCust);
+			} else { 
+				// when theCustId is <0, unlink
+				myCust.setCustLinked(null);
 			}
+//			System.out.println("\t About to saveCustoemr.");
+//			customerDao.saveCustomer(myCust);
+			return custPaginated(0, model, session);
 		}
 
 		
@@ -248,7 +286,7 @@ import io.swagger.annotations.ApiOperation;
 				Model model, 
 				HttpSession session) {
 
-			if ((!hasRole("MANAGER")) && (!hasRole("USER"))) {return "/403";}
+			if ((!home.hasRole("MANAGER")) && (!home.hasRole("USER"))) {return "/403";}
 			if (!loadSessionAttributes(session)) {return "redirect:/";}
 
 			// Get customer from the Service
@@ -296,7 +334,7 @@ import io.swagger.annotations.ApiOperation;
 				Model model, 
 				HttpSession session) {
 
-			if ((!hasRole("MANAGER")) && (!hasRole("USER"))) {return "/403";}
+			if ((!home.hasRole("MANAGER")) && (!home.hasRole("USER"))) {return "/403";}
 			if (!loadSessionAttributes(session)) {return "redirect:/";}
 			
 			if (bindingResult.hasErrors()) {
@@ -304,13 +342,23 @@ import io.swagger.annotations.ApiOperation;
 				return custPaginated(0, model, session);
 			}
 
-			if ((newCust.getCustId()==0)  && (newCust.getIsActive()) && (!hasRole("MANAGER"))) {
+			if ((newCust.getCustId()==0)  && (newCust.getIsActive()) && (!home.hasRole("MANAGER"))) {
 				model.addAttribute("optMsg", "New customers can only be created at inactive status.");
 				return custPaginated(0, model, session);
 			}
 
+			Picture oldPict = new Picture();
+			if (newCust.getCustId()>0) {
+				Customer b4saveCust = customerDao.getCustomerById(newCust.getCustId());
+				if (b4saveCust.getDrLic() != null) {
+					long oldPictId = b4saveCust.getDrLic().getPictId();
+					oldPict = storageService.getPicture(oldPictId);
+					newCust.setDrLic(oldPict);
+				}
+			}
+			
 			newCust.setDateUpd(java.time.LocalDate.now());
-
+	        
 			try {
 				customerDao.saveCustomer (newCust);
 			} catch(DataIntegrityViolationException e) {
@@ -320,7 +368,7 @@ import io.swagger.annotations.ApiOperation;
 				return custPaginated(0, model, session);
 			} catch(Exception e) {
 				e.printStackTrace();
-				model.addAttribute("optMsg", e.getMessage());
+				model.addAttribute("optMsg", "There is an unexpected error, please report to IT supoprt.");
 				model.addAttribute("newCust", newCust);
 				return custPaginated(0, model, session);
 			}
@@ -329,21 +377,22 @@ import io.swagger.annotations.ApiOperation;
 			model.addAttribute("newCust", null);
 			return custPaginated(0, model, session); 
 		}
-		
 
+		
 		@GetMapping("/custDeleOts/{custId}")
 		public String custDeleOts(@PathVariable(value = "custId") long custId,
 				Model model, 
 				HttpSession session) {
-			if (!hasRole("MANAGER")) {return "/403";}
+			if (!home.hasRole("MANAGER")) {return "/403";}
 			if (!loadSessionAttributes(session)) {return "redirect:/";}
 
-			// call delete customer method 
+			Customer myCust = customerDao.getCustomerById(custId);
 			try {
+				model.addAttribute("optMsg", "Customer [" + myCust.getCustName() + "] deleted.");
 				this.customerDao.deleteCustomerById(custId);
 			} catch(DataIntegrityViolationException e) {
 				e.printStackTrace();
-				model.addAttribute("optMsg", "This customer is related to other customers as alt contact, or has recent hiring or hiring history, cannot delete.");
+				model.addAttribute("optMsg", "Customer [" + myCust.getCustName() + "] may be the alt-contact of other customers, or has current hiring or hiring history, cannot delete.");
 				return custPaginated(0, model, session);
 			} catch(Exception e) {
 				e.printStackTrace();
@@ -358,11 +407,11 @@ import io.swagger.annotations.ApiOperation;
 		public String custAndOts(@PathVariable(value = "custId") long custId,
 				Model model, HttpSession session) {
 
-			if ((!hasRole("MANAGER")) && (!hasRole("USER"))) {return "/403";}
+			if ((!home.hasRole("MANAGER")) && (!home.hasRole("USER"))) {return "/403";}
 			if (!loadSessionAttributes(session)) {return "redirect:/";}
 
 			Boolean activate = custId > 0; // +ve id to activate, -ve to deactivate
-			if (activate && !hasRole("MANAGER")) {
+			if (activate && !home.hasRole("MANAGER")) {
 				model.addAttribute("optMsg", "Only MANAGER can re-activate a Customer.");
 				return custPaginated(0, model, session);
 			}
@@ -376,5 +425,67 @@ import io.swagger.annotations.ApiOperation;
 			return custPaginated(0, model, session);
 		}
 
-	
+		
+		@GetMapping("/custRmvPictJs/{custId}")
+		public ResponseEntity<?> custRmvPictJs(@PathVariable long custId) {
+
+			if ((!home.hasRole("MANAGER")) && (!home.hasRole("USER"))) {
+				return new ResponseEntity<>("You are not authorised to delete pictures.", HttpStatus.UNAUTHORIZED);
+				}
+			
+			Customer myCust = customerDao.getCustomerById(custId);
+			if (myCust==null) {
+			    return new ResponseEntity<>("Customer " + custId + " does not exist.", HttpStatus.BAD_REQUEST);
+			}
+			Picture myPict = myCust.getDrLic();
+			if (myPict==null) {
+			    return new ResponseEntity<>("Customer " + custId + " has no uploaded driving license picture.", HttpStatus.BAD_REQUEST);
+			}
+			myCust.setDrLic(null);
+			storageService.delPicture(myPict.getPictId());
+		    return new ResponseEntity<>("Customer " + custId + " has driving license picture deleted.", HttpStatus.OK);
+		}
+
+		
+		@PostMapping("/custSavePictJs")
+		// save a new picture for the customer
+		// delete the old picture if any
+		public ResponseEntity<?> custSavePictJs(@ModelAttribute UploadForm form) {
+
+			long custId = form.getEntityId();
+			
+			if ((!home.hasRole("MANAGER")) && (!home.hasRole("USER"))) {
+				return new ResponseEntity<>("You are not authorised to upload pictures.", HttpStatus.UNAUTHORIZED);
+				}
+
+			if (form.getFile()==null) {
+			    return new ResponseEntity<>("No file selected.", HttpStatus.BAD_REQUEST);
+			}
+
+			if (form.getFile().getSize()==0) {
+			    return new ResponseEntity<>("Uploaded file has no data.", HttpStatus.BAD_REQUEST);
+			}
+
+			Customer myCust = customerDao.getCustomerById(custId);
+			if (myCust==null) {
+			    return new ResponseEntity<>("Customer " + custId + " does not exist.", HttpStatus.BAD_REQUEST);
+			}
+
+			Picture newPict = new Picture();
+			
+			try {
+				newPict = storageService.store(form.getFile(),form.getId(),true);
+		    } catch (Exception e) {
+				e.printStackTrace();
+			    return new ResponseEntity<>("Could not upload the file: " + form.getFile().getOriginalFilename() + "!", HttpStatus.BAD_REQUEST);
+		    }
+
+			myCust.setDrLic(newPict);
+			
+			myCust.setDateUpd(java.time.LocalDate.now());
+
+			return new ResponseEntity<String>("" + newPict.getPictId(), HttpStatus.OK);
+			
+		}
+
 }

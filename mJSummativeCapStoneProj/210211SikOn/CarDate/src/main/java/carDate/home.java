@@ -1,24 +1,13 @@
 package carDate;
 
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import carDate.emp.Employee;
@@ -27,15 +16,12 @@ import carDate.emp.RoleRepo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-	@Api(value = "home", description = "Application home page")
+	@Api(value = "Home", description = "Application home page")
 	@Controller
-	public class home {
+	public class Home {
 
 		@Autowired
 		private EmployeeDao employeeDao;
-
-		@Autowired
-		private RoleRepo roleRepo;
 
 		private Object principal;
 		private String empName;
@@ -50,34 +36,7 @@ import io.swagger.annotations.ApiOperation;
 		String sortDirection;
 		long pinCustId;
 		long pinVehId;
-		
-		private boolean loadSessionAttributes(HttpSession session) {
-			currPage = (session.getAttribute("empCurrPage")==null)?1:(int) session.getAttribute("empCurrPage");
-			session.setAttribute("empCurrPage", currPage);
-			
-			totalPages = (session.getAttribute("empTotalPages"))==null?1:(int) session.getAttribute("empTotalPages");
-			session.setAttribute("empTotalPages", totalPages);
 
-			pageSize = (session.getAttribute("empPageSize")==null)?5:(int) session.getAttribute("empPageSize");
-			session.setAttribute("empPageSize", pageSize);
-
-			nextPageSize = pageSize==5?10:(pageSize==10?20:5);
-			session.setAttribute("empNextPageSize", nextPageSize);
-
-			sortField = (session.getAttribute("empSortField")==null)?"empId":(String) session.getAttribute("empSortField");
-			session.setAttribute("empSortField", sortField);
-			
-			sortDirection = (session.getAttribute("empSortDirection")==null)?"ASC":(String) session.getAttribute("empSortDirection");
-			session.setAttribute("empSortDirection", sortDirection);
-
-			pinCustId = (session.getAttribute("pinCustId")==null)?0:(long) session.getAttribute("pinCustId");
-			session.setAttribute("pinCustId", pinCustId);
-
-			pinVehId = (session.getAttribute("pinVehId")==null)?0:(long) session.getAttribute("pinVehId");
-			session.setAttribute("pinVehId", pinVehId);
-
-			return true;
-		}
 		
 		
 		public boolean hasRole(String role) {
@@ -115,7 +74,7 @@ import io.swagger.annotations.ApiOperation;
 				System.out.println("\t User=" + empName + " has been authenticated.");
 				Employee meEmp = employeeDao.getEmployeeByEmpName(empName);
 				model.addAttribute("meEmp", meEmp);
-				return "home"; // present home.html
+				return "Home"; // present home.html
 			} else {
 				model.addAttribute("optMsg", "Authentication failed.");
 			}
@@ -136,6 +95,11 @@ import io.swagger.annotations.ApiOperation;
 			model.addAttribute("optMsg", "You are logged out.");
 			return "login";
 		}
-		
+
+
+		public String getEmpName() {
+			return empName;
+		}
+
 		
 }

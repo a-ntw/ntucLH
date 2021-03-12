@@ -11,17 +11,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.validation.constraints.Email;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.Range;
-
-import carDate.cust.Customer;
 import carDate.hire.Hire;
+import carDate.pict.Picture;
 
 @Entity // meaning this is linked to a table in the database
 public class Vehicle {
@@ -33,26 +30,38 @@ public class Vehicle {
 	@Column(name="VEHID")  // The following attribute is linked to this column in the db table
 	private long vehId;
 
-	@Size (min = 1, max = 10)
-	@NotNull
-	private String vehModel;
-
 	@Size (min = 3, max = 15)
 	@NotNull
 	private String vehBrand;
+
+	@Size (min = 1, max = 20)
+	@NotNull
+	private String vehModel;
 
 	@Column(unique=true)
 	@Size (min = 3, max = 8)
 	@NotNull
 	private String vehLicPlate;
 
-	@Min(value=10)
-	@Max(value=300)
+	private int engCap;
+	
+	private int bhp;
+	
+	private int topSpeed;
+	
+	@Min(value=50)
+	@Max(value=999)
 	@NotNull
 	private float dailyRate;
-	
-    @ManyToOne(fetch = FetchType.EAGER, optional = true)
-    @JoinColumn(name = "CURHIREID", nullable = true)
+
+    @OneToOne(fetch = FetchType.EAGER, optional = true)
+    private Picture picture;
+
+	// links this.Vehicle to Pictures
+    @OneToMany(fetch = FetchType.EAGER)
+    private Set<Picture> pictures;
+
+    @OneToOne(fetch = FetchType.EAGER, optional = true)
     private Hire currHire;
 
 	
@@ -115,6 +124,48 @@ public class Vehicle {
 	}
 
 
+	public int getEngCap() {
+		return engCap;
+	}
+
+
+
+
+	public void setEngCap(int engCap) {
+		this.engCap = engCap;
+	}
+
+
+
+
+	public int getBhp() {
+		return bhp;
+	}
+
+
+
+
+	public void setBhp(int bhp) {
+		this.bhp = bhp;
+	}
+
+
+
+
+	public int getTopSpeed() {
+		return topSpeed;
+	}
+
+
+
+
+	public void setTopSpeed(int topSpeed) {
+		this.topSpeed = topSpeed;
+	}
+
+
+
+
 	public float getDailyRate() {
 		return dailyRate;
 	}
@@ -123,6 +174,36 @@ public class Vehicle {
 	public void setDailyRate(float dailyRate) {
 		this.dailyRate = dailyRate;
 	}
+
+
+
+
+	public Picture getPicture() {
+		return picture;
+	}
+
+
+
+
+	public void setPicture(Picture picture) {
+		this.picture = picture;
+	}
+
+
+
+
+	public Set<Picture> getPictures() {
+		return pictures;
+	}
+
+
+
+
+	public void setPictures(Set<Picture> pictures) {
+		this.pictures = pictures;
+	}
+
+
 
 
 	public Hire getCurrHire() {
@@ -145,7 +226,6 @@ public class Vehicle {
 	}
 
 
-	
 	public Set<Hire> getHires() {
 		return hires;
 	}
@@ -165,6 +245,14 @@ public class Vehicle {
 		this.hires.remove(hire);
 	}
 
+
+	public void addPicture(Picture picture) {
+		this.pictures.add(picture);
+	}
+
+	public void removePicture(Picture picture) {
+		this.pictures.remove(picture);
+	}
 
 	@Override
 	public String toString() {

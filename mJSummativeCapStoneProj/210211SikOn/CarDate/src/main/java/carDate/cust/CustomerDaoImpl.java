@@ -17,7 +17,6 @@ public class CustomerDaoImpl implements CustomerDao{
 	private CustomerRepo customerRepo;
 	
 	@Override
-	
 	public List<Customer> getAllCustomers() {
 		return customerRepo.findAll();
 	}
@@ -25,7 +24,6 @@ public class CustomerDaoImpl implements CustomerDao{
 	@Override
 	public void saveCustomer(Customer customer) {
 		customerRepo.save(customer);
-		
 	}
 
 	@Override
@@ -46,11 +44,15 @@ public class CustomerDaoImpl implements CustomerDao{
 	}
 
 	@Override
-	public Page<Customer> custPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {
+	public Page<Customer> custPaginated(int pageNo, int pageSize, String keyword, String sortField, String sortDirection) {
 		Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending()
 				: Sort.by(sortField).descending();
 		Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort); // Note pageNo starts from 0, not 1, hence the -1.
-		return customerRepo.findAll(pageable);
+		if ((keyword==null) || (keyword.isEmpty())) {
+			return customerRepo.findAll(pageable);
+		} else {
+			return customerRepo.search(keyword, pageable);
+		}
 	}
 
 	@Override

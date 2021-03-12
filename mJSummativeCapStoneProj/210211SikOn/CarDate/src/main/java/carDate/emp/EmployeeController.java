@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import carDate.Home;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
@@ -29,14 +30,13 @@ import io.swagger.annotations.ApiOperation;
 	public class EmployeeController {
 
 		@Autowired
+		private Home home;
+
+		@Autowired
 		private EmployeeDao employeeDao;
 
 		@Autowired
 		private RoleRepo roleRepo;
-
-		private Object principal;
-		private String empName;
-
 
 		String currFunc;
 		int currPage;
@@ -49,6 +49,12 @@ import io.swagger.annotations.ApiOperation;
 		long pinVehId;
 		
 		private boolean loadSessionAttributes(HttpSession session) {
+			currFunc = (session.getAttribute("currFunc")==null)?"":(String) session.getAttribute("currFunc");
+			if (!currFunc.equals("emp")) {
+				currFunc = "emp";
+				session.setAttribute("currFunc", currFunc);
+			}
+
 			currPage = (session.getAttribute("empCurrPage")==null)?1:(int) session.getAttribute("empCurrPage");
 			session.setAttribute("empCurrPage", currPage);
 			
@@ -75,44 +81,20 @@ import io.swagger.annotations.ApiOperation;
 
 			return true;
 		}
-		
-		
-		public boolean hasRole(String role) {
-
-			System.out.println("\n\t Explicit authentication begins...");
-			principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-			empName = "";
-			
-			if (principal instanceof UserDetails) {
-				empName = ((UserDetails) principal).getUsername();
-				System.out.println("\t Authenticating User=" + empName + "  for Role=" + role + "...");
-				System.out.println("\t authenticaed user has these roles=" + ((UserDetails) principal).getAuthorities());
-				if (SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream()
-		          .anyMatch(r -> r.getAuthority().equals("ROLE_".concat(role)))) {
-					System.out.println("\t Explicit authentication ends with true.");
-					return true;
-				}
-				System.out.println("\t Explicit authentication ends with false due to missing required Role " + role + ".");
-				return false;
-			} else {
-				System.out.println("\t Explicit authentication ends with false due to missing UserDetails.");
-				return false;
-			}
-		}
 
 		
 		@GetMapping("/empPage/{pageMvnt}")
 		public String empPaginated(@PathVariable(value="pageMvnt") int pageMvnt,
 				Model model, 
 				HttpSession session) {
-			if (!hasRole("ADMIN")) {return "/403";}
+			if (!home.hasRole("ADMIN")) {return "/403";}
 			if (!loadSessionAttributes(session)) {return "redirect:/";}
 
 			switch (pageMvnt) {
 			    case -9: currPage = 1; break;                            // go to first page
 			    case -1: currPage = currPage > 1? currPage - 1:1; break; // go to prev page  
 			    case  0: break;                                          // stay at curr page
-			    case  1: currPage = currPage < totalPages? totalPages + 1:totalPages; break;  // go to next page
+			    case  1: currPage = currPage < totalPages? currPage + 1:totalPages; break;  // go to next page
 			    case  9: currPage = totalPages; break;                   // go to last page
 			    default: currPage = 1;
 			}
@@ -137,7 +119,7 @@ import io.swagger.annotations.ApiOperation;
 			List <Employee> listEmps = page.getContent();
 			model.addAttribute("listEmps", listEmps);
 			session.setAttribute("empTotalItems", page.getTotalElements());
-			session.setAttribute("empName", empName);
+			session.setAttribute("empName", home.getEmpName());
 			return "Employees";
 		}
 		
@@ -147,7 +129,7 @@ import io.swagger.annotations.ApiOperation;
 				Model model, 
 				HttpSession session) {
 			
-			if (!hasRole("ADMIN")) {return "/403";}
+			if (!home.hasRole("ADMIN")) {return "/403";}
 			if (!loadSessionAttributes(session)) {return "redirect:/";}
 
 			if (newSortField.equals(sortField)) {
@@ -171,7 +153,7 @@ import io.swagger.annotations.ApiOperation;
 				Model model, 
 				HttpSession session) {
 
-			if (!hasRole("ADMIN")) {return "/403";}
+			if (!home.hasRole("ADMIN")) {return "/403";}
 			if (!loadSessionAttributes(session)) {return "redirect:/";}
 
 			currPage = (((currPage - 1) * pageSize + 1) / newPageSize) + (((((currPage - 1) * pageSize + 1) % newPageSize)==0)?0:1);
@@ -185,12 +167,12 @@ import io.swagger.annotations.ApiOperation;
 
 		
 		@ApiOperation(value="Brings high-lighted user record to editing area for edit", response=Iterable.class, tags="home")
-		@GetMapping("/empUpdateOts/{empId}")
-		public String empUpdateOts(@PathVariable(value = "empId") long empId, 
+		@GetMapping("/empUpdaOts/{empId}")
+		public String empUpdaOts(@PathVariable(value = "empId") long empId, 
 				Model model, 
 				HttpSession session) {
 
-			if (!hasRole("ADMIN")) {return "/403";}
+			if (!home.hasRole("ADMIN")) {return "/403";}
 			if (!loadSessionAttributes(session)) {return "redirect:/";}
 
 			// Get customer from the Service
@@ -202,7 +184,7 @@ import io.swagger.annotations.ApiOperation;
 			} else {
 				if (empId > 0) {  // bring details of existing user into input area for editing
 					Employee emp = employeeDao.getEmployeeById(empId);
-					if (emp.getEmpName().equalsIgnoreCase(empName)) {
+					if (emp.getEmpName().equalsIgnoreCase(home.getEmpName())) {
 //						newEmp = new Employee();
 						model.addAttribute("optMsg", "You are not allowed to modify your own employee record.");
 					} else {
@@ -221,6 +203,7 @@ import io.swagger.annotations.ApiOperation;
 				} else { // copy details of an existing user into input area for editing into a new user
 					Employee emp = employeeDao.getEmployeeById(-empId);
 					newEmp.setEmpFullName(emp.getEmpFullName());
+					newEmp.setEmail(emp.getEmail().indexOf('@')>=0?emp.getEmail().substring(emp.getEmail().indexOf('@')):"");
 					newEmp.setJobTitle(emp.getJobTitle());
 					newEmp.setIsActive(emp.getIsActive());
 					newEmp.setPswdExpiry(emp.getPswdExpiry());
@@ -240,14 +223,14 @@ import io.swagger.annotations.ApiOperation;
 				Model model, 
 				HttpSession session) {
 
-			if (!hasRole("ADMIN")) {return "/403";}
+			if (!home.hasRole("ADMIN")) {return "/403";}
 			if (!loadSessionAttributes(session)) {return "redirect:/";}
 
 			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 			
 			if (!bindingResult.hasErrors()) {
 				Employee samenameEmployee = employeeDao.getEmployeeByEmpName(newEmp.getEmpName());
-				if (newEmp.getEmpName().equalsIgnoreCase(empName)) {
+				if (newEmp.getEmpName().equalsIgnoreCase(home.getEmpName())) {
 					model.addAttribute("optMsg", "You cannot save an employee with your own empName.");
 				} else {
 					if (samenameEmployee!=null) {  // there is a user in db with the same name
@@ -295,16 +278,16 @@ import io.swagger.annotations.ApiOperation;
 		}
 		
 
-		@GetMapping("/empDeleteOts/{empId}")
-		public String empDeleteOts(@PathVariable(value = "empId") long empId,
+		@GetMapping("/empDeleOts/{empId}")
+		public String empDeleOts(@PathVariable(value = "empId") long empId,
 				Model model, 
 				HttpSession session) {
-			if (!hasRole("ADMIN")) {return "/403";}
+			if (!home.hasRole("ADMIN")) {return "/403";}
 			if (!loadSessionAttributes(session)) {return "redirect:/";}
 
 			// call delete customer method 
 			Employee newEmp = employeeDao.getEmployeeById(empId);
-			if (newEmp.getEmpName().equalsIgnoreCase(empName)) {
+			if (newEmp.getEmpName().equalsIgnoreCase(home.getEmpName())) {
 				model.addAttribute("optMsg", "You should not delete your own Employee record.");
 			} else {
 				this.employeeDao.deleteEmployeeById(empId);
@@ -317,7 +300,7 @@ import io.swagger.annotations.ApiOperation;
 		public String empAndOts(@PathVariable(value = "empId") long empId,
 				Model model, HttpSession session) {
 
-			if (!hasRole("ADMIN")) {return "/403";}
+			if (!home.hasRole("ADMIN")) {return "/403";}
 			if (!loadSessionAttributes(session)) {return "redirect:/";}
 
 			Boolean activate = empId > 0; // +ve id to activate, -ve to deactivate

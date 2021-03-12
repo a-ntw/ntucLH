@@ -26,6 +26,8 @@
 <span class="message" th:text="${optMsg} ?:_"></span>
 <form method="POST" th:action="@{'/empSaveOts'}" action="#" th:object="${newEmp}">
 	<table border="1">
+	
+<!-- 	Employee list header and sorting -->
 		<thead>
 			<tr>
 				<th><a th:href="@{'/empSort/empId'}">Emp Id<span th:if="${session.empSortField} == 'empId'"><br>([[${session.empSortDirection}]])</span></a></th>
@@ -42,6 +44,8 @@
 				<th>Actions</th>
 				</tr>
 		</thead>
+		
+<!-- 		Employee List -->
 		<tbody>
 			<tr th:each="emp : ${listEmps}">
 				<td th:text="${emp.empId}" />
@@ -52,34 +56,41 @@
 				<td th:text="${emp.phoneNo}" />
 				<td th:text="${emp.email}" />
 				<td th:text="${emp.jobTitle}" />
-				<td><input type="checkbox"  disabled="disabled" th:checked="${emp.isActive} ? 'checked' "></td>
+				<td><span th:if="${emp.isActive}">
+						<a th:href="@{'/empAndOts/' + ${-emp.empId}}"
+						   th:onclick="return confirm('Proceed to disable [[${emp.empName}]]?')"
+						   th:title="${'Disable ' + emp.empName}">
+							<span class="fa fa-check-square-o" /></a></span>
+					<span th:if="${!emp.isActive}">
+						<a th:href="@{'/empAndOts/' + ${emp.empId}}"
+						   th:onclick="return confirm('Proceed to enable [[${emp.empName}]]?')"
+						   th:title="${'Enable ' + emp.empName}">
+							<span class="fa fa-square-o" /></a></span></td>
 				<td th:text="${emp.userExpiry}" />
 				<td th:text="${emp.pswdExpiry}" />
 				<td>
 					<span th:if="${session.empName} != ${emp.empName}">
-					<a th:href="@{'/empUpdateOts/' + ${emp.empId}}"><button type="button" class="btn btn-primary">Update</button></a>
- 					<a th:href="@{'/empDeleteOts/' + ${emp.empId}}"><button type="button" class="btn btn-primary">Delete</button></a>
-					<span th:hidden="${emp.isActive} ? 'true' ">
-					    <a th:href="@{'/empAndOts/' + ${emp.empId}}"><button type="button">Reactivate</button></a>
+						<a th:href="@{'/empUpdaOts/' + ${emp.empId}}" title="Edit this Employee"><span class="fa fa-pencil-square-o" /></a>
+ 						<a th:href="@{'/empDeleOts/' + ${emp.empId}}"
+						   title="Delete this Employee"
+						   th:onclick="return confirm('Proceed to delete Employee [[${emp.empName}]]?')">
+							<span class="fa fa-trash" /></a>
 					</span>
-					<span th:hidden="${!emp.isActive} ? 'true' ">
-						<a th:href="@{'/empAndOts/' + ${-emp.empId}}"><button type="button">Deactivate</button></a>
-					</span>
-					</span>
-					<a th:href="@{'/empUpdateOts/' + ${-emp.empId}}"><button type="button" class="btn btn-primary">Duplicate</button></a>
+					<a th:href="@{'/empUpdaOts/' + ${-emp.empId}}" title="Clone this Employee"><span class="fa fa-clone" /></a>
 				</td>
 			</tr>
 		</tbody>
 
+<!-- 	Employee navigation -->
 		<tr>
 			<td colspan="12">
 			<table width="100%" border="1"><tr>
-			<span th:if="${session.totalPages > 1}">
+			<span th:if="${session.empTotalPages > 1}">
 			<td><a th:href="@{'/empPage/-9'}"><button type="button">First</button></a></td>
-			<td th:if="${session.currPage == 1}"><button type="button">Prev</button></td>
-			<td th:if="${session.currPage > 1}"><a th:href="@{'/empPage/-1'}"><button type="button">Prev</button></a></td>
-			<td th:if="${session.currPage < session.totalPages}"><a th:href="@{'/empPage/1'}"><button type="button">Next</button></a></td>
-			<td th:if="${session.currPage >= session.totalPages}"><button type="button">Next</button></td>
+			<td th:if="${session.empCurrPage == 1}"><button type="button">Prev</button></td>
+			<td th:if="${session.empCurrPage > 1}"><a th:href="@{'/empPage/-1'}"><button type="button">Prev</button></a></td>
+			<td th:if="${session.empCurrPage < session.empTotalPages}"><a th:href="@{'/empPage/1'}"><button type="button">Next</button></a></td>
+			<td th:if="${session.empCurrPage >= session.empTotalPages}"><button type="button">Next</button></td>
 			<td><a th:href="@{'/empPage/9'}"><button type="button">Last</button></a></td>
 			</span>
 			<td>Page [[${session.empCurrPage}]] of [[${session.empTotalPages}]]</td>
@@ -90,6 +101,7 @@
 			</td>
 		</tr>
 
+<!-- 	Employee input and editing area -->
 		<tr>
 			<td><input hidden="true" type="text" th:field="*{empId}" readonly />
 			    <span th:text="*{empId}" /></td>
@@ -105,7 +117,7 @@
  			<td><input type="checkbox" th:field="*{isActive}" readonly /></td>
 			<td><input type="date" th:field="*{userExpiry}"/></td>
 			<td><input type="date" th:field="*{pswdExpiry}"/></td>
-			<td><button type="Submit">Save</button>
+			<td><button type="Submit"><span class="fa fa-floppy-o" /></button>
 			    <a th:href="@{'/empPage/0'}"><button type="button">Reset</button></a>
 		    </td>
 		</tr>

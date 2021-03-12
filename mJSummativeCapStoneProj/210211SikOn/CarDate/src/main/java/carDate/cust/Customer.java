@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -19,8 +20,8 @@ import javax.validation.constraints.Email;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import carDate.emp.Role;
 import carDate.hire.Hire;
+import carDate.pict.Picture;
 
 
 @Entity // meaning this is linked to a table in the database
@@ -88,8 +89,13 @@ public class Customer {
     @JoinColumn(name = "CUSTIDLINK", nullable = true)
     private Customer custLinked;
 
+	// links this.Customer to picture of driving license
+    @OneToOne(fetch = FetchType.EAGER, optional = true)
+    @JoinColumn(name = "PICTDRLIC", nullable = true)
+    private Picture drLic;
+    
 	// links this.Customer to current hire
-    @ManyToOne(fetch = FetchType.EAGER, optional = true)
+    @OneToOne(fetch = FetchType.EAGER, optional = true)
     @JoinColumn(name = "CURRHIREID", nullable = true)
     private Hire currHire;
 
@@ -215,6 +221,16 @@ public class Customer {
 	}
 
 
+	public Picture getDrLic() {
+		return drLic;
+	}
+
+
+	public void setDrLic(Picture drLic) {
+		this.drLic = drLic;
+	}
+
+
 	public Customer getCustLinked() {
 		return custLinked;
 	}
@@ -246,7 +262,7 @@ public class Customer {
 
 
 	//
-
+	
 	public void addHire(Hire hire) {
 		this.hires.add(hire);
 	}

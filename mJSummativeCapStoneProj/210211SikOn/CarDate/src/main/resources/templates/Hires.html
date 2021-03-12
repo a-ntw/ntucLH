@@ -136,6 +136,7 @@
 				<td>
 					<span th:if="${hire.empReturn==null}"><a th:href="@{'/hireRetuOts/' + ${hire.hireId}}"><button type="button">Return</button></a></span>
  					<a sec:authorize="hasRole('MANAGER')" th:if="${hire.empReturn!=null}" th:href="@{'/hireDeleOts/' + ${hire.hireId}}"><button type="button">Delete</button></a>
+ 					<a sec:authorize="hasAnyRole('MANAGER', 'USER')" th:href="@{'/hirePdf/' + ${hire.hireId}}"><button type="button">Invoice</button></a>
 				</td>
 			</tr>
 		</tbody>
@@ -146,12 +147,12 @@
 			<td colspan="13">
 				<table width="100%" border="1">
 					<tr>
-						<span th:if="${session.totalPages > 1}">
+						<span th:if="${session.hireTotalPages > 1}">
 							<td><a th:href="@{'/hirePage/-9'}"><button type="button">First</button></a></td>
-							<td th:if="${session.currPage == 1}"><button type="button">Prev</button></td>
-							<td th:if="${session.currPage > 1}"><a th:href="@{'/hirePage/-1'}"><button type="button">Prev</button></a></td>
-							<td th:if="${session.currPage < session.totalPages}"><a th:href="@{'/hirePage/1'}"><button type="button">Next</button></a></td>
-							<td th:if="${session.currPage >= session.totalPages}"><button type="button">Next</button></td>
+							<td th:if="${session.hireCurrPage == 1}"><button type="button">Prev</button></td>
+							<td th:if="${session.hireCurrPage > 1}"><a th:href="@{'/hirePage/-1'}"><button type="button">Prev</button></a></td>
+							<td th:if="${session.hireCurrPage < session.hireTotalPages}"><a th:href="@{'/hirePage/1'}"><button type="button">Next</button></a></td>
+							<td th:if="${session.hireCurrPage >= session.hireTotalPages}"><button type="button">Next</button></td>
 							<td><a th:href="@{'/hirePage/9'}"><button type="button">Last</button></a></td>
 						</span>
 						<td>Page [[${session.hireCurrPage}]] of [[${session.hireTotalPages}]]</td>

@@ -1,13 +1,16 @@
 package carDate.hire;
 
+import java.io.IOException;
+import java.text.NumberFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.Temporal;
 import java.util.List;
-
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.dom4j.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -21,6 +24,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.lowagie.text.*;
+import com.lowagie.text.pdf.*;
+import java.awt.Color;
+
+import carDate.Home;
 import carDate.cust.Customer;
 import carDate.cust.CustomerDao;
 import carDate.emp.EmployeeDao;
@@ -33,6 +41,9 @@ import io.swagger.annotations.ApiOperation;
 	@Api(value = "HireController", description = "Hire maintenance")
 	@Controller
 	public class HireController {
+
+		@Autowired
+		private Home home;
 
 		@Autowired
 		private HireDao hireDao;
@@ -49,10 +60,11 @@ import io.swagger.annotations.ApiOperation;
 		@Autowired
 		private VehStatusRepo vehStatusRepo;
 
-		private Object principal;
-		private String empName;
-
-
+		NumberFormat defaultFormat = NumberFormat.getCurrencyInstance();
+		DateTimeFormatter dtsFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+				
+		String currFunc;
 		int currPage;
 		int totalPages;
 		int pageSize;
@@ -63,6 +75,12 @@ import io.swagger.annotations.ApiOperation;
 		long pinVehId;
 		
 		private boolean loadSessionAttributes(HttpSession session) {
+			currFunc = (session.getAttribute("currFunc")==null)?"":(String) session.getAttribute("currFunc");
+			if (!currFunc.equals("hire")) {
+				currFunc = "hire";
+				session.setAttribute("currFunc", currFunc);
+			}
+
 			currPage = (session.getAttribute("hireCurrPage")==null)?1:(int) session.getAttribute("hireCurrPage");
 			session.setAttribute("hireCurrPage", currPage);
 			
@@ -89,44 +107,20 @@ import io.swagger.annotations.ApiOperation;
 
 			return true;
 		}
-		
-		
-		public boolean hasRole(String role) {
-
-			System.out.println("\n\t Explicit authentication begins...");
-			principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-			empName = "";
-			
-			if (principal instanceof UserDetails) {
-				empName = ((UserDetails) principal).getUsername();
-				System.out.println("\t Authenticating User=" + empName + "  for Role=" + role + "...");
-				System.out.println("\t authenticaed user has these roles=" + ((UserDetails) principal).getAuthorities());
-				if (SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream()
-		          .anyMatch(r -> r.getAuthority().equals("ROLE_".concat(role)))) {
-					System.out.println("\t Explicit authentication ends with true.");
-					return true;
-				}
-				System.out.println("\t Explicit authentication ends with false due to missing required Role " + role + ".");
-				return false;
-			} else {
-				System.out.println("\t Explicit authentication ends with false due to missing UserDetails.");
-				return false;
-			}
-		}
 
 		
 		@GetMapping("/hirePage/{pageMvnt}")
 		public String hirePaginated(@PathVariable(value="pageMvnt") int pageMvnt,
 				Model model, 
 				HttpSession session) {
-			if ((!hasRole("MANAGER")) && (!hasRole("USER"))) {return "/403";}
+			if ((!home.hasRole("MANAGER")) && (!home.hasRole("USER"))) {return "/403";}
 			if (!loadSessionAttributes(session)) {return "redirect:/";}
 
 			switch (pageMvnt) {
 			    case -9: currPage = 1; break;                            // go to first page
 			    case -1: currPage = currPage > 1? currPage - 1:1; break; // go to prev page  
 			    case  0: break;                                          // stay at curr page
-			    case  1: currPage = currPage < totalPages? totalPages + 1:totalPages; break;  // go to next page
+			    case  1: currPage = currPage < totalPages? currPage + 1:totalPages; break;  // go to next page
 			    case  9: currPage = totalPages; break;                   // go to last page
 			    default: currPage = 1;
 			}
@@ -155,7 +149,7 @@ import io.swagger.annotations.ApiOperation;
 					newHire.setVehicle(pinVeh);
 					newHire.setDailyRate(pinVeh.getDailyRate());
 				}
-				newHire.setEmpFulfill(employeeDao.getEmployeeByEmpName(empName));
+				newHire.setEmpFulfill(employeeDao.getEmployeeByEmpName(home.getEmpName()));
 				newHire.setDtsStart(java.time.LocalDateTime.now());
 				newHire.setDtsEnd(newHire.getDtsStart().truncatedTo(ChronoUnit.DAYS).plusDays(1).plusHours(12));
 			}
@@ -168,7 +162,7 @@ import io.swagger.annotations.ApiOperation;
 			List <Hire> listHires = page.getContent();
 			model.addAttribute("listHires", listHires);
 			session.setAttribute("hireTotalItems", page.getTotalElements());
-			session.setAttribute("empName", empName);
+			session.setAttribute("empName", home.getEmpName());
 			return "Hires";
 		}
 		
@@ -257,7 +251,7 @@ import io.swagger.annotations.ApiOperation;
 				Model model, 
 				HttpSession session) {
 
-			if ((!hasRole("MANAGER")) && (!hasRole("USER"))) {return "/403";}
+			if ((!home.hasRole("MANAGER")) && (!home.hasRole("USER"))) {return "/403";}
 			if (!loadSessionAttributes(session)) {return "redirect:/";}
 
 			// Get hire from the Service
@@ -276,14 +270,14 @@ import io.swagger.annotations.ApiOperation;
 					newHire.setCustomer(hire.getCustomer());
 					newHire.setVehicle(hire.getVehicle());
 					newHire.setEmpFulfill(hire.getEmpFulfill());
-					newHire.setEmpReturn(employeeDao.getEmployeeByEmpName(empName));
+					newHire.setEmpReturn(employeeDao.getEmployeeByEmpName(home.getEmpName()));
 					newHire.setDtsStart(hire.getDtsStart());
 					newHire.setDtsEnd(hire.getDtsEnd());
 					newHire.setDeposit(hire.getDeposit());
 					newHire.setDailyRate(hire.getDailyRate());
 					newHire.setHireFee(hire.getHireFee());
 					newHire.setDtsEndActual(java.time.LocalDateTime.now());
-					newHire.setHireFeeActual(computeFee(newHire.getDailyRate(), newHire.getDtsStart(), newHire.getDtsEnd(), newHire.getDtsEndActual()));
+					newHire.setHireFeeActual(computeFee(newHire.getDailyRate(), newHire.getDtsStart(), newHire.getDtsEnd(), newHire.getDtsEndActual(), null, null, null));
 					model.addAttribute("optMsg", "Enter the actual return date time, click <Save> to confirm return of vehicle.");
 				}
 			}
@@ -295,10 +289,11 @@ import io.swagger.annotations.ApiOperation;
 		@PostMapping("/hireSaveOts/{saveMode}")	
 		public String hireSaveOts(@PathVariable(value="saveMode") String saveMode,
 				@Valid @ModelAttribute("newHire")Hire newHire, BindingResult bindingResult, 
+//				HttpServletResponse response,
 				Model model, 
 				HttpSession session) {
 
-			if ((!hasRole("MANAGER")) && (!hasRole("USER"))) {return "/403";}
+			if ((!home.hasRole("MANAGER")) && (!home.hasRole("USER"))) {return "/403";}
 			if (!loadSessionAttributes(session)) {return "redirect:/";}
 			
 			if (bindingResult.hasErrors()) {
@@ -341,20 +336,38 @@ import io.swagger.annotations.ApiOperation;
 					return hirePaginated(0, model, session);
 				}
 
-				myCust = customerDao.getCustomerById(newHire.getCustomer().getCustId());
+				myCust = newHire.getCustomer();
+				if (myCust==null) {
+					if (pinCustId==0) {
+						model.addAttribute("optMsg", "Please pin the hiring customer first.");
+					} else {
+						Customer theCust = customerDao.getCustomerById(pinCustId);
+						model.addAttribute("optMsg", "The pinned customer [" + theCust.getCustName()+"] is not eligible for hiring.");
+					}
+					return hirePaginated(0, model, session);
+				}
 				if (myCust.getCurrHire()!=null) {
 					model.addAttribute("optMsg", "Customer is already hiring the Vehicle " + myCust.getCurrHire().getVehicle().getVehLicPlate() + ".");
 					return hirePaginated(0, model, session);
 				}
 				
-				myVeh = vehicleDao.getVehicleById(newHire.getVehicle().getVehId());
+				myVeh = newHire.getVehicle();
+				if (myVeh==null) {
+					if (pinVehId==0) {
+						model.addAttribute("optMsg", "Please select a vehicle by pinning it first.");
+					} else {
+						Vehicle theVeh = vehicleDao.getVehicleById(pinVehId);
+						model.addAttribute("optMsg", "The pinned vehicle ["+ theVeh.getVehLicPlate()+"] is not available for hiring.");
+					}
+					return hirePaginated(0, model, session);
+				}
 				if (myVeh.getCurrHire()!=null) {
 					model.addAttribute("optMsg", "Vehicle is currently hired by Customer " + myVeh.getCurrHire().getCustomer().getCustName() + ".");
 					return hirePaginated(0, model, session);
 				}
 
 				// compute HireFee base on latest details:
-				computedFee = computeFee(newHire.getDailyRate(), newHire.getDtsStart(), newHire.getDtsEnd(), newHire.getDtsEnd());
+				computedFee = computeFee(newHire.getDailyRate(), newHire.getDtsStart(), newHire.getDtsEnd(), newHire.getDtsEnd(), null, null, null);
 				
 				// if computed fee differ from fee on form:
 				//      Send back the form to screen, with a message that the Hire fee has changed, click "Save" to commit hiring
@@ -386,7 +399,7 @@ import io.swagger.annotations.ApiOperation;
 				}
 				
 				// compute HireFeeActual base on latest details:
-				computedFee = computeFee(newHire.getDailyRate(), newHire.getDtsStart(), newHire.getDtsEnd(), newHire.getDtsEndActual());
+				computedFee = computeFee(newHire.getDailyRate(), newHire.getDtsStart(), newHire.getDtsEnd(), newHire.getDtsEndActual(), null, null, null);
 				
 				// if computed fee differs from fee on form:
 				//      Send back the form to screen, with a message that the Hire fee has changed, click "Save" to commit return
@@ -428,13 +441,23 @@ import io.swagger.annotations.ApiOperation;
 				myCust = customerDao.getCustomerById(newHire.getCustomer().getCustId());
 				myCust.setCurrHire(null);
 			}
+// the following works, but execution did not return to this method after geneeration of the PDF file.
+// Need to find out how to make the execution return here and 			
+//			try {
+//				hirePdf(newHire.getHireId(), response);
+//			} catch (Exception e) {}
 			model.addAttribute("newHire", null);
 			return hirePaginated(0, model, session); 
 		}
 		
 
-		private float computeFee(double dailyRate, LocalDateTime dtsStart, LocalDateTime dtsEnd, LocalDateTime dtsEndActual) {
+		private float computeFee(double dailyRate, LocalDateTime dtsStart, LocalDateTime dtsEnd, LocalDateTime dtsEndActual, 
+				PdfPTable table, PdfPCell cell, Font font) {
 			// TODO Auto-generated method stub
+			String myStr;
+			if (dtsEndActual==null) {
+				dtsEndActual = dtsEnd;
+			}
 			long hireHoursExtra = dtsEnd.until(dtsEndActual.plusMinutes(59), ChronoUnit.HOURS);
 			System.out.print("\n\t Computing fee for daily rate " + dailyRate + " from " + dtsStart + " to " + dtsEnd);
 			if (dtsEnd==dtsEndActual) {
@@ -453,6 +476,23 @@ import io.swagger.annotations.ApiOperation;
 			hireHours1 = (hireHours1<0)?0:hireHours1;
 			if (hireHours1 > 0) {
 				System.out.println("\t Regular hire: Early collection from " + dtsStart + " to " + dtsEnd1 + " for " + hireHours1 + " hours = $" + (hireHours1 * dailyRate * 0.05));
+				if (table!=null) {
+			        table.addCell("Early pick-up");
+			        myStr = dtsFormat.format(dtsStart);
+			        table.addCell(myStr);
+			        myStr = dtsFormat.format(dtsEnd1);
+			        table.addCell(myStr);
+			        myStr = hireHours1 + " hrs";
+			        cell.setPhrase(new Phrase(myStr, font));
+			        cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+			        table.addCell(cell);
+			        myStr = defaultFormat.format(dailyRate * 0.05);
+			        cell.setPhrase(new Phrase(myStr, font));
+			        table.addCell(cell);
+			        myStr = defaultFormat.format(hireHours1 * dailyRate * 0.05);
+			        cell.setPhrase(new Phrase(myStr, font));
+			        table.addCell(cell);
+				}
 				feeIs = (float) (feeIs + (hireHours1 * dailyRate * 0.05));
 			}
 
@@ -460,6 +500,24 @@ import io.swagger.annotations.ApiOperation;
 			long hireDays1 = dtsStart.truncatedTo(ChronoUnit.DAYS).until(dtsEnd.truncatedTo(ChronoUnit.DAYS), ChronoUnit.DAYS);
 			if (hireDays1 > 0) {
 				System.out.println("\t Regular hire: Daily from " + dtsStart.truncatedTo(ChronoUnit.DAYS) + " to " + dtsEnd.truncatedTo(ChronoUnit.DAYS) + " for " + hireDays1 + " days = $" + (hireDays1 * dailyRate));
+				if (table!=null) {
+			        table.addCell("Daily rental");
+			        myStr = dateFormat.format(dtsStart.truncatedTo(ChronoUnit.DAYS));
+			        table.addCell(myStr);
+			        myStr = dateFormat.format(dtsEnd.truncatedTo(ChronoUnit.DAYS));
+			        table.addCell(myStr);
+			        myStr = hireDays1 + " days";
+			        cell.setPhrase(new Phrase(myStr, font));
+			        cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+			        table.addCell(cell);
+			        myStr = defaultFormat.format(dailyRate);
+			        cell.setPhrase(new Phrase(myStr, font));
+			        table.addCell(cell);
+			        myStr = defaultFormat.format(hireDays1 * dailyRate);
+			        cell.setPhrase(new Phrase(myStr, font));
+			        table.addCell(cell);
+				}
+				
 				feeIs = (float) (feeIs + (hireDays1 * dailyRate));
 			}
 
@@ -469,6 +527,23 @@ import io.swagger.annotations.ApiOperation;
 			hireHours2 = (hireHours2<0)?0:hireHours2; 
 			if (hireHours2 > 0) {
 				System.out.println("\t Regular hire: Late return from " + dtsEnd2 + " to " + dtsEnd + " for " + hireHours2 + " hours = $" + (hireHours2 * dailyRate * 0.05));
+				if (table!=null) {
+			        table.addCell("Late return");
+			        myStr = dtsFormat.format(dtsEnd2);
+			        table.addCell(myStr);
+			        myStr = dtsFormat.format(dtsEnd);
+			        table.addCell(myStr);
+			        myStr = hireHours2 + " hrs";
+			        cell.setPhrase(new Phrase(myStr, font));
+			        cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+			        table.addCell(cell);
+			        myStr = defaultFormat.format(dailyRate * 0.05);
+			        cell.setPhrase(new Phrase(myStr, font));
+			        table.addCell(cell);
+			        myStr = defaultFormat.format(hireHours2 * dailyRate * 0.05);
+			        cell.setPhrase(new Phrase(myStr, font));
+			        table.addCell(cell);
+				}
 				feeIs = (float) (feeIs + (hireHours2 * dailyRate * 0.05));
 			}
 
@@ -482,12 +557,46 @@ import io.swagger.annotations.ApiOperation;
 				hireHours3 = (hireHours3<0)?0:hireHours3; 
 				if (hireHours3 > 0) {
 					System.out.println("\t Extra time (10% levy): Early start from " + dtsEnd + " to " + dtsEnd3 + " for " + hireHours3 + " hours = $" + (hireHours3 * dailyRate * 0.05 * 1.1));
+					if (table!=null) {
+				        table.addCell("Early pick-up (overdue)");
+				        myStr = dtsFormat.format(dtsEnd);
+				        table.addCell(myStr);
+				        myStr = dtsFormat.format(dtsEnd3);
+				        table.addCell(myStr);
+				        myStr = hireHours3 + " hrs";
+				        cell.setPhrase(new Phrase(myStr, font));
+				        cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+				        table.addCell(cell);
+				        myStr = defaultFormat.format(dailyRate * 0.05 * 1.1);
+				        cell.setPhrase(new Phrase(myStr, font));
+				        table.addCell(cell);
+				        myStr = defaultFormat.format(hireHours3 * dailyRate * 0.05 * 1.1);
+				        cell.setPhrase(new Phrase(myStr, font));
+				        table.addCell(cell);
+					}
 					feeIs = (float) (feeIs + (hireHours3 * dailyRate * 0.05 * 1.1));
 				}
 				// 5. compute no of days from dtsEnd to planed dtsEndActual, charge 100% of dailyRate/day and apply 10% extra-time fee.  Compute base on date, ignore actual hours.
 				long hireDays2 = dtsEnd.truncatedTo(ChronoUnit.DAYS).until(dtsEndActual.truncatedTo(ChronoUnit.DAYS), ChronoUnit.DAYS);
 				if (hireDays2 > 0) {
-					System.out.println("\t Extra time (10% levy): Daily Hire from " + dtsEnd.truncatedTo(ChronoUnit.DAYS) + " to " + dtsEndActual.truncatedTo(ChronoUnit.DAYS) + " for " + hireDays2 + " days = $" + (hireDays1 * dailyRate * 1.1));
+					System.out.println("\t Extra time (10% levy): Daily Hire from " + dtsEnd.truncatedTo(ChronoUnit.DAYS) + " to " + dtsEndActual.truncatedTo(ChronoUnit.DAYS) + " for " + hireDays2 + " days = $" + (hireDays2 * dailyRate * 1.1));
+					if (table!=null) {
+				        table.addCell("Daily rental (overdue)");
+				        myStr = dateFormat.format(dtsEnd.truncatedTo(ChronoUnit.DAYS));
+				        table.addCell(myStr);
+				        myStr = dateFormat.format(dtsEndActual.truncatedTo(ChronoUnit.DAYS));
+				        table.addCell(myStr);
+				        myStr = hireDays2 + " days";
+				        cell.setPhrase(new Phrase(myStr, font));
+				        cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+				        table.addCell(cell);
+				        myStr = defaultFormat.format(dailyRate * 1.1);
+				        cell.setPhrase(new Phrase(myStr, font));
+				        table.addCell(cell);
+				        myStr = defaultFormat.format(hireDays2 * dailyRate * 1.1);
+				        cell.setPhrase(new Phrase(myStr, font));
+				        table.addCell(cell);
+					}
 					feeIs = (float) (feeIs + (hireDays2 * dailyRate * 1.1));
 				}
 				// 6. compute no of hours from standard return time to dtsEndActual, if positive, means extra late return, charge late return fee=5% of dailyRate/hr and apply 10% extra time fee.
@@ -502,8 +611,38 @@ import io.swagger.annotations.ApiOperation;
 				hireHours4 = (hireHours4<0)?0:hireHours4;
 				if (hireHours4 > 0) {
 					System.out.println("\t Extra time (10% levy): Late return from " + dtsEnd4 + " to " + dtsEndActual + " for " + hireHours4 + " hours = $" + (hireHours4 * dailyRate * 0.05 * 1.1));
+					if (table!=null) {
+				        table.addCell("Late return (overdue)");
+				        myStr = dtsFormat.format(dtsEnd4);
+				        table.addCell(myStr);
+				        myStr = dtsFormat.format(dtsEndActual);
+				        table.addCell(myStr);
+				        myStr = hireHours4 + " hrs";
+				        cell.setPhrase(new Phrase(myStr, font));
+				        cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+				        table.addCell(cell);
+				        myStr = defaultFormat.format(dailyRate * 0.05 * 1.1);
+				        cell.setPhrase(new Phrase(myStr, font));
+				        table.addCell(cell);
+				        myStr = defaultFormat.format(hireHours4 * dailyRate * 0.05 * 1.1);
+				        cell.setPhrase(new Phrase(myStr, font));
+				        table.addCell(cell);
+					}
 					feeIs = (float) (feeIs + (hireHours4 * dailyRate * 0.05 * 1.1));
 				}
+			}
+			if (table!=null) {
+		        table.addCell("");
+		        table.addCell("");
+		        table.addCell("");
+		        table.addCell("");
+		        myStr = "Total";
+		        cell.setPhrase(new Phrase(myStr, font));
+		        cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+		        table.addCell(cell);
+		        myStr = defaultFormat.format(feeIs);
+		        cell.setPhrase(new Phrase(myStr, font));
+		        table.addCell(cell);
 			}
 			System.out.println("\t Total fee " + feeIs);
 			return feeIs;
@@ -514,7 +653,7 @@ import io.swagger.annotations.ApiOperation;
 		public String hireDeleOts(@PathVariable(value = "hireId") long hireId,
 				Model model, 
 				HttpSession session) {
-			if (!hasRole("MANAGER")) {return "/403";}
+			if (!home.hasRole("MANAGER")) {return "/403";}
 			if (!loadSessionAttributes(session)) {return "redirect:/";}
 
 			Hire myHire = hireDao.getHireById(hireId);
@@ -527,7 +666,20 @@ import io.swagger.annotations.ApiOperation;
 //				model.addAttribute("optMsg", "Hire ("+ hireId + ") should be retained for 183 days before it can be deleted.");
 //				return hirePaginated(0, model, session);
 //			}
-			// call delete hire method 
+			
+			// call delete hire method
+			Customer myCust = customerDao.getCustomerById(myHire.getCustomer().getCustId());
+			try {
+				myCust.removeHire(myHire);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			Vehicle myVeh = vehicleDao.getVehicleById(myHire.getVehicle().getVehId());
+			try {
+				myVeh.removeHire(myHire);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 
 			try {
 				this.hireDao.deleteHireById(hireId);
@@ -540,10 +692,258 @@ import io.swagger.annotations.ApiOperation;
 				model.addAttribute("optMsg", e.getMessage());
 				return hirePaginated(0, model, session);
 			}
-
 			
 			return hirePaginated(0, model, session);
 		}
 
-	
+		@GetMapping("/hirePdf/{hireId}")
+	    public void hirePdf(@PathVariable(value = "hireId") long hireId,
+	    		HttpServletResponse response) throws DocumentException, IOException {
+
+			response.setContentType("application/pdf");
+	         
+	        String headerKey = "Content-Disposition";
+	        String headerValue = "attachment; filename=Hires_" + hireId + ".pdf";
+	        response.setHeader(headerKey, headerValue);
+
+	        Hire myHire = hireDao.getHireById(hireId);
+	         
+	        Document document = new Document(PageSize.A4);
+	        PdfWriter.getInstance(document, response.getOutputStream());
+	         
+	        document.open();
+	        Font font = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
+	        font.setSize(18);
+	        font.setColor(Color.BLUE);
+
+	        Font fontData = FontFactory.getFont(FontFactory.HELVETICA);
+	        fontData.setSize(11);
+	        fontData.setColor(Color.BLACK);
+	        
+	        Paragraph p = new Paragraph("CarDate Leisure Vehicle Hiring Company Limited", font);
+	        p.setAlignment(Paragraph.ALIGN_CENTER);
+	        document.add(p);
+	        p = new Paragraph("Vehicle Hiring Invoice", font);
+	        p.setAlignment(Paragraph.ALIGN_CENTER);
+	        document.add(p);
+
+	        
+	        // print customer and vehicle details
+	        PdfPTable table = new PdfPTable(4);
+	        table.setWidthPercentage(100f);
+	        table.setWidths(new float[] {3.5f, 1.5f, 3.0f, 3.0f});
+	        table.setSpacingBefore(10);
+	         
+	        PdfPCell cell = new PdfPCell();
+	        cell.setBackgroundColor(Color.DARK_GRAY);
+	        cell.setPadding(5);
+	         
+	        font = FontFactory.getFont(FontFactory.HELVETICA);
+	        font.setColor(Color.WHITE);
+
+	        PdfPCell cellData = new PdfPCell();
+	        cellData.setPadding(5);
+	        
+	        cell.setPhrase(new Phrase("Customer ID", font));
+	        table.addCell(cell);
+
+	        String strId = "" + myHire.getCustomer().getCustId();
+	        cellData.setPhrase(new Phrase(strId, fontData));
+	        table.addCell(cellData);
+	         
+	        cell.setPhrase(new Phrase("Name", font));
+	        table.addCell(cell);
+
+	        cellData.setPhrase(new Phrase(myHire.getCustomer().getCustName(), fontData));
+	        table.addCell(cellData);
+	         
+	        // new row
+	        cell.setPhrase(new Phrase("Alternate contact", font));
+	        table.addCell(cell);
+
+	        strId = "" + myHire.getCustomer().getCustLinked().getCustId();
+	        cellData.setPhrase(new Phrase(strId, fontData));
+	        table.addCell(cellData);
+	         
+	        cell.setPhrase(new Phrase("Name", font));
+	        table.addCell(cell);
+
+	        cellData.setPhrase(new Phrase(myHire.getCustomer().getCustLinked().getCustName(), fontData));
+	        table.addCell(cellData);
+	         
+	        // new row
+	        cell.setPhrase(new Phrase("Vehicle Id", font));
+	        table.addCell(cell);
+
+	        strId = "" + myHire.getVehicle().getVehId();
+	        cellData.setPhrase(new Phrase(strId, fontData));
+	        table.addCell(cellData);
+	         
+	        cell.setPhrase(new Phrase("Daily rate", font));
+	        table.addCell(cell);
+
+	        strId = defaultFormat.format(myHire.getDailyRate());
+	        cellData.setPhrase(new Phrase(strId, fontData));
+	        table.addCell(cellData);
+
+	         
+	        // new row
+	        cell.setPhrase(new Phrase("Brand", font));
+	        table.addCell(cell);
+
+	        cellData.setPhrase(new Phrase(myHire.getVehicle().getVehBrand(), fontData));
+	        table.addCell(cellData);
+	         
+	        cell.setPhrase(new Phrase("License", font));
+	        table.addCell(cell);
+
+	        cellData.setPhrase(new Phrase(myHire.getVehicle().getVehLicPlate(), fontData));
+	        table.addCell(cellData);
+	         
+	        // new row
+	        cell.setPhrase(new Phrase("Model", font));
+	        table.addCell(cell);
+
+	        cellData.setPhrase(new Phrase(myHire.getVehicle().getVehModel(), fontData));
+	        table.addCell(cellData);
+	         
+	        cellData.setPhrase(new Phrase(" ", font));
+	        table.addCell(cellData);
+	        table.addCell(cellData);
+	         
+	        document.add(table);
+	        
+	        
+	        // print hire agreement
+	        table = new PdfPTable(4);
+	        table.setWidthPercentage(100f);
+	        table.setWidths(new float[] {2.0f, 3.0f, 2.0f, 3.0f});
+	        table.setSpacingBefore(10);
+	         
+	        cell = new PdfPCell();
+	        cell.setBackgroundColor(Color.DARK_GRAY);
+	        cell.setPadding(5);
+	         
+	        font = FontFactory.getFont(FontFactory.HELVETICA);
+	        font.setColor(Color.WHITE);
+	         
+	        cell.setPhrase(new Phrase("Hiring Starts", font));
+	        table.addCell(cell);
+
+	        strId = dtsFormat.format(myHire.getDtsStart());
+	        cellData.setPhrase(new Phrase(strId, fontData));
+	        table.addCell(cellData);
+	         
+	        cell.setPhrase(new Phrase("Hiring Id", font));
+	        table.addCell(cell);
+
+	        strId = "" + myHire.getHireId();
+	        cellData.setPhrase(new Phrase(strId, fontData));
+	        table.addCell(cellData);
+	         
+	        // new row
+	        cell.setPhrase(new Phrase("Agreed end", font));
+	        table.addCell(cell);
+
+	        strId = dtsFormat.format(myHire.getDtsEnd());
+	        cellData.setPhrase(new Phrase(strId, fontData));
+	        table.addCell(cellData);
+	        
+	        if (myHire.getDtsEndActual()==null) {
+		        cellData.setPhrase(new Phrase(" ", fontData));
+		        table.addCell(cellData);
+		        table.addCell(cellData);
+	        } else {
+		        cell.setPhrase(new Phrase("Actual Return", font));
+		        table.addCell(cell);
+		        strId = dtsFormat.format(myHire.getDtsEndActual());
+		        cellData.setPhrase(new Phrase(strId, fontData));
+		        table.addCell(cellData);
+	        }
+	         
+	        document.add(table);
+	        
+	        
+	        
+	        // print hire billing details
+	        table = new PdfPTable(6);
+	        table.setWidthPercentage(100f);
+	        table.setWidths(new float[] {3.5f, 3f, 3f, 1.7f, 1.8f, 1.8f});
+	        table.setSpacingBefore(10);
+
+	        cell = new PdfPCell();
+	        cell.setBackgroundColor(Color.DARK_GRAY);
+	        cell.setPadding(5);
+	         
+	        font = FontFactory.getFont(FontFactory.HELVETICA);
+	        font.setColor(Color.WHITE);
+	         
+	        cell.setPhrase(new Phrase("Hire type", font));
+	        table.addCell(cell);
+	        cell.setPhrase(new Phrase("Start", font));
+	        table.addCell(cell);
+	        cell.setPhrase(new Phrase("End", font));
+	        table.addCell(cell);
+	        cell.setPhrase(new Phrase("Quantity", font));
+	        table.addCell(cell);
+	        cell.setPhrase(new Phrase("Rate", font));
+	        table.addCell(cell);
+	        cell.setPhrase(new Phrase("Amount", font));
+	        
+	        table.addCell(cell);
+
+	        // call fee computing method to generate billing details
+	        double feeIs = computeFee(myHire.getDailyRate(), myHire.getDtsStart(), myHire.getDtsEnd(), myHire.getDtsEndActual(), table, cellData, fontData);
+
+	        if (myHire.getDeposit()>0) {
+	        	cellData.setPhrase(new Phrase("Deposit received", fontData));
+		        table.addCell(cellData);
+		        strId = dateFormat.format(myHire.getDtsStart());
+	        	cellData.setPhrase(new Phrase(strId, fontData));
+		        table.addCell(cellData);
+		        table.addCell("");
+		        table.addCell("");
+		        table.addCell("");
+		        strId = defaultFormat.format(myHire.getDeposit());
+		        cellData.setPhrase(new Phrase(strId, fontData));
+		        cellData.setHorizontalAlignment(Element.ALIGN_RIGHT);
+		        table.addCell(cellData);
+
+		        
+		        table.addCell("");
+		        table.addCell("");
+		        table.addCell("");
+		        table.addCell("");
+	        	cellData.setPhrase(new Phrase("Balance", fontData));
+		        table.addCell(cellData);
+		        strId = defaultFormat.format(feeIs - myHire.getDeposit());
+		        cellData.setPhrase(new Phrase(strId, fontData));
+		        cellData.setHorizontalAlignment(Element.ALIGN_RIGHT);
+		        table.addCell(cellData);
+	        }
+
+	         
+	        document.add(table);
+
+	        // Print customer acknowledge portion during vehicle pickup.
+	        if (myHire.getDtsEndActual()==null) {
+		        p = new Paragraph("I acknowledge that the said Vehicle is received in satisfactory condition:");
+		        document.add(p);
+		        p = new Paragraph(" ");
+		        document.add(p);
+		        document.add(p);
+		        document.add(p);
+		        document.add(p);
+		        p = new Paragraph("Customer Signature and Date");
+		        p.setAlignment(Paragraph.ALIGN_RIGHT);
+		        document.add(p);
+	        }
+	        
+
+	        
+	        document.close();
+	        
+	    }
+
+		
 }
