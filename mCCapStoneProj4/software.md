@@ -1,5 +1,16 @@
 day1
 
+[To install java 12c](#to-install-java-12c)
+
+[sqlplus sys/oracle as sysdba](#sqlplus-sysoracle-as-sysdba)
+
+[To set connection in Mac's virtualBox SQL Developer](#to-set-connection-in-macs-virtualbox-sql-developer)
+
+[SQL Commands](#sql-commands)
+
+[ORACLE VM Virtual Box 6.1](#oracle-vm-virtual-box-61)
+
+---
 ### To install java 12c
 
 
@@ -1153,4 +1164,68 @@ end;
 ```
 
 ---
+## ORACLE VM Virtual Box 6.1
+- date: 20210314
+- macOS Catalina Version 10.15.7, Mac mini(2018)
+- 
 
+### readme.txt
+11 Apr 2019, Accessed: 13 Mar 2021
+``` text
+* All passwords are oracle or noted if otherwise.
+
+* All the Hands on Labs can be accessed by opening the ODDHandsOnLabs.html file on the Desktop.
+
+* Oracle SQL Developer, Data Modeler, SQLcl and Rest Client can be found in the desktop menu Applications/Other.
+
+The SQL Developer and Data Modeler scripts are in the directory: 
+/home/oracle/Desktop/Database_Track/sqldevdm
+and
+/home/oracle/Desktop/Database_Track/sqldev
+
+The Application Express scripts are in the directory:
+/home/oracle/Desktop/APEX_Track/files
+
+To Reset the labs: 
+SQL Developer:            /home/oracle/reset_sqldev (includes ORDS, Data Modeler, Unit Test)
+Application Express:      /home/oracle/reset_apex
+REST Data Services :      /home/oracle/reset_rest (APEX related)
+SODA4REST :               /home/oracle/reset_soda4rest
+Soup to Nuts :            /home/oracle/reset_soup
+  -- APEX Labs Only       /home/oracle/reset_soup_apex_only
+
+Database Information:
+Oracle SID    : orclcdb
+Pluggable DB  : orcl
+Pluggable DB  : ords create if required by running: 
+    'newpdbords' in the terminal - for ORDS pdb creation.
+         (if 'sqlplus system/oracle@ORDS' connects ORDS pdb has already been installed)
+    'loadstorm' in the terminal for spatial demo data - takes a few minutes.
+
+ALL PASSWORDS ARE : oracle
+
+*** Please note that this appliance is for testing purposes only, 
+as such it is unsupported and should not be used as a production environment.
+```
+#### my terminla
+``` terminal
+[oracle@localhost ~]$ sqlplus
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Sun Mar 14 01:26:59 2021
+Version 19.3.0.0.0
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+Enter user-name: system
+Enter password: 
+Last Successful login time: Tue Mar 02 2021 21:54:37 -05:00
+
+Connected to:
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+
+SQL> 
+
+```
+
+---
