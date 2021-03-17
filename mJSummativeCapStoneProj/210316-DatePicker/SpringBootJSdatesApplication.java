@@ -8,6 +8,7 @@ public class SpringBootJSdatesApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootJSdatesApplication.class, args);
+		System.out.println("************ SpringBootJSdates ************");
 	}
 
 }

@@ -1,5 +1,5 @@
 ### Date Picker
-210316DatePicker.png <img src="210316DatePicker.png">
+210317DatePicker.png <img src="210317DatePicker.png">
 
 #### index.html
 ``` html
@@ -20,7 +20,8 @@
 <body> 
 	<center> 
 		<h1>Disable Booked dates</h1> 
-		<h4>Using jQuery UI beforeShowDay</h4> 
+		<h4>Using jQuery UI beforeShowDay</h4>
+		<h3>Shown blocked dated on 13 April and 14 April</h3>
 	Start Date: 
 	<input type="text" id="my_date_picker1"> 
 	<script th:inline="javascript">
@@ -28,6 +29,8 @@
 
 			var cdate = new Date();
 			
+			var my_array = new Array('14/4/2021','13/4/2021','28/3/2021');
+
 			$(function() { 
 				$("#my_date_picker1").datepicker({ 
 					dateFormat: 'yy-mm-dd', 
@@ -42,14 +45,7 @@
 
 			function my_check(in_date) { 
 				in_date = in_date.getDate() + '/' 
-				+ (in_date.getMonth() + 1) + '/' + in_date.getFullYear(); 
-				//var my_array = new Array('3/4/2021', '14/4/2021','13/4/2021','28/3/2021');
-				//var my_array = new Array('2021/4/4', '2021/4/14','2021/4/13','2021/3/28');
-					var object = '[[${listdates}]]'
-					var my_array = []
-					
-					my_array.push(object)
-					//alert (my_array)
+					+ (in_date.getMonth() + 1) + '/' + in_date.getFullYear(); 
  
 				if (my_array.indexOf(in_date) >= 0) { 
 					return [false, "notav", 'Not Available']; 
@@ -62,7 +58,6 @@
 
 </body> 
 </html> 
-
 ```
 #### blockdates.java
 ``` java
@@ -73,17 +68,45 @@ public class blockdates {
 	@Id
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate bdate;
-	
 
-	public LocalDate getBate() {
+	public LocalDate getBdate() {
 		return bdate;
 	}
 
 	public void setBdate(LocalDate bdate) {
 		this.bdate = bdate;
 	}
+	
+}
+
+```
+#### JsController.java
+``` java
+@Controller
+public class JsController {
+
+	@Autowired blockdates d;
+	
+	@Autowired bdatesRepository repo;
+	
+	@GetMapping("/")
+	public String showMain(Model model) {
+		List<blockdates> listdates = repo.findAll();
+
+		model.addAttribute("listdates", listdates);
+
+		return "index";
+	}
+
 }
 ```
+#### bdatesRepository.java
+```java
+public interface bdatesRepository extends JpaRepository<blockdates, LocalDate> {
+	 
+}
+```
+
 #### application.properties
 serve no purpose
 ```
@@ -92,8 +115,8 @@ spring.datasource.username=sridhar
 spring.datasource.password=sridhar
 
 #spring.jackson.date-format=dd/mm/yyyy
-spring.jackson.date-format=yyyy/mm/dd
+#spring.jackson.date-format=yyyy/mm/dd
 
 spring.jpa.hibernate.ddl-auto=update
-logging.level.root=info
+#logging.level.root=info
 ```

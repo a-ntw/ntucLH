@@ -16,30 +16,14 @@ public class blockdates {
 	@Id
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate bdate;
-	
 
-	public LocalDate getBate() {
+	public LocalDate getBdate() {
 		return bdate;
 	}
 
 	public void setBdate(LocalDate bdate) {
 		this.bdate = bdate;
 	}
-}
-/*
- import java.util.Date;
- public class blockdates {
-	@Id
-	@DateTimeFormat(pattern="dd-MM-yyyy")
-	private Date bdate;
 	
-
-	public Date getBate() {
-		return bdate;
-	}
-
-	public void setBdate(Date bdate) {
-		this.bdate = bdate;
-	}
 }
- * */
+

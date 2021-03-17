@@ -1,6 +1,6 @@
 package com.ntuc;
 
-import java.util.Date;
+//import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,13 +13,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class JsController {
 
 	@Autowired blockdates d;
+	
 	@Autowired bdatesRepository repo;
+	
 	@GetMapping("/")
 	public String showMain(Model model) {
 		List<blockdates> listdates = repo.findAll();
-		listdates.toString();
+
 		model.addAttribute("listdates", listdates);
+
 		return "index";
 	}
-	
+
 }
