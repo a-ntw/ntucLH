@@ -12,10 +12,14 @@ import org.springframework.stereotype.Component;
 @Entity
 @Table(name="booked_dates")
 @Component
-public class blockdates {
+public class Blockdate {
 	@Id
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate bdate;
+
+	public Blockdate() {
+		super();
+	}
 
 	public LocalDate getBdate() {
 		return bdate;
@@ -24,6 +28,11 @@ public class blockdates {
 	public void setBdate(LocalDate bdate) {
 		this.bdate = bdate;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Blockdate [bdate=" + bdate + "]";
+	}
+
 }
 

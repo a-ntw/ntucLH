@@ -24,8 +24,14 @@
 
 			var cdate = new Date();
 			
-			var my_array = new Array('14/4/2021','13/4/2021','28/3/2021');
-
+			var my_array = [];
+			my_array = new Array('4/4/2021','13/4/2021','28/3/2021');
+			
+				/*<![CDATA[*/
+			   	/*[# th:each="n : ${finalDates}"]*/
+				my_array.push("[(${n})]");
+				/*[/]*/
+								
 			$(function() { 
 				$("#my_date_picker1").datepicker({ 
 					dateFormat: 'yy-mm-dd', 

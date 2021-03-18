@@ -1,5 +1,5 @@
-### Date Picker with dates
-210318DatesBlocks.png <img src="210318DatesBlocks.png">
+### Date Picker
+210317DatePicker.png <img src="210317DatePicker.png">
 
 #### index.html
 ``` html
@@ -29,14 +29,8 @@
 
 			var cdate = new Date();
 			
-			var my_array = [];
-			my_array = new Array('4/4/2021','13/4/2021','28/3/2021');
-			
-				/*<![CDATA[*/
-			   	/*[# th:each="n : ${finalDates}"]*/
-				my_array.push("[(${n})]");
-				/*[/]*/
-								
+			var my_array = new Array('14/4/2021','13/4/2021','28/3/2021');
+
 			$(function() { 
 				$("#my_date_picker1").datepicker({ 
 					dateFormat: 'yy-mm-dd', 
@@ -64,60 +58,54 @@
 
 </body> 
 </html> 
-
 ```
-
-#### JsController.java
+#### blockdates.java
 ``` java
-package com.ntuc;
+@Entity
+@Table(name="booked_dates")
+@Component
+public class blockdates {
+	@Id
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private LocalDate bdate;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-
-
-@Controller
-public class JsController {
-
-	@GetMapping("/")
-	public String showMain(Model model) {
-
-		model.addAttribute("finalDates", finalDates());
-
-		return "index";
+	public LocalDate getBdate() {
+		return bdate;
 	}
 
-	public String[] finalDates() {
-		
-		LocalDate[] listdates = new LocalDate[3];				// size up first
-		LocalDate abcDate1 = LocalDate.parse("2021-04-20");
-		LocalDate abcDate2 = LocalDate.parse("2021-04-21");
-		LocalDate abcDate3 = LocalDate.parse("2021-04-22");
-		listdates[0] = abcDate1;
-		listdates[1] = abcDate2;
-		listdates[2] = abcDate3;
-
-		
-		String[] finalDates= new String[listdates.length];
-	
-		DateTimeFormatter dTF; 
-		dTF = DateTimeFormatter.ofPattern("d/M/yyyy");
-
-		for(int i=0;i<listdates.length;i++) {
-			finalDates[i]=dTF.format(listdates[i]);
-		}
-		
-		return finalDates;
-		
+	public void setBdate(LocalDate bdate) {
+		this.bdate = bdate;
 	}
 	
 }
 
 ```
+#### JsController.java
+``` java
+@Controller
+public class JsController {
 
+	@Autowired blockdates d;
+	
+	@Autowired bdatesRepository repo;
+	
+	@GetMapping("/")
+	public String showMain(Model model) {
+		List<blockdates> listdates = repo.findAll();
+
+		model.addAttribute("listdates", listdates);
+
+		return "index";
+	}
+
+}
+```
+#### bdatesRepository.java
+```java
+public interface bdatesRepository extends JpaRepository<blockdates, LocalDate> {
+	 
+}
+```
 
 #### application.properties
 serve no purpose
