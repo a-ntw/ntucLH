@@ -66,6 +66,7 @@
 ```
 #### blockdates.java
 ``` java
+<<<<<<< HEAD
 @Entity
 @Table(name="booked_dates")
 @Component
@@ -74,14 +75,53 @@ public class blockdates {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate bdate;
 	
+=======
+package com.ntuc;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+
+@Controller
+public class JsController {
+
+	@GetMapping("/")
+	public String showMain(Model model) {
+
+		LocalDate abcDate1 = LocalDate.parse("2021-04-20");
+		model.addAttribute("finalDates", finalDates(abcDate1, 10));
+>>>>>>> 18473e01e44bdf9d524ba980947178108a10c250
 
 	public LocalDate getBate() {
 		return bdate;
 	}
 
+<<<<<<< HEAD
 	public void setBdate(LocalDate bdate) {
 		this.bdate = bdate;
 	}
+=======
+	// formated dates for calender
+	public static String[] finalDates(LocalDate startDate, Integer dayRange) {
+
+		String[] finalDates= new String[dayRange]; // size up first
+	
+		DateTimeFormatter dTF; 
+		dTF = DateTimeFormatter.ofPattern("d/M/yyyy");
+
+		for(int i=0;i<dayRange;i++) {
+			finalDates[i]=dTF.format(startDate.plusDays(i));
+		}
+
+		return finalDates;
+		
+	}
+
+>>>>>>> 18473e01e44bdf9d524ba980947178108a10c250
 }
 ```
 #### application.properties
@@ -95,5 +135,10 @@ spring.datasource.password=sridhar
 spring.jackson.date-format=yyyy/mm/dd
 
 spring.jpa.hibernate.ddl-auto=update
+<<<<<<< HEAD
 logging.level.root=info
 ```
+=======
+#logging.level.root=info
+```
+>>>>>>> 18473e01e44bdf9d524ba980947178108a10c250
