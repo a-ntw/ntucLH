@@ -487,3 +487,15 @@ The collect Method: Collect to an ArrayList Example
 
             [Joe, Amy, Bill, Eric, Eric]
 ```
+---
+### Type of objects
+``` java
+		Integer one = 1;
+		System.out.println(one.getClass());		// class java.lang.Integer
+		
+		String hello = "Hello";
+		System.out.println(hello.getClass());	// class java.lang.String
+		
+		LocalDate tomorrow = LocalDate.parse("2021-05-01");
+		System.out.println(tomorrow.getClass()); // class java.time.LocalDate
+```
