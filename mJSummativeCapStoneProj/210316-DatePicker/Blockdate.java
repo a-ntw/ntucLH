@@ -13,10 +13,15 @@ import org.springframework.stereotype.Component;
 @Table(name="booked_dates")
 @Component
 public class Blockdate {
+	
 	@Id
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate bdate;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate edate;
+	
+	
 	public Blockdate() {
 		super();
 	}
@@ -29,9 +34,17 @@ public class Blockdate {
 		this.bdate = bdate;
 	}
 
+	public LocalDate getEdate() {
+		return edate;
+	}
+
+	public void setEdate(LocalDate edate) {
+		this.edate = edate;
+	}
+
 	@Override
 	public String toString() {
-		return "Blockdate [bdate=" + bdate + "]";
+		return "Blockdate [bdate=" + bdate + ", edate=" + edate + "]";
 	}
 
 }

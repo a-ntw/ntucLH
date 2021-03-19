@@ -1,5 +1,5 @@
-### Date Picker with dates
-210318DatesBlocks.png <img src="210318DatesBlocks.png">
+### Date Picker
+210316DatePicker.png <img src="210316DatePicker.png">
 
 #### index.html
 ``` html
@@ -20,8 +20,7 @@
 <body> 
 	<center> 
 		<h1>Disable Booked dates</h1> 
-		<h4>Using jQuery UI beforeShowDay</h4>
-		<h3>Shown blocked dated on 13 April and 14 April</h3>
+		<h4>Using jQuery UI beforeShowDay</h4> 
 	Start Date: 
 	<input type="text" id="my_date_picker1"> 
 	<script th:inline="javascript">
@@ -29,14 +28,6 @@
 
 			var cdate = new Date();
 			
-			var my_array = [];
-			my_array = new Array('4/4/2021','13/4/2021','28/3/2021');
-			
-				/*<![CDATA[*/
-			   	/*[# th:each="n : ${finalDates}"]*/
-				my_array.push("[(${n})]");
-				/*[/]*/
-								
 			$(function() { 
 				$("#my_date_picker1").datepicker({ 
 					dateFormat: 'yy-mm-dd', 
@@ -51,7 +42,14 @@
 
 			function my_check(in_date) { 
 				in_date = in_date.getDate() + '/' 
-					+ (in_date.getMonth() + 1) + '/' + in_date.getFullYear(); 
+				+ (in_date.getMonth() + 1) + '/' + in_date.getFullYear(); 
+				//var my_array = new Array('3/4/2021', '14/4/2021','13/4/2021','28/3/2021');
+				//var my_array = new Array('2021/4/4', '2021/4/14','2021/4/13','2021/3/28');
+					var object = '[[${listdates}]]'
+					var my_array = []
+					
+					my_array.push(object)
+					//alert (my_array)
  
 				if (my_array.indexOf(in_date) >= 0) { 
 					return [false, "notav", 'Not Available']; 
@@ -66,59 +64,26 @@
 </html> 
 
 ```
-
-#### JsController.java
+#### blockdates.java
 ``` java
-package com.ntuc;
+@Entity
+@Table(name="booked_dates")
+@Component
+public class blockdates {
+	@Id
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private LocalDate bdate;
+	
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-
-
-@Controller
-public class JsController {
-
-	@GetMapping("/")
-	public String showMain(Model model) {
-
-		model.addAttribute("finalDates", finalDates());
-
-		return "index";
+	public LocalDate getBate() {
+		return bdate;
 	}
 
-	public String[] finalDates() {
-		
-		LocalDate[] listdates = new LocalDate[3];				// size up first
-		LocalDate abcDate1 = LocalDate.parse("2021-04-20");
-		LocalDate abcDate2 = LocalDate.parse("2021-04-21");
-		LocalDate abcDate3 = LocalDate.parse("2021-04-22");
-		listdates[0] = abcDate1;
-		listdates[1] = abcDate2;
-		listdates[2] = abcDate3;
-
-		
-		String[] finalDates= new String[listdates.length];
-	
-		DateTimeFormatter dTF; 
-		dTF = DateTimeFormatter.ofPattern("d/M/yyyy");
-
-		for(int i=0;i<listdates.length;i++) {
-			finalDates[i]=dTF.format(listdates[i]);
-		}
-		
-		return finalDates;
-		
+	public void setBdate(LocalDate bdate) {
+		this.bdate = bdate;
 	}
-	
 }
-
 ```
-
-
 #### application.properties
 serve no purpose
 ```
@@ -127,8 +92,8 @@ spring.datasource.username=sridhar
 spring.datasource.password=sridhar
 
 #spring.jackson.date-format=dd/mm/yyyy
-#spring.jackson.date-format=yyyy/mm/dd
+spring.jackson.date-format=yyyy/mm/dd
 
 spring.jpa.hibernate.ddl-auto=update
-#logging.level.root=info
+logging.level.root=info
 ```
