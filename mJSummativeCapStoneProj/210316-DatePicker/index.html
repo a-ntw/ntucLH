@@ -16,7 +16,7 @@
 	<center> 
 		<h1>Disable Booked dates</h1> 
 		<h4>Using jQuery UI beforeShowDay</h4>
-		<h3>Shown blocked dated on 13 April and 14 April</h3>
+		<h3>Shown blocked dated on dates from database</h3>
 	Start Date: 
 	<input type="text" id="my_date_picker1"> 
 	<script th:inline="javascript">
@@ -28,7 +28,7 @@
 			//my_array = new Array('4/4/2021','13/4/2021','28/3/2021');
 			
 				/*<![CDATA[*/
-			   	/*[# th:each="n : ${calenderBlkDates}"]*/
+			   	/*[# th:each="n : ${localDateArrayMany}"]*/
 				my_array.push("[(${n})]");
 				/*[/]*/
 								
