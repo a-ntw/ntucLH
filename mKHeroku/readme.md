@@ -78,6 +78,7 @@ spring.datasource.initialization-mode=always
 ```
 Pom.xml
 ``` xml
+<!-- only version 1.8 for Heroku to work	 -->	
 	<properties>
 		<Java.version>1.8</java.version>
 	</properties>
