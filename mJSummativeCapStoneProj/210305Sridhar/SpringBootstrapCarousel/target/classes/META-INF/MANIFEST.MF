@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Built-By: sridh
+Built-By: antw
 Build-Jdk: 15.0.1
 Implementation-Title: SpringBootstrapCarousel
 Implementation-Version: 0.0.1
