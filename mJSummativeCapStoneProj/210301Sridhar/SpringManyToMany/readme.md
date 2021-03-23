@@ -1,5 +1,5 @@
 ### Export to PDF
-210302ExportPdf.png <img src="./210302ExportPdf.png">
+210302ExportPdf.png <img src="../210302ExportPdf.png">
 #### UserPDFExporter.java
 ``` java
 package SpringManyToMany;
