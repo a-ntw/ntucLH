@@ -35,6 +35,33 @@ $(document).ready(function () {
 	});
 	});
 ```
+### + delete alert with Detail
+- getElementById("table") - `	<table class="table table-striped" id="table">`
+- main.js
+``` js
+$(document).ready(function() {
+	$('.table .delBtn').on('click', function(event) {
+		event.preventDefault();
+		var href = $(this).attr('href');
+
+		var table = document.getElementById("table"), rIndex, cIndex;
+		for (i = 0; i < table.rows.length; i++)
+			for (j = 0; j < table.rows[i].cells.length; j++) {
+				table.rows[i].cells[j].onclick = function() {
+					rIndex = this.parentElement.rowIndex;
+					var temp = table.rows[rIndex].cells[1].innerHTML;
+					var divmain = document.getElementById("main");
+					divmain.innerHTML = "do you want to delete the product  <b>" 
+						+ table.rows[rIndex].cells[1].innerHTML + "</b> ?";
+				}
+			}
+
+		$('#deleteModal #delRef').attr('href', href);
+		$('#deleteModal').modal();
+
+	});
+});
+```
 
 ---
 #### products.java
