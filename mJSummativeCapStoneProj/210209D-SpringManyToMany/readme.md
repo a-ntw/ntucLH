@@ -5,7 +5,38 @@ ManyToMany Delete Alert
 
 Directory arrangement
 
+### Delete Alert
+- need bootstra link - `<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          rel="stylesheet">`
+- `delBtn` - `<a class="btn btn-danger delBtn" th:href="@{'/products/delete/' + ${product.id}}"  > Delete </a>`
+- modal - minimumly: 
+``` html
+	<div class="modal" id="deleteModal">
+		<a data-dismiss="modal">Keep</a>
+		<a href="" id="delRef">proceed </a>
+	</div>
+```
+- javaScript
+``` html
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" type="text/javascript"></script>
+<script  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" type="text/javascript"></script>
+<script  src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" type="text/javascript"></script>
+<script  src="../static/main.js" th:src="@{/main.js}"  type="text/javascript"></script>
+```
+- main.js - 
+``` js
+$(document).ready(function () {
+	$('.table .delBtn').on('click',function(event) {
+		event.preventDefault();
+		var href = $(this).attr('href');
+		
+		$('#deleteModal #delRef').attr('href',href);
+		$('#deleteModal').modal();	
+	});
+	});
+```
 
+---
 #### products.java
 ``` java
 ...
