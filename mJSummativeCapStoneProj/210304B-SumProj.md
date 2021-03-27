@@ -1,5 +1,15 @@
 ### Transactional Testing with Dao, and Repo
 
+#### kick start
+``` java
+	//@Disabled
+	@Test
+	public void testing() {
+		int a = 1;
+		assertEquals(a, 1);
+	}
+```
+
 #### empValidTest.java
 ``` java
 package carDate.emp;
