@@ -7,6 +7,13 @@ https://www.thymeleaf.org/doc/articles/layouts.html
 
 210210CommonHtml.png <img src="210210CommonHtml.png">
 
+### TrashBin icons
+- product.html - 
+`<span class="fa fa-edit"></span>` or `<span class="fa fa-trash"></span>`
+- common.html - 
+`<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> </link>`
+
+---
 
 #### pom.xml
 ``` xml

@@ -5,7 +5,65 @@ ManyToMany Delete Alert
 
 Directory arrangement
 
+### Delete Alert
+- need bootstra link - `<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          rel="stylesheet">`
+- `delBtn` - `<a class="btn btn-danger delBtn" th:href="@{'/products/delete/' + ${product.id}}"  > Delete </a>`
+- modal - minimumly: 
+``` html
+	<div class="modal" id="deleteModal">
+		<a data-dismiss="modal">Keep</a>
+		<a href="" id="delRef">proceed </a>
+	</div>
+```
+- javaScript
+``` html
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" type="text/javascript"></script>
+<script  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" type="text/javascript"></script>
+<script  src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" type="text/javascript"></script>
+<script  src="../static/main.js" th:src="@{/main.js}"  type="text/javascript"></script>
+```
+- main.js - 
+``` js
+$(document).ready(function () {
+	$('.table .delBtn').on('click',function(event) {
+		event.preventDefault();
+		var href = $(this).attr('href');
+		
+		$('#deleteModal #delRef').attr('href',href);
+		$('#deleteModal').modal();	
+	});
+	});
+```
+### + delete alert with Detail
+- getElementById("table") - `	<table class="table table-striped" id="table">`
+- main.js
+``` js
+$(document).ready(function() {
+	$('.table .delBtn').on('click', function(event) {
+		event.preventDefault();
+		var href = $(this).attr('href');
 
+		var table = document.getElementById("table"), rIndex, cIndex;
+		for (i = 0; i < table.rows.length; i++)
+			for (j = 0; j < table.rows[i].cells.length; j++) {
+				table.rows[i].cells[j].onclick = function() {
+					rIndex = this.parentElement.rowIndex;
+					var temp = table.rows[rIndex].cells[1].innerHTML;
+					var divmain = document.getElementById("main");
+					divmain.innerHTML = "do you want to delete the product  <b>" 
+						+ table.rows[rIndex].cells[1].innerHTML + "</b> ?";
+				}
+			}
+
+		$('#deleteModal #delRef').attr('href', href);
+		$('#deleteModal').modal();
+
+	});
+});
+```
+
+---
 #### products.java
 ``` java
 ...
