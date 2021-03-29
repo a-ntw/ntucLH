@@ -1,5 +1,50 @@
 ### Export to PDF
 210302ExportPdf.png <img src="../210302ExportPdf.png">
+#### UserController.java
+``` java
+    @GetMapping("/users/export/pdf")
+    public void exportToPDF(HttpServletResponse response) throws DocumentException, IOException {
+        response.setContentType("application/pdf");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+         
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=users_" + currentDateTime + ".pdf";
+        response.setHeader(headerKey, headerValue);
+         
+        List<Users> listUsers = repo.findAll();
+         
+       UserPDFExporter exporter = new UserPDFExporter(listUsers);
+       exporter.export(response);
+    }
+    
+    @GetMapping("/users/export")
+    public void exportToCSV(HttpServletResponse response) throws IOException {
+       response.setContentType("text/csv");
+       DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
+       String currentDateTime = dateFormatter.format(new Date());
+
+       String headerKey = "Content-Disposition";
+       String headerValue = "attachment; filename=users_" + currentDateTime + ".csv";
+       response.setHeader(headerKey, headerValue);
+
+       List<Users> listUsers = repo.findAll();
+
+       ICsvBeanWriter csvWriter = new CsvBeanWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
+       String[] csvHeader = {"User ID", "Username", "Password", "Roles", "Enabled"};
+       String[] nameMapping = {"id", "username", "password", "roles", "enabled"};
+
+       csvWriter.writeHeader(csvHeader);
+
+       for (Users user : listUsers) {
+           csvWriter.write(user, nameMapping);
+       }
+
+       csvWriter.close();
+
+   }
+```
+
 #### UserPDFExporter.java
 ``` java
 package SpringManyToMany;
@@ -88,23 +133,8 @@ public class UserPDFExporter {
 
 #### users.html
 ``` html
-<body>
-
-<H1> User List</H1>
-<div> 
-    <h3> <a th:href="@{/users/new}"> Create New User</a>   </h3>
-</div>	
-
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Username</th>
-            <th>Roles</th>
-        </tr>
-    </thead>
-    <tbody>
-        <th:block th:each="users: ${listUsers}">
+...
+    <tbody> <th:block th:each="users: ${listUsers}">
             <tr>
                 <td>[[${users.id}]] </td>
                 <td>[[${users.username}]] </td>
@@ -112,13 +142,22 @@ public class UserPDFExporter {
                 <td> <a th:href="@{'/users/edit/' + ${users.id}}"> Edit </a> </td>
                 <td> <a th:href="@{'/users/delete/' + ${users.id}}"> Delete </a> </td>
             </tr>
-        </th:block>	
-    </tbody>
-</table>
-<br>
-
-<a th:href="@{/users/export/pdf}">Export to PDF</a> &nbsp;&nbsp;&nbsp;
-  <a th:href="@{/users/export}">Export to CSV</a>
-
+    </th:block> </tbody>
+</table>    <br>
+    <a th:href="@{/users/export/pdf}">Export to PDF</a> &nbsp;&nbsp;&nbsp;
+    <a th:href="@{/users/export}">Export to CSV</a>
 </body>
+```
+#### pom.xml
+``` xml
+    <dependency>
+        <groupId>com.github.librepdf</groupId>
+        <artifactId>openpdf</artifactId>
+        <version>1.3.8</version>
+    </dependency>
+    <dependency>
+        <groupId>net.sf.supercsv</groupId>
+        <artifactId>super-csv</artifactId>
+        <version>2.4.0</version>
+    </dependency>
 ```
