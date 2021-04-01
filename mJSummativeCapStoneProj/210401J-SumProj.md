@@ -5,7 +5,7 @@
 #### hires.html
 add table name in script,`$('.mydatatable').DataTable();`
 ``` html
-	<div class = "container mb-3 mt-3"></div> 
+	<div class = "container mb-3 mt-3">
 		<table class="table table-striped mydatatable" id="table">
 			<thead>
             ...
