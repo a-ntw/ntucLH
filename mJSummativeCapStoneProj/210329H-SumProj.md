@@ -1,17 +1,7 @@
 ## Ternary operators 
 
 ### some thymeleaf exmaples
-#### hires.html
-``` html
-    <!-- <td th:text="${hire.casedone == true ? ('YES') : hidden}"/> -->
-    <td th:text="${ hire.casedone == true ?  hire.hireId : '' }" />
 
-    <td><a th:classappend="${hire.casedone != true ? 'btn btn-info btn-sm fa fa-edit' : hidden}"
-        th:href="@{'/hireEdit/' + ${hire.hireId}}"> </a>
-    <!-- <a th:classappend="${hire.casedone == true ? '' : 'btn btn-info btn-sm'}"
-        th:href="@{'/hireEdit/' + ${hire.hireId}}">
-        <span class="fa fa-edit"></span></a> -->	
-```
 #### Thymeleaf Page Layouts
 https://www.thymeleaf.org/doc/articles/layouts.html
 ``` java
@@ -40,6 +30,51 @@ class HomeController {
 <div th:replace="${#authentication.principal.isAdmin()} ? ~{fragments/footer :: footer-admin} : ~{fragments/footer :: footer-admin}">
   &copy; 2016 The Static Templates
 </div>
-
-
 ```
+---
+### tenary on listing
+all rows need to be fill with value 
+
+210403TenaryOpe.png <img src="scrShot/210403TenaryOpe.png">
+
+#### hire.html
+``` html
+        <td th:text="${hire.dateEnd}" />
+        <td><a th:href="@{'/inv/invoice/' + 
+            ${ hire.casedone == true ? hire.invoice.invId : hire.hireId } }"> <!-- hire.hireId  is dummy -->
+            [[${ hire.casedone == true ?  hire.invoice.invNo : "" } ]]</a>
+        </td>
+        <td>
+            <a th:classappend="${hire.casedone != true ? 'btn btn-info btn-sm fa fa-edit' : hidden}"
+            th:href="@{'/hireEdit/' + ${hire.hireId}}"> </a>
+
+            <a class="btn btn-warning btn-sm delBtn" th:href="@{/hire/delete/{hireId}(hireId=${hire.hireId})}">
+                <span class="fa fa-trash"></span></a>
+        </td>
+
+        <!-- <td> <a th:href="@{'/inv/invoice/' + ${hire.hireId}}">url</a> </td>  -->
+        <!-- <td th:text="${ hire.casedone == true ?  hire.hireId : '' }" /> -->
+    </tr>
+```
+#### HireController.java
+``` java
+	@GetMapping("/hire")
+	public String viewHirePage(Model model) {
+		List<Hire> listHires = hireDao.getAllHires();
+		model.addAttribute("listHires", listHires);
+		//Stream.of(listHires).forEach(s -> System.out.println("/n hire :: " + s));
+		return "hire/hires";
+	}
+```
+#### InvController.java
+``` java
+	@GetMapping("inv/invoice/{id}")
+	public String showInvoice(@PathVariable("id") int id, Model model) {
+		Invoice inv = invoiceDao.getInvoiceById(id);
+		model.addAttribute("inv", inv);
+		log.info("=====> inv/invoice/" + inv.getInvId());
+		return "inv/invoice";
+	}
+```
+
+
