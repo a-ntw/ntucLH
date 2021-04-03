@@ -12,7 +12,7 @@ ntuc CapStone 6
 | 06 | BankApp Session ID | [ 210129P-BankApp ](/mHCapStoneProj6/210129P-BankApp ) | <img src="210129P-BankApp/210129Session.png" alt="210129Session.png" height="144"> |
 | 07 | Bean Scope | [ 210201SpringBeanScope ](/mHCapStoneProj6/210201SpringBeanScope) | <img src="210201SpringBeanScope/210201BeanScopes.png" alt="210201BeanScopes.png" height="144"> |
 | 08 | Chat room | [ 210201Springbootchatrooms ](/mHCapStoneProj6/210201Springbootchatrooms) | <img src="210201Springbootchatrooms/210201ChatRooms.png" alt="210201ChatRooms.png" height="144"> |
-| 09 | login | [ 210201springModelAttribute ](/mHCapStoneProj6/210201springModelAttribute) | <img src="210201springModelAttribute/210201ModelAttribute.png" alt="210201ModelAttribute.png" height="144"> |
+| 09 | ModelMap, RequestParam | [ 210201springModelAttribute ](/mHCapStoneProj6/210201springModelAttribute) | <img src="210201springModelAttribute/210201ModelAttribute.png" alt="210201ModelAttribute.png" height="144"> |
 | 10 | Testing, JpaRepository | [ 210202SpringManyToMany ](/mHCapStoneProj6/210202SpringManyToMany) | <img src="210202SpringManyToMany/210202Test.png" alt="210202Test.png" height="144"> |
 | 11 | ManyToMany BCryptPass | [ 210203Q-BankApp ](/mHCapStoneProj6/210203Q-BankApp) | <img src="210203Q-BankApp/210204CustMany.png" alt="210204CustMany.png" height="144"> |
 | 12 | Swagger | [ 210205BSwagger ](/mHCapStoneProj6/210205BSwagger) | <img src="210205BSwagger/210205Swagger.png" alt="210205Swagger.png" height="144"> |
