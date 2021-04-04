@@ -39,22 +39,24 @@ all rows need to be fill with value
 
 #### hire.html
 ``` html
-        <td th:text="${hire.dateEnd}" />
-        <td><a th:href="@{'/inv/invoice/' + 
-            ${ hire.casedone == true ? hire.invoice.invId : hire.hireId } }"> <!-- hire.hireId  is dummy -->
-            [[${ hire.casedone == true ?  hire.invoice.invNo : "" } ]]</a>
-        </td>
-        <td>
-            <a th:classappend="${hire.casedone != true ? 'btn btn-info btn-sm fa fa-edit' : hidden}"
-            th:href="@{'/hireEdit/' + ${hire.hireId}}"> </a>
+		<td th:text="${hire.dateEnd}" />
 
-            <a class="btn btn-warning btn-sm delBtn" th:href="@{/hire/delete/{hireId}(hireId=${hire.hireId})}">
-                <span class="fa fa-trash"></span></a>
-        </td>
+	<style>
+		.orangeFont { color: var(--orange); }
+	</style>
+	<td><a th:classappend="${hire.casedone != true ? 'orangeFont' : ''}"
+		th:href="@{'/inv/invoice/' + 
+		${ hire.invoice != null ? hire.invoice.invId : hire.hireId } }"> <!-- hire.hireId  is dummy -->
+		[[${ hire.invoice != null ?  hire.invoice.invNo : "" } ]]</a>
 
-        <!-- <td> <a th:href="@{'/inv/invoice/' + ${hire.hireId}}">url</a> </td>  -->
-        <!-- <td th:text="${ hire.casedone == true ?  hire.hireId : '' }" /> -->
-    </tr>
+		<a th:classappend="${hire.invoice == null ? 'btn btn-info btn-sm fa fa-edit' : hidden}"
+		th:href="@{'/hireEdit/' + ${hire.hireId}}"> </a>
+	</td>
+	<td>
+		<a class="btn btn-warning btn-sm delBtn" th:href="@{/hire/delete/{hireId}(hireId=${hire.hireId})}">
+			<span class="fa fa-trash"></span></a>
+	</td>
+</tr>
 ```
 #### HireController.java
 ``` java
