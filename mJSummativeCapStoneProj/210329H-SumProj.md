@@ -76,5 +76,23 @@ all rows need to be fill with value
 		return "inv/invoice";
 	}
 ```
+---
+### using style
+#### invoice.html
+``` html
+	<style>
+		.paymentHidden {
+			visibility: hidden;
+		}
+	</style>
+	<div class="form-row">		
+		<h3 class="form-group col-md-12">Payment</h3>
+		<div class="form-group col-md-12">
+			<label>Payment Date: [[${inv.paidDate}]] </label>
+			<a th:classappend="${inv.paymtDone == true ? 'paymentHidden' : 'btn btn-light'}"
+			 th:href="@{'/inv/invPaid/' + ${inv.invId}}">Pay Now?</a>
+		</div>
+	</div>
+```
 
-
+---
