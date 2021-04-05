@@ -1,5 +1,11 @@
 ### Export to PDF
 210302ExportPdf.png <img src="../210302ExportPdf.png">
+
+reference:
+* https://www.codejava.net/frameworks/spring-boot/pdf-export-example
+* https://www.programcreek.com/java-api-examples/?api=com.lowagie.text.pdf.PdfWriter
+
+
 #### UserController.java
 ``` java
     @GetMapping("/users/export/pdf")
