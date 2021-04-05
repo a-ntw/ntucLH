@@ -72,6 +72,14 @@ public class Category {
 	
 	private List<Brands> brand = new ArrayList<>();
 	...
+
+	public List<Brands> getBrand() {
+		return this.brand;
+	}
+	public void setBrand(List<Brands> brand) {
+		this.brand = brand;
+	}
+	
 	// For display output thru html page
 	@Override
 	public String toString() {
@@ -103,6 +111,14 @@ public class Brands {
 			)	
 
 	private List<Category> categories = new ArrayList<>();
+	...
+	public List<Category> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
+	}	
 ```
 
 #### Products.java
@@ -124,7 +140,15 @@ public class Products {
 	
 	@OneToMany(mappedBy ="product", cascade = CascadeType.ALL)
 	private List<ProductDetails> details = new ArrayList<>();
+	...
+	public void setDetails(Integer id,String name, String value) {
+		this.details.add(new ProductDetails(id,name,value,this)  );
+		
+	}
 
+	public void addDetail(String name, String value) {
+		this.details.add(new ProductDetails(name,value,this));
+	}	
 ```
 
 #### ProductDetails.java 
@@ -162,7 +186,283 @@ public class ProductDetails {
 		this.product = product;
 	}
 ```
+#### ProductController.java
+```java
 
+	@GetMapping("/products")
+	public String listProducts(Model model) {
+		List<Products> listProducts = repo.findAll();
+		model.addAttribute("listProducts",listProducts);
+		return "products";
+	}
+	
+	@GetMapping("/products/new")
+	public String showNewProductForm(Model model) {
+		List<Category> listCategories =  catrepo.findAll();
+		model.addAttribute("product", new Products());
+		model.addAttribute("listCategories",listCategories);
+		return "product_form";
+		
+	}
+	
+	
+	@PostMapping("/products/save")
+	public String saveProduct(Products product, HttpServletRequest request) {
+		String[] detailIDs = request.getParameterValues("detailID");
+		String[] detailNames = request.getParameterValues("detailName");
+		String[] detailValues = request.getParameterValues("detailValue");
+		
+		for (int i = 0; i< detailNames.length; i++) {
+			if(detailIDs != null && detailIDs.length > 0)
+				product.setDetails(Integer.valueOf(detailIDs[i]), detailNames[i], detailValues[i]);
+			else {
+				product.addDetail(detailNames[i], detailValues[i]);
+		}
+		}
+		repo.save(product);
+		return "redirect:/products";
+	}
+
+	
+	@GetMapping("/products/edit/{id}")
+	public String ShowProductEditForm(@PathVariable("id") Integer id, Model model) {
+		Products product = repo.findById(id).get();
+		model.addAttribute("product", product);
+		List<Category> listCategories = catrepo.findAll();
+		model.addAttribute("listCategories", listCategories);
+		return "product_form";
+		
+	}
+	
+	@GetMapping("/products/delete/{id}")
+	public String ShowProductDeleteForm(@PathVariable("id") Integer id, Model model) {
+		repo.deleteById(id);
+		return "redirect:/products";
+	}
+	
+```
+
+#### product.html
+``` java
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>List Products</title>
+
+<link rel="stylesheet" th:href="@{/bootstrap.min.css}">
+<script th:src="@{/jquery-3.5.1.min.js}"></script>
+<script th:src="@{/bootstrap.min.js}"></script>
+
+</head>
+<body>
+
+<div class="container text-center">
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+<div class="container">
+	<a class="navbar-brand" href="/">:: Inventory Management ::</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse"
+		data-target="#navbarResponsive" aria-controls="navbarResponsive"
+		aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse" id="navbarResponsive">
+	<ul class="navbar-nav ml-auto">
+		<li class="nav-item active"><a class="nav-link" href="/">Home
+			<span class="sr-only">(current)</span>
+		</a></li>
+		<li class="nav-item"><a class="nav-link"
+			th:href="@{/categories}">Category</a></li>
+		<li class="nav-item"><a class="nav-link"
+			th:href="@{/products}">Products</a></li>
+		<li class="nav-item"><a class="nav-link" th:href="@{/brands}">Brands</a></li>
+		<!-- 	 <form class="form-inline">
+			<input type="search" class="form-control" placeholder="search"
+				id="fieldkeyword" />
+			<button class="btn btn-primary m-2" id="buttonSearch">
+				Search</button>
+		</form> -->
+	</ul>
+	</div>
+</div>
+</nav>
+
+<div>
+<div>
+	<h1>Product List</h1>
+</div>
+<div class="p-2">
+	<a class="h4" th:href="@{/products/new}">Create New Product</a>
+</div>
+<div>
+<table class="table table-bordered">
+	<thead class="thead-dark">
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Price</th>
+			<th>Category</th>
+			<th>Details</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<th:block th:each="product : ${listProducts}">
+		<tr>
+			<td>[[${product.id}]]</td>
+			<td>[[${product.name}]]</td>
+			<td>[[${product.price}]]</td>
+			<td>[[${product.category.name}]]</td>
+			<td>[[${product.details}]]</td>
+			<td><a th:href="@{'/products/edit/' + ${product.id}}">
+					Edit </a> <a th:href="@{'/products/delete/' + ${product.id}}">
+					Delete </a></td>
+
+		</tr>
+		</th:block>
+	</tbody>
+</table>
+</div>
+
+</div>
+
+<div class="text-center m-3">
+	<h5>Copyright &copy; NTUC Ltd.</h5>
+</div>
+</div>
+
+<Script>
+</Script>
+</body>
+
+</html>
+```
+
+#### product_form.html
+``` html
+<body>
+
+<div class="container text-center"> 
+<!-- Navigation -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+	<div class="container">
+
+	<a class="navbar-brand" href="/">:: Inventory Management ::</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse"
+		data-target="#navbarResponsive" aria-controls="navbarResponsive"
+		aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse" id="navbarResponsive">
+	<ul class="navbar-nav ml-auto">
+		<li class="nav-item active"><a class="nav-link" href="/">Home
+				<span class="sr-only">(current)</span>
+		</a></li>
+		<li class="nav-item"><a class="nav-link"
+			th:href="@{/categories}">Category</a></li>
+		<li class="nav-item"><a class="nav-link"
+			th:href="@{/products}">Products</a></li>
+		<li class="nav-item"><a class="nav-link" th:href="@{/brands}">Brands</a></li>
+		<!-- 						<form class="form-inline">
+			<input type="search" class="form-control" placeholder="search"
+				id="fieldkeyword" />
+			<button class="btn btn-primary m-2" id="buttonSearch">
+				Search</button>
+		</form> -->
+	</ul>
+	</div>
+	</div>
+	</nav>
+		
+	<div> 	<h1>Create New Product</h1> </div>
+
+	<form th:action="@{/products/save}" th:object="${product}" method="post" style="max-width: 600px; margin: 0 auto;">
+		<input type="hidden"  th:field="*{id}" th:value="${product.id}" />   
+	<div class="m-3">
+	<div class="form-group row">
+		<label class="col-form-label col-sm-18"> Product Name : </label>
+		<div class="col-sm-8">
+			<input type="text" th:field="*{name}" step= "0.1" class="form-control" required />
+		</div>
+	</div>	
+
+	<div class="form-group row">
+		<label class="col-form-label col-sm-18"> Product Price : </label>
+		<div class="col-sm-8">
+			<input type="number" th:field="*{price}" class="form-control" required />
+		</div>
+	</div>	
+	</div>
+
+	<div class="form-group row">
+		<label class="col-form-label col-sm-18"> Product Category : </label>
+		<div class="col-sm-8">
+			<select th:field="*{category}" class="form-control" required>
+				<th:block th:each="cat : ${listCategories}">
+					<option th:text="${cat.name}" th:value="${cat.id}" />
+				</th:block>
+			</select>
+
+		</div>
+	</div>	
+
+	<th:block th:unless="${product.id == null}"  th:each ="detail, status : ${product.details}">
+	<input type="hidden" name="detailID" th:value="${detail.id}" />
+	<div class="form-group row">
+		<label class="col-form-label col-sm-18"> Details #[[status.count]] : </label>
+		<div class="col-sm-4">
+			<input type="text" name="detailName"  th:value="${detail.name}"   class="form-control" required />
+		</div>
+		<div class="col-sm-4">
+			<input type="text" name="detailValue" th:value="${detail.value}"  class="form-control" required />
+		</div>
+	</div>			
+	</th:block>
+
+	<th:block th:if="${product.id == null}">
+	<div class="form-group row">
+		<label class="col-form-label col-sm-18"> Details #1 : </label>
+		<div class="col-sm-4">
+			<input type="text" name="detailName"  placeholder="Name"  step= "0.1" class="form-control" required />
+		</div>
+		<div class="col-sm-4">
+			<input type="text" name="detailValue" placeholder="Value" step= "0.1" class="form-control" required />
+		</div>
+	</div>			
+
+	<div class="form-group row">
+		<label class="col-form-label col-sm-18"> Details #2 : </label>
+		<div class="col-sm-4">
+			<input type="text" name="detailName"  placeholder="Name"  step= "0.1" class="form-control" required />
+		</div>
+		<div class="col-sm-4">
+			<input type="text" name="detailValue" placeholder="Value" step= "0.1" class="form-control" required />
+		</div>
+	</div>			
+
+	<div class="form-group row">
+		<label class="col-form-label col-sm-18"> Details #3 : </label>
+		<div class="col-sm-4">
+			<input type="text" name="detailName"  placeholder="Name"  step= "0.1" class="form-control" required />
+		</div>
+		<div class="col-sm-4">
+			<input type="text" name="detailValue" placeholder="Value" step= "0.1" class="form-control" required />
+		</div>
+	</div>			
+
+	</th:block>
+		<div class="text-center p-3">
+			<button type="submit" class="btn btn-primary" > Save </button>
+		</div>
+	</form>
+</div>
+
+</body>
+```
 #### pom.xml
 ``` xml
 	<dependencies>
@@ -209,105 +509,6 @@ public class ProductDetails {
 	</dependencies>
 ```
 
-#### product.html
-``` java
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="ISO-8859-1">
-<title>List Products</title>
-
-<link rel="stylesheet" th:href="@{/bootstrap.min.css}">
-<script th:src="@{/jquery-3.5.1.min.js}"></script>
-<script th:src="@{/bootstrap.min.js}"></script>
-
-</head>
-<body>
-
-	<div class="container text-center">
-
-		<!-- Navigation -->
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-			<div class="container">
-
-				<a class="navbar-brand" href="/">:: Inventory Management ::</a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse"
-					data-target="#navbarResponsive" aria-controls="navbarResponsive"
-					aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-
-				<div class="collapse navbar-collapse" id="navbarResponsive">
-					<ul class="navbar-nav ml-auto">
-						<li class="nav-item active"><a class="nav-link" href="/">Home
-								<span class="sr-only">(current)</span>
-						</a></li>
-						<li class="nav-item"><a class="nav-link"
-							th:href="@{/categories}">Category</a></li>
-						<li class="nav-item"><a class="nav-link"
-							th:href="@{/products}">Products</a></li>
-						<li class="nav-item"><a class="nav-link" th:href="@{/brands}">Brands</a></li>
-						<!-- 						<form class="form-inline">
-							<input type="search" class="form-control" placeholder="search"
-								id="fieldkeyword" />
-							<button class="btn btn-primary m-2" id="buttonSearch">
-								Search</button>
-						</form> -->
-					</ul>
-				</div>
-			</div>
-		</nav>
-
-		<div>
-			<div>
-				<h1>Product List</h1>
-			</div>
-			<div class="p-2">
-				<a class="h4" th:href="@{/products/new}">Create New Product</a>
-			</div>
-			<div>
-				<table class="table table-bordered">
-					<thead class="thead-dark">
-						<tr>
-							<th>ID</th>
-							<th>Name</th>
-							<th>Price</th>
-							<th>Category</th>
-							<th>Details</th>
-							<th>Actions</th>
-						</tr>
-					</thead>
-					<tbody>
-						<th:block th:each="product : ${listProducts}">
-							<tr>
-								<td>[[${product.id}]]</td>
-								<td>[[${product.name}]]</td>
-								<td>[[${product.price}]]</td>
-								<td>[[${product.category.name}]]</td>
-								<td>[[${product.details}]]</td>
-								<td><a th:href="@{'/products/edit/' + ${product.id}}">
-										Edit </a> <a th:href="@{'/products/delete/' + ${product.id}}">
-										Delete </a></td>
-
-							</tr>
-						</th:block>
-					</tbody>
-				</table>
-			</div>
-
-		</div>
-
-		<div class="text-center m-3">
-			<h5>Copyright &copy; NTUC Ltd.</h5>
-		</div>
-	</div>
-
-	<Script>
-</Script>
-</body>
-
-</html>
-```
 #### brands.html
 ``` html
 	<table class="table table-bordered">
