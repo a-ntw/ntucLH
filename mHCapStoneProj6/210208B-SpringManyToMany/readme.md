@@ -629,3 +629,66 @@ public class BrandController {
 ```
 
 ---
+## requests.getParameterValues
+#### Products.java
+``` java
+	@OneToMany(mappedBy ="product", cascade = CascadeType.ALL)
+	private List<ProductDetails> details = new ArrayList<>();
+	
+	public void setDetails(Integer id,String name, String value) {
+		this.details.add(new ProductDetails(id,name,value,this)  );
+	}
+
+	public void addDetail(String name, String value) {
+		this.details.add(new ProductDetails(name,value,this));
+	}
+```
+#### ProductController.java
+``` java
+	@PostMapping("/products/save")
+	public String saveProduct(Products product, HttpServletRequest request) {
+		String[] detailIDs = request.getParameterValues("detailID");
+		String[] detailNames = request.getParameterValues("detailName");
+		String[] detailValues = request.getParameterValues("detailValue");
+		
+		for (int i = 0; i< detailNames.length; i++) {
+			if(detailIDs != null && detailIDs.length > 0)
+				product.setDetails(Integer.valueOf(detailIDs[i]), detailNames[i], detailValues[i]);
+			else {
+				product.addDetail(detailNames[i], detailValues[i]);
+		}}
+		repo.save(product);
+		return "redirect:/products";
+	}
+	
+	@GetMapping("/products/edit/{id}")
+	public String ShowProductEditForm(@PathVariable("id") Integer id, Model model) {
+		Products product = repo.findById(id).get();
+		model.addAttribute("product", product);
+		List<Category> listCategories = catrepo.findAll();
+		model.addAttribute("listCategories", listCategories);
+		return "product_form";
+	}	
+```
+#### product_form.html
+``` html
+<form th:action="@{/products/save}" th:object="${product}" method="post" style="max-width: 600px; margin: 0 auto;">
+	<input type="hidden"  th:field="*{id}" th:value="${product.id}" />   
+	
+	...
+	
+	<th:block th:unless="${product.id == null}"  th:each ="detail, status : ${product.details}">
+		<input type="hidden" name="detailID" th:value="${detail.id}" />
+		<div class="form-group row">
+			<label class="col-form-label col-sm-18"> Details #[[status.count]] : </label>
+			<div class="col-sm-4">
+				<input type="text" name="detailName"  th:value="${detail.name}"   class="form-control" required />
+			</div>
+			<div class="col-sm-4">
+				<input type="text" name="detailValue" th:value="${detail.value}"  class="form-control" required />
+			</div>
+		</div>			
+	</th:block>
+```
+
+---
