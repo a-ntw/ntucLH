@@ -1,5 +1,4 @@
 
-
 ### template for readme.md
 
 ``` markdown
@@ -17,6 +16,13 @@ imagefile.png <img src="imagefile.png">
 [:top: Top](#top)
 
 ```
+---
+### Snippets
+m5CapStoneProj2 learnJava https://github.com/alvintwng/ntucLH/tree/master/m5CapStoneProj2/learnJava
+
+Java Snippets m9JavaSe2 https://github.com/alvintwng/ntucLH/tree/master/m9JavaSe2#readme
+
+Java Snippets mACapStoneProj3 https://github.com/alvintwng/ntucLH/tree/master/mACapStoneProj3#readme
 
 ---
 ### Introduction to Unix commands
