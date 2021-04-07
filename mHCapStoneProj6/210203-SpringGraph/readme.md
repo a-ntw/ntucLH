@@ -66,3 +66,80 @@ public class GoogleChartsController {
         }
         
 ```
+---
+### double charts
+#### GoogleCartsController.java
+``` java
+	    @Controller
+	    public class GoogleChartsController {
+	     
+	        @GetMapping("/")
+	        public String getPieChart(Model model) {
+	            Map<String, Integer> graphData = new TreeMap<>();
+	            graphData.put("2016", 147);
+	            graphData.put("2017", 1256);
+
+	            Map<String, Integer> graphData2 = new TreeMap<>();
+	            graphData2.put("2021", 33);
+	            graphData2.put("2017", 1256);
+	            
+	            model.addAttribute("chartData", graphData);
+	            model.addAttribute("chartData2", graphData2);
+	            return "google-charts";
+	        }
+```
+#### google-charts.html
+``` html
+<body>
+    <div align="center"> <!-- style="width: 1000px;"> -->
+        <h2>Spring Boot Google Pie Charts Example</h2>
+	</div>
+	<div class="form-row">
+        <div class="form-group col-md-6" id="piechart" style="width: 450px; height: 250px;"></div>
+        <div class="form-group col-md-6" id="piechart2" style="width: 450px; height: 250px;"></div>
+    </div>
+    <script th:inline="javascript">
+		var real_data = /*[[${chartData}]]*/'noValue';
+		var real_data2 = /*[[${chartData2}]]*/'noValue';
+         
+		$(document).ready(function() {
+		    google.charts.load('current', {
+		        packages : [ 'corechart', 'bar' ]
+		    });
+		
+		    google.charts.setOnLoadCallback(drawPieChart);
+		    google.charts.setOnLoadCallback(drawPieChart2);
+		});
+		
+		function drawPieChart() {
+		    var data = new google.visualization.DataTable();
+		    data.addColumn('string', 'Year');
+		    data.addColumn('number', 'Views');
+		    Object.keys(real_data).forEach(function(key) {
+		        data.addRow([ key, real_data[key] ]);
+		    });
+		    var options = {
+		        title : 'Blog stats'
+		    };
+		    var chart = new google.visualization.PieChart(document
+		            .getElementById('piechart'));
+		    chart.draw(data, options);
+		}
+		
+		function drawPieChart2() {
+		    var data = new google.visualization.DataTable();
+		    data.addColumn('string', 'Year');
+		    data.addColumn('number', 'Views');
+		    Object.keys(real_data2).forEach(function(key) {
+		        data.addRow([ key, real_data2[key] ]);
+		    });
+		    var options = {
+		        title : 'piechart2'
+		    };
+		    var chart = new google.visualization.PieChart(document
+		            .getElementById('piechart2'));
+		    chart.draw(data, options);
+		}       
+    </script>
+</body>
+```
