@@ -18,7 +18,8 @@ ntuc CapStone 6
 | 12 | Swagger | [ 210205BSwagger ](/mHCapStoneProj6/210205BSwagger) | <img src="210205BSwagger/210205Swagger.png" alt="210205Swagger.png" height="144"> |
 | 13 | M2M NavBar BootStrap | [ 210208B-SpringManyToMany ](/210208B-SpringManyToMany) | <img src="210208B-SpringManyToMany/210208ManyToMany.png" alt="210208ManyToMany.png" height="144"> |
 | 14 | Jquery Search | [ JqueryBSlocal ](/mHCapStoneProj6/JqueryBSlocal) | <img src="JqueryBSlocal/210208JqueryBSlocal.png" alt="210208JqueryBSlocal.png" height="144"> |
-| 15 | Thymeleaf Template | [ ThymeleafDemos ](/mHCapStoneProj6/ThymeleafDemos) | <img src="ThymeleafDemos/210204ThSlider.png" alt="210204ThSlider.png" height="144"> |
+| 15 | SpringGraph | [210203-SpringGraph](/mHCapStoneProj6/210203-SpringGraph) | <img src="210203-SpringGraph/210203SpringGraph.png" alt="210203SpringGraph.png" height="144"> |
+| 16 | Thymeleaf Template | [ ThymeleafDemos ](/mHCapStoneProj6/ThymeleafDemos) | <img src="ThymeleafDemos/210204ThSlider.png" alt="210204ThSlider.png" height="144"> |
 | 99 | --- | [ ](/) | <img src="" alt="" height="144"> |
 
 
