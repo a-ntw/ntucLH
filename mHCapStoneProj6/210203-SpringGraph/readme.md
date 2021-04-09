@@ -1,6 +1,10 @@
 ### Spring Boot Google Pie Graph
+* Just only Pie Chart
+* double charts
+* Just only Bar Chart
 
 210203SpringGraph.png <img src="210203SpringGraph.png">
+
 
 ---
 ## Just only Pie Chart
@@ -143,3 +147,69 @@ public class GoogleChartsController {
     </script>
 </body>
 ```
+---
+## Just only Bar Chart
+useing external js
+#### GoogleChartsController.java
+``` java
+	        @GetMapping("/")
+	        public String getPieChart(Model model) {
+	            Map<String, Integer> graphData = new TreeMap<>();
+	            graphData.put("2016", 147);
+	            graphData.put("2017", 1256);
+	            graphData.put("2018", 3856);
+	            graphData.put("2019", 19807);
+	            model.addAttribute("chartDataBar", graphData);
+	            return "google-charts";
+	        }
+```
+#### google-charts.html
+``` html
+<body>
+    <div align="center" style="width: 1000px;">
+        <h2>Spring Boot Google Charts Example</h2>
+        <div id="chart_div"></div>
+
+    </div>
+    <script th:inline="javascript">
+        var real_dataBar = /*[[${chartDataBar}]]*/'noValue';
+    </script>
+    <script th:src="@{/chartBar.js}"></script>
+
+</body>
+```
+#### chartBar.js
+``` js
+		//alert(real_dataBar); // debugging
+
+        $(document).ready(function() {
+            google.charts.load('current', {
+                packages : [ 'corechart', 'bar' ]
+            });
+            google.charts.setOnLoadCallback(drawColumnChart);
+
+        });
+ 
+        function drawColumnChart() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Year');
+            data.addColumn('number', 'Views');
+            Object.keys(real_dataBar).forEach(function(key) {
+                data.addRow([ key, real_dataBar[key] ]);
+            });
+            var options = {
+                title : 'Blog stats',
+                hAxis : {
+                    title : 'Years',
+                },
+                vAxis : {
+                    title : 'View Count'
+                }
+            };
+            var chart = new google.visualization.ColumnChart(document
+                    .getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+```
+
+---
