@@ -1,5 +1,7 @@
 ### Snippet
-
+* EmployeeDaoImpl.java
+* ArrayList and print
+* link to external Javascript for ThymeLeaf
 #### EmployeeDaoImpl.java
 ``` java
 @Service
@@ -62,3 +64,45 @@ public class ResPVeh {
 	...
 ```
 ---
+### link to external Javascript for ThymeLeaf
+#### index.html
+``` html
+	<script th:inline="javascript">
+	        var real_dataVeh = /*[[${chartDataVeh}]]*/'noValue';
+	        var real_dataCus = /*[[${chartDataCus}]]*/'noValue';
+	</script>
+	<script th:src="@{/assets/piechart.js}"></script>
+```
+#### AppSecurity.java
+Optional to set ...`,"/assets/**").permitAll()`. Currently, work without add this.
+``` java
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+	
+		http
+			.csrf().disable()
+			.authorizeRequests()
+			.antMatchers("/login","/css/**","/img/**","/assets/**").permitAll()
+			.antMatchers("/").hasAnyAuthority("USER", "MANAGER", "ADMIN")
+			.antMatchers("/book*/**")	.hasAnyAuthority("USER", "MANAGER")
+```
+####  piechart.js
+``` js
+	//var real_dataVeh = /*[[${chartDataVeh}]]*/'noValue';      
+        //var real_dataCus = /*[[${chartDataCus}]]*/'noValue';
+ 
+			alert(real_dataVeh); // for debugging
+	
+        $(document).ready(function() {
+            google.charts.load('current', {
+                packages : [ 'corechart', 'bar' ]
+            });
+            
+            google.charts.setOnLoadCallback(drawPieChartCus);
+            google.charts.setOnLoadCallback(drawPieChartVeh);
+        });
+        
+        function drawPieChartCus() {
+            var data = new google.visualization.DataTable();
+```
+--- 
