@@ -1,4 +1,4 @@
-## Test hireRepo 
+## @test hireRepo assertEquals assertThat copiedArray
 fyi, mac short keys for `Run As Test` > Option + Command + X then T
 #### bookingTest.java
 ``` java
@@ -36,6 +36,33 @@ public class bookingTest {
 		assertEquals(lda.checkValidDates(s,s), true);
 		assertEquals(lda.checkValidDates(e,e), true);
 		assertEquals(lda.checkValidDates(e,s), false);
+	}
+	
+	@Test
+	public void copiedArray() {
+		Vehicle veh  = new Vehicle();
+		//vehRepo.findById((long) 5); // result: null 
+		List<Vehicle> listVeh = vehRepo.findAll();
+
+		veh = listVeh.get(0); // let say 0		
+		List<Hire> listHires =  hireRepo.findAllByVehicle(veh);
+		assertThat(listHires).isNotNull();
+		
+		List<Booking> listBooks = new ArrayList<>();
+		
+		for (Hire h : listHires) {
+			Booking b = new Booking();
+			b.setDateEnd(h.getDateEnd());
+			b.setDateStart(h.getDateStart());
+			b.setCustomer(h.getCustomer());
+			b.setVehicle(h.getVehicle());
+			listBooks.add(b);
+		}
+
+		for (Booking b: listBooks) {
+			System.out.println("=====> b startDate: " + b.getDateStart());
+		}
+		assertThat(listBooks).isNotNull();
 	}
 }
 ```
