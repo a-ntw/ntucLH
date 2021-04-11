@@ -1,3 +1,28 @@
+#### Employee.java
+``` java
+public class Employee {
+
+    private String lName;
+    private String fName;
+    private String dept;
+    private int salary;
+    private String desig;
+    private double yoe;
+
+    public Employee(String lName, String fName, String dept, int salary, String desig, double yoe) {
+        this.lName = lName;
+        this.fName = fName;
+        this.dept = dept;
+        this.salary = salary;
+        this.desig = desig;
+        this.yoe = yoe;
+    }
+
+    public String getlName() {
+        return lName;
+    }
+    ...
+```
 #### Main.java
 ``` java
 
