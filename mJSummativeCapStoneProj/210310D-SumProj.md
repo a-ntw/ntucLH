@@ -37,32 +37,7 @@ public class EmployeeDaoImpl implements EmployeeDao{
 		employeeRepo.save(employee);
 	}
 ```
----
-### ArrayList and print
-#### dash.java
-``` java
-	List<ResPVeh> rlist = new ArrayList<>();
-	rlist.add(new ResPVeh(33,333));
-	rlist.add(new ResPVeh(66,999));
-	rlist.add(new ResPVeh(22,222));
 
-	for (ResPVeh item : rlist) {
-		System.out.println("Item: " + item);
-	}
-
-	Stream.of(rlist).forEach(s -> System.out.println("::: " + s));
-```
-#### ResPVeh.java
-``` java
-public class ResPVeh {
-	private int vehId;
-	private int reserves;
-	public ResPVeh(int i, int j) {
-		this.vehId = i;
-		this.reserves = j;
-	}
-	...
-```
 ---
 ### link to external Javascript for ThymeLeaf
 #### index.html
