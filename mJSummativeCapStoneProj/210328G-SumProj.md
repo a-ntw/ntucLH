@@ -1,6 +1,41 @@
 ### Thymeleaf model.addAttribute, href Mapping
+#### editHistory
+BookingControl.java
+``` java
+	@GetMapping("/histEdit/{id}")
+	public String historyEdit(@PathVariable(value = "id") long id, Model model) {
+		History hist = historyRepo.findById(id).get();
+		model.addAttribute("hist", hist);
+		return "book/historyEdit";
+	}
+	@PostMapping("/histSave")
+	public String saveHist(History hist) {
+		historyRepo.save(hist);
+		log.info("=====> History Saved. id:" + hist.getId() + " " + hist.getRecorded() );
+		return "redirect:/histEdit/" + hist.getId() ;
+	}
+```
+historyEdit.html
+``` html
+	<form th:action="@{/histSave}" th:object="${hist}" method="post">
+		<div>
+			<label> id: [[${hist.id}]] </label>
+			<input type="hidden"  th:field="*{id}" th:value="${hist.id}"  /> 
+		</div>
 
-#### model.addAttribute - the start 
+
+		<div>
+			<label> recorded: [[${hist.recorded}]]</label>
+			<input type="text" th:field="*{recorded}" required/>
+		</div>		
+		
+		<button type="submit">Save</button>
+	 	<a class="btn btn-primary" href="/histData" role="button">Cancel</a>				
+	</form>
+```
+
+---
+#### the start 
 EmployeeController.java
 ``` java
 @Controller
