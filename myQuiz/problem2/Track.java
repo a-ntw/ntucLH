@@ -36,7 +36,7 @@ public class Track {
 		sessAm.setStartTime("26/4/2021 09:00");
 
 		var balTalks = new ArrayList<Talk>();
-		for (Talk s : talks) {
+		for (var s : talks) {
 			if ((sessAm.getTotalTime() + s.getMins() ) <= sessAm.getDuration()) {
 				talks1Am.add(s);}
 			else balTalks.add(s);
@@ -50,7 +50,7 @@ public class Track {
 		sessPm.setStartTime("26/4/2021 13:00");	
 		
 		var temp2Talks = new ArrayList<Talk>();
-		for (Talk s : balTalks) {
+		for (var s : balTalks) {
 			if ((sessPm.getTotalTime() + s.getMins()) <= sessPm.getDuration()) {
 				talks1Pm.add(s);}
 			else temp2Talks.add(s);

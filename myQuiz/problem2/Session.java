@@ -36,7 +36,7 @@ public class Session {
 	
 	public int getTotalTime() {
 		int ttime = 0;
-		for (Talk s : talks) {
+		for (var s : talks) {
 			ttime += s.getMins();
 		}
 		return ttime;
@@ -45,7 +45,7 @@ public class Session {
 	public void printSess() {
 	    DateTimeFormatter tF = DateTimeFormatter.ofPattern("hh:mm a");	// Declare Time format	
 		LocalDateTime ldt = getStartTime();
-		for (Talk s : talks) {
+		for (var s : talks) {
 			System.out.println(ldt.format(tF) + "\t" +s.getDesc());
 			ldt = ldt.plusMinutes(s.getMins());
 		}

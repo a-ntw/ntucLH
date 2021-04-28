@@ -35,7 +35,7 @@ public class Event {
 	/* Instantiate Track and Sessions */
 	public ArrayList<Track> iniTrack() {
 		var allTracks = new ArrayList<Track>();
-		for (int i = 1 ; i <= noOfTrack() ; i++) {
+		for (var i = 1 ; i <= noOfTrack() ; i++) {
 			var t = new Track();
 			t.setTrack();
 			t.setTrackNo(i);
@@ -49,7 +49,7 @@ public class Event {
 		ArrayList<Talk> tks = talksSorted;
 		
 		do {
-			for (Track track: allTracks) {
+			for (var track: allTracks) {
 				Session am = track.getAm();
 				if (am.getTotalTime() + tks.get(0).getMins() <=am.getDuration()) {
 					am.getTalks().add(tks.get(0));
@@ -65,7 +65,7 @@ public class Event {
 		/* added in lunch and networking */
 		var lunch = new Talk("Lunch",60); 
 		var networking = new Talk("Networking Event",30);
-		for (Track t: allTracks) {
+		for (var t: allTracks) {
 			t.getAm().getTalks().add(lunch);
 			t.getPm().getTalks().add(networking);
 		}
@@ -84,7 +84,7 @@ public class Event {
 
 		genSessions(allTracks, ts);
 		
-		for (Track t: allTracks) {
+		for (var t: allTracks) {
 			System.out.println("\nTrack " + t.getTrackNo() + ":");
 			t.getAm().printSess();
 			t.getPm().printSess();
