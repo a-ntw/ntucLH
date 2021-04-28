@@ -89,3 +89,24 @@ public class ResPVeh {
 	...
 ```
 ---
+### Arrays.asList(names)
+``` java
+	public static void names() {
+	
+		String[] names = {"Mary", "Bob", "John"};				// String Array
+		
+		var myList = new ArrayList<String>();					// Instantiale new Array
+		myList = new ArrayList<String>(Arrays.asList(names));	// Convert Array to ArrayList
+		//List<String> myList = new ArrayList<String>( Arrays.asList(names));	// Alternate
+		
+		myList.replaceAll(s -> s.toUpperCase());				// Lambda
+		
+		for (var e: myList) {
+			System.out.print(e + ", ");	// MARY, BOB, JOHN, 
+		}
+	}
+	
+	public static void main(String[] args) {
+		names();
+	}
+```
