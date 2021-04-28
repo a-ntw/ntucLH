@@ -22,8 +22,8 @@ public class Event {
 
 	/* determines total no of tracks via totalTime*/
 	public int noOfTrack() {
-		Session totalTalks = new Session();
-		totalTalks.talks = (ArrayList<Talk>) talks;
+		var totalTalks = new Session();
+		totalTalks.setTalks(talks);
 		totalTalks.setStartTime("26/4/2021 00:00");
 
 		int timePerTrack = 3*60 + 4*60; 
@@ -34,9 +34,9 @@ public class Event {
 	
 	/* Instantiate Track and Sessions */
 	public ArrayList<Track> iniTrack() {
-		ArrayList<Track> allTracks = new ArrayList<Track>();
+		var allTracks = new ArrayList<Track>();
 		for (int i = 1 ; i <= noOfTrack() ; i++) {
-			Track t = new Track();
+			var t = new Track();
 			t.setTrack();
 			t.setTrackNo(i);
 			allTracks.add(t);
@@ -51,23 +51,23 @@ public class Event {
 		do {
 			for (Track track: allTracks) {
 				Session am = track.getAm();
-				if (am.getTotalTime() + tks.get(0).getMins() <=am.duration) {
-					am.talks.add(tks.get(0));
+				if (am.getTotalTime() + tks.get(0).getMins() <=am.getDuration()) {
+					am.getTalks().add(tks.get(0));
 						tks.remove(0);
 				}
 				if (tks.size()>0 ) {
-				track.getPm().talks.add(tks.get(0));
+				track.getPm().getTalks().add(tks.get(0));
 				tks.remove(0);
 				}
 			}
 		} while (tks.size() > 0);
 		
-		/* added in lunch and networkin*/
-		Talk lunch = new Talk("Lunch",60); 
-		Talk networking = new Talk("Networking Event",30);
+		/* added in lunch and networking */
+		var lunch = new Talk("Lunch",60); 
+		var networking = new Talk("Networking Event",30);
 		for (Track t: allTracks) {
-			t.getAm().talks.add(lunch);
-			t.getPm().talks.add(networking);
+			t.getAm().getTalks().add(lunch);
+			t.getPm().getTalks().add(networking);
 		}
 	}
 	

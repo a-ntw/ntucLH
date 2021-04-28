@@ -9,52 +9,49 @@ public class Track {
 	private ArrayList<Talk> balanceTalks;
 
 	public void setTrack() {
-		ArrayList<Talk> talks1Am = new ArrayList<>();
-		Session sessAm = new Session();
-		sessAm.duration = 180;
-		sessAm.listName = "morning";
-		sessAm.talks = (ArrayList<Talk>) talks1Am;
+		var talks1Am = new ArrayList<Talk>();
+		var sessAm = new Session();
+		sessAm.setDuration(180);
+		sessAm.setTalks(talks1Am);
 		sessAm.setStartTime("26/4/2021 09:00");
 		this.am = sessAm;
 		
-		ArrayList<Talk> talks1Pm = new ArrayList<>();
-		Session sessPm = new Session();
-		sessPm.duration = 240;
-		sessPm.listName = "afternoon";
-		sessPm.talks = (ArrayList<Talk>) talks1Pm;
+		var talks1Pm = new ArrayList<Talk>();
+		var sessPm = new Session();
+		sessPm.setDuration(240);
+		sessPm.setTalks(talks1Pm);
 		sessPm.setStartTime("26/4/2021 13:00");	
 		this.pm = sessPm;
 	}
 	
+	// for ScheduleUnsort
 	public void genTracks(ArrayList<Talk> talks) {
-		Talk lunch = new Talk("Lunch",60); 
-		Talk networking = new Talk("Networking Event",30);
+		var lunch = new Talk("Lunch",60); 
+		var networking = new Talk("Networking Event",30);
 		
-		ArrayList<Talk> talks1Am = new ArrayList<>();
-		Session sessAm = new Session();
-		sessAm.duration = 180;
-		sessAm.listName = "morning";
-		sessAm.talks = (ArrayList<Talk>) talks1Am;
+		var talks1Am = new ArrayList<Talk>();
+		var sessAm = new Session();
+		sessAm.setDuration(180);
+		sessAm.setTalks(talks1Am);
 		sessAm.setStartTime("26/4/2021 09:00");
 
-		ArrayList<Talk> balTalks = new ArrayList<>();
+		var balTalks = new ArrayList<Talk>();
 		for (Talk s : talks) {
-			if ((sessAm.getTotalTime() + s.getMins() ) <= sessAm.duration) {
+			if ((sessAm.getTotalTime() + s.getMins() ) <= sessAm.getDuration()) {
 				talks1Am.add(s);}
 			else balTalks.add(s);
 		}
 		talks1Am.add(lunch);
 
-		ArrayList<Talk> talks1Pm = new ArrayList<>();
-		Session sessPm = new Session();
-		sessPm.duration = 240;
-		sessPm.listName = "afternoon";
-		sessPm.talks = (ArrayList<Talk>) talks1Pm;
+		var talks1Pm = new ArrayList<Talk>();
+		var sessPm = new Session();
+		sessPm.setDuration(240);
+		sessPm.setTalks(talks1Pm);
 		sessPm.setStartTime("26/4/2021 13:00");	
 		
-		ArrayList<Talk> temp2Talks = new ArrayList<>();
+		var temp2Talks = new ArrayList<Talk>();
 		for (Talk s : balTalks) {
-			if ((sessPm.getTotalTime() + s.getMins()) <= sessPm.duration) {
+			if ((sessPm.getTotalTime() + s.getMins()) <= sessPm.getDuration()) {
 				talks1Pm.add(s);}
 			else temp2Talks.add(s);
 		}
