@@ -9,42 +9,49 @@ public class Event {
 	public Event(ArrayList<Talk> talks) {
 		super();
 		this.talks = talks;
-		
 	}
 
-	/* sorted from longest timing to dummy array*/
+	/* Schedule Unsorted */
+	public void scheduleUnsortedOutput() {
+
+		System.out.println("Test Output:");
+		int trackNo = 1;
+		do {
+			System.out.println("\nTrack " + trackNo + ":");
+			Track tk = new Track(talks);
+			tk.genTracks();
+			tk.getAm().printSess();
+			tk.getPm().printSess();	
+			talks =  tk.getBalanceTalks();
+			trackNo ++;
+		}
+		while ( talks.size() > 0  ) ;
+	}
+	
+	/* ScheduleRptateDistribute output */
+	public void scheduleRotateOutput() {
+
+		ArrayList<Talk> ts = talksSorted();
+		Track track = new Track(talks);
+		ArrayList<Track> allTracks = track.iniTrack();
+
+		genSessions(allTracks, ts);
+		
+		System.out.println("Test Output:");
+		for (var t: allTracks) {
+			System.out.println("\nTrack " + t.getTrackNo() + ":");
+			t.getAm().printSess();
+			t.getPm().printSess();
+		}
+	}
+	// sorted from longest timing to dummy array
 	public ArrayList<Talk> talksSorted(){
 		ArrayList<Talk> talksSorted = talks;
 		// https://stackoverflow.com/questions/5805602/how-to-sort-list-of-objects-by-some-property
 		Collections.sort(talksSorted, (Talk t1, Talk t2) -> t2.getMins()-t1.getMins());
 		return talksSorted;
 	}
-
-	/* determines total no of tracks via totalTime*/
-	public int noOfTrack() {
-		var totalTalks = new Session();
-		totalTalks.setTalks(talks);
-		totalTalks.setStartTime("26/4/2021 00:00");
-
-		int timePerTrack = 3*60 + 4*60; 
-		int noOfTrack = totalTalks.getTotalTime() / timePerTrack + 1;
-		
-		return noOfTrack;
-	}
-	
-	/* Instantiate Track and Sessions */
-	public ArrayList<Track> iniTrack() {
-		var allTracks = new ArrayList<Track>();
-		for (var i = 1 ; i <= noOfTrack() ; i++) {
-			var t = new Track();
-			t.setTrack();
-			t.setTrackNo(i);
-			allTracks.add(t);
-		}
-		return allTracks;
-	}
-	
-	/* rotate-distribution, added Session*/
+	// ScheduleRotate-distribution, add Session
 	public void genSessions(ArrayList<Track> allTracks, ArrayList<Talk> talksSorted ) {
 		ArrayList<Talk> tks = talksSorted;
 		
@@ -62,7 +69,39 @@ public class Event {
 			}
 		} while (tks.size() > 0);
 		
-		/* added in lunch and networking */
+		addLunchNetwork(allTracks);
+	}
+
+	
+	
+	/* MustFinishedByNoon output */
+	public void scheduleMustFinishedByNoon() {
+
+		Track trackList = new Track(talks);
+		ArrayList<Track> allTracks = trackList.iniTrack();
+		
+		var sessSorting = new Session(talks);
+		
+		// sort on morning session, must before noon
+		for (var tk: allTracks) {
+			Session sessAm = tk.getAm();
+			sessAm = sessSorting.selectionSort(sessSorting.getTalks(), sessAm);
+			tk.setAm(sessAm);
+		}
+		
+		// sort on afternoon session
+		for (var tk: allTracks) {
+			Session sessPm = tk.getPm();
+			sessPm = sessSorting.selectionSort(sessSorting.getTalks(), sessPm);
+			tk.setPm(sessPm);
+		}	
+		
+		addLunchNetwork(allTracks);
+		printout(allTracks);
+	}
+
+	/* added in lunch and networking */
+	private static void addLunchNetwork(ArrayList<Track> allTracks) {
 		var lunch = new Talk("Lunch",60); 
 		var networking = new Talk("Networking Event",30);
 		for (var t: allTracks) {
@@ -71,24 +110,14 @@ public class Event {
 		}
 	}
 	
-	/* output */
-	public void output() {
-		System.out.println("\nTest Input:");
-		for (Talk s : talks) {
-			System.out.println(s.getDesc());
-		}
-		System.out.println("\nTest Output:");
-		
-		ArrayList<Talk> ts = talksSorted();
-		ArrayList<Track> allTracks = iniTrack();
+	private static void printout(ArrayList<Track> allTracks) {
 
-		genSessions(allTracks, ts);
+		System.out.println("Test Output:");
 		
 		for (var t: allTracks) {
 			System.out.println("\nTrack " + t.getTrackNo() + ":");
 			t.getAm().printSess();
 			t.getPm().printSess();
 		}
-		
 	}
 }

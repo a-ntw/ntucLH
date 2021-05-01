@@ -67,3 +67,78 @@ Track 2:
 04:00PM Rails for Python Developers lightning
 04:05PM Networking Event
 ```
+
+----
+
+``` java
+	/* MustFinishedByNoon output */
+	public void scheduleMustFinishedByNoon() {
+
+		Track trackList = new Track(talks);
+		ArrayList<Track> allTracks = trackList.iniTrack();
+		
+		var sessSorting = new Session(talks);
+		
+		// sort on morning session, must before noon
+		for (var tk: allTracks) {
+			Session sessAm = tk.getAm();
+			sessAm = sessSorting.selectionSort(sessSorting.getTalks(), sessAm);
+			tk.setAm(sessAm);
+		}
+		
+		// sort on afternoon session
+		for (var tk: allTracks) {
+			Session sessPm = tk.getPm();
+			sessPm = sessSorting.selectionSort(sessSorting.getTalks(), sessPm);
+			tk.setPm(sessPm);
+		}	
+		
+		addLunchNetwork(allTracks);
+		printout(allTracks);
+	}
+```
+``` java
+	/* Instantiate Track and Sessions */
+	public ArrayList<Track> iniTrack() {
+		var allTracks = new ArrayList<Track>();
+		for (var i = 1 ; i <= noOfTrack() ; i++) {
+			var t = new Track();
+			t.setTrack();
+			t.setTrackNo(i);
+			allTracks.add(t);
+		}
+		return allTracks;
+	}
+```
+``` java
+	/* for MustFinishedByNoon, using Selection Sort */ 
+	public Session selectionSort(ArrayList<Talk> tk, Session sess) {
+		var balTalks = new ArrayList<Talk>();
+		var temp = new ArrayList<Talk>();
+		var sessTalks = sess.getTalks();
+		int sessDura = sess.getDuration();
+		
+		do {
+			sessTalks.clear();
+			temp.clear();
+			
+			for (var t : tk) {
+				if ((sess.getTotalTime() + t.getMins() ) <= sessDura) {
+					sessTalks.add(t);}
+				else temp.add(t);
+			}
+			
+			if ((sess.getTotalTime() != sessDura) && (temp.size() > 0) ) {
+				balTalks.add(tk.get(0));
+				tk.remove(0);
+			}
+		} while ((sess.getTotalTime() != sessDura) && (temp.size() > 0) );
+		
+		for (var t : temp) {
+			balTalks.add(t);
+		}
+		
+		setTalks(balTalks);
+		return sess;
+	}	
+```

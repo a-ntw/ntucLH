@@ -6,7 +6,14 @@ public class Track {
 	private int TrackNo;
 	private Session am;
 	private Session pm;
-	private ArrayList<Talk> balanceTalks;
+	private ArrayList<Talk> talks;
+	public Track() {
+		super();
+	}
+	public Track(ArrayList<Talk> talks) {
+		super();
+		this.talks = talks;
+	}
 
 	public void setTrack() {
 		var talks1Am = new ArrayList<Talk>();
@@ -25,7 +32,7 @@ public class Track {
 	}
 	
 	// for ScheduleUnsort
-	public void genTracks(ArrayList<Talk> talks) {
+	public void genTracks() {
 		var lunch = new Talk("Lunch",60); 
 		var networking = new Talk("Networking Event",30);
 		
@@ -62,6 +69,30 @@ public class Track {
 		setBalanceTalks(temp2Talks);
 	}
 
+	/* determines total no of tracks via totalTime*/
+	public int noOfTrack() {
+		var totalTalks = new Session();
+		totalTalks.setTalks(talks);
+		totalTalks.setStartTime("26/4/2021 00:00");
+
+		int timePerTrack = 3*60 + 4*60; 
+		int noOfTrack = totalTalks.getTotalTime() / timePerTrack + 1;
+		
+		return noOfTrack;
+	}
+	
+	/* Instantiate Track and Sessions */
+	public ArrayList<Track> iniTrack() {
+		var allTracks = new ArrayList<Track>();
+		for (var i = 1 ; i <= noOfTrack() ; i++) {
+			var t = new Track();
+			t.setTrack();
+			t.setTrackNo(i);
+			allTracks.add(t);
+		}
+		return allTracks;
+	}
+	
 	public int getTrackNo() {
 		return TrackNo;
 	}
@@ -81,9 +112,9 @@ public class Track {
 		this.pm = pm;
 	}
 	public ArrayList<Talk> getBalanceTalks() {
-		return balanceTalks;
+		return talks;
 	}
 	public void setBalanceTalks(ArrayList<Talk> balanceTalks) {
-		this.balanceTalks = balanceTalks;
+		this.talks = balanceTalks;
 	}
 }

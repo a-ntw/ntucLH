@@ -3,12 +3,13 @@ package problem2;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 public class dateTest {
-	@Test
+	@Disabled @Test
 	void contextLoads() {
 		
 	    String text = "26/4/2021 13:00"; // text in dTF pattern
