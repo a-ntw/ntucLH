@@ -71,6 +71,14 @@ Track 2:
 ----
 
 ``` java
+public class Event {
+	public ArrayList<Talk> talks;
+	
+	public Event(ArrayList<Talk> talks) {
+		super();
+		this.talks = talks;
+	}
+	...
 	/* MustFinishedByNoon output */
 	public void scheduleMustFinishedByNoon() {
 
@@ -98,6 +106,19 @@ Track 2:
 	}
 ```
 ``` java
+public class Track {
+	private int TrackNo;
+	private Session am;
+	private Session pm;
+	private ArrayList<Talk> talks;
+	public Track() {
+		super();
+	}
+	public Track(ArrayList<Talk> talks) {
+		super();
+		this.talks = talks;
+	}
+	...
 	/* Instantiate Track and Sessions */
 	public ArrayList<Track> iniTrack() {
 		var allTracks = new ArrayList<Track>();
@@ -111,6 +132,20 @@ Track 2:
 	}
 ```
 ``` java
+public class Session {
+
+	private LocalDateTime startTime;
+	private int duration;
+	private ArrayList<Talk> talks;
+	
+	public Session() {
+		super();
+	}
+	public Session(ArrayList<Talk> talks) {
+		super();
+		this.talks = talks;
+	}
+	...
 	/* for MustFinishedByNoon, using Selection Sort */ 
 	public Session selectionSort(ArrayList<Talk> tk, Session sess) {
 		var balTalks = new ArrayList<Talk>();
