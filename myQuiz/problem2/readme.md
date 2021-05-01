@@ -72,11 +72,11 @@ Track 2:
 
 ``` java
 public class Event {
-	public ArrayList<Talk> talks;
+	private static ArrayList<Talk> talks;
 	
 	public Event(ArrayList<Talk> talks) {
 		super();
-		this.talks = talks;
+		Event.talks = talks;
 	}
 	...
 	/* MustFinishedByNoon output */

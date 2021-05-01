@@ -6,11 +6,11 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+//@SpringBootTest
 class Problem2ApplicationTests {
 	
 	@Test
-	void prinInput() {
+	public void prinInput() {
 		prinInput(talks());
 
 		var event = new Event(talks());
@@ -56,7 +56,7 @@ class Problem2ApplicationTests {
 		talks = new ArrayList<Talk>(Arrays.asList(talkArray));		
 		return talks;
 	}
-	private static void prinInput(ArrayList<Talk> talks) {
+	public static void prinInput(ArrayList<Talk> talks) {
 		System.out.println("\nTest Input:");
 		for (Talk s : talks) {
 			System.out.println(s.getDesc());

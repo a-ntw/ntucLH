@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Event {
-	public ArrayList<Talk> talks;
+	private static ArrayList<Talk> talks;
 	
 	public Event(ArrayList<Talk> talks) {
 		super();
-		this.talks = talks;
+		Event.talks = talks;
 	}
 
 	/* Schedule Unsorted */
@@ -101,7 +101,7 @@ public class Event {
 	}
 
 	/* added in lunch and networking */
-	private static void addLunchNetwork(ArrayList<Track> allTracks) {
+	public static void addLunchNetwork(ArrayList<Track> allTracks) {
 		var lunch = new Talk("Lunch",60); 
 		var networking = new Talk("Networking Event",30);
 		for (var t: allTracks) {
@@ -110,7 +110,7 @@ public class Event {
 		}
 	}
 	
-	private static void printout(ArrayList<Track> allTracks) {
+	public static void printout(ArrayList<Track> allTracks) {
 
 		System.out.println("Test Output:");
 		

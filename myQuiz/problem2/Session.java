@@ -5,7 +5,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Session {
-
 	private LocalDateTime startTime;
 	private int duration;
 	private ArrayList<Talk> talks;
