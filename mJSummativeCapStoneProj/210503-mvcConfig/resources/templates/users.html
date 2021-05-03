@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>List Images</title>
+	<style>
+	img {
+		border: 1px solid #ddd;
+		border-radius: 4px;
+		padding: 5px;
+		width: 50px;
+	}
+	
+	img:hover {
+		box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+	}
+	</style>
+</head>
+<body>
+
+	<div align="center">
+		<H1>Image List</H1>
+
+		<div>
+			<h3>
+				<a th:href="@{/users/new}"> Create New Name</a>
+			</h3>
+		</div>
+
+		<table border="1">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>name</th>
+					<th>Image</th>
+					<th>actions</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<th:block th:each="users: ${listUsers}">
+					<tr>
+						<td>[[${users.id}]]</td>
+						<td>[[${users.name}]]</td>
+						<td><img th:src="@{${users.photosImagePath}}" /></td>
+						<td><a th:href="@{'/users/edit/' + ${users.id}}"> Edit </a> <a
+							th:href="@{'/users/delete/' + ${users.id}}"> Delete </a></td>
+					</tr>
+				</th:block>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
