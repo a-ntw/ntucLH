@@ -133,4 +133,14 @@ antw@Mac-mini carzoom % git push heroku master
 Enumerating objects: 11, done.
 
 ```
+#### CLI commands
+https://coralogix.com/log-analytics-blog/heroku-logs-the-complete-guide/
 
+| Command | Description
+|---|---
+| $ heroku logs -t | –tail real-time log stream
+| $ heroku logs -s app | –source only on app logs
+| $ 
+heroku logs -tp router | -tp router log entries only
+
+---
