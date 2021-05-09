@@ -32,3 +32,23 @@ customerProfile.html
 	 </div>
 ...
 ```
+
+### A very simple delete alert
+config.html
+``` html
+	<tr th:each="dR : ${listDailyRate}">
+		<td>[[${dR.id}]]</td>
+		<td>[[${dR.vehClassId}]]
+		<td>[[${dR.custCatId}]]
+		<td>[[${dR.dayrate}]]
+		<td>
+			<a class="btn btn-info" th:href="@{'/main/rate/' + ${dR.id}}">
+			<span>Edit</span></a>
+			<a class="btn btn-warning" th:href="@{/main/delete/{id}(id=${dR.id})}"
+			onclick="return confirm('Are you sure you want to delete this item?');">
+			<span>Delete</span></a>
+		</td>
+	</tr>
+```
+
+---
