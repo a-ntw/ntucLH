@@ -38,3 +38,27 @@ ref: https://www.thymeleaf.org/apidocs/thymeleaf/2.0.2/org/thymeleaf/expression/
 	String mEnum2 = String.format("%.2f", 1.23456);
 	System.out.println(mEnum2); 	// 1.23
 ```
+## ThymeLeaf
+### th:unless, th:if
+210209D-SpringManyToMany/.../product_form.html
+``` html
+<th:block th:unless="${product.id == null}"  th:each ="detail, status : ${product.details}">
+	<input type="hidden" name="detailID" th:value="${detail.id}" />
+	<div class="form-group row">
+		<label class="col-form-label col-sm-18"> Details #[[status.count]] : </label>
+		<div class="col-sm-4">
+			<input type="text" name="detailName"  th:value="${detail.name}"   class="form-control" required />
+		</div>
+		...
+	</div>			
+</th:block>
+
+<th:block th:if="${product.id == null}">
+<div class="form-group row">
+		<label class="col-form-label col-sm-18"> Details #1 : </label>
+		<div class="col-sm-4">
+			<input type="text" name="detailName"  placeholder="Name"  step= "0.1" class="form-control" required />
+		</div>
+```
+
+---
