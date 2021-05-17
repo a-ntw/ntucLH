@@ -1,0 +1,47 @@
+html, body {
+	height: 100%;
+}
+
+#page-content {
+	flex: 1 0 auto;
+}
+
+#sticky-footer {
+	flex-shrink: none;
+}
+
+.spring-green-ligth {
+	color: #c8d864;
+}
+
+.spring-green-dark {
+	color: #71ba00;
+}
+
+.btn,
+.btn:active {
+	color: white;
+	background-color: #c8d864;
+	border-radius: 0;
+	border-color: #c8d864;
+}
+
+.btn:hover {
+	color: white;
+	background-color: #afbd57;
+	border-color: #afbd57;
+}
+
+/*<!--Bootstrap Custom checkbox-->*/
+.custom-control-input:checked ~.custom-control-label::before {
+	border-color: #afbd57;
+	background-color: #c8d864;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+	content: none;
+}
+
+.breadcrumb-item.active{
+	color: #c8d864;
+}
