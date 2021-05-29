@@ -45,5 +45,7 @@ public interface RoleRepo extends JpaRepository<Role, Integer> {
 }
 ```
 
+ref: https://creately.com/blog/diagrams/sequence-diagram-tutorial/
+
 ---
 [:top: Top](#top)
