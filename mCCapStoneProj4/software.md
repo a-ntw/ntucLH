@@ -1,3 +1,12 @@
+#### day few months
+I carelessly deleted `Oracle DB Developer VM`
+
+need to re-install:
+* https://www.oracle.com/database/technologies/databaseappdev-vm.html
+* https://login.oracle.com/mysso/signon.jsp > Oracle Account sign-in: Al??...
+
+
+---
 day1
 
 [To install java 12c](#to-install-java-12c)
