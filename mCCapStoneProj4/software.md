@@ -1,4 +1,4 @@
-#### day few months
+### day few months
 I carelessly deleted `Oracle DB Developer VM`
 
 need to re-install:
@@ -6,6 +6,50 @@ need to re-install:
 * https://login.oracle.com/mysso/signon.jsp > Oracle Account sign-in: Al??...
 
 * it just work the next day! Guess need to restart the computer to work..
+
+#### create users
+
+* ref to ... mCCapStoneProj4/LOGmCCS4wk1.txt
+``` sql
+Connected to:
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+
+SQL> create user savari
+  2  identified by savari
+  3  default tablespace users
+  4  temporary tablespace temp
+  5  quota unlimited on users
+  6  password expire;
+
+User created.
+
+SQL> select username from dba_users;
+
+SQL> grant connect, resource to savari;
+
+Grant succeeded.
+
+SQL> grant create view to mickey;
+
+Grant succeeded.
+
+SQL> 
+SQL> select username from dba_users;
+
+SQL> conn savari/savari
+Connected.
+```
+#### To set connection in Mac's virtualBox SQL Developer
+
+ref: .../mCCapStoneProj4/software.md
+```
+sqlDeveloper =>
+Name: savari
+Username savari
+Password: savari
+Service name: orcl
+```
 
 ---
 day1
