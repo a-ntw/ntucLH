@@ -5,6 +5,7 @@ need to re-install:
 * https://www.oracle.com/database/technologies/databaseappdev-vm.html
 * https://login.oracle.com/mysso/signon.jsp > Oracle Account sign-in: Al??...
 
+* it just work the next day! Guess need to restart the computer to work..
 
 ---
 day1
