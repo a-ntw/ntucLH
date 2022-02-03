@@ -96,3 +96,14 @@ System.out.println();
 to indent select and Command+I 
 
 ---
+### Markdown
+
+```diff
+- text in red
++ text in green
+! text in orange
+# text in gray
+@@ text in purple (and bold)@@
+```
+
+---
