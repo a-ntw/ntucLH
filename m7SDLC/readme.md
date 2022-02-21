@@ -40,7 +40,8 @@ Software requirements specification will be created in the form of
 * Functional Requirements Specifications Defines what is needed from the system?
 
 #### Design
-- Converts the requirements specification to a plan Problem solving phase
+- Converts the requirements specification to a plan 
+- Problem solving phase
 - Defines the plan for the solution
 
 ####  Development
@@ -206,7 +207,8 @@ myNote: is ok for small prpject
 myNote: testing tools:  wiki: Selenium (software); WebLOAD; JMeter
  
 ####  Process definition
-- Define the test cycles • Ad-hocevaluation
+- Define the test cycles
+- Ad-hocevaluation
 - Planned cycles
 - Broken down based on
   - Individual member
@@ -419,12 +421,11 @@ myNote: Software - Sign Off
  
 ####  Exploratory testing
 > - Exploratory Testing is a style of software testing that emphasizes the personal freedom and responsibility of the individual tester to continually optimize the value of her work by treating test-related learning, test design, test execution, and test result interpretation as mutually supportive activities that run in parallel throughout the project.
-
-Dr. Cem Kaner, co-author of Testing Computer Software
+>    -   Dr. Cem Kaner, co-author of Testing Computer Software
  
 ####  Exploratory testing
 > - Ad hoc testing (AKA exploratory testing) relies on tester intuition. It is unscripted, unrehearsed, and improvisational. How do I, as test manager, understand what’s happening, so I can direct the work and explain it to my clients?
-- Jonathan Bach began a presentation at STARWest in 2000 
+>   -   Jonathan Bach began a presentation at STARWest in 2000 
 began with this question
 
 myNote: rare - not so freq approach
