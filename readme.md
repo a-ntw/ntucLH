@@ -6,8 +6,8 @@ Is good to remember
 
 | Topic | Lecture | Folder | img |
 | ---: | --- | --- | --- |
-| ALM | | [Software Development Fundamentals](/ntucLH/tree/master/m1MtaFundamentals#lesson-3) |  |
-| Unified Modelling Language  | | [Java SE I](/ntucLH/m8JavaSe1/) |  |
+| ALM | | [Software Development Fundamentals](m1MtaFundamentals#lesson-3) |  |
+| Unified Modelling Language  | | [Java SE I](m8JavaSe1) |  |
 | java javaBasic |  | [javaBasic.java](/ntucLH/m5CapStoneProj2/learnJava/javaBasic.java) |  |
 | snippet simple Java |  | [Java SE 2](/ntucLH/m9JavaSe2/) |  |
 | snippet Fx locale DAO |  | [capStone3](/ntucLH/mACapStoneProj3/) | |
