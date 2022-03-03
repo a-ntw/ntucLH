@@ -55,3 +55,20 @@ public class GoodBonus {
   }
 ```
 
+#### Inheritance: Accessibility of Overriding Methods
+``` java
+public class Employee {
+    //... other fields and methods
+    public String getDetails() { ...}
+}
+```
+``` java
+public class BadManager extends Employee {
+    private String deptName;
+        // lines omited
+    @Override
+    private String getDetails() { // compile error
+    return super.getDetails () + 23 " Dept: " + deptName;
+    }
+}
+```
