@@ -1,5 +1,70 @@
+## DevOps
 
-Videos Featured in the Course
+### What is DevOps?
+"Imagin a world where product owners, Development, QA, IT Operations and Infosec work together,
+not only to help eash other, but also to ensure that the overall organization succeeds.
+By working towards a common goal, they enable the fast flow of planned work into production,
+while achieving world-class stability, reliability, availability and security."
+
+"DevOps, in a sense, is about setting up a value delivery factory - 
+a streamlined waste-free pipeline through which value can be delivered 
+to the business with a predictably fast cycle time."
+
+#### DevOps Applies Systems Thinking Across the Entire IT Spectrum
+
+#### DevOps Values
+More than anything else, DevOps is a cultural movement 
+based on human and techincal interactions to improve relationships and results.
+* **C**ulture
+* **A**utomation
+* **L**ean 
+* **M**easurement
+* **S**haring
+
+#### Module 2: Core DevOps Principles
+* The Three Ways
+* The Theory of Constraints
+* Chaos Engineering
+* Learning Organizations
+
+#### Module 3: Key DevOps Practices
+* Continuous:
+  * Testing
+  * Integration, Delivery, Deployment
+* Site Reliability & Resilience Engineering
+* DevSecOps
+* ChatOps
+* Kanban
+
+#### Module 4: Business & Technology Frameworks
+* Agile
+  * The underlying concepts of agile software development were first laid out in the Agile Manifesto:
+    * Individuals and interactions
+    * Working software
+    * Customer collaboration
+    * Responding to change    
+* ITSM
+* Lean
+* Safety Culture
+* Learning Organizations
+* Continuous Funding
+
+#### Module 5: Culture, Behaviours & Operating Models
+
+#### Module 6: Automation & Architecting DevOps Toolchains
+* CI/CD
+    * The CI/CD pipeline is a group of practices known as continuous **integration**, continuous **delivery** and continuous **deployment**.
+* Infrastructure as Code
+* Cloud
+* Containers & Microservices
+* Machine Learning
+* DevOps Toolchains
+
+#### Module 7: Measurement, Metrics & Reporting
+#### Module 8: Sharing, Shadowing & Evolving
+
+---
+### Videos Featured in the Course
 
 1: Exploring DevOps
 ‘A Short History of DevOps’ with Damon Edwards (11:47)
