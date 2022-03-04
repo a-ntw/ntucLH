@@ -1,6 +1,6 @@
 ### note from 201105 m8JavaSe1-4
 
-#### Inheritance
+### Inheritance
 * Inheritance allows one class to be derived from another.
 * Fields and methods are written in one class, and then inherited by other classes.
     * There is less code duplication.
@@ -35,7 +35,7 @@ myShirt.setSize ('M');                          // *
 * A subclass has access to all of the public fields and methods of its superclass.
 * A subclass may have unique fields and methods not found in the superclass.
 ``` java
-public class Shirt extends Clothing {       // Shirt : subclass; Clothing : superclass
+public class Shirt extends Clothing {  // Shirt : subclass; Clothing : superclass
     private int neckSize;
     public int getNeckSize() {
         return neckSize;
@@ -69,9 +69,11 @@ public class Clothing {
 public class Shirt extends Clothing {                 // 'extends'
     private char fit = 'U';
     
-    public Shirt(int itemID, String description, char colorCode, double price, char fit) {
-        super(itemID, description, colorCode, price); // Reference to the superclass constructure
-        this.fit = fit;                               // Reference to this object
+    public Shirt(int itemID, String description, char 
+            colorCode, double price, char fit) {
+        super(itemID, description, colorCode, price); 
+                                 // Reference to the superclass constructure
+        this.fit = fit;          // Reference to this object
     }
     public char getFit() {
         return fit;
@@ -129,7 +131,7 @@ particular method
     *No modifier*   | Y     | Y         | N         | N
     private         | Y     | N         | N         | N
 
-#### Overriding Methods
+### Overriding Methods
 **Overriding**: A subclass implements a method that already has an implementation in the
 superclass.
 
@@ -159,7 +161,7 @@ protected void setColorCode(char color) {
     this.colorCode = color; }
 // Assume that the remaining get/set methods are included in the class.
 ```
-#### Polymorphism
+### Polymorphism
 * Polymorphism means that the same message to two different objects can have different results:
     * "Good night" to a child means "Start getting ready for bed."
     * "Good night" to a parent means "Read a bedtime story."
@@ -206,7 +208,7 @@ public static void displayDetails(Clothing c1) {
     }}
 ```
 
-#### Abstract Classes
+### Abstract Classes
 Use the `abstract` keyword to create a special class that:
 *   Cannot be instantiated
 *   May contain concrete methods
@@ -261,7 +263,7 @@ Output of `System.out.println(shirt)`
 *   After overriding `toString` as show above:
     `This shirt is a T Shirt: price: 29.99, color: Green`
 
-#### The Java Interface
+### The Java Interface
 *   An interface is similar to an abstract class, except that:
     * Methods are implicitly abstract (except default, static, and private methods)
     * A class does not *extend* it, but *implements* it
@@ -333,7 +335,7 @@ Returnable r1 = new Trousers();
     }
     ```
 
-#### What is This Feature?
+### What is This Feature?
 Before Java 10
 ``` java
 ArrayList list = new ArrayList<String>();           // Datatype declared twice
@@ -370,6 +372,13 @@ Yes
 * Parameters . eg.`public void setPrice(var price){}`
 * Method return types. eg. `public var getPrice() { return price;}`
 
+#### The Collections Framework
+The collections framework is located in the `java.util` package.The framework is helpful
+when working with lists or collections of objects. It contains:
+* Interfaces
+* Abstract classes
+* Concert classes (Example: `ArrayList`)
+
 #### `List` Interface
 All of these object types can be assigned to a `List` variable:
 ``` java
@@ -380,6 +389,117 @@ List myList = words;
     var words = new ArrayList();
     var myList = words;
 ```
+#### Example: Arrays.asList
+The `java.util.Arrays` class has many static utility methods that are helpful in working with arrays.
+*  Converting an array to a `List`:
+``` java
+String[] name = {"One", "two", "three"};
+List<String> myList = Arrays.asList(nums);
+```
+List objects can be of many different types. What if you need to invokde a method belonging
+to `ArrayList`?
+*  `myList.replaceAll()`   - This works! replaceAll comes from List.
+*  `myList.removeIf()`     - Error! removeIt comes from Collection (superclass of ArrayList).
+
+Converting an array to an `ArrayList`.
+``` java
+String[] name = {"One", "two", "three"};
+List<String> myList = Arrays.asList(nums);
+ArrayList<String> myArrayList = new ArrayList(myList);
+         //  or
+var myArrayList = new ArrayList(myList);         
+```
+Shortcut:
+``` java
+String[] name = {"One", "two", "three"};
+ArrayList<String> myArrayList = new ArrayList(Arrays.asList(nums));
+         //  or
+var myArrayList = new ArrayList(Arrays.asList(nums));         
+```
+#### Example: Modify a List of Names
+Suppose you want to modify a `List` of names, changing them all to uppercase. Does this
+code change the elements of the `List`?
+``` java
+String[] names = ("Ned","Fred","Jessie","Alice","Rick");
+List<String> mylist = new ArrayList(Arrays.asList(names));
+
+// Display all names in upper case
+for (var s: mylist) {
+   System.out.println(s.toUpperCase()+", "); // Returns a new String to print
+}
+System.out.println("After for loop: " + mylist);
+```
+Output:
+``` yaml
+NED, FRED, JESSIE, ALICE, RICK
+After for loop: [Ned, Fred, Jessie, Alice, Rick]   // The list elements are unchanged.
+```
+
+#### Using a Lambda Expression with `replaceAll`
+`replaceAll` is a default method of the `List` interface. It takes a lambda expression as an 
+argument.
+``` java
+mylist.replaceAll( s -> s.toUpperCase());
+
+System.out.println("List.replaceAll lambda: " + mylist);
+```
+Output:
+``` yaml
+List.replaceAll lambda: [NED, FRED, JESSIE, ALICE, RICK]
+```
+
+#### Lambba Expressions
+Lambda expressions are like methods used as the argument for another method.
+They have:
+* Input parameters
+* A method body
+* A return value
+
+Long version:
+   ```java
+   mylist.replaceAll( (String s) -> (return s.toUpperCase();) );
+   ```
+
+Short version: 
+   ```java
+   mylist.replaceAll( s -> s.toUpperCase() );
+   ```
+#### The Enhanced APIs that Use Lambda
+There are three enhanced APIs that take advantage of lambda expressions:
+*  `java.util.functions`
+   *  Provides target types for lambda expressions
+*  `java.util.stream`
+   *  Provides classes that support operations on streams of values
+*  `java.util`
+   *  Interfaces and classes that make up the collections framework
+      *  Enhanced to use lambda expressions
+      *  Includes List and ArrayList
+
+### Lambda Types
+A lambda *type* specifies the type of expression a method is expecting.
+* `replaceAll` takes a `UnaryOperator` type expression.
+* All of the types do similar things, but have different inputs, statements, and outputs.
+
+#### The `UnaryOperator` Lambda Type
+A `UnaryOperator` has a single input and returns a value of the same type as the input.
+*  Example: `String` *in* - `String` *out*
+*  The method body acts upon the input in some way, returning a value of the same type
+   as the input value.
+*  `replaceAll` example:
+     `mylist.replaceAll( s -> s.toUpperCase() );`
+   *  `s` - String input
+   *  ` s -> s.toUpperCase() ` - UnaryOperator
+   *  Method acts upon the string input, returning a string
+
+#### The `Predicate` Lambda Type
+A `Predicate` type takes a single input argument and returns a boolean.
+*  Example: `String` *in* - `boolean` *out*
+*  `removeIf` takes a `Predicate` type expression
+   *  Removes all elements of the `ArrayList` that satisfy the `Predicate` expression
+*  Examples:
+   *  `mylist.removeIf (s -> s.equals("Rick"));`
+   *  `mylist.removeIf (s -> s.length() < 5);`
+
 
 
 ---
