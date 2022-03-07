@@ -1,6 +1,9 @@
 ## DevOps
 
 ### What is DevOps?
+
+Iris: "Develops is CI/CD!"
+
 "Imagin a world where product owners, Development, QA, IT Operations and Infosec work together,
 not only to help eash other, but also to ensure that the overall organization succeeds.
 By working towards a common goal, they enable the fast flow of planned work into production,
