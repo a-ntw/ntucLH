@@ -73,6 +73,9 @@ public class BadManager extends Employee {
 }
 ```
 ---
+## What is oop?
+Iris: "Oop is the 4 pillars!"
+
 ### JAVA - Four Pillars
 Ref: https://www.geeksforgeeks.org/four-main-object-oriented-programming-concepts-of-java/
 
