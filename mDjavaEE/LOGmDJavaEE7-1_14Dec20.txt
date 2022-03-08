@@ -1,0 +1,759 @@
+.LOG mDJavaEE7-1 14 Dec 20
+
+*******
+
+MW_HOME=\wls12214
+WLS_HOME = \wls12214\wlserver
+WL_HOME = \wls12214\wlserver
+JAVA_HOME = /Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/bin
+
+DOMAIN_HOME: /Users/antw/wls12214/domain1
+
+antw@Mac-mini domain1 % . ./starttWebLogic.sh
+
+Name: Weblogic 		Password: welcome1
+
+https://learn.oracle.com/ols/home/40805
+
+*************************************
+https://learn.oracle.com/ols/home/40805
+****************************************
+
+******
+
+
+—
+## Terms
+Java servLets
+JSP : Java Server Pages
+JSF : Java Server Faces
+MVC : Model View Controller
+REST : Representation State Transfer
+Web Sockets
+EJB : Enterprise JavaBean
+Stateless Session Beans
+Statefull Session Beans
+Singleton Session Beans
+JMS : Java Message Service
+JAR : Java Archive
+WAR : Web Archive
+EAR : Enterprise Archive
+JNDI : Java Naming Directory Interface
+JPA : Java Persistence API
+JTA : Java Transactional API
+JPQL : Java Persistence Query Language
+BMT : Programmatic Transactions
+CMT : Declarative Transactions
+PTP : Point-to-Point
+MDB : Message-Driven Bean
+
+—
+
+Oracle WebLogic Server
+
+Java EE 7
+
+Jakarta EE
+
+Netbean 8.2
+
+From Chandra to Everyone: (9:22 AM)
+ https://www.oracle.com/middleware/technologies/weblogic-server-installers-downloads.html
+
+https://www.oracle.com/java/technologies/oracle-java-archive-downloads.html
+
+https://www.oracle.com/database/technologies/appdev/jdbc-ucp-183-downloads.html
+
+https://netbeans.org/downloads/old/8.1/ 
+
+https://www.oracle.com/middleware/technologies/weblogic-server-installers-downloads.html 
+
+Java SE 8 JDSK 8u211
+
+—
+NetBeanIDE 8.1
+https://www.oracle.com/java/technologies/javase/javase8u211-later-archive-downloads.html
+
+
+
+for mac-user, should have and run as such:
+1. Java SE Development Kit 8u211: jdk-8u211-macosx-x64.dmg
+2. NetBeans IDE 8.1: netbeans-8.1-javaee-macosy.dmg
+3. Oracle WebLogic Server: fmw_12.2.1.4.0_wls_lite_Disk1_1of1.zip
+fmw_12.2.1.4.0_wls_lite_generic.jar
+
+
+antw@Mac-mini fmw_12.2.1.4.0_wls_lite_Disk1_1of1 % /Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/bin/java -jar fmw_12.2.1.4.0_wls_lite_generic.jar   
+	Launcher log file is /private/var/folders/x_/kc6ltsxd455gmxjn3b7lh87m0000gn/T/OraInstall2020-12-14_11-28-21AM/launcher2020-12-14_11-28-21AM.log.
+	Extracting the installer . . . . . Done
+	Checking if CPU speed is above 300 MHz.   Actual 3686.4 MHz    Passed
+	Checking swap space: must be greater than 512 MB.   Actual 54137 MB    Passed
+	Checking if this platform requires a 64-bit JVM.   Actual 64    Passed
+	Checking temp space: must be greater than 300 MB.   Actual 54137 MB    Passed
+
+
+
+Web Application - Web Protocols = HTTP/s
+
+RMI - Remote Method Invocation
+	JRMP - Java Remote Method Protocol
+
+EIS - Enperprise Information Services / Store
+	Legacy App [mainframe]
+	LDAP - Lightwright Directory Access Procol
+	        “usr/pwd validation"
+	Message Queues mmD
+
+Synchronous / Asynchronoous
+
+Java Messaging Services
+
+—
+Dec 14, 2022 2pm
+
+POJOS, EJBS, SOAP Webservices, JMS
+JSPs.JSL
+
+Java Persistence API
+
+JVM
+	> Java App eg [ .jar / .class]
+
+JVM
+	> WebLogic Server
+		> Java EE App
+
+antw@Mac-mini wls12214 % ls -l
+total 8
+drwxr-x---  19 antw  staff  608 Dec 14 11:44 OPatch
+drwxr-x---   7 antw  staff  224 Dec 14 11:44 coherence
+drwxr-x---  17 antw  staff  544 Dec 14 11:44 inventory
+-rw-r-----   1 antw  staff  127 Dec 14 11:44 oraInst.loc
+drwxr-x---  10 antw  staff  320 Dec 14 11:44 oracle_common
+drwxr-x---   9 antw  staff  288 Dec 14 11:44 oui
+drwxr-x---   8 antw  staff  256 Dec 14 11:44 wlserver
+antw@Mac-mini wls12214 % 
+
+
+wlserver is a license software
+Coherence - in- chache
+
+antw@Mac-mini bin % pwd
+/Users/antw/wls12214/oracle_common/common/bin
+antw@Mac-mini bin % 
+
+
+Post-installation - Domain
+Java =Xms128m -Xmx128m …
+	ms = minimum heap size
+	mx = maximum heap size
+
+From Chandra to Everyone: (2:24 PM)
+ MW_HOME WLS_HOME WL_HOME JAVA_HOME 
+From Chandra to Everyone: (2:53 PM)
+ DOMAIN_HOME 
+
+config.sh  <- for mac
+antw@Mac-mini bin % . ./config.sh
+
+
+Name: Weblogic
+Password: welcome1
+
+Listen Port ;7001
+Server Name: AdminServer
+
+java -server
+
+### T0 start server
+antw@Mac-mini domain1 % . ./startWebLogic.sh
+
+From Chandra to Everyone: (3:08 PM)
+ <WebLogicServer> <BEA-000365> <Server state changed to RUNNING.>
+
+### WebLogic Server
+From Chandra to Everyone: (3:23 PM)
+http://localhost:7001/console
+
+
+
+Load Driver
+
+Connection [ url=ip:port, usr, pwd]
+
+### Setting up type 3 driver
+
+JNDI Name: com.ubs.DS (DO NOT Press enter)
+
+### Create a New JDBC Data Source
+database name: orcl
+Database User: hr
+Password: oracle
+
+Driver: ojdbc8.jar
+
+Test Configuration =>> Connection test succeeded
+
+Instance connection
+From Sri Ram Panday to Everyone: (4:59 PM)
+ jdbc:oracle:thin:@localhost:1522:prod
+
+
+From Chandra to Everyone: (5:12 PM) ojdbc8.jar
+ https://www.oracle.com/database/technologies/appdev/jdbc-ucp-183-downloads.html 
+
+From Chandra to Everyone: (5:24 PM)
+ drop table products;
+drop sequence pid_seq ;
+create table products (
+   id           INT PRIMARY KEY,
+   name         VARCHAR (40) NOT NULL,
+   price        NUMERIC (6,2) NOT NULL,
+   best_before  DATE,
+   version      INT DEFAULT 1);
+CREATE SEQUENCE pid_seq
+  MINVALUE 1
+  START WITH 1
+  INCREMENT BY 1
+  CACHE 20; 
+================================ 
+
+
+From Chandra to Everyone: (5:24 PM)
+ insert into products values (pid_seq.NEXTVAL, 'Cookie', 2.99, TO_DATE(sysdate, 'dd/mm/yyyy'), 1);
+insert into products values (pid_seq.NEXTVAL, 'Cake', 3.99, TO_DATE(sysdate, 'dd/mm/yyyy'), 1);
+insert into products values (pid_seq.NEXTVAL, 'Tea', 1.99, TO_DATE(sysdate, 'dd/mm/yyyy'), 1);
+insert into products values (pid_seq.NEXTVAL, 'Coffee', 1.99, null, 1);
+
+
+
+—
+
+——
+Dec 15, 2020
+
+netbeans_jdkhome in /Applications/NetBeans/NetBeans\ 8.2.app/Contents/Resources/NetBeans/etc/netbeans.conf 
+
+
+### troubleshoot on Netbean 8.2
+antw@Mac-mini etc % pwd               
+/Applications/NetBeans/NetBeans 8.2 RC.app/Contents/Resources/NetBeans/etc
+antw@Mac-mini etc % 
+
+edit netbeans.conf
+
+line 50:
+netbeans_jdkhome="/Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home"
+
+—
+From Chandra to Everyone: (9:14 AM)
+ https://github.com/CohortOne/Java_EE/blob/main/ojdbc8.jar
+
+From Chandra to Everyone: (9:17 AM)
+ https://github.com/CohortOne/Java_EE 
+
+#### JNDI Name
+
+Initial Context Root Direcoty
+
+#### connected to oracle DB
+netbean > new connection
+
+#### connect to mySQL??
+
+From Chandra to Everyone: (10:24 AM)
+ ?&useTimezone=true&serverTimezone=UTC
+
+#### JDBC datasource
+2 contaniners for webLogic Server:
+Web Container
+Static: html, css, js
+Dynamic: Servlets, Java Server Pages[JSP], Java Server Faces [JSP]
+ EJB Container
+Session Beans, Timer Beans, JPA
+
+
+
+Application Client : JRMP // t3
+
+Web Client’s: http’s
+
+Exercise: create enterprise application, EA1
+
+Enterprise Application contain EJB and Web APP
+
+EAR : Enterprise App
+WAR - Web Appl
+JAR - Java Appl
+
+WebLogic > Deployment
+C:\SGUS\JavaEE\temp
+	myApp.ear
+	myEJBApp.jar
+	myWebApp.war
+
+Timer
+
+Right-click EA1-EJB1   > timer session bean > 
+EJB Name: StockTicker
+Package Name: com.ubs
+Session Type: Stateless
+Method Schedule: minute="*", second="0", dayOfMonth="*", month="*", year="*", hour="*", dayOfWeek=“*"
+
+> idempotence is stateless, eg 2x2=4
+
+right click EA1 > deploy
+
+From Chandra to Everyone: (11:52 AM)
+ System.out.println("**********************************************");
+        System.out.println("Timer event: " + LocalDate.now());
+        System.out.println("Timer event: " + counter++);
+        System.out.println("**********************************************");
+—
+
+
+right-click on EA1 and deploy
+```
+...
+post-run-deploy:
+run-deploy:
+BUILD SUCCESSFUL (total time: 1 minute 16 seconds)
+```
+
+
+firstServlet
+right EA1 to deploy
+after successful 
+go to web logic select Web_ea1
+
+web > testing > context root 
+
+—
+#### practise 3
+From Wang junhao to Everyone: (12:49 PM)
+ https://learning.oracle.com/player/play?in_sessionid=31JJ842403J34204&classroom_id=113879359 
+ry mine
+From Chandra to Everyone: (12:44 PM)
+ https://learning.oracle.com/player/play?in_sessionid=12J13A8J54A33214&classroom_id=113879359 
+From ONG Sin Siang to Everyone: (12:44 PM)
+ cqan access 
+From Chandra to Everyone: (12:45 PM)
+ https://learning.oracle.com/player/play?in_sessionid=1813544AJ14282A2&classroom_id=113880329
+
+
+#### EA1_2
+http://localhost:7001/
+index.html
+firstServlet.java
+- -
+4pm
+EA1-v2.zip
+getsession
+session - no of users.
+----
+Dec 16, 2020
+
+Java EE
+	uses Java and Intenet Tech
+	Vendor-neutral
+	Component-based
+
+#### Developer’s Checklist
+- Business services, eg mojo, dao, crud
+- Persistence and Transaction management
+- Multithreading
+- Security management
+- Networking
+
+#### Structure and purpose of Java EE 7 Server, Containers, and APIs
+Web Container Technologies
+Java SE Technologies
+Technologies in all containers
+EJB Container Technologies
+Technologies supported with Full Platform server implementation
+
+#### MVC (Model View Controller)
+Model
+Implement Business Logic
+Manage Data Persistency
+View 
+Produce User Interface
+Manage Presentation
+Generate Events
+Controller
+Handle Events
+Send Commands to the Model
+Control View
+HController
+
+Java EE Web Container Components: JSFs
+
+Java EE Web Container Components: REST Services
+
+Java EE 7 Web Services
+
+
+google: www.payara.fish
+
+Evolution of Web Design
+
+Servley = Java Program ,, html code
+
+JSP is html code plus java code
+
+JSF - Java servlets faces
+
+Web socket
+
+### MVC (Model View Controller)
+
+
+Servlets:
+	
+JSP
+	Translated into a Servlet
+JSP is html + java
+
+Faces Servlet
+
+REST Services
+	Representational State Transfer services
+
+Web Socket
+	XHR
+
+Java EE 7 Web Services
+
+google search is ’stateful’
+incognetion window will be ’stateless’
+
+### EJB
+	Session
+		stateful
+		stateless
+		singleton
+
+### Singleton 
+google singleton
+google: Why Singleton is used in Java?
+
+Before Java 7, the ...
+
+#### practice
+
+—
+#### NetBeans
+connected to database, HR connection in NetBeans
+
+add the following into virtualBox SQL Developer, OR
+Go to Netbeans HR, and executive
+``` sql
+ drop table products;
+drop sequence pid_seq ;
+
+create table products (
+   id           INT PRIMARY KEY,
+   name         VARCHAR (40) NOT NULL,
+   price        NUMERIC (6,2) NOT NULL,
+   best_before  DATE,
+   version      INT DEFAULT 1);
+
+CREATE SEQUENCE pid_seq
+  MINVALUE 1
+  START WITH 1
+  INCREMENT BY 1
+  CACHE 20; 
+
+
+ insert into products values (pid_seq.NEXTVAL, 'Cookie', 2.99, TO_DATE(sysdate, 'dd/mm/yyyy'), 1);
+insert into products values (pid_seq.NEXTVAL, 'Cake', 3.99, TO_DATE(sysdate, 'dd/mm/yyyy'), 1);
+insert into products values (pid_seq.NEXTVAL, 'Tea', 1.99, TO_DATE(sysdate, 'dd/mm/yyyy'), 1);
+insert into products values (pid_seq.NEXTVAL, 'Coffee', 1.99, null, 1);
+
+select * from products;
+
+commit;
+```
+
+
+
+#### WebLogic
+DataSource > Generic Data Source > Create a New JDBC Data Source
+Name:  product
+JNDI Name: jdbc/productDb
+Database driver: Oracle’s Driver (Thin) for Service Connections. version s: Any
+
+
+####
+Entity from project singleton
+
+most commonly search:
+select * from product where id = ?;
+
+JAXB:
+
+annotation get complied into XML
+
+
+ORM: Object Relational Mapping
+
+The key JPA concepts includes:
+
+serialVersionUID = 1L;
+
+Persistent Filed “price” = mapping database column
+Transcient Field ‘discount” only in the memory, no matching in DB
+
+Date converter
+
+Infrasture generated  := persistence
+….
+
+https://learn.oracle.com/ols/home/40805
+
+
+Practice Lab3:
+NetBean: HR connection
+SQL Developer: assess HR
+
+	Add ojdbc8.jar into Libraries
+Product.java edit
+	change Products to Product for Product.java
+	change BigDecimal ID to Integer ID
+
+—
+Dec 17, 2020
+
+Implementing Business Logic by using EJBs
+
+Enterprise Application
+	Telecom websites
+	Stock Markets / Online Trading
+	S C M - supply chain management, Shipping , WH, OM, DM, SM
+
+Java EJB Container: Session Beans (SLSB, SFSB, SGSB) MDB
+
+Enpterprise Applicatio should be
+	Highly Performant
+	Highly Avaialbe
+	Scalable
+	SPOF
+	Security
+
+S/W Load Balancer vs H/W Load Balancer
+
+Google: load balancer
+
+WebServer, Nginx, Apache Web Server
+
+RAC - server Cluster
+
+Concurrency Issues
+	OptimisticLockException
+
+JMS
+
+
+
+Sender > Send  > Queue > Receive >
+		Destination
+Publisher > Public > Topic > Subscriber > Consumer
+
+Pull, Push
+
+Message-Driven Bean
+	Act as ..
+
+
+Session
+
+MSG. —— TTL (time to live)
+
+Subscribe durable - queue will hold the msg more than TTL
+
+SLSB Stateless Session Bean
+
+SFSB Stateful Session Bean
+
+Passivate, activate
+
+Singleton session bean
+
+Java Transaction API
+	BMU - Bean Managed Transactions
+	CMT - Container Managed Transactions
+
+Interceptors
+
+
+JMS _Java 
+
+### labs 4 and labs5
+
+From Chandra to Everyone: (12:14 PM)  jms/productQueue 
+
+From Chandra to Everyone: (12:28 PM)
+ Can't open one  of my project. Complained "WebLogic.jar' not found. I can't see it in my Middleware module path ether. https://github.com/CohortOne/Java_EE/blob/main/error%20Message.png https://github.com/CohortOne/Java_EE/blob/main/error%20Message.png 
+
+### jdbc.productDB
+
+Error:
+Deployment failed. The message was: javax.naming.NameNotFoundException: While trying to lookup 'jdbc.productDB' didn't find subcontext 'jdbc'. Resolved ''; remaining name 'jdbc/productDB’
+
+Resolved:
+check if productDB is available
+Netbeans > Services 
+> Servers > Oracle WebLogic
+> Resources > JDBC > Connection Pools
+Netbeans > Services
+Oracle WebLogic > right-click View Admin Console
+Login to WebLogic
+> Data Sources > productDB
+> Targets 
+> select AdminServer
+
+
+Practices for Lesson 5:
+——
+Dec 18, 2020
+
+### Building Web App thru Netbean
+#### Web Application
+New Project > Java Web + Web Application
+Name and Location
+Project Name: 
+Project Location:
+Server and Setting > next
+Frameworks > Finish
+Clean and build > Deploy
+Clean and Build, 
+Deploy
+Any changes in html, will show in browser.
+
+#### Servlet
+Select File > New File
+Select **Web** and **Servlet**
+Name and Locatiom
+Class Name: NewServlet1
+Package: com.dbs
+Configure Servlet Depployment
+Select `Add information to web.xml`
+URL Patterns(s): /tt
+modify index.html
+<a href=“/tt”> Go to …
+
+
+
+HttpServlet 
+> web.xml > Servlets 
+
+ @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        //processRequest(request, response);
+
+#### ThirdServer.java
+
+Get
+Post
+not Put/Delete/Trace
+
+
+From Chandra to Everyone: (12:14 PM)
+out.println(" <html>");
+            out.println(" <head> <title> Third Servlet </title> </head>");
+            out.println(" <body>");
+            out.println(" <table border='2'>");
+            for(int i = 2, j=1; j<= 20 ;j++){
+                out.println("<tr><td>" +  i  +  "</td><td>" + j + " </td> <td> " + i*j + "</td></tr>");
+            }
+            out.println(" </table>");
+            out.println(" <br> <a href='index.html'> Take me back .... </a> ");
+            out.println(" </body></html>");
+
+http://localhost:7001/hw/tx?
+the question mark `?` is Query String
+
+2pm
+
+> jar -tvf HelloWordl123.war
+
+
+
+#### ClockServlet
+Select File > New File
+Select Web and Servlet
+Name and Location
+File Name:
+Configure Servlet
+Add info
+
+#### Check for url at web.xml
+Web Pages > WEB-INF
+
+#### Auto refresh
+`response.setIntHeader("R",0);`
+
+#### Enumeration
+From Chandra to Everyone: (2:46 PM) 
+ Enumeration <String> names = req.getParameterNames(); while (names.hasMoreElements()) { String param = names.nextElement(); String value = req.getParameter(param).toString(); out.println("<h2> Parameters : " + param + " Value " + value + "</h2>"); }
+
+From Chandra to Everyone: (2:58 PM)  int i = 0, j = 0; Enumeration <String> names = req.getParameterNames(); while (names.hasMoreElements()) { String param = names.nextElement(); if(param.equals("i")) i = Integer.parseInt(req.getParameter(param)); else if(param.equals("j")) j = Integer.parseInt(req.getParameter(param)); else { String value = req.getParameter(param); out.println("<h2> Parameters : " + param + " Value " + value + "</h2>"); } } for (int c = 1; c <= j; c++) { out.println("<tr><td>" + i + "</td><td>" + c + " </td> <td> " + i * c + "</td></tr>"); } 
+
+#### HttpSession
+``` java
+            HttpSession session = req.getSession(true);
+            
+            session.setAttribute("ivar", i);
+            session.setAttribute("jvar", j);
+```
+
+### error on my clock due to 
+missing doGet, and doPost
+
+#### Serlet1.java
+addded Init(), destroy() , contractor 
+
+``` java
+@WebServlet(name = "Server1", urlPatterns = {"/s1"})
+public class Servlet1 extends HttpServlet {
+    
+    public Servlet1() {
+        System.out.println(" ************** Constructor Method ************** ");
+    }
+
+    @Override
+    public void init() throws ServletException{
+        super.init();
+        System.out.println(" ************** Inside Init Method ************** ");
+    }
+    
+    @Override
+    public void destroy(){
+        super.destroy();
+        System.out.println(" ************** Inside destroy Method ************** ");
+    }            
+```
+
+Stop server in WebLogic …
+	should show destroy statement
+
+Start Server
+	click Servlet1
+	should show loging statement
+
+
+
+---
+----
+
+
+
+
+
+
+
+
+
+
+- -
