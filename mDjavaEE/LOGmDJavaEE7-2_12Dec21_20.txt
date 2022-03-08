@@ -1,0 +1,572 @@
+.LOG mDJavaEE7-12 Dec 21,’20
+ JAVA DEVELOPER - CAPSTONE PROJECT 4
+(VLC-SGITP53-20-0650)
+
+
+
+—
+
+Dec 21, 2020
+
+Images should be outside the INF
+
+session timeout
+
+Web.xml  session-timeout,
+try at 1min,
+got to re-deploy
+
+alert from Weblogic > unable all changes if not sure
+
+WebLogic> Deployment >Application > Monitorinbt
+
+
+how to convert ePoh value
+#### clock session
+From Chandra to Everyone: (9:37 AM)
+ LocalDateTime ldt = LocalDateTime.ofInstant(Instant.ofEpochMilli(session.getCreationTime()), ZoneId.systemDefault());
+            out.println("<br>Creation Time  = " + ldt.toString());
+            out.println("<br><br>Session ID = " + session.getId());
+            ldt = LocalDateTime.ofInstant(Instant.ofEpochMilli(session.getLastAccessedTime()), ZoneId.systemDefault());
+            out.println("<br><br>Last Accessed Time = " + ldt); 
+
+> clock session need to activate cookie  at thirdServlet /ts  before can run
+
+#### cookies
+for the clocksevlet, the session will not destroy, dur to refresh. every 10sec
+…
+Response.addCookie(cookie);
+
+
+#### CookieServlet.java
+From Chandra to Everyone: (10:20 AM)
+ Cookie[] cookies = request.getCookies();
+            int nov = 1;
+            if (cookies != null) {
+                for (Cookie cookie : cookies) {
+                    if (cookie.getName().equals("NoOfVisits")) {
+                        nov += Integer.parseInt(cookie.getValue());
+                        break;
+                    }
+                }
+            }
+            Cookie cookie = new Cookie("NoOfVisits", "" +nov);
+            cookie.setComment("2 Count the number of visits to this page");
+            cookie.setMaxAge(86400);
+            response.addCookie(cookie);
+
+From Chandra to Everyone: (10:39 AM)
+ String num1 = request.getParameter("ivar");
+           String num2 = request.getParameter("jvar");
+            int i = (num1 == null) || (num1.equals("")) ? 2 : Integer.parseInt(num1);
+            int j = (num2 == null) || (num2.equals("")) ? 2 : Integer.parseInt(num2);
+
+
+Browser to reloard everything
+> Control _ refresh icon at the browser
+
+Others — 
+If deployment not happer, check on:
+WebLogic > Deployment
+AbloutCookies > Right-Click Properties > Categories >
+
+
+### Init parameter
+
+@WebServlet(name = "FourthServlet", urlPatterns = {"/FourthServlet"}, initParams = {
+    @WebInitParam(name = "CountryCode", value = "MY"),
+    @WebInitParam(name = "IDDCode", value = "+65")}) 
+
+
+
+out.println("<body>");
+            Enumeration<String> names = config.getInitParameterNames();
+            while (names.hasMoreElements()) {
+                String param = names.nextElement();
+                String value = config.getInitParameter(param);
+                out.println("<h2> Init Param : " + param + "  Value " + value + "</h2>");
+            }
+            out.println("</body>"); 
+
+
+From Chandra to Everyone: (2:59 PM)
+ /FourthServlet?a=10&b=20&c=30 
+From Chandra to Everyone: (2:59 PM)
+ names = request.getParameterNames();
+            while (names.hasMoreElements()) {
+                String param = names.nextElement();
+                String value = request.getParameter(param);
+                out.println("<br><h2> Request Param :   " + param + "    Value     " + value + "      </h2>");
+            }
+
+
+#### conversion
+
+
+From Chandra to Everyone: (3:07 PM)
+ out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet Conversion</title>");   
+            out.println("</head>");
+            out.println("<body>");
+            out.println("     \n"
+                    + "        <form action='conv' method='get'>\n"
+                    + "                        <br> Temp in Celsius    <input type='text' name='cel' value='" + cel + "'> &nbsp;&nbsp;&nbsp; <input type='submit' name='action' value='cel' />\n"
+                    + "                        <br> Temp in Fahrenheit <input type='text' name='fah' value='" + fah + "'> &nbsp;&nbsp;&nbsp; <input type='submit' name='action' value='fah'/>\n"
+                    + "                        <br> Temp in Kelvin     <input type='text' name='kel' value='" + kel + "'> &nbsp;&nbsp;&nbsp; <input type='submit' name='action' value='kel'/>\n"
+                    + "        </form>");
+            out.println("</body>");
+            out.println(" 
+
+From Chandra to Everyone: (3:08 PM)
+ String celStr = request.getParameter("cel");
+            String fahStr = request.getParameter("fah");
+            String kelStr = request.getParameter("kel");
+            String act = request.getParameter("action"); 
+From Chandra to Everyone: (3:10 PM)
+ if(act == null)
+                 cel = fah = kel = 0.0;
+
+
+#### Session Beans
+conversionSLSB
+Package. Com.logic
+
+right-click inset code
+
+
+
+
+From Ren Jie Wong to Everyone: (5:40 PM)
+ to cfm, so @ejb is a bit similar to our old form of importing classes, but except it takes it straight from jndi tree? (assuming all the ejb interfaces are added to that web folder in the tree)
+
+From Chandra to Everyone: (5:44 PM)
+ for my understanding is ConversionSLSB
+local is a interface u need annotation to create a reference or /get/set method for injection?
+
+——
+Dec 22. ’20
+Web.xml > General > Context Parameters
+> Global setting for all parameter
+
+From Sri Ram Panday to Everyone: (9:23 AM)
+ ServletConfig config = this.getServletConfig(); 
+
+#### Servlet1.java
+From Chandra to Everyone: (9:28 AM)
+ ============================== 
+From Chandra to Everyone: (9:28 AM)
+ ServletContext    ctx = config.getServletContext();
+Enumeration<String> names = ctx.getAttributeNames();
+while (names.hasMoreElements()) {
+    String param = names.nextElement();
+    String value = ctx.getAttribute(param).toString();
+    out.println("<h2> Attribute : " + param + "  Value " + value + "</h2>");
+} 
+
+Can set the Welcome page
+web.xml > Pages
+> Error Pages
+
+#### IP_Address_Trace_Filter
+New > Others > Filter 
+Name: IP_Address_Trace_Filter
+
+10:27AM
+go thru the filter
+
+dont do too much process in the filter
+
+cooments off doBeforeProcessing and doAfterProcessing
+add `System.out.println("TimeStamp: " + LocalDateTime.now());`
+
+can see the timestamp at WebLogic 
+
+
+11:16AM
+OPWA - One Page web App's
+
+## JSP
+Scriplet : Expression Scriptlet
+
+request.setAttribute(“result”, result);
+request.getRequestDispatcher(“calcJSP.jsp”).forward(request, response);
+
+From Chandra to Everyone: (11:36 AM)
+ https://github.com/CohortOne/Java_EE/blob/main/Calc.zip
+
+http://localhost:7001/Calculator/
+
+/Users/antw/ntuc/javaEE/Calc/dist/> jar -tcf Calc.war
+
+From Chandra to Everyone: (12:09 PM)
+ request.setAttribute("result", result); 
+            request.getRequestDispatcher("calcJSP.jsp").forward(request, response); 
+
+
+#### Calculator.java
+New Project > Web 
+Name: Calculator
+
+Delete index.html
+
+#### index.jsp
+New File > Web, JSP
+Name: index
+
+> Run
+
+#### Calc.jsp
+New File > Web, JSP
+Name: Calc
+
+remove all the html output 
+add in the operation
+
+Edit index.jsp
+add in the user input
+
+2.03pm
+### AuthN
+
+INSERT INTO     HR_AUTHEN
+VALUES  ('userd', 'welcome1', 'Hello',  1)
+
+
+
+
+<br> Click here to Logout      
+
+From Chandra to Everyone: (4:17 PM)
+ https://github.com/CohortOne/Java_EE/blob/main/AuthServlet.java 
+
+
+From Chandra to Everyone: (4:35 PM)
+ https://github.com/CohortOne/Java_EE/blob/main/AuthN.zip 
+
+From Chandra to Everyone: (4:37 PM)
+ https://github.com/CohortOne/Java_EE/blob/main/TableDD.txt 
+
+###    @Resource(name = "jdbc/productDB")
+
+
+Dec 23, 20
+
+else if (action.equals(")
+
+### new project JSPDemo
+Context Path:
+
+for web application 
+weblogic only process  dynamic content, such as Servlets, Class .jsp, .jsf, .jspx
+
+base  url: localhost:7001
+	/JSPDemo
+	/resources/images/duke.
+
+#### NewJSP_DynamicWebPage.jsp
+
+hide the url
+
+builtwith.com
+
+Web.xml > sesstion-timeout > 5mins
+
+```
+Created a Web App
+
+	index.html [default page - static content]
+
+	.jsp [dynamic content]
+
+	Web.xml
+		session-timeout [30 to 5 mins]
+		jsp - url mapping
+
+	html amd jsp comments
+	session [true/false] @ every JSP file
+	setAttribure [/home]
+	getAttrubure [/]
+```
+Web.xml > Servlets 
+	Add Servlet Element >
+		Servlet Name: FirstPage
+		select /NewJSP_DynamicWebPage.jsp
+		URL Patterns: /home  (Alias)
+		save the file
+	Pages >  NewJSP_DynamicWebPage.jsp,/home
+
+NewJSP_DynamicWebPage.jsp
+
+JSP Comments 
+	<%-- JSP Comment --%>
+
+whenever you work with JSP the cookies always created
+
+```
+	Servlets
+	HttpSession ses = request.getSesssion();
+	ses.setXXXXXX
+```
+Added `<%@page session="false" %> `  to switch off the session in JSP
+
+change to true, `<%@page session="true" %>`
+
+in Second.jsp `<%= session.getAttribute("ATT1") %>`
+
+Web.xml > Servlets > InitiParameter
+	Init Parameter 
+	Parameter Name: CONFIG_INIT_PARAM1
+	Parameter Value: SAMSUNG
+
+Added in 1st Servlet
+added in ` <%= config.getInitParameter("CONFIG_INIT_PARAM1") %>`
+
+From Ren Jie Wong to Everyone: (10:51 AM)
+ its implicitly created, I just share a link on the objects that jsp has -> 
+https://www.tutorialspoint.com/jsp/jsp_implicit_objects.htm#:~:text=These%20Objects%20are%20the%20Java,also%20called%20pre-defined%20variables 
+From Keng Wong to Everyone: (10:51 AM)
+ Thanks!
+
+From Chandra to Everyone: (11:19 AM)
+ <form action="second.jsp" method="GET">
+                <input type="text" name="uid">
+                <input type="submit" name="action" value="SendUID">
+            </form> 
+
+
+dont add this
+`request.getRequestDispatcher("second.jsp").forward(request, response);`
+
+Web.xml > General > Contect Parameter
+Parameter Name: CTX_PARAM
+Parameter Name: APP_PARAM
+> save
+
+					Application Scope		Session Scope	Request
+100000 unique Users 	(same)				1000			4
+diff browser
+
+2pm
+
+AuthServlet -< HTTPServlet -< GenericServlet
+  All doXXXXX are the children of the service method
+
+
+``` jsp
+       <%! // Declaration Scriptlet
+            int i = 22; // class variable // global 
+
+            int multiplyWithI(int j) {
+                // No Implicit Objects Assess here ....
+                return i * j;
+            }
+        %>
+
+        <%= multiplyWithI(88)%>
+
+        <% multiplyWithI(888);
+            int k = 99; // local variable
+        %>
+
+        <%
+            k++;
+            i++;
+        %>
+
+        <%
+            session.setAttribute("Make", "Apple"); // insert/update = Upsert
+            session.getAttribute("Make");       // read
+            session.removeAttribute("Make");    // delete
+            session.invalidate();
+            session.isNew();
+        %>
+
+```
+
+EL = ${} , Expression Language
+
+STL - Standard Tag Libraary
+
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%> 
+
+How to write your own Tag Library
+From Chandra to Everyone: (2:59 PM)
+ https://github.com/eclipse-ee4j/jstl-api/tree/master/api/src/main
+
+From Chandra to Everyone: (3:16 PM)
+ https://github.com/CohortOne/Java_EE/blob/main/EL_JSP.jsp 
+
+<c:set var="inuse" value='${row.inuse}' />
+
+Google mvc architecture
+
+https://www.javatpoint.com/images/st/model2.jpg 
+
+From Chandra to Everyone: (6:02 PM)
+ https://github.com/CohortOne/Java_EE/blob/main/JSPDemo.zip 
+
+—
+
+Dec 24, 2020
+From Chandra to Everyone: (9:51 AM)
+ https://github.com/CohortOne/Java_EE/blob/main/web.zip 
+
+From Sri Ram Panday to Everyone: (11:01 AM)
+ <c:if test="${count>=1}">
+<font size="5" color='green'> Data inserted
+successfully.</font>
+</c:if>
+
+Web logic > datasource
+
+New> Name choose it wisely
+JNDI always need to be caregf
+
+XA -eXtended Architecture
+
+#### JTA - Java Transaction API
+	begin > COMMIT / ROLLBACK
+
+#### INTER Bank Fund Transfer
+WebLogic Server - JTA
+
+*Oracle's Driver (Thin XA) for Application
+
+Global / Distributed Transaction’s = Multiple Resources [ more than one db]
+	Thin XA
+
+XA is recommended for all DS
+
+Transaction - Local Tx - Single Resource [DB]
+Non-XA
+
+with XA Datasource 	= XA Transaction
+					= Local Tx
+
+> Messaging
+delelet the JMS Module than JMS Server
+
+All msgs are stored in the memory store
+Persistence - Permanent
+
+
+Configuration
+> JMS Servers
+> next > AdminServer
+
+JMS Module
+m1 > AdminServer (or multiple server)
+
+Queue [ One 2 One // Peer - t0 Peer // Send a Message and Receive a Message]
+
+Topic [ One 2 Many // Many to Many // Public a Msg and Subscribe a Message]
+
+Queue 
+Process the msg thru Netbeans
+
+System.out.println(message.getBody(String.class));
+
+…
+
+session bean > stateless > Local
+right click insert code > Add Business Method > Int > Parameter
+
+javax.jms.QueueConnectionFactory
+
+com.party.CF
+
+https://github.com/CohortOne/Java_EE/blob/main/JMSDemo.zip 
+
+---
+Dec 28,’ 20
+Web Socket
+Google > www.websocket.org
+echo.websocket.org
+
+Chandra to Everyone (9:19 AM)
+https://www.websocket.org/echo.html
+
+WebSockets are new way of interaction inWWW
+
+Leverage Existing Web Browser & Server
+
+Push and Pull Implementation
+
+Score / Stock Symbols
+
+HTTP					Web Sockets
+Req-resp					push & pull
+initiated by Browser/client 	Both B & S cab initiate
+no lifecycle				pre-defined
+						  Open
+						  Message
+						  Close / Error
+
+Chandra to Everyone (9:19 AM)
+https://www.websocket.org/echo.html
+Chandra to Everyone (9:28 AM)
+https://github.com/CohortOne/Java_EE/tree/main/28_Dec
+Chandra to Everyone (9:50 AM)
+https://docs.oracle.com/javaee/7/api/javax/websocket/Endpoint.html
+https://docs.oracle.com/javaee/7/api/javax/websocket/OnMessage.html
+Chandra to Everyone (10:05 AM)
+https://github.com/CohortOne/Java_EE/blob/main/28_Dec/WebSocketEP.java
+Chandra to Everyone (10:15 AM)
+function onMessage(evt) {
+        console.log(" \n\t\t\t**** Received Msg from the Web Socket *** \n\n")
+        var un = (evt.data+"").split(":");
+        document.getElementById('rcvMsg').value = un.shift();
+        document.getElementById('cntr').value = un.shift();
+//        document.getElementById('rcvMsg').value = evt.data;
+   //     websocket.close();
+    }
+
+Chandra to Everyone (10:36 AM)
+https://github.com/CohortOne/Java_EE/blob/main/WSDemo.zip
+
+com.party.syncQ
+
+System.out.println(" Msg to Client" + message);
+
+Chandra to Everyone (2:21 PM)
+https://github.com/CohortOne/Java_EE/blob/main/28_Dec/WS_Adv_DisAdv.png
+
+——
+
+to create new JNDI Name
+Domain Structure > Services > Messaging > JMS Modules > m1 > 
+> New > Queue > 
+Name: SyncQ
+JNDI Name: com.party.syncQ
+
+Create a New Subdeployment > SyncQ > Target: jmsserver1 > Finished
+
+Enterprise JavaBeans > Session Beans'
+MSG_Sender
+Package: com.web
+Session Type: Stateless
+Create Interface: Local
+
+Chandra to Everyone (2:40 PM)
+https://github.com/CohortOne/CapstoneProject2/tree/main/Java_SE_Books
+
+Chandra to Everyone (4:34 PM)
+https://github.com/CohortOne/Java_EE/blob/main/28_Dec/JEE_Demo.zip
+
+Chandra to Everyone (5:14 PM)
+https://github.com/CohortOne/CapstoneProject1/tree/main/Chandra
+
+—
+
+
+
+
+
+
+
+
+---
