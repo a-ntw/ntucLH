@@ -34,7 +34,7 @@ antw@Mac-mini temp % open ~/.ssh/config
 >>> a-ntw not found inside                     
 antw@Mac-mini temp % mv ~/.ssh/config ~/.ssh/config.bak
 
-
+---
 antw@Mac-mini ntucLH % git remote add origin git@github.com:a-ntw/ntucLH.git
 error: remote origin already exists.
 antw@Mac-mini ntucLH % git remote set-url origin git@github.com:a-ntw/ntucLH.git https://github.com/alvintwng/ntucLH.git
@@ -46,6 +46,14 @@ a-ntw
 antw@Mac-mini ntucLH % git remote add origin git@github.com:a-ntw/ntucLH.git
 git branch -M main
 git push -u origin main
+
+---
+antw@Mac-mini learnj % git remote set-url origin git@github.com:a-ntw/carzoom.git https://github.com/alvintwng/learnj.git
+antw@Mac-mini learnj % git remote -v
+origin	git@github.com:a-ntw/carzoom.git (fetch)
+origin	git@github.com:a-ntw/carzoom.git (push)
+antw@Mac-mini learnj % git config --global user.name
+a-ntw
 
 ---
 

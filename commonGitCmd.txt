@@ -1,0 +1,58 @@
+### common git command
+
+gitHub a… steps
+
+https://github.com/alvintwng/steps
+—
+std procedures got git push:
+git diff
+git status
+git add .
+git commit -m “bnk?? - file1, file2”
+git push -u origin bnk??
+git branch bnk?+1
+git checkout bnk?+1
+git status
+
+—
+To undi the add .
+	git reset 
+
+To undo 
+	git stash
+
+To delete git branch
+	git branch -d bnk03
+
+To delete github branch
+	git push origin —delete bnk02
+
+—
+
+To revert or reset to a previous version
+
+% git checkout main
+% git log
+	To select the previous committedname, also check from gitHub
+	commit 7f569fe64ea80e642db3953746d1e42d5be9bc69
+
+% git reset —hard 7f569fe64ea80e642db3953746d1e42d5be9bc69
+% git push —force origin main
+
+--
+% git remote -v
+
+% git config —list
+
+---
+
+… ... create a new repository on the command line
+echo "# ntucLH" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin git@github.com:a-ntw/ntucLH.git
+git push -u origin main
+
+---
