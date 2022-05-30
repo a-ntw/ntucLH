@@ -1,0 +1,66 @@
+Last login: Fri May 27 17:59:51 on ttys005
+
+antw@Mac-mini temp % git config --global user.name
+antw@Mac-mini temp % git config --global --unset credential.helper
+...
+antw@Mac-mini temp % cd ..
+antw@Mac-mini ~ % rm -Rf temp
+antw@Mac-mini ~ % mkdir temp
+
+antw@Mac-mini temp % ssh-keygen -t ed25519 -C "alvin.Ngtw@gmail.com"
+Generating public/private ed25519 key pair.
+Enter file in which to save the key (/Users/antw/.ssh/id_ed25519): /Users/antw/.ssh/a-ntw              
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /Users/antw/.ssh/a-ntw.
+Your public key has been saved in /Users/antw/.ssh/a-ntw.pub.
+The key fingerprint is:
+The key's randomart image is:
+
+antw@Mac-mini temp % cat /Users/antw/.ssh/a-ntw.pub
+
+>>>> pasted into github.com/a-ntw setting > Access > SSH key
+
+antw@Mac-mini temp % git init
+antw@Mac-mini temp % git remote add origin git@github.com:a-ntw/temp.git
+
+antw@Mac-mini temp % ssh -vT git@github.com
+debug1: Reading configuration data /Users/antw/.ssh/config
+...
+git@github.com: Permission denied (publickey).
+
+antw@Mac-mini temp  % ls -al ~/.ssh
+antw@Mac-mini temp  % cat ~/.ssh/a-ntw
+antw@Mac-mini temp % ssh-add -K ~/.ssh/a-ntw
+Enter passphrase for /Users/antw/.ssh/a-ntw: 
+Identity added: /Users/antw/.ssh/a-ntw (alvin.Ngtw@gmail.com)
+
+antw@Mac-mini temp % open ~/.ssh/config       
+>>> a-ntw not found inside                     
+antw@Mac-mini temp % mv ~/.ssh/config ~/.ssh/config.bak
+
+
+antw@Mac-mini ntucLH % git remote add origin git@github.com:a-ntw/ntucLH.git
+error: remote origin already exists.
+antw@Mac-mini ntucLH % git remote set-url origin git@github.com:a-ntw/ntucLH.git https://github.com/alvintwng/ntucLH.git
+antw@Mac-mini ntucLH % git remote -v
+origin	git@github.com:a-ntw/ntucLH.git (fetch)
+origin	git@github.com:a-ntw/ntucLH.git (push)
+antw@Mac-mini ntucLH % git config --global user.name
+a-ntw
+antw@Mac-mini ntucLH % git remote add origin git@github.com:a-ntw/ntucLH.git
+git branch -M main
+git push -u origin main
+
+---
+
+…or create a new repository on the command line
+echo "# ntucLH" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin git@github.com:a-ntw/ntucLH.git
+git push -u origin main
+
+---
