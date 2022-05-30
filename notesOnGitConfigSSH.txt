@@ -17,20 +17,15 @@ Your public key has been saved in /Users/antw/.ssh/a-ntw.pub.
 The key fingerprint is:
 The key's randomart image is:
 
-antw@Mac-mini temp % cat /Users/antw/.ssh/a-ntw.pub
-
->>>> pasted into github.com/a-ntw setting > Access > SSH key
-
 antw@Mac-mini temp % git init
 antw@Mac-mini temp % git remote add origin git@github.com:a-ntw/temp.git
 
 antw@Mac-mini temp % ssh -vT git@github.com
 debug1: Reading configuration data /Users/antw/.ssh/config
-...
-git@github.com: Permission denied (publickey).
 
 antw@Mac-mini temp  % ls -al ~/.ssh
 antw@Mac-mini temp  % cat ~/.ssh/a-ntw
+>>>> pasted into github.com/a-ntw setting > Access > SSH key
 antw@Mac-mini temp % ssh-add -K ~/.ssh/a-ntw
 Enter passphrase for /Users/antw/.ssh/a-ntw: 
 Identity added: /Users/antw/.ssh/a-ntw (alvin.Ngtw@gmail.com)
@@ -54,7 +49,7 @@ git push -u origin main
 
 ---
 
-…or create a new repository on the command line
+… ... create a new repository on the command line
 echo "# ntucLH" >> README.md
 git init
 git add README.md
