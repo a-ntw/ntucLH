@@ -1,0 +1,57 @@
+
+Macbook Pro 2012 
+Setup
+This old Macbook will not prepared for any upgrade yet,
+info:
+OS X Version 10.8.5
+Processor 2.5 GHz Intel Core i5
+Memory 4 GB 1600 MHz DDR3
+
+Startup Disk dsk2206A
+
+2 Partitions:
+dsk2206A: working disk 
+dsk2206B: for Time Machine backup
+
+ngs-MacBook-Pro:installed_files ng$ pwd
+/Volumes/dsk2206B/installed_files
+ngs-MacBook-Pro:installed_files ng$ ls -l
+total 3508160
+-rw-r--r--@ 1 ng  admin    85215292 Jun  4 14:26 Firefox 45.9.0esr.dmg
+-rwxrwxrwx@ 1 ng  admin    90418524 Jun  4 23:25 VirtualBox-5.0.40-115130-OSX.dmg
+-rw-r--r--@ 1 ng  admin    13539616 Jun  6 23:54 git-2.11.1-osx-installer.dmg
+-rw-r--r--@ 1 ng  admin    67608182 May  4  2017 googlechrome.dmg
+-rwxrwxrwx@ 1 ng  admin   359647229 Jun  3 13:37 jdk-8u111-nb-8_2-macosx-x64.dmg
+-rw-r--r--@ 1 ng  admin  1157627904 Jun  5 14:38 ubuntu-14.04.6-desktop-amd64.iso
+ngs-MacBook-Pro:installed_files ng$ 
+
+ref:
+	NetBeans 8.2 with JDK 8u111 | jdk-8u111-nb-8_2
+	https://archive.org/details/jdk-8u111-nb-8_2
+
+	https://releases.ubuntu.com/14.04/
+
+	https://www.unixmen.com/install-ubuntu-14-04-3-lts-virtualbox/
+
+	https://mackyle.github.io/git-osx-installer/
+
+Date: 220706
+...  SSL certificate problem: Untrusted root certificate
+ngs-MacBook-Pro:temp ng$ git config --global http.sslverify "false"
+
+Date: 220607
+1. Time Machine roll back 
+2. install Netbean with jdk
+3. install git
+	can't be opened
+	>> System Pref > Security Privacy > Anywhere
+4. install Firefox
+5. install virtualBox w ubuntu
+	>> cp iso to /Users/ng/Applications/virtualBoxISO
+	>> memory allocated chg to 2048, fixed, virtual harddsk
+6. use Alvin43525@g for git with 2fa
+	>> invite for collaboration
+ngs-MacBook-Pro:java ng$ git config --global http.sslverify "false"
+ngs-MacBook-Pro:java ng$ git clone https://github.com/a-ntw/absoluteJava.git
+ngs-MacBook-Pro:java ng$ cd absoluteJava
+
